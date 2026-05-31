@@ -389,7 +389,7 @@ export default function Home() {
               disabled
               style={{ width: "100%", justifyContent: "center" }}
             >
-              <span className="dot"></span> Segera Hadir / Coming Soon
+              <span className="dot"></span> Segera Hadir
             </button>
             <a
               className="btn btn-ghost"
@@ -422,7 +422,7 @@ export default function Home() {
           </p>
           <div className="hero-cta reveal d4">
             <button className="btn btn-soon" disabled>
-              <span className="dot"></span> Segera Hadir / Coming Soon
+              <span className="dot"></span> Segera Hadir
             </button>
             <a className="btn btn-ghost" href="#cara-kerja">
               Lihat Cara Kerja ↓
@@ -1702,7 +1702,7 @@ export default function Home() {
             </p>
             <div className="final-cta">
               <button className="btn btn-soon" disabled>
-                <span className="dot"></span> Segera Hadir / Coming Soon
+                <span className="dot"></span> Segera Hadir
               </button>
               <a
                 className="btn btn-ig"
