@@ -5,11 +5,11 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 const FLIP_PHRASES = [
+  "Restoran",
+  "Warung",
   "Coffee Shop",
   "Bakery Shop",
   "Pastry Shop",
-  "Restoran",
-  "Warung",
   "F&B lainnya",
 ];
 
@@ -308,23 +308,26 @@ export default function Home() {
       <section className="hero">
         <div className="wrap">
           <h1 className="reveal d1 hero-headline">
-            WhatsApp Anda, AI Assistant untuk
-            <br />
-            <span className="flip" aria-live="polite">
-              <span className="flip-sizer" aria-hidden="true">
-                Bakery Shop
-              </span>
-              {flipPrev !== null && (
-                <span
-                  key={`flip-out-${flipIdx}`}
-                  className="flip-word out"
-                  aria-hidden="true"
-                >
-                  {FLIP_PHRASES[flipPrev]}
+            <span className="hl-line">WhatsApp Anda,</span>
+            <span className="hl-line">AI Assistant bisnis</span>
+            <span className="hl-line hl-flip-line">
+              untuk{" "}
+              <span className="flip" aria-live="polite">
+                <span className="flip-sizer" aria-hidden="true">
+                  Bakery Shop
                 </span>
-              )}
-              <span key={`flip-in-${flipIdx}`} className="flip-word in">
-                {FLIP_PHRASES[flipIdx]}
+                {flipPrev !== null && (
+                  <span
+                    key={`flip-out-${flipIdx}`}
+                    className="flip-word out"
+                    aria-hidden="true"
+                  >
+                    {FLIP_PHRASES[flipPrev]}
+                  </span>
+                )}
+                <span key={`flip-in-${flipIdx}`} className="flip-word in">
+                  {FLIP_PHRASES[flipIdx]}
+                </span>
               </span>
             </span>
           </h1>
