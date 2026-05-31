@@ -1,65 +1,1667 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    // AbortController lets us remove every addEventListener at once on cleanup,
+    // so React Strict Mode's double-mount doesn't double-fire or leak listeners.
+    const ac = new AbortController();
+    const { signal } = ac;
+
+    // ===== Animated chat demos (height-stable) =====
+    function playChat(chat: any) {
+      if (!chat) return;
+      const bubbles = Array.from(
+        chat.querySelectorAll(".bubble, .ui-pill")
+      ) as HTMLElement[];
+      const loopMs = parseInt(chat.dataset.loop || "6000", 10);
+      if (chat._timers) chat._timers.forEach((t: number) => clearTimeout(t));
+      chat._timers = [];
+
+      // reset: all bubbles pending (out of flow), container stays fixed height
+      bubbles.forEach((b) => {
+        b.classList.remove("seen");
+        b.classList.add("pending");
+      });
+      const oldTyping = chat.querySelector(".typing");
+      if (oldTyping) oldTyping.remove();
+      chat.scrollTop = 0;
+
+      let delay = 350;
+      bubbles.forEach((b) => {
+        const isIn =
+          b.classList.contains("b-in") ||
+          b.classList.contains("b-points") ||
+          b.classList.contains("ui-pill");
+        const typeTime = isIn ? 800 : 400;
+        // typing indicator
+        const t1 = window.setTimeout(() => {
+          const typing = document.createElement("div");
+          typing.className = "typing" + (isIn ? "" : " out");
+          typing.innerHTML = "<span></span><span></span><span></span>";
+          chat.appendChild(typing);
+          requestAnimationFrame(() => typing.classList.add("show"));
+          chat.scrollTop = chat.scrollHeight;
+          chat._activeTyping = typing;
+        }, delay);
+        chat._timers.push(t1);
+        // reveal bubble (move into flow + fade in), remove typing, scroll within container
+        const t2 = window.setTimeout(() => {
+          if (chat._activeTyping) {
+            chat._activeTyping.remove();
+            chat._activeTyping = null;
+          }
+          b.classList.remove("pending");
+          // force reflow so the transition fires
+          void b.offsetWidth;
+          b.classList.add("seen");
+          chat.scrollTop = chat.scrollHeight;
+        }, delay + typeTime);
+        chat._timers.push(t2);
+        delay += typeTime + 700;
+      });
+
+      // show replay + schedule loop
+      const replay = chat.parentElement.querySelector("[data-replay]");
+      const tEnd = window.setTimeout(() => {
+        if (replay) replay.classList.add("show");
+      }, delay);
+      chat._timers.push(tEnd);
+      const tLoop = window.setTimeout(() => {
+        if (replay) replay.classList.remove("show");
+        playChat(chat);
+      }, delay + loopMs);
+      chat._timers.push(tLoop);
+    }
+
+    // init: mark all bubbles pending immediately so containers render at fixed height with nothing showing
+    document.querySelectorAll("[data-chat]").forEach((chat) => {
+      chat
+        .querySelectorAll(".bubble, .ui-pill")
+        .forEach((b) => b.classList.add("pending"));
+    });
+
+    // start on scroll into view
+    const chatObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          const target = e.target as any;
+          if (e.isIntersecting && !target._started) {
+            target._started = true;
+            playChat(target);
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+    document
+      .querySelectorAll("[data-chat]")
+      .forEach((c) => chatObserver.observe(c));
+
+    // replay buttons
+    document.querySelectorAll("[data-replay]").forEach((btn) => {
+      btn.addEventListener(
+        "click",
+        () => {
+          const chat = btn.parentElement!.querySelector("[data-chat]");
+          btn.classList.remove("show");
+          playChat(chat);
+        },
+        { signal }
+      );
+    });
+
+    // ===== Mobile burger menu =====
+    (function () {
+      const burger = document.getElementById("burger");
+      const menu = document.getElementById("mobileMenu");
+      if (!burger || !menu) return;
+      const open = () => {
+        menu.classList.add("open");
+        burger.classList.add("open");
+        document.body.classList.add("menu-lock");
+      };
+      const close = () => {
+        menu.classList.remove("open");
+        burger.classList.remove("open");
+        document.body.classList.remove("menu-lock");
+      };
+      burger.addEventListener(
+        "click",
+        () => {
+          menu.classList.contains("open") ? close() : open();
+        },
+        { signal }
+      );
+      menu
+        .querySelectorAll("[data-close]")
+        .forEach((el) => el.addEventListener("click", close, { signal }));
+      document.addEventListener(
+        "keydown",
+        (e) => {
+          if (e.key === "Escape") close();
+        },
+        { signal }
+      );
+    })();
+
+    // ===== FAQ accordion =====
+    document.querySelectorAll(".faq-q").forEach((q) => {
+      q.addEventListener(
+        "click",
+        () => {
+          const item = q.parentElement as HTMLElement;
+          const open = item.classList.contains("open");
+          document.querySelectorAll(".faq-item").forEach((i) => {
+            i.classList.remove("open");
+            (i.querySelector(".faq-a") as HTMLElement).style.maxHeight = "";
+          });
+          if (!open) {
+            item.classList.add("open");
+            const a = item.querySelector(".faq-a") as HTMLElement;
+            a.style.maxHeight = a.scrollHeight + "px";
+          }
+        },
+        { signal }
+      );
+    });
+
+    // ===== cleanup: stop observers, clear timers, drop listeners (Strict Mode safe) =====
+    return () => {
+      chatObserver.disconnect();
+      ac.abort();
+      document.querySelectorAll("[data-chat]").forEach((chat) => {
+        const c = chat as any;
+        if (c._timers) c._timers.forEach((t: number) => clearTimeout(t));
+        c._timers = [];
+        c._started = false;
+        c._activeTyping = null;
+        const typing = chat.querySelector(".typing");
+        if (typing) typing.remove();
+      });
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      {/* NAV */}
+      <header className="nav">
+        <div className="wrap nav-inner">
+          <a href="#" className="logo">
+            <img
+              src="/logo/sosmed-ai-logo-black-version.png"
+              alt="SOSMED AI"
+              width={130}
+              height={30}
+            />
+          </a>
+          <nav className="nav-links">
+            <a href="#fitur">Fitur</a>
+            <a href="#tanpa-dashboard">Tanpa Dashboard</a>
+            <a href="#teknologi">Teknologi</a>
+            <a href="#beda">Bedanya</a>
+            <a href="#harga">Harga</a>
+          </nav>
+          <div className="nav-cta">
+            <a className="btn btn-ghost" href="#harga">
+              Lihat Harga
+            </a>
+            <button className="burger" id="burger" aria-label="Buka menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* MOBILE MENU DRAWER */}
+      <div className="mobile-menu" id="mobileMenu">
+        <div className="scrim" data-close></div>
+        <div className="drawer">
+          <div className="drawer-top">
+            <a href="#" className="logo">
+              <img
+                src="/logo/sosmed-ai-logo-black-version.png"
+                alt="SOSMED AI"
+                width={130}
+                height={30}
+              />
+            </a>
+            <button className="drawer-close" data-close aria-label="Tutup menu">
+              ×
+            </button>
+          </div>
+          <nav className="drawer-links">
+            <a href="#fitur" data-close>
+              Fitur
+            </a>
+            <a href="#tanpa-dashboard" data-close>
+              Tanpa Dashboard
+            </a>
+            <a href="#teknologi" data-close>
+              Teknologi
+            </a>
+            <a href="#beda" data-close>
+              Bedanya
+            </a>
+            <a href="#cara-kerja" data-close>
+              Cara Kerja
+            </a>
+            <a href="#untuk-fnb" data-close>
+              Untuk F&amp;B
+            </a>
+            <a href="#harga" data-close>
+              Harga
+            </a>
+            <a href="#faq" data-close>
+              FAQ
+            </a>
+          </nav>
+          <div className="drawer-cta">
+            <button
+              className="btn btn-soon"
+              disabled
+              style={{ width: "100%", justifyContent: "center" }}
+            >
+              <span className="dot"></span> Segera Hadir / Coming Soon
+            </button>
+            <a
+              className="btn btn-ghost"
+              href="https://www.instagram.com/sosmed.io"
+              target="_blank"
+              rel="noopener"
+            >
+              Ikuti di Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* HERO */}
+      <section className="hero">
+        <div className="wrap">
+          <div className="badge reveal d1">
+            <span className="dot"></span> AI untuk Coffee Shop &amp; Restoran ·
+            Segera Hadir
+          </div>
+          <h1 className="reveal d2">
+            WhatsApp Anda, <span className="hl">AI assistant</span> coffee shop
+            Anda.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="sub reveal d3">
+            Terima order otomatis 24 jam dan bikin pelanggan balik lagi dengan
+            sistem poin — semua jalan sendiri lewat WhatsApp. Anda kelola
+            semuanya dari chat juga: tanpa dashboard, tanpa aplikasi, tanpa
+            login. Dibuat khusus untuk kafe dan restoran kecil Indonesia.
+          </p>
+          <div className="hero-cta reveal d4">
+            <button className="btn btn-soon" disabled>
+              <span className="dot"></span> Segera Hadir / Coming Soon
+            </button>
+            <a className="btn btn-ghost" href="#cara-kerja">
+              Lihat Cara Kerja ↓
+            </a>
+          </div>
+          <p className="hero-note reveal d4">
+            Akses awal segera dibuka · <b>Gratis untuk founding user</b> · Setup
+            30 menit
+          </p>
+
+          <div className="chips reveal d5">
+            <span className="chip">
+              <b>•</b> Order Otomatis
+            </span>
+            <span className="chip">
+              <b>•</b> Balas 24 Jam
+            </span>
+            <span className="chip">
+              <b>•</b> Sistem Poin
+            </span>
+            <span className="chip">
+              <b>•</b> Member Digital
+            </span>
+            <span className="chip">
+              <b>•</b> Menu QR
+            </span>
+            <span className="chip">
+              <b>•</b> WhatsApp Resmi Meta
+            </span>
+          </div>
+
+          {/* HERO VISUAL */}
+          <div className="hero-visual reveal d5">
+            <div className="hv-grid">
+              {/* whatsapp chat */}
+              <div className="phone">
+                <div className="demo-tag">
+                  <span className="rec"></span> DEMO LANGSUNG
+                </div>
+                <div className="wa-top">
+                  <div className="wa-av">KS</div>
+                  <div>
+                    <div className="wa-name">Kopi Senja</div>
+                    <div className="wa-status">● online · dibalas otomatis</div>
+                  </div>
+                </div>
+                <div className="wa-body chat-anim" data-chat data-loop="6000">
+                  <div className="bubble b-out">
+                    Halo kak, masih buka? Mau es kopi susu 2 ya, less sugar 🙏
+                    <span className="b-meta">21:14 ✓✓</span>
+                  </div>
+                  <div className="bubble b-in">
+                    Halo kak! Masih buka sampai jam 11 malam 🙌 Es Kopi Susu Gula
+                    Aren 2 (less sugar), totalnya Rp 36.000. Diambil atau diantar
+                    ya kak?<span className="b-meta">21:14</span>
+                  </div>
+                  <div className="bubble b-out">
+                    Diambil aja ya<span className="b-meta">21:15 ✓✓</span>
+                  </div>
+                  <div className="bubble b-in">
+                    Siap kak! Order #1042 lagi disiapin ya ☕ Struk sudah dikirim.
+                    <span className="b-meta">21:15</span>
+                  </div>
+                  <div className="bubble b-points">
+                    🎉 Kakak dapat +36 poin! Total 284 poin — 16 lagi buat
+                    voucher Rp 5.000.
+                  </div>
+                </div>
+                <button className="replay-btn" data-replay>
+                  ↻ Putar ulang
+                </button>
+              </div>
+              {/* dashboard */}
+              <div className="panel">
+                <div className="panel-head">
+                  <div className="panel-title">Order Masuk Hari Ini</div>
+                  <div className="panel-tag">● Live</div>
+                </div>
+                <div className="order-row">
+                  <div>
+                    <div className="oi">#1042 · Es Kopi Susu ×2</div>
+                    <div className="od">less sugar · ambil sendiri</div>
+                  </div>
+                  <div className="stat stat-new">Baru</div>
+                </div>
+                <div className="order-row">
+                  <div>
+                    <div className="oi">#1041 · Americano ×1</div>
+                    <div className="od">panas · meja 4</div>
+                  </div>
+                  <div className="stat stat-done">Selesai</div>
+                </div>
+                <div className="order-row">
+                  <div>
+                    <div className="oi">#1040 · Croissant ×2</div>
+                    <div className="od">takeaway</div>
+                  </div>
+                  <div className="stat stat-done">Selesai</div>
+                </div>
+                <div className="mini-stats">
+                  <div className="mini">
+                    <div className="n">48</div>
+                    <div className="l">Order hari ini</div>
+                  </div>
+                  <div className="mini">
+                    <div className="n">Rp 1,4jt</div>
+                    <div className="l">Penjualan</div>
+                  </div>
+                  <div className="mini">
+                    <div className="n">126</div>
+                    <div className="l">Member aktif</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST STRIP */}
+      <section className="trust">
+        <div className="wrap">
+          <p>Dibangun khusus untuk cara kerja F&amp;B Indonesia</p>
+          <div className="trust-row">
+            <div className="trust-pill">
+              <span className="e">🛡️</span> WhatsApp Resmi Meta
+            </div>
+            <div className="trust-pill">
+              <span className="e">⚡</span> Setup 30 Menit
+            </div>
+            <div className="trust-pill">
+              <span className="e">🇮🇩</span> Bahasa Indonesia Native
+            </div>
+            <div className="trust-pill">
+              <span className="e">🔒</span> Aman &amp; Patuh UU PDP
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROBLEM */}
+      <section className="problem">
+        <div className="wrap">
+          <div className="eyebrow">Kenyataan Sehari-hari di Kafe</div>
+          <h2 className="sec-title">
+            Berapa banyak order hilang karena chat nggak sempat dibales?
+          </h2>
+          <div className="prob-grid">
+            <div className="prob">
+              <div className="x">✕</div>
+              <p>
+                <b>Chat masuk pas lagi rame.</b> Pelanggan nanya menu, nunggu
+                lama, nggak dibales, pindah ke kafe sebelah.
+              </p>
+            </div>
+            <div className="prob">
+              <div className="x">✕</div>
+              <p>
+                <b>Tutup, owner tidur.</b> Order tengah malam atau pagi buta
+                hilang begitu aja.
+              </p>
+            </div>
+            <div className="prob">
+              <div className="x">✕</div>
+              <p>
+                <b>Capek bales pertanyaan yang sama.</b> &quot;Buka jam
+                berapa?&quot;, &quot;ada apa aja?&quot;, &quot;berapa
+                totalnya?&quot; — berjam-jam tiap hari.
+              </p>
+            </div>
+            <div className="prob">
+              <div className="x">✕</div>
+              <p>
+                <b>Pelanggan dateng sekali, terus lupa.</b> Padahal 60–70% omzet
+                kafe dari pelanggan langganan.
+              </p>
+            </div>
+          </div>
+          <p className="prob-foot">
+            Rata-rata coffee shop kehilangan <b>Rp 2–4 juta per bulan</b> hanya
+            dari order yang nggak kebales. SOSMED AI menutup celah itu.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* FEATURES */}
+      <section id="fitur">
+        <div className="wrap">
+          <div className="eyebrow">Yang Anda Dapatkan</div>
+          <h2 className="sec-title">
+            Satu sistem. Semua yang kafe Anda butuhkan.
+          </h2>
+          <p className="sec-lead">
+            Bukan sekadar chatbot. SOSMED AI adalah sistem lengkap — order, menu,
+            member, dan poin — yang jalan otomatis di WhatsApp yang sudah Anda
+            pakai tiap hari.
+          </p>
+
+          {/* f1 */}
+          <div className="feature">
+            <div className="f-text">
+              <div className="f-kicker">01 · Bot Order Otomatis</div>
+              <h3>Balas pelanggan 24 jam, tanpa pegang HP terus.</h3>
+              <p>
+                AI balas tanya menu, jam buka, dan terima order langsung dari
+                chat — bahasa Indonesia santai, ngerti pesanan kayak &quot;es
+                kopi susu less sugar, gelas gede&quot;. Yang ribet baru
+                dialihkan ke barista Anda.
+              </p>
+              <div className="f-chips">
+                <span>24 Jam</span>
+                <span>Bahasa Santai</span>
+                <span>Ngerti Varian Menu</span>
+              </div>
+            </div>
+            <div className="f-visual chat-anim" data-chat data-loop="5000">
+              <div className="bubble b-out" style={{ maxWidth: "90%" }}>
+                Ada menu apa aja kak?
+              </div>
+              <div className="bubble b-in" style={{ maxWidth: "90%" }}>
+                Hari ini ada: Es Kopi Susu, Americano, Cappuccino, Matcha Latte,
+                sama Croissant &amp; Pain au Chocolat 🥐 Mau pesan yang mana kak?
+              </div>
+              <div
+                className="ui-pill"
+                style={{ alignSelf: "flex-start", color: "var(--green)" }}
+              >
+                ⚡ Dibalas dalam 2 detik
+              </div>
+              <button className="replay-btn" data-replay>
+                ↻ Putar ulang
+              </button>
+            </div>
+          </div>
+
+          {/* f2 */}
+          <div className="feature">
+            <div className="f-text">
+              <div className="f-kicker">02 · Menu Digital + QR Meja</div>
+              <h3>Ganti menu JPG yang ribet di-update.</h3>
+              <p>
+                Menu online yang bisa Anda ubah dalam 30 detik. Cetak QR untuk di
+                meja — pelanggan scan, lihat menu, pesan dari tempat duduk. Ganti
+                harga sekali, langsung berubah di mana-mana.
+              </p>
+              <div className="f-chips">
+                <span>Update Instan</span>
+                <span>QR di Meja</span>
+                <span>Order dari Tempat Duduk</span>
+              </div>
+            </div>
+            <div className="f-visual">
+              <div style={{ display: "flex", gap: "18px", alignItems: "center" }}>
+                <div className="qr"></div>
+                <div style={{ flex: 1 }}>
+                  <div className="menu-item">
+                    <span>Es Kopi Susu Gula Aren</span>
+                    <span className="p">Rp 18rb</span>
+                  </div>
+                  <div className="menu-item">
+                    <span>Americano</span>
+                    <span className="p">Rp 15rb</span>
+                  </div>
+                  <div className="menu-item">
+                    <span>Matcha Latte</span>
+                    <span className="p">Rp 25rb</span>
+                  </div>
+                  <div className="menu-item">
+                    <span>Croissant</span>
+                    <span className="p">Rp 22rb</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* f3 */}
+          <div className="feature">
+            <div className="f-text">
+              <div className="f-kicker">03 · Sistem Poin &amp; Member</div>
+              <h3>Bikin pelanggan balik lagi — otomatis.</h3>
+              <p>
+                Setiap belanja Rp 1.000 dapat 1 poin. Kumpulin 100 poin, tukar
+                voucher Rp 5.000. Pelanggan daftar member langsung lewat WhatsApp
+                — cukup ketik nama, nggak perlu download aplikasi atau kartu
+                fisik.
+              </p>
+              <div className="f-chips">
+                <span>1 Poin / Rp 1.000</span>
+                <span>Voucher Otomatis</span>
+                <span>Daftar via WhatsApp</span>
+              </div>
+            </div>
+            <div className="f-visual chat-anim" data-chat data-loop="5000">
+              <div className="bubble b-in" style={{ maxWidth: "92%" }}>
+                Mau daftar member kak? Tiap order dapat poin, bisa ditukar
+                minuman gratis ☕ Ketik nama aja buat daftar 🙂
+              </div>
+              <div className="bubble b-out" style={{ maxWidth: "60%" }}>
+                Dimas
+              </div>
+              <div className="bubble b-points" style={{ maxWidth: "92%" }}>
+                ✅ Sip Dimas, udah terdaftar! Order tadi langsung dapat +36 poin.
+              </div>
+              <button className="replay-btn" data-replay>
+                ↻ Putar ulang
+              </button>
+            </div>
+          </div>
+
+          {/* f4 */}
+          <div className="feature">
+            <div className="f-text">
+              <div className="f-kicker">04 · Kelola Order dari WhatsApp</div>
+              <h3>Lihat &amp; kelola order tanpa buka dashboard.</h3>
+              <p>
+                Order baru langsung masuk ke WhatsApp Anda dengan notifikasi.
+                Chat bot Anda buat lihat order hari ini, tandai pesanan selesai,
+                atau cek penjualan — semua dari chat, nggak perlu buka aplikasi
+                atau laptop.
+              </p>
+              <div className="f-chips">
+                <span>Notif Real-Time</span>
+                <span>Kelola via Chat</span>
+                <span>Tanpa Login</span>
+              </div>
+            </div>
+            <div className="f-visual">
+              <div className="order-row" style={{ margin: "0 0 9px" }}>
+                <div>
+                  <div className="oi">#1042 · Es Kopi Susu ×2</div>
+                  <div className="od">less sugar</div>
+                </div>
+                <div className="stat stat-new">Baru</div>
+              </div>
+              <div className="order-row" style={{ margin: "0 0 9px" }}>
+                <div>
+                  <div className="oi">#1041 · Americano ×1</div>
+                  <div className="od">meja 4</div>
+                </div>
+                <div className="stat stat-done">Selesai</div>
+              </div>
+              <div className="mini-stats" style={{ marginTop: "4px" }}>
+                <div className="mini">
+                  <div className="n">48</div>
+                  <div className="l">Order</div>
+                </div>
+                <div className="mini">
+                  <div className="n">Rp 1,4jt</div>
+                  <div className="l">Penjualan</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* WHY */}
+      <section className="why">
+        <div className="wrap">
+          <div className="eyebrow">Kenapa SOSMED AI</div>
+          <h2 className="sec-title">
+            Bukan yang termurah. Yang paling pas untuk coffee shop.
+          </h2>
+          <div className="why-grid" style={{ marginTop: "14px" }}>
+            <div className="why-card">
+              <div className="ic">☕</div>
+              <h3>Khusus F&amp;B</h3>
+              <p>
+                Bukan tools generik untuk semua usaha. Tiap fitur dirancang untuk
+                cara kerja kafe: varian menu (es/panas, less sugar), QR meja,
+                poin untuk pelanggan langganan.
+              </p>
+            </div>
+            <div className="why-card">
+              <div className="ic">🛡️</div>
+              <h3>WhatsApp Resmi Meta</h3>
+              <p>
+                Kami pakai WhatsApp Business API resmi Meta — nomor Anda aman dari
+                banned, bisa kirim promo dengan aman. Bukan tools bajakan yang
+                minta scan QR.
+              </p>
+            </div>
+            <div className="why-card">
+              <div className="ic">💳</div>
+              <h3>Satu Harga, Semua Fitur</h3>
+              <p>
+                Nggak ada biaya tersembunyi, nggak ada add-on yang bikin tagihan
+                membengkak. Anda tahu persis bayar berapa tiap bulan.
+              </p>
+            </div>
+            <div className="why-card">
+              <div className="ic">📈</div>
+              <h3>Bayar Sendiri</h3>
+              <p>
+                Mulai Rp 199 ribu/bulan — sekitar Rp 6.600/hari, kurang dari satu
+                cup kopi. Satu order tambahan sehari aja sudah balik modal
+                berkali lipat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NO DASHBOARD / ALL IN WHATSAPP */}
+      <section id="tanpa-dashboard" className="nodash">
+        <div className="wrap">
+          <div className="eyebrow">Tanpa Aplikasi, Tanpa Login</div>
+          <h2 className="sec-title">
+            Semua di WhatsApp. Sisi customer dan sisi Anda.
+          </h2>
+          <p className="sec-lead">
+            Pemilik kafe nggak perlu buka dashboard, nggak perlu install
+            aplikasi, nggak perlu hapal sistem baru. Anda kelola seluruh bisnis
+            dengan chat — di WhatsApp yang sudah Anda pakai tiap hari.
+          </p>
+
+          <div className="nodash-intro">
+            <div className="nodash-text">
+              <h3>Anda sudah jago pakai WhatsApp. Itu aja cukup.</h3>
+              <p>
+                Kebanyakan tools bisnis maksa Anda belajar dashboard rumit, buka
+                laptop, login tiap hari. SOSMED AI kebalikannya — Anda cukup chat
+                bot Anda sendiri untuk lihat order, ubah menu, cek penjualan,
+                atau tandai pesanan selesai.
+              </p>
+              <p>
+                Customer pesan lewat WhatsApp. Anda kelola juga lewat WhatsApp.
+                Satu aplikasi, dua sisi, nol ribet.
+              </p>
+              <div className="kill">
+                <div className="kill-row">
+                  <span className="x">✕</span> <s>Buka dashboard di laptop</s>{" "}
+                  &nbsp;→&nbsp; <span className="now">Chat bot Anda</span>
+                </div>
+                <div className="kill-row">
+                  <span className="x">✕</span> <s>Install aplikasi baru</s>{" "}
+                  &nbsp;→&nbsp; <span className="now">Pakai WhatsApp biasa</span>
+                </div>
+                <div className="kill-row">
+                  <span className="x">✕</span> <s>Login &amp; hapal password</s>{" "}
+                  &nbsp;→&nbsp; <span className="now">Langsung dari chat</span>
+                </div>
+                <div className="kill-row">
+                  <span className="x">✕</span> <s>Belajar sistem baru</s>{" "}
+                  &nbsp;→&nbsp; <span className="now">Anda sudah bisa</span>
+                </div>
+              </div>
+            </div>
+
+            {/* owner-side whatsapp demo */}
+            <div className="owner-phone">
+              <div className="demo-tag">
+                <span className="rec"></span> SISI OWNER
+              </div>
+              <div className="wa-top">
+                <div className="wa-av">AI</div>
+                <div>
+                  <div className="wa-name">SOSMED AI · Asisten Anda</div>
+                  <div className="wa-status">● kelola bisnis lewat chat</div>
+                </div>
+              </div>
+              <div
+                className="wa-body chat-anim"
+                data-chat
+                data-loop="5500"
+                style={{ height: "360px" }}
+              >
+                <div className="bubble b-out">
+                  order hari ini berapa?
+                  <span className="b-meta">09:12 ✓✓</span>
+                </div>
+                <div className="bubble b-in">
+                  Pagi! Sampai sekarang 12 order masuk, total Rp 348.000 ☕ Ada 2
+                  order baru yang belum dikonfirmasi.
+                  <span className="b-meta">09:12</span>
+                </div>
+                <div className="bubble b-out">
+                  laporan harian dong<span className="b-meta">09:13 ✓✓</span>
+                </div>
+                <div className="bubble b-in">
+                  📊 Laporan Hari Ini (s/d 09:13)
+                  <br />• Order: 12 (Rp 348.000)
+                  <br />• Best seller: Es Kopi Susu (7)
+                  <br />• Jam tersibuk: 08:00–09:00
+                  <br />• Member baru: 3
+                  <br />• Order via bot: 9 · walk-in: 3
+                  <span className="b-meta">09:13</span>
+                </div>
+                <div className="bubble b-out">
+                  matiin es kopi susu, stok habis
+                  <span className="b-meta">09:14 ✓✓</span>
+                </div>
+                <div className="bubble b-in">
+                  Siap! &quot;Es Kopi Susu Gula Aren&quot; sudah saya nonaktifkan
+                  👍 Customer nggak bisa pesan sampai diaktifkan lagi.
+                  <span className="b-meta">09:14</span>
+                </div>
+                <div className="bubble b-out">
+                  laporan bulan ini gimana?
+                  <span className="b-meta">09:15 ✓✓</span>
+                </div>
+                <div className="bubble b-in">
+                  📈 Laporan Mei 2026
+                  <br />• Total order: 1.284 (Rp 38,6 jt)
+                  <br />• Naik 18% dari April 📈
+                  <br />• Member aktif: 312 (+47)
+                  <br />• Repeat rate: 64%
+                  <br />• Top menu: Es Kopi Susu, Americano, Croissant
+                  <br />
+                  Mau saya kirim versi PDF lengkap?
+                  <span className="b-meta">09:15</span>
+                </div>
+              </div>
+              <button className="replay-btn" data-replay>
+                ↻ Putar ulang
+              </button>
+            </div>
+          </div>
+
+          {/* two sides */}
+          <div className="sides">
+            <div className="side-card side-cust">
+              <div className="side-head">
+                <div className="side-ic">💬</div>
+                <div>
+                  <h3>Sisi Customer</h3>
+                  <div className="side-sub">Pesan &amp; cek lewat WhatsApp</div>
+                </div>
+              </div>
+              <ul className="side-list">
+                <li>
+                  <span className="cmd">&quot;menu&quot;</span> Lihat menu &amp;
+                  harga terkini
+                </li>
+                <li>
+                  <span className="cmd">&quot;pesan…&quot;</span> Order langsung
+                  dari chat
+                </li>
+                <li>
+                  <span className="cmd">&quot;cek poin&quot;</span> Lihat saldo
+                  poin &amp; voucher
+                </li>
+                <li>
+                  <span className="cmd">&quot;daftar&quot;</span> Jadi member
+                  cukup ketik nama
+                </li>
+                <li>
+                  <span className="cmd">&quot;jam buka?&quot;</span> Info jam
+                  &amp; lokasi otomatis
+                </li>
+              </ul>
+            </div>
+            <div className="side-card side-own">
+              <div className="side-head">
+                <div className="side-ic">☕</div>
+                <div>
+                  <h3>Sisi Owner</h3>
+                  <div className="side-sub">Kelola bisnis lewat WhatsApp</div>
+                </div>
+              </div>
+              <ul className="side-list">
+                <li>
+                  <span className="cmd">&quot;order hari ini&quot;</span> Lihat
+                  order &amp; penjualan
+                </li>
+                <li>
+                  <span className="cmd">&quot;laporan harian&quot;</span>{" "}
+                  Ringkasan penjualan hari ini
+                </li>
+                <li>
+                  <span className="cmd">&quot;laporan bulanan&quot;</span>{" "}
+                  Performa bulan + tren &amp; PDF
+                </li>
+                <li>
+                  <span className="cmd">&quot;matiin [menu]&quot;</span>{" "}
+                  Nonaktifkan menu yang habis
+                </li>
+                <li>
+                  <span className="cmd">&quot;#1042 selesai&quot;</span> Tandai
+                  pesanan selesai
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            style={{
+              maxWidth: "760px",
+              margin: "28px auto 0",
+              background: "#fff",
+              border: "1px solid var(--line)",
+              borderRadius: "var(--radius)",
+              padding: "22px 24px",
+              boxShadow: "var(--shadow)",
+              display: "flex",
+              gap: "16px",
+              alignItems: "flex-start",
+            }}
+          >
+            <div
+              style={{
+                flexShrink: 0,
+                width: "42px",
+                height: "42px",
+                borderRadius: "11px",
+                background: "var(--accent-soft)",
+                color: "var(--accent)",
+                display: "grid",
+                placeItems: "center",
+                fontSize: "20px",
+              }}
+            >
+              🖥️
+            </div>
+            <div>
+              <div
+                style={{
+                  fontFamily: "var(--display)",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  marginBottom: "5px",
+                }}
+              >
+                Butuh lebih lengkap? Dashboard tetap tersedia.
+              </div>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "var(--ink-soft)",
+                  margin: 0,
+                }}
+              >
+                WhatsApp cukup untuk operasional harian. Tapi kalau Anda mau
+                laporan penjualan mendetail, kelola puluhan menu sekaligus, atau
+                lihat analitik member — dashboard web lengkap siap kapan pun Anda
+                butuh. WhatsApp-first, dashboard kalau perlu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI TECH / INTELLIGENCE */}
+      <section id="teknologi" className="tech">
+        <div className="wrap">
+          <div className="eyebrow">Teknologi di Balik Layar</div>
+          <h2 className="sec-title">
+            AI yang ngerti Indonesia — bukan sekadar tempelan.
+          </h2>
+          <p className="sec-lead">
+            SOSMED AI ditenagai mesin AI multi-model yang dirancang khusus untuk
+            bahasa dan perilaku konsumen Indonesia. Cepat, hemat, dan terdengar
+            manusiawi.
+          </p>
+
+          <div className="tech-grid">
+            <div className="tech-feats">
+              <div className="tech-feat">
+                <div className="ic">🧠</div>
+                <div>
+                  <h3>Native Bahasa Indonesia, bukan terjemahan</h3>
+                  <p>
+                    Dilatih untuk ngerti cara orang Indonesia chat — dari
+                    &quot;gas kak&quot;, &quot;es batunya banyakin&quot;, sampai
+                    gaya Jaksel. Bot membalas dengan tone yang pas, bukan kaku
+                    ala robot translate.
+                  </p>
+                </div>
+              </div>
+              <div className="tech-feat">
+                <div className="ic">⚡</div>
+                <div>
+                  <h3>Multi-model routing yang cerdas</h3>
+                  <p>
+                    Setiap pesan diarahkan ke model AI yang paling tepat — yang
+                    ringan untuk tanya menu, yang canggih untuk percakapan rumit.
+                    Hasilnya: balasan cepat, biaya efisien, kualitas tinggi.
+                  </p>
+                </div>
+              </div>
+              <div className="tech-feat">
+                <div className="ic">🎯</div>
+                <div>
+                  <h3>Ngerti konteks F&amp;B</h3>
+                  <p>
+                    Paham varian menu, modifier (es/panas, less sugar, extra
+                    shot), dan istilah kafe. Memvalidasi pesanan dengan menu asli
+                    Anda — nggak pernah ngarang item yang nggak ada.
+                  </p>
+                </div>
+              </div>
+              <div className="tech-feat">
+                <div className="ic">🛡️</div>
+                <div>
+                  <h3>Aman, terkendali, dan akurat</h3>
+                  <p>
+                    Harga dan total selalu dihitung dari data Anda, bukan dari
+                    AI. Yang di luar jangkauan otomatis dialihkan ke Anda. Tidak
+                    ada halusinasi soal harga atau stok.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* AI routing visual */}
+            <div className="ai-viz">
+              <div className="ai-viz-top">
+                <span className="pulse"></span> Mesin AI · memproses pesan
+              </div>
+              <div className="ai-msg">
+                &quot;halo kak, es kopi susu 2 ya, less sugar, sama croissant 1
+                🙏&quot;
+              </div>
+              <div className="ai-flow">
+                <div className="ai-node">
+                  <span className="lbl">
+                    <span className="dot2" style={{ background: "#E9A178" }}></span>{" "}
+                    Deteksi maksud
+                  </span>
+                  <span className="tag tag-route">Order + Menu</span>
+                </div>
+                <div className="ai-node">
+                  <span className="lbl">
+                    <span className="dot2" style={{ background: "#5FD98A" }}></span>{" "}
+                    Cek menu &amp; varian
+                  </span>
+                  <span className="tag tag-fast">Tervalidasi</span>
+                </div>
+                <div className="ai-node">
+                  <span className="lbl">
+                    <span className="dot2" style={{ background: "#E9A178" }}></span>{" "}
+                    Hitung total dari data
+                  </span>
+                  <span className="tag tag-route">Rp 58.000</span>
+                </div>
+                <div className="ai-node">
+                  <span className="lbl">
+                    <span className="dot2" style={{ background: "#5FD98A" }}></span>{" "}
+                    Balas + kasih poin
+                  </span>
+                  <span className="tag tag-fast">1,8 detik</span>
+                </div>
+              </div>
+              <div className="ai-foot">
+                Diproses dengan model AI yang dipilih otomatis per tugas
+              </div>
+            </div>
+          </div>
+
+          <div className="models">
+            <div className="model-chip">
+              <span className="md"></span> Routing Multi-Model
+            </div>
+            <div className="model-chip">
+              <span className="md"></span> Caching Cerdas
+            </div>
+            <div className="model-chip">
+              <span className="md"></span> Validasi Anti-Halusinasi
+            </div>
+            <div className="model-chip">
+              <span className="md"></span> Optimasi Biaya Otomatis
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI-NATIVE DIFFERENCE */}
+      <section id="beda" className="native">
+        <div className="wrap">
+          <div className="eyebrow">Apa Bedanya</div>
+          <h2 className="sec-title">Kami bukan chatbot. Kami AI-native.</h2>
+          <p className="sec-lead">
+            Kebanyakan &quot;bot WhatsApp&quot; cuma menu balasan otomatis dengan
+            template kaku. SOSMED AI dibangun di atas kecerdasan buatan sungguhan
+            — ngerti maksud, konteks, dan bahasa, bukan sekadar mencocokkan kata
+            kunci.
+          </p>
+
+          <div className="vs-grid">
+            <div className="vs-card vs-old">
+              <span className="vs-label">Chatbot Biasa</span>
+              <h3>Bot template &amp; keyword</h3>
+              <ul className="vs-list">
+                <li>
+                  <span className="vs-ic">✕</span> Balas hanya kalau kata
+                  kuncinya pas — salah ketik sedikit, bingung.
+                </li>
+                <li>
+                  <span className="vs-ic">✕</span> &quot;Tekan 1 untuk menu,
+                  tekan 2 untuk pesan&quot; — kaku seperti mesin.
+                </li>
+                <li>
+                  <span className="vs-ic">✕</span> Nggak ngerti &quot;es-nya
+                  dikit aja ya, gula setengah&quot; — di luar skrip langsung
+                  gagal.
+                </li>
+                <li>
+                  <span className="vs-ic">✕</span> Jawaban sama untuk semua
+                  orang, terasa robotik.
+                </li>
+                <li>
+                  <span className="vs-ic">✕</span> Perlu disetting manual tiap
+                  skenario, ribet diubah.
+                </li>
+              </ul>
+            </div>
+            <div className="vs-card vs-new">
+              <span className="vs-label">✦ SOSMED AI</span>
+              <h3>AI-native, ngerti maksud</h3>
+              <ul className="vs-list">
+                <li>
+                  <span className="vs-ic">✓</span> Paham maksud walau diketik
+                  berantakan, typo, atau campur bahasa.
+                </li>
+                <li>
+                  <span className="vs-ic">✓</span> Ngobrol natural seperti
+                  barista beneran — santai, ramah, manusiawi.
+                </li>
+                <li>
+                  <span className="vs-ic">✓</span> Ngerti &quot;es-nya dikit,
+                  gula setengah, gelas gede&quot; tanpa perlu disetting.
+                </li>
+                <li>
+                  <span className="vs-ic">✓</span> Tone menyesuaikan konteks —
+                  dari sapaan ramah sampai konfirmasi order.
+                </li>
+                <li>
+                  <span className="vs-ic">✓</span> Belajar dari menu &amp; data
+                  Anda otomatis — nggak perlu skrip manual.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* COMPARISON TABLE */}
+      <section id="banding" style={{ background: "#fff" }}>
+        <div className="wrap">
+          <div className="eyebrow">Perbandingan</div>
+          <h2 className="sec-title">SOSMED AI vs. solusi lain.</h2>
+          <p className="sec-lead">
+            Kenapa coffee shop memilih SOSMED AI dibanding chatbot generik, tools
+            impor, atau hire admin manual.
+          </p>
+
+          <div className="compare-wrap">
+            <div className="compare">
+              <table className="ctable">
+                <thead>
+                  <tr>
+                    <th className="feat-col">Fitur</th>
+                    <th className="us">SOSMED AI</th>
+                    <th>Chatbot Generik</th>
+                    <th>Tools Impor</th>
+                    <th>Admin Manual</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="feat-col">AI-native (ngerti maksud)</td>
+                    <td className="us">
+                      <span className="yes">✓ Ya</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Template</span>
+                    </td>
+                    <td>
+                      <span className="partial">~ Sebagian</span>
+                    </td>
+                    <td>
+                      <span className="partial">~ Manusia</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="feat-col">
+                      Khusus F&amp;B (varian menu, QR meja)
+                    </td>
+                    <td className="us">
+                      <span className="yes">✓ Ya</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Generik</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Generik</span>
+                    </td>
+                    <td>
+                      <span className="partial">~ Tergantung</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="feat-col">Bahasa Indonesia native</td>
+                    <td className="us">
+                      <span className="yes">✓ Ya</span>
+                    </td>
+                    <td>
+                      <span className="partial">~ Terbatas</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Translate</span>
+                    </td>
+                    <td>
+                      <span className="yes">✓ Ya</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="feat-col">Sistem poin &amp; member</td>
+                    <td className="us">
+                      <span className="yes">✓ Built-in</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Tidak</span>
+                    </td>
+                    <td>
+                      <span className="partial">~ Add-on</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Manual</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="feat-col">
+                      WhatsApp Business API resmi Meta
+                    </td>
+                    <td className="us">
+                      <span className="yes">✓ Ya</span>
+                    </td>
+                    <td>
+                      <span className="partial">~ Sering bajakan</span>
+                    </td>
+                    <td>
+                      <span className="yes">✓ Ya</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Pribadi</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="feat-col">Kerja 24 jam tanpa lelah</td>
+                    <td className="us">
+                      <span className="yes">✓ Ya</span>
+                    </td>
+                    <td>
+                      <span className="yes">✓ Ya</span>
+                    </td>
+                    <td>
+                      <span className="yes">✓ Ya</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Jam kerja</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="feat-col">Harga untuk UMKM F&amp;B</td>
+                    <td className="us">
+                      <span className="yes">✓ Rp 199rb</span>
+                    </td>
+                    <td>
+                      <span className="partial">~ Variatif</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Mahal</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Rp 2jt+</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="feat-col">Setup &amp; pakai sederhana</td>
+                    <td className="us">
+                      <span className="yes">✓ 30 menit</span>
+                    </td>
+                    <td>
+                      <span className="partial">~ Ribet</span>
+                    </td>
+                    <td>
+                      <span className="no">✕ Teknis</span>
+                    </td>
+                    <td>
+                      <span className="yes">✓ Mudah</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p className="price-note" style={{ marginTop: "20px" }}>
+            Perbandingan berdasarkan karakteristik umum tiap kategori solusi.
+            Tidak menyebut merek tertentu.
+          </p>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="cara-kerja">
+        <div className="wrap">
+          <div className="eyebrow">Cara Kerja</div>
+          <h2 className="sec-title">
+            Dari daftar sampai terima order otomatis — 30 menit.
+          </h2>
+          <div className="steps" style={{ marginTop: "14px" }}>
+            <div className="step">
+              <div className="num">1</div>
+              <h3>Hubungkan WhatsApp</h3>
+              <p>
+                Sambungkan nomor WhatsApp kafe Anda lewat WhatsApp Business API
+                resmi Meta. Tim kami bantu prosesnya.
+              </p>
+            </div>
+            <div className="step">
+              <div className="num">2</div>
+              <h3>Isi Menu Anda</h3>
+              <p>
+                Masukkan menu (atau foto menu yang ada — kami bantu input). Atur
+                jam buka, alamat, dan aturan poin.
+              </p>
+            </div>
+            <div className="step">
+              <div className="num">3</div>
+              <h3>Bot Mulai Jalan</h3>
+              <p>
+                Bot langsung aktif — terima order, kasih poin, kirim struk. Anda
+                tinggal lihat order masuk sambil bikin kopi.
+              </p>
+            </div>
+          </div>
+          <p className="how-foot">
+            Setup di tempat. Tanpa install apa-apa. Tanpa skill teknis.
+            <br />
+            Kalau bisa pakai WhatsApp, Anda bisa pakai SOSMED AI.
+          </p>
+        </div>
+      </section>
+
+      {/* USE CASES */}
+      <section id="untuk-fnb" style={{ background: "#fff" }}>
+        <div className="wrap">
+          <div className="eyebrow">Cocok Untuk</div>
+          <h2 className="sec-title">Dibuat khusus untuk bisnis F&amp;B.</h2>
+          <div className="uc-grid" style={{ marginTop: "14px" }}>
+            <div className="uc">
+              <div className="emo">☕</div>
+              <h3>Coffee Shop &amp; Kafe</h3>
+              <p>
+                Terima order pas rame, kasih poin tiap cup, bikin pelanggan jadi
+                langganan. Single outlet sampai 2–3 cabang.
+              </p>
+            </div>
+            <div className="uc">
+              <div className="emo">🍜</div>
+              <h3>Restoran &amp; Warung</h3>
+              <p>
+                Kelola order delivery &amp; takeaway dari satu dashboard. Menu
+                digital yang gampang di-update.
+              </p>
+            </div>
+            <div className="uc">
+              <div className="emo">🧋</div>
+              <h3>Kedai Minuman &amp; Dessert</h3>
+              <p>
+                Sistem poin yang bikin pelanggan balik. Member digital tanpa
+                kartu fisik. Boba, jus, es krim.
+              </p>
+            </div>
+            <div className="uc">
+              <div className="emo">🍰</div>
+              <h3>Bakery &amp; Pastry</h3>
+              <p>
+                Terima pre-order kue &amp; roti via WhatsApp, kelola pesanan
+                custom, kirim struk &amp; reminder otomatis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section id="harga" className="pricing">
+        <div className="wrap">
+          <div className="eyebrow">Harga</div>
+          <h2 className="sec-title">Pilih paket yang pas untuk kafe Anda.</h2>
+          <p className="sec-lead">
+            Harga spesial founding user — dikunci selamanya untuk pendaftar
+            pertama.
+          </p>
+          <div className="price-grid">
+            <div className="price">
+              <h3>Starter</h3>
+              <div className="for">
+                Untuk single-outlet coffee shop &amp; warung
+              </div>
+              <div className="amt">
+                Rp 199rb<span>/bulan</span>
+              </div>
+              <ul>
+                <li>Bot Order Otomatis WhatsApp</li>
+                <li>Menu Digital + QR Code</li>
+                <li>Sistem Poin &amp; Member</li>
+                <li>Dashboard Order Real-Time</li>
+                <li>Struk &amp; Voucher Otomatis</li>
+                <li>Hingga 1.500 pesan AI/bulan · 1 outlet</li>
+                <li>WhatsApp Business API resmi</li>
+              </ul>
+              <button className="btn btn-soon" disabled>
+                <span className="dot"></span> Segera Hadir
+              </button>
+            </div>
+            <div className="price feat">
+              <div className="pop">Paling Populer</div>
+              <h3>Growth</h3>
+              <div className="for">
+                Untuk kafe yang ramai &amp; serius scale up
+              </div>
+              <div className="amt">
+                Rp 299rb<span>/bulan</span>
+              </div>
+              <ul>
+                <li>Semua fitur Starter</li>
+                <li>Auto-reply terjadwal (out-of-hours)</li>
+                <li>Segmentasi member</li>
+                <li>Hingga 5.000 pesan AI/bulan · 1 outlet</li>
+                <li>Priority support</li>
+              </ul>
+              <button className="btn btn-soon" disabled>
+                <span className="dot"></span> Segera Hadir
+              </button>
+            </div>
+            <div className="price">
+              <h3>Multi-Outlet</h3>
+              <div className="for">Untuk usaha dengan 2–3 cabang</div>
+              <div className="amt">
+                Rp 549rb<span>/bulan</span>
+              </div>
+              <ul>
+                <li>Semua fitur Growth</li>
+                <li>Hingga 3 outlet</li>
+                <li>Dashboard gabungan multi-outlet</li>
+                <li>Hingga 12.000 pesan AI/bulan</li>
+                <li>Dedicated support</li>
+              </ul>
+              <button className="btn btn-soon" disabled>
+                <span className="dot"></span> Segera Hadir
+              </button>
+            </div>
+          </div>
+          <p className="price-note">
+            Semua fitur dalam paket sudah termasuk — tanpa biaya add-on
+            tersembunyi.
+            <br />
+            Add-on lanjutan (AI Konten, integrasi GoFood/GrabFood) tersedia
+            menyusul.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq">
+        <div className="wrap">
+          <div className="eyebrow">FAQ</div>
+          <h2 className="sec-title">Yang sering ditanyain pemilik kafe.</h2>
+          <div className="faq-wrap" style={{ marginTop: "14px" }}>
+            <div className="faq-item">
+              <button className="faq-q">
+                Apa itu SOSMED AI?<span className="ic">+</span>
+              </button>
+              <div className="faq-a">
+                <p>
+                  Asisten WhatsApp berbasis AI khusus untuk coffee shop dan
+                  restoran kecil. Bot kami terima order otomatis, balas pelanggan
+                  24 jam, dan kelola sistem poin member — semua lewat WhatsApp
+                  yang sudah Anda pakai.
+                </p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <button className="faq-q">
+                Saya nggak ngerti teknologi, bisa pakai?
+                <span className="ic">+</span>
+              </button>
+              <div className="faq-a">
+                <p>
+                  Bisa banget. Nggak perlu install aplikasi atau belajar sistem
+                  ribet. Tim kami bantu setting dalam 30 menit. Kalau bisa pakai
+                  WhatsApp, Anda bisa pakai SOSMED AI.
+                </p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <button className="faq-q">
+                Apakah nomor WhatsApp kafe saya aman?
+                <span className="ic">+</span>
+              </button>
+              <div className="faq-a">
+                <p>
+                  Sangat aman. Kami pakai WhatsApp Business API resmi dari Meta —
+                  bukan tools bajakan yang minta scan QR. Nomor Anda nggak
+                  berisiko kena banned, dan bisa kirim promo dengan aman.
+                </p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <button className="faq-q">
+                Gimana sistem poinnya bekerja?<span className="ic">+</span>
+              </button>
+              <div className="faq-a">
+                <p>
+                  Setiap belanja Rp 1.000 dapat 1 poin. Kumpulin 100 poin, dapat
+                  voucher Rp 5.000. Pelanggan daftar member langsung lewat
+                  WhatsApp, cukup ketik nama. Poin dihitung otomatis, voucher
+                  dikirim otomatis.
+                </p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <button className="faq-q">
+                Pelanggan saya kebanyakan bayar tunai, bisa dapat poin?
+                <span className="ic">+</span>
+              </button>
+              <div className="faq-a">
+                <p>
+                  Untuk awal, poin otomatis untuk order via WhatsApp. Fitur QR di
+                  kasir untuk pelanggan walk-in sedang kami siapkan dan tersedia
+                  menyusul.
+                </p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <button className="faq-q">
+                Berapa harganya?<span className="ic">+</span>
+              </button>
+              <div className="faq-a">
+                <p>
+                  Mulai Rp 199 ribu/bulan untuk Starter, semua fitur sudah
+                  termasuk. Pendaftar awal dapat harga founding user yang dikunci
+                  selamanya.
+                </p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <button className="faq-q">
+                Kapan bisa mulai pakai?<span className="ic">+</span>
+              </button>
+              <div className="faq-a">
+                <p>
+                  Kami sedang finalisasi dan akan segera membuka akses untuk
+                  batch pertama. Pantau halaman ini dan media sosial kami untuk
+                  info peluncuran.
+                </p>
+              </div>
+            </div>
+            <div className="faq-item">
+              <button className="faq-q">
+                Bisa integrasi dengan GoFood/GrabFood/ShopeeFood?
+                <span className="ic">+</span>
+              </button>
+              <div className="faq-a">
+                <p>
+                  Sedang kami kembangkan sebagai add-on. Info rilisnya akan
+                  diumumkan menyusul.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="final">
+        <div className="wrap">
+          <div className="final-card">
+            <h2>Jadi coffee shop pertama yang pakai SOSMED AI.</h2>
+            <p>
+              SOSMED AI sedang dalam tahap akhir. Asisten WhatsApp AI yang akan
+              mengubah cara kafe dan restoran Indonesia terima order dan jaga
+              pelanggan.
+            </p>
+            <div className="final-cta">
+              <button className="btn btn-soon" disabled>
+                <span className="dot"></span> Segera Hadir / Coming Soon
+              </button>
+              <a
+                className="btn btn-ig"
+                href="https://www.instagram.com/sosmed.io"
+                target="_blank"
+                rel="noopener"
+              >
+                Ikuti Kami di Instagram
+              </a>
+            </div>
+            <p className="final-note">
+              Akses awal terbatas · Peluncuran segera diumumkan · Tanpa spam
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer>
+        <div className="wrap">
+          <div className="foot-grid">
+            <div className="foot-brand">
+              <a href="#" className="logo">
+                <img
+                  src="/logo/sosmed-ai-logo-black-version.png"
+                  alt="SOSMED AI"
+                  width={130}
+                  height={30}
+                />
+              </a>
+              <p>
+                WhatsApp Anda, AI assistant bisnis Anda. Asisten WhatsApp AI
+                untuk coffee shop dan restoran kecil Indonesia.
+              </p>
+            </div>
+            <div className="foot-col">
+              <h4>Produk</h4>
+              <a href="#fitur">Fitur</a>
+              <a href="#cara-kerja">Cara Kerja</a>
+              <a href="#untuk-fnb">Untuk F&amp;B</a>
+              <a href="#harga">Harga</a>
+            </div>
+            <div className="foot-col">
+              <h4>Perusahaan</h4>
+              <a href="#">Tentang Kami</a>
+              <a href="#">Manifesto</a>
+              <a href="#">Karier</a>
+              <a href="mailto:hello@sosmed.io">Kontak</a>
+            </div>
+            <div className="foot-col">
+              <h4>Legal</h4>
+              <a href="#">Privasi</a>
+              <a href="#">Syarat &amp; Ketentuan</a>
+            </div>
+          </div>
+          <div className="foot-bottom">
+            <span>© 2026 SOSMED AI. All rights reserved.</span>
+            <div className="foot-social">
+              <a
+                href="https://www.instagram.com/sosmed.io"
+                target="_blank"
+                rel="noopener"
+              >
+                Instagram
+              </a>
+              <a
+                href="https://www.tiktok.com/@sosmed.io"
+                target="_blank"
+                rel="noopener"
+              >
+                TikTok
+              </a>
+              <a
+                href="https://www.linkedin.com/company/sosmed-ai"
+                target="_blank"
+                rel="noopener"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }

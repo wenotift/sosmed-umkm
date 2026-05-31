@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOSMED AI — Asisten WhatsApp AI untuk Coffee Shop & Restoran</title>
+<meta name="description" content="Jadikan WhatsApp coffee shop Anda asisten otomatis. Terima order 24 jam, balas pelanggan, dan bikin mereka balik lagi dengan sistem poin — semua otomatis lewat WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF8F5;
+    --bg-card:#FFFFFF;
+    --ink:#1A1410;
+    --ink-soft:#6B5F54;
+    --line:#ECE5DC;
+    --accent:#C2410C;        /* warm coffee/terracotta */
+    --accent-2:#EA580C;
+    --accent-soft:#FFF1E8;
+    --accent-ink:#7C2D12;
+    --green:#16A34A;
+    --green-soft:#E7F6EC;
+    --radius:18px;
+    --radius-lg:28px;
+    --shadow:0 1px 2px rgba(26,20,16,.04),0 8px 30px rgba(26,20,16,.06);
+    --shadow-lg:0 4px 12px rgba(26,20,16,.06),0 24px 60px rgba(26,20,16,.10);
+    --shadow-xl:0 2px 6px rgba(26,20,16,.05),0 30px 80px rgba(124,45,18,.14);
+    --maxw:1180px;
+    --display:'Bricolage Grotesque',sans-serif;
+    --body:'Plus Jakarta Sans',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    font-size:15px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  /* atmospheric background layers */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(1100px 700px at 80% -8%, rgba(234,88,12,.10), transparent 60%),
+      radial-gradient(900px 600px at -5% 8%, rgba(194,65,12,.07), transparent 55%),
+      radial-gradient(800px 700px at 50% 108%, rgba(22,163,74,.05), transparent 55%);
+  }
+  /* subtle grain overlay */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.4;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{text-decoration:none;color:inherit}
+  h1,h2,h3,h4{font-family:var(--display);line-height:1.05;letter-spacing:-.02em;font-weight:700}
+
+  /* ===== buttons ===== */
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--body);font-weight:600;font-size:15px;
+    padding:13px 22px;border-radius:999px;border:1px solid transparent;
+    cursor:pointer;transition:.2s ease;white-space:nowrap;
+  }
+  .btn-primary{background:linear-gradient(145deg,var(--accent-2),var(--accent));color:#fff;box-shadow:0 2px 10px rgba(194,65,12,.3)}
+  .btn-primary:hover{background:var(--accent-ink);box-shadow:0 4px 16px rgba(194,65,12,.4)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--ink);background:#fff}
+  .btn-soon{
+    background:var(--ink);color:#fff;position:relative;cursor:not-allowed;opacity:.92;
+  }
+  .btn-soon:hover{opacity:1}
+  .btn-soon .dot{width:7px;height:7px;border-radius:50%;background:#9be7b0;box-shadow:0 0 0 0 rgba(155,231,176,.7);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(155,231,176,.6)}70%{box-shadow:0 0 0 7px rgba(155,231,176,0)}100%{box-shadow:0 0 0 0 rgba(155,231,176,0)}}
+
+  /* ===== nav ===== */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(251,249,246,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.03em}
+  .logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(145deg,var(--accent-2),var(--accent));display:grid;place-items:center;color:#fff;font-size:16px;box-shadow:0 2px 8px rgba(194,65,12,.35)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:14.5px;color:var(--ink-soft);font-weight:500;transition:.15s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+  /* hamburger button — hidden on desktop */
+  .burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:#fff;cursor:pointer;padding:0}
+  .burger span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;margin:0 auto;transition:.28s}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  /* mobile drawer */
+  .mobile-menu{
+    position:fixed;inset:0;z-index:90;pointer-events:none;
+  }
+  .mobile-menu .scrim{
+    position:absolute;inset:0;background:rgba(26,20,16,.45);backdrop-filter:blur(2px);
+    opacity:0;transition:opacity .3s;
+  }
+  .mobile-menu .drawer{
+    position:absolute;top:0;right:0;height:100%;width:min(82vw,340px);
+    background:var(--bg);box-shadow:-20px 0 60px rgba(26,20,16,.18);
+    transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;padding:24px;
+  }
+  .mobile-menu.open{pointer-events:auto}
+  .mobile-menu.open .scrim{opacity:1}
+  .mobile-menu.open .drawer{transform:translateX(0)}
+  .drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
+  .drawer-close{width:40px;height:40px;border:1px solid var(--line);border-radius:11px;background:#fff;font-size:20px;cursor:pointer;color:var(--ink);line-height:1}
+  .drawer-links{display:flex;flex-direction:column;gap:4px}
+  .drawer-links a{padding:15px 14px;border-radius:12px;font-size:16px;font-weight:600;color:var(--ink);font-family:var(--display);transition:.18s}
+  .drawer-links a:hover,.drawer-links a:active{background:var(--accent-soft);color:var(--accent-ink)}
+  .drawer-cta{margin-top:auto;display:flex;flex-direction:column;gap:11px}
+  .drawer-cta .btn{width:100%;justify-content:center}
+  body.menu-lock{overflow:hidden}
+
+  @media(max-width:860px){
+    .burger{display:flex}
+  }
+  @media(max-width:860px){.nav-links{display:none}.nav-cta .btn-ghost{display:none}}
+
+  /* ===== hero ===== */
+  .hero{padding:74px 0 30px;text-align:center;position:relative}
+  .hero::before{
+    content:"";position:absolute;inset:0;top:-68px;z-index:-1;pointer-events:none;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(circle at 50% 28%, #000 0%, transparent 62%);
+    mask-image:radial-gradient(circle at 50% 28%, #000 0%, transparent 62%);
+    opacity:.5;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    color:var(--accent-ink);background:var(--accent-soft);border:1px solid #FbE0CF;
+    padding:7px 14px;border-radius:999px;margin-bottom:26px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .hero h1{font-size:clamp(34px,5vw,56px);font-weight:800;max-width:15ch;margin:0 auto 20px}
+  .hero h1 .hl{color:var(--accent);position:relative;white-space:nowrap}
+  .hero p.sub{font-size:clamp(15px,1.6vw,17px);color:var(--ink-soft);max-width:52ch;margin:0 auto 30px}
+  .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+  .hero-note{font-size:13.5px;color:var(--ink-soft)}
+  .hero-note b{color:var(--ink)}
+
+  /* chips */
+  .chips{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+  .chip{font-size:13px;font-weight:500;color:var(--ink-soft);background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:999px}
+  .chip b{color:var(--accent)}
+
+  /* ===== hero mockup (whatsapp chat + dashboard) ===== */
+  .hero-visual{margin:54px auto 0;max-width:960px;position:relative}
+  .hero-visual::before{
+    content:"";position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);
+    width:80%;height:70%;z-index:-1;pointer-events:none;
+    background:radial-gradient(ellipse at center, rgba(234,88,12,.22), transparent 70%);
+    filter:blur(40px);
+  }
+  .hv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media(max-width:760px){.hv-grid{grid-template-columns:1fr}}
+
+  .phone{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-xl);overflow:hidden;
+  }
+  .wa-top{background:#075E54;color:#fff;padding:14px 16px;display:flex;align-items:center;gap:11px}
+  .wa-av{width:36px;height:36px;border-radius:50%;background:#C2410C;display:grid;place-items:center;font-weight:700;font-size:14px;font-family:var(--display)}
+  .wa-name{font-weight:600;font-size:14.5px;line-height:1.2}
+  .wa-status{font-size:11px;opacity:.8}
+  .wa-body{padding:18px 14px;background:#ECE5DD;display:flex;flex-direction:column;gap:10px;height:360px;overflow-y:auto}
+  .bubble{max-width:80%;padding:9px 12px;border-radius:12px;font-size:13.5px;line-height:1.45;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+  .b-in{background:#fff;align-self:flex-start;border-top-left-radius:3px}
+  .b-out{background:#DCF8C6;align-self:flex-end;border-top-right-radius:3px}
+  .b-meta{display:block;font-size:10px;color:#667;text-align:right;margin-top:3px}
+  .b-points{background:#FFF1E8;border:1px solid #FbE0CF;color:var(--accent-ink);font-weight:600;align-self:flex-start;font-size:12.5px}
+
+  /* ===== animated chat system (height-stable) ===== */
+  .chat-anim{overflow-y:auto;scroll-behavior:smooth}
+  .chat-anim .bubble,.chat-anim .ui-pill{
+    opacity:0;transform:translateY(8px);
+    transition:opacity .4s ease,transform .4s ease;
+    /* reserve no extra space jumps: bubbles are always in flow once revealed */
+  }
+  .chat-anim .bubble.seen,.chat-anim .ui-pill.seen{opacity:1;transform:none}
+  /* hidden-but-reserved: kept out of flow until its turn, but container has fixed height so page never shifts */
+  .chat-anim .bubble.pending,.chat-anim .ui-pill.pending{display:none}
+  /* typing indicator */
+  .typing{display:inline-flex;align-items:center;gap:4px;padding:11px 14px;background:#fff;border-radius:12px;border-top-left-radius:3px;align-self:flex-start;box-shadow:0 1px 1px rgba(0,0,0,.06);opacity:0;transition:opacity .2s}
+  .typing.out{background:#DCF8C6;border-top-left-radius:12px;border-top-right-radius:3px;align-self:flex-end}
+  .typing.show{opacity:1}
+  .typing span{width:7px;height:7px;border-radius:50%;background:#9aa0a6;animation:typeBounce 1.3s infinite ease-in-out}
+  .typing span:nth-child(2){animation-delay:.18s}
+  .typing span:nth-child(3){animation-delay:.36s}
+  @keyframes typeBounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+  /* live demo label */
+  .demo-tag{position:absolute;top:14px;right:14px;z-index:5;display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);color:#fff;font-size:10.5px;font-weight:600;padding:5px 10px;border-radius:999px;letter-spacing:.03em}
+  .demo-tag .rec{width:7px;height:7px;border-radius:50%;background:#ff5a5a;animation:recBlink 1.4s infinite}
+  @keyframes recBlink{0%,100%{opacity:1}50%{opacity:.3}}
+  .replay-btn{position:absolute;bottom:12px;right:12px;z-index:5;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.92);border:1px solid var(--line);color:var(--ink);font-size:11px;font-weight:600;padding:6px 11px;border-radius:999px;cursor:pointer;opacity:0;transition:.2s;font-family:var(--body)}
+  .replay-btn.show{opacity:1}
+  .replay-btn:hover{background:#fff}
+  .phone,.f-visual{position:relative}
+  .f-visual.chat-anim{justify-content:flex-start;height:300px;min-height:300px}
+
+  .panel{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-xl);padding:20px;
+  }
+  .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .panel-title{font-family:var(--display);font-weight:700;font-size:15px}
+  .panel-tag{font-size:11px;color:var(--green);background:var(--green-soft);padding:4px 9px;border-radius:999px;font-weight:600}
+  .order-row{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:9px}
+  .order-row .oi{font-size:13px;font-weight:600}
+  .order-row .od{font-size:11.5px;color:var(--ink-soft)}
+  .order-row .stat{font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px}
+  .stat-new{background:var(--accent-soft);color:var(--accent-ink)}
+  .stat-done{background:var(--green-soft);color:var(--green)}
+  .mini-stats{display:flex;gap:10px;margin-top:14px}
+  .mini{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+  .mini .n{font-family:var(--display);font-weight:800;font-size:20px}
+  .mini .l{font-size:11px;color:var(--ink-soft)}
+
+  /* trust strip */
+  .trust{padding:38px 0 8px;text-align:center}
+  .trust p{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:20px;opacity:.7}
+  .trust-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .trust-pill{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 16px;font-size:13.5px;font-weight:600;color:var(--ink-soft);box-shadow:var(--shadow)}
+  .trust-pill .e{font-size:16px}
+
+  /* ===== AI tech section ===== */
+  .tech{background:linear-gradient(170deg,#1A1410,#241A12);color:#F3ECE4;position:relative;overflow:hidden}
+  .tech::before{content:"";position:absolute;top:-15%;left:-8%;width:520px;height:520px;background:radial-gradient(circle,rgba(234,88,12,.16),transparent 70%);pointer-events:none}
+  .tech::after{content:"";position:absolute;bottom:-20%;right:-10%;width:560px;height:560px;background:radial-gradient(circle,rgba(22,163,74,.10),transparent 70%);pointer-events:none}
+  .tech .wrap{position:relative;z-index:1}
+  .tech .eyebrow{color:#E9A178}
+  .tech .sec-title{color:#fff}
+  .tech .sec-lead{color:#C9BDB1}
+  .tech-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center;margin-top:10px}
+  @media(max-width:880px){.tech-grid{grid-template-columns:1fr;gap:32px}}
+  .tech-feats{display:flex;flex-direction:column;gap:18px}
+  .tech-feat{display:flex;gap:15px;align-items:flex-start;padding:18px;border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);background:rgba(255,255,255,.03);transition:.25s}
+  .tech-feat:hover{background:rgba(255,255,255,.06);border-color:rgba(233,161,120,.3)}
+  .tech-feat .ic{flex-shrink:0;width:42px;height:42px;border-radius:11px;background:rgba(233,161,120,.14);color:#E9A178;display:grid;place-items:center;font-size:20px}
+  .tech-feat h3{font-size:16px;color:#fff;margin-bottom:5px;font-family:var(--display)}
+  .tech-feat p{font-size:13.5px;color:#C9BDB1;line-height:1.5}
+
+  /* AI routing visual */
+  .ai-viz{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:26px;backdrop-filter:blur(8px)}
+  .ai-viz-top{display:flex;align-items:center;gap:9px;margin-bottom:20px;font-size:13px;color:#C9BDB1}
+  .ai-viz-top .pulse{width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse 2s infinite}
+  .ai-msg{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:11px 14px;font-size:13px;color:#EFE8E0;margin-bottom:16px}
+  .ai-flow{display:flex;flex-direction:column;gap:9px}
+  .ai-node{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:12.5px}
+  .ai-node .lbl{display:flex;align-items:center;gap:9px;color:#EFE8E0;font-weight:500}
+  .ai-node .dot2{width:7px;height:7px;border-radius:50%}
+  .ai-node .tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px}
+  .tag-route{background:rgba(233,161,120,.16);color:#E9A178}
+  .tag-fast{background:rgba(34,197,94,.16);color:#5FD98A}
+  .ai-foot{margin-top:18px;font-size:12px;text-align:center;color:#A89C90}
+
+  /* models row */
+  .models{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;justify-content:center}
+  .model-chip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:600;color:#EFE8E0}
+  .model-chip .md{width:7px;height:7px;border-radius:50%;background:#E9A178}
+
+  /* ===== AI-native difference ===== */
+  .native{background:linear-gradient(180deg,#fff,var(--bg))}
+  .vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:920px;margin:18px auto 0}
+  @media(max-width:680px){.vs-grid{grid-template-columns:1fr}}
+  .vs-card{border-radius:var(--radius-lg);padding:30px 28px;position:relative}
+  .vs-old{background:#fff;border:1px solid var(--line)}
+  .vs-new{background:linear-gradient(160deg,#1A1410,#241A12);color:#F3ECE4;border:1px solid #2e2218;box-shadow:var(--shadow-xl);position:relative;overflow:hidden}
+  .vs-new::before{content:"";position:absolute;top:-30%;right:-15%;width:300px;height:300px;background:radial-gradient(circle,rgba(234,88,12,.18),transparent 70%);pointer-events:none}
+  .vs-label{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+  .vs-old .vs-label{background:#F3EFE9;color:var(--ink-soft)}
+  .vs-new .vs-label{background:rgba(233,161,120,.16);color:#E9A178;position:relative;z-index:1}
+  .vs-card h3{font-size:19px;margin-bottom:18px;position:relative;z-index:1}
+  .vs-old h3{color:var(--ink)}.vs-new h3{color:#fff}
+  .vs-list{list-style:none;display:flex;flex-direction:column;gap:13px;position:relative;z-index:1}
+  .vs-list li{display:flex;gap:11px;align-items:flex-start;font-size:14px;line-height:1.45}
+  .vs-old .vs-list li{color:var(--ink-soft)}
+  .vs-new .vs-list li{color:#D9CFC4}
+  .vs-ic{flex-shrink:0;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:700;margin-top:1px}
+  .vs-old .vs-ic{background:#F0EAE3;color:#A8998A}
+  .vs-new .vs-ic{background:rgba(95,217,138,.18);color:#5FD98A}
+
+  /* comparison table */
+  .compare{overflow-x:auto;max-width:980px;margin:14px auto 0}
+  .ctable{width:100%;border-collapse:separate;border-spacing:0;min-width:640px}
+  .ctable th,.ctable td{padding:16px 18px;text-align:left;font-size:14px;border-bottom:1px solid var(--line)}
+  .ctable thead th{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);background:transparent;border-bottom:2px solid var(--line)}
+  .ctable thead th.us{color:var(--accent)}
+  .ctable .feat-col{color:var(--ink);font-weight:600;width:34%}
+  .ctable td.us{background:linear-gradient(180deg,var(--accent-soft),#fff);font-weight:600;color:var(--accent-ink)}
+  .ctable tbody tr:last-child td{border-bottom:none}
+  .ctable .yes{color:var(--green);font-weight:700}
+  .ctable .no{color:#C8553D;opacity:.55}
+  .ctable .partial{color:#B8860B}
+  .ctable th.us{background:linear-gradient(180deg,var(--accent-soft),transparent);border-radius:12px 12px 0 0}
+  .ctable td.us-cell{font-size:13.5px}
+  .compare-wrap{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:8px 20px 4px}
+
+  /* ===== no dashboard / all in whatsapp ===== */
+  .nodash{background:linear-gradient(180deg,var(--bg),#fff)}
+  .nodash-intro{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:980px;margin:6px auto 50px}
+  @media(max-width:820px){.nodash-intro{grid-template-columns:1fr;gap:28px}}
+  .nodash-text h3{font-size:clamp(21px,2.6vw,28px);font-weight:700;margin-bottom:16px;line-height:1.15}
+  .nodash-text p{color:var(--ink-soft);font-size:15px;margin-bottom:16px}
+  .nodash-text .kill{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+  .kill-row{display:flex;align-items:center;gap:11px;font-size:14px}
+  .kill-row .x{flex-shrink:0;width:24px;height:24px;border-radius:7px;background:#FBEDE9;color:#C8553D;display:grid;place-items:center;font-weight:700;font-size:12px;text-decoration:line-through}
+  .kill-row s{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:#C8553D80}
+  .kill-row .now{color:var(--green);font-weight:600}
+
+  /* owner-side whatsapp demo */
+  .owner-phone{max-width:340px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);overflow:hidden}
+  .owner-phone .wa-top{background:#1A1410}
+  .owner-phone .wa-av{background:linear-gradient(145deg,var(--accent-2),var(--accent))}
+
+  /* two-sided cards */
+  .sides{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:920px;margin:0 auto}
+  @media(max-width:760px){.sides{grid-template-columns:1fr}}
+  .side-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow)}
+  .side-card .side-head{display:flex;align-items:center;gap:11px;margin-bottom:18px}
+  .side-card .side-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px}
+  .side-cust .side-ic{background:var(--green-soft);color:var(--green)}
+  .side-own .side-ic{background:var(--accent-soft);color:var(--accent)}
+  .side-card h3{font-size:18px;margin-bottom:3px}
+  .side-card .side-sub{font-size:12.5px;color:var(--ink-soft)}
+  .side-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  .side-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-soft);line-height:1.45}
+  .side-list .cmd{flex-shrink:0;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:2px 8px;font-size:12px;font-weight:600;color:var(--accent-ink);font-family:var(--display);white-space:nowrap}
+
+  /* ===== section base ===== */
+  section{padding:72px 0}
+  .eyebrow{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;text-align:center}
+  .sec-title{font-size:clamp(25px,3.2vw,36px);font-weight:800;text-align:center;max-width:20ch;margin:0 auto 16px}
+  .sec-lead{text-align:center;color:var(--ink-soft);max-width:56ch;margin:0 auto 50px;font-size:15.5px}
+
+  /* problem strip */
+  .problem{background:linear-gradient(165deg,#221A14,#1A1410);color:#F3ECE4;position:relative;overflow:hidden}
+  .problem::before{content:"";position:absolute;top:-20%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(234,88,12,.18),transparent 70%);pointer-events:none}
+  .problem .wrap{position:relative;z-index:1}
+  .problem .eyebrow{color:#E9A178}
+  .problem .sec-title{color:#fff}
+  .prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:880px;margin:0 auto 36px}
+  @media(max-width:680px){.prob-grid{grid-template-columns:1fr}}
+  .prob{display:flex;gap:13px;align-items:flex-start;padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);background:rgba(255,255,255,.03)}
+  .prob .x{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:rgba(233,161,120,.16);color:#E9A178;display:grid;place-items:center;font-weight:700;font-size:14px}
+  .prob p{font-size:14.5px;color:#D9CFC4}
+  .prob b{color:#fff;font-weight:600}
+  .prob-foot{max-width:680px;margin:0 auto;text-align:center;font-size:15.5px;color:#F3ECE4;font-family:var(--display);font-weight:500;line-height:1.45}
+  .prob-foot b{color:#E9A178}
+
+  /* feature rows */
+  .feature{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:30px}
+  .feature:nth-child(even) .f-text{order:2}
+  @media(max-width:820px){.feature{grid-template-columns:1fr;gap:26px}.feature:nth-child(even) .f-text{order:0}}
+  .f-kicker{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:12px}
+  .f-text h3{font-size:clamp(21px,2.5vw,27px);font-weight:700;margin-bottom:14px}
+  .f-text p{color:var(--ink-soft);font-size:15px;margin-bottom:18px}
+  .f-chips{display:flex;gap:8px;flex-wrap:wrap}
+  .f-chips span{font-size:12.5px;font-weight:500;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px;color:var(--ink-soft)}
+  .f-visual{
+    background:linear-gradient(160deg,#fff,#FDFBF9);
+    border:1px solid var(--line);border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-lg);padding:24px;min-height:260px;
+    display:flex;flex-direction:column;justify-content:center;gap:12px;
+    position:relative;overflow:hidden;
+  }
+  .f-visual::before{
+    content:"";position:absolute;top:-40px;right:-40px;width:140px;height:140px;
+    background:radial-gradient(circle,rgba(234,88,12,.10),transparent 70%);pointer-events:none;
+  }
+
+  /* generic small UI bits reused in feature visuals */
+  .ui-line{height:11px;border-radius:6px;background:var(--line)}
+  .ui-pill{display:inline-flex;align-items:center;gap:7px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:12.5px;font-weight:600}
+  .menu-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .menu-item:last-child{border-bottom:none}
+  .menu-item .p{color:var(--accent-ink);font-weight:700}
+  .qr{width:74px;height:74px;border-radius:14px;background:
+     repeating-conic-gradient(var(--ink) 0% 25%, #fff 0% 50%) 50%/14px 14px;border:5px solid #fff;box-shadow:0 0 0 1px var(--line)}
+
+  /* why grid */
+  .why{background:linear-gradient(180deg,#fff,var(--bg))}
+  .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:920px;margin:0 auto}
+  @media(max-width:680px){.why-grid{grid-template-columns:1fr}}
+  .why-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+  .why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .why-card .ic{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:20px;margin-bottom:15px}
+  .why-card h3{font-size:17px;margin-bottom:9px}
+  .why-card p{font-size:14px;color:var(--ink-soft)}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:980px;margin:0 auto}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;position:relative;transition:transform .25s ease,box-shadow .25s ease}
+  .step:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .step .num{font-family:var(--display);font-weight:800;font-size:15px;color:#fff;background:var(--accent);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;margin-bottom:16px}
+  .step h3{font-size:17px;margin-bottom:9px}
+  .step p{font-size:13.5px;color:var(--ink-soft)}
+  .how-foot{max-width:680px;margin:38px auto 0;text-align:center;font-family:var(--display);font-weight:500;font-size:16px;line-height:1.45}
+
+  /* use cases */
+  .uc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1000px;margin:0 auto}
+  @media(max-width:860px){.uc-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.uc-grid{grid-template-columns:1fr}}
+  .uc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;text-align:left;transition:transform .25s ease,box-shadow .25s ease}
+  .uc:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .uc .emo{font-size:30px;margin-bottom:13px}
+  .uc h3{font-size:16.5px;margin-bottom:8px}
+  .uc p{font-size:13.5px;color:var(--ink-soft)}
+
+  /* pricing */
+  .pricing{background:linear-gradient(180deg,var(--bg),#fff)}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:0 auto;align-items:stretch}
+  @media(max-width:860px){.price-grid{grid-template-columns:1fr;max-width:420px}}
+  .price{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 26px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+  .price:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .price.feat{border:2px solid var(--accent);box-shadow:var(--shadow-xl);position:relative;overflow:hidden}
+  .price.feat::before{content:"";position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(234,88,12,.12),transparent 70%);pointer-events:none}
+  .price.feat .pop{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:12px;font-weight:600;padding:4px 14px;border-radius:999px}
+  .price h3{font-size:20px;margin-bottom:4px}
+  .price .for{font-size:13px;color:var(--ink-soft);margin-bottom:18px;min-height:38px}
+  .price .amt{font-family:var(--display);font-weight:800;font-size:34px;margin-bottom:3px}
+  .price .amt span{font-size:15px;font-weight:500;color:var(--ink-soft)}
+  .price ul{list-style:none;margin:20px 0 24px;display:flex;flex-direction:column;gap:11px}
+  .price li{font-size:13.8px;color:var(--ink-soft);display:flex;gap:9px;align-items:flex-start}
+  .price li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0}
+  .price .btn{width:100%;justify-content:center;margin-top:auto}
+  .price-note{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:26px}
+
+  /* faq */
+  .faq-wrap{max-width:760px;margin:0 auto}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-q{width:100%;text-align:left;background:none;border:none;padding:20px 0;font-family:var(--display);font-weight:600;font-size:16px;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .faq-q .ic{flex-shrink:0;width:26px;height:26px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;font-size:18px;color:var(--accent);transition:.25s}
+  .faq-item.open .faq-q .ic{transform:rotate(45deg);background:var(--accent);color:#fff;border-color:var(--accent)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--ink-soft);font-size:15px}
+  .faq-a p{padding:0 0 22px}
+
+  /* final cta */
+  .final{text-align:center}
+  .final-card{background:var(--ink);color:#fff;border-radius:var(--radius-lg);padding:60px 30px;max-width:880px;margin:0 auto;position:relative;overflow:hidden}
+  .final-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(194,65,12,.35),transparent 55%);pointer-events:none}
+  .final-card h2{font-size:clamp(25px,3.2vw,34px);color:#fff;max-width:18ch;margin:0 auto 16px;position:relative}
+  .final-card p{color:#D9CFC4;max-width:48ch;margin:0 auto 28px;font-size:15px;position:relative}
+  .final-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+  .final-card .btn-ig{background:#fff;color:var(--ink)}
+  .final-note{font-size:13px;color:#A89C90;margin-top:18px;position:relative}
+
+  /* footer */
+  footer{background:var(--bg);border-top:1px solid var(--line);padding:56px 0 34px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.foot-grid{grid-template-columns:1fr}}
+  .foot-brand .logo{margin-bottom:14px}
+  .foot-brand p{font-size:13.5px;color:var(--ink-soft);max-width:30ch}
+  .foot-col h4{font-family:var(--body);font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);margin-bottom:14px;font-weight:700}
+  .foot-col a{display:block;font-size:14px;color:var(--ink);margin-bottom:10px;opacity:.8;transition:.15s}
+  .foot-col a:hover{opacity:1;color:var(--accent)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:22px;font-size:13px;color:var(--ink-soft);flex-wrap:wrap;gap:12px}
+  .foot-social{display:flex;gap:14px}
+  .foot-social a{opacity:.7}.foot-social a:hover{opacity:1}
+
+  /* reveal on load */
+  .reveal{opacity:0;transform:translateY(16px);animation:rise .7s ease forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.13s}.d3{animation-delay:.21s}.d4{animation-delay:.29s}.d5{animation-delay:.37s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo"><span class="mark">S</span> SOSMED AI</a>
+    <nav class="nav-links">
+      <a href="#fitur">Fitur</a>
+      <a href="#tanpa-dashboard">Tanpa Dashboard</a>
+      <a href="#teknologi">Teknologi</a>
+      <a href="#beda">Bedanya</a>
+      <a href="#harga">Harga</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#harga">Lihat Harga</a>
+      <button class="burger" id="burger" aria-label="Buka menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU DRAWER -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="scrim" data-close></div>
+  <div class="drawer">
+    <div class="drawer-top">
+      <a href="#" class="logo"><span class="mark">S</span> SOSMED AI</a>
+      <button class="drawer-close" data-close aria-label="Tutup menu">×</button>
+    </div>
+    <nav class="drawer-links">
+      <a href="#fitur" data-close>Fitur</a>
+      <a href="#tanpa-dashboard" data-close>Tanpa Dashboard</a>
+      <a href="#teknologi" data-close>Teknologi</a>
+      <a href="#beda" data-close>Bedanya</a>
+      <a href="#cara-kerja" data-close>Cara Kerja</a>
+      <a href="#untuk-fnb" data-close>Untuk F&amp;B</a>
+      <a href="#harga" data-close>Harga</a>
+      <a href="#faq" data-close>FAQ</a>
+    </nav>
+    <div class="drawer-cta">
+      <button class="btn btn-soon" disabled style="width:100%;justify-content:center"><span class="dot"></span> Segera Hadir / Coming Soon</button>
+      <a class="btn btn-ghost" href="https://www.instagram.com/sosmed.io" target="_blank" rel="noopener">Ikuti di Instagram</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="badge reveal d1"><span class="dot"></span> AI untuk Coffee Shop &amp; Restoran · Segera Hadir</div>
+    <h1 class="reveal d2">WhatsApp Anda, <span class="hl">AI assistant</span> coffee shop Anda.</h1>
+    <p class="sub reveal d3">Terima order otomatis 24 jam dan bikin pelanggan balik lagi dengan sistem poin — semua jalan sendiri lewat WhatsApp. Anda kelola semuanya dari chat juga: tanpa dashboard, tanpa aplikasi, tanpa login. Dibuat khusus untuk kafe dan restoran kecil Indonesia.</p>
+    <div class="hero-cta reveal d4">
+      <button class="btn btn-soon" disabled><span class="dot"></span> Segera Hadir / Coming Soon</button>
+      <a class="btn btn-ghost" href="#cara-kerja">Lihat Cara Kerja ↓</a>
+    </div>
+    <p class="hero-note reveal d4">Akses awal segera dibuka · <b>Gratis untuk founding user</b> · Setup 30 menit</p>
+
+    <div class="chips reveal d5">
+      <span class="chip"><b>•</b> Order Otomatis</span>
+      <span class="chip"><b>•</b> Balas 24 Jam</span>
+      <span class="chip"><b>•</b> Sistem Poin</span>
+      <span class="chip"><b>•</b> Member Digital</span>
+      <span class="chip"><b>•</b> Menu QR</span>
+      <span class="chip"><b>•</b> WhatsApp Resmi Meta</span>
+    </div>
+
+    <!-- HERO VISUAL -->
+    <div class="hero-visual reveal d5">
+      <div class="hv-grid">
+        <!-- whatsapp chat -->
+        <div class="phone">
+          <div class="demo-tag"><span class="rec"></span> DEMO LANGSUNG</div>
+          <div class="wa-top">
+            <div class="wa-av">KS</div>
+            <div>
+              <div class="wa-name">Kopi Senja</div>
+              <div class="wa-status">● online · dibalas otomatis</div>
+            </div>
+          </div>
+          <div class="wa-body chat-anim" data-chat data-loop="6000">
+            <div class="bubble b-out">Halo kak, masih buka? Mau es kopi susu 2 ya, less sugar 🙏<span class="b-meta">21:14 ✓✓</span></div>
+            <div class="bubble b-in">Halo kak! Masih buka sampai jam 11 malam 🙌 Es Kopi Susu Gula Aren 2 (less sugar), totalnya Rp 36.000. Diambil atau diantar ya kak?<span class="b-meta">21:14</span></div>
+            <div class="bubble b-out">Diambil aja ya<span class="b-meta">21:15 ✓✓</span></div>
+            <div class="bubble b-in">Siap kak! Order #1042 lagi disiapin ya ☕ Struk sudah dikirim.<span class="b-meta">21:15</span></div>
+            <div class="bubble b-points">🎉 Kakak dapat +36 poin! Total 284 poin — 16 lagi buat voucher Rp 5.000.</div>
+          </div>
+          <button class="replay-btn" data-replay>↻ Putar ulang</button>
+        </div>
+        <!-- dashboard -->
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Order Masuk Hari Ini</div>
+            <div class="panel-tag">● Live</div>
+          </div>
+          <div class="order-row">
+            <div><div class="oi">#1042 · Es Kopi Susu ×2</div><div class="od">less sugar · ambil sendiri</div></div>
+            <div class="stat stat-new">Baru</div>
+          </div>
+          <div class="order-row">
+            <div><div class="oi">#1041 · Americano ×1</div><div class="od">panas · meja 4</div></div>
+            <div class="stat stat-done">Selesai</div>
+          </div>
+          <div class="order-row">
+            <div><div class="oi">#1040 · Croissant ×2</div><div class="od">takeaway</div></div>
+            <div class="stat stat-done">Selesai</div>
+          </div>
+          <div class="mini-stats">
+            <div class="mini"><div class="n">48</div><div class="l">Order hari ini</div></div>
+            <div class="mini"><div class="n">Rp 1,4jt</div><div class="l">Penjualan</div></div>
+            <div class="mini"><div class="n">126</div><div class="l">Member aktif</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="trust">
+  <div class="wrap">
+    <p>Dibangun khusus untuk cara kerja F&amp;B Indonesia</p>
+    <div class="trust-row">
+      <div class="trust-pill"><span class="e">🛡️</span> WhatsApp Resmi Meta</div>
+      <div class="trust-pill"><span class="e">⚡</span> Setup 30 Menit</div>
+      <div class="trust-pill"><span class="e">🇮🇩</span> Bahasa Indonesia Native</div>
+      <div class="trust-pill"><span class="e">🔒</span> Aman &amp; Patuh UU PDP</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap">
+    <div class="eyebrow">Kenyataan Sehari-hari di Kafe</div>
+    <h2 class="sec-title">Berapa banyak order hilang karena chat nggak sempat dibales?</h2>
+    <div class="prob-grid">
+      <div class="prob"><div class="x">✕</div><p><b>Chat masuk pas lagi rame.</b> Pelanggan nanya menu, nunggu lama, nggak dibales, pindah ke kafe sebelah.</p></div>
+      <div class="prob"><div class="x">✕</div><p><b>Tutup, owner tidur.</b> Order tengah malam atau pagi buta hilang begitu aja.</p></div>
+      <div class="prob"><div class="x">✕</div><p><b>Capek bales pertanyaan yang sama.</b> "Buka jam berapa?", "ada apa aja?", "berapa totalnya?" — berjam-jam tiap hari.</p></div>
+      <div class="prob"><div class="x">✕</div><p><b>Pelanggan dateng sekali, terus lupa.</b> Padahal 60–70% omzet kafe dari pelanggan langganan.</p></div>
+    </div>
+    <p class="prob-foot">Rata-rata coffee shop kehilangan <b>Rp 2–4 juta per bulan</b> hanya dari order yang nggak kebales. SOSMED AI menutup celah itu.</p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="fitur">
+  <div class="wrap">
+    <div class="eyebrow">Yang Anda Dapatkan</div>
+    <h2 class="sec-title">Satu sistem. Semua yang kafe Anda butuhkan.</h2>
+    <p class="sec-lead">Bukan sekadar chatbot. SOSMED AI adalah sistem lengkap — order, menu, member, dan poin — yang jalan otomatis di WhatsApp yang sudah Anda pakai tiap hari.</p>
+
+    <!-- f1 -->
+    <div class="feature">
+      <div class="f-text">
+        <div class="f-kicker">01 · Bot Order Otomatis</div>
+        <h3>Balas pelanggan 24 jam, tanpa pegang HP terus.</h3>
+        <p>AI balas tanya menu, jam buka, dan terima order langsung dari chat — bahasa Indonesia santai, ngerti pesanan kayak "es kopi susu less sugar, gelas gede". Yang ribet baru dialihkan ke barista Anda.</p>
+        <div class="f-chips"><span>24 Jam</span><span>Bahasa Santai</span><span>Ngerti Varian Menu</span></div>
+      </div>
+      <div class="f-visual chat-anim" data-chat data-loop="5000">
+        <div class="bubble b-out" style="max-width:90%">Ada menu apa aja kak?</div>
+        <div class="bubble b-in" style="max-width:90%">Hari ini ada: Es Kopi Susu, Americano, Cappuccino, Matcha Latte, sama Croissant & Pain au Chocolat 🥐 Mau pesan yang mana kak?</div>
+        <div class="ui-pill" style="align-self:flex-start;color:var(--green)">⚡ Dibalas dalam 2 detik</div>
+        <button class="replay-btn" data-replay>↻ Putar ulang</button>
+      </div>
+    </div>
+
+    <!-- f2 -->
+    <div class="feature">
+      <div class="f-text">
+        <div class="f-kicker">02 · Menu Digital + QR Meja</div>
+        <h3>Ganti menu JPG yang ribet di-update.</h3>
+        <p>Menu online yang bisa Anda ubah dalam 30 detik. Cetak QR untuk di meja — pelanggan scan, lihat menu, pesan dari tempat duduk. Ganti harga sekali, langsung berubah di mana-mana.</p>
+        <div class="f-chips"><span>Update Instan</span><span>QR di Meja</span><span>Order dari Tempat Duduk</span></div>
+      </div>
+      <div class="f-visual">
+        <div style="display:flex;gap:18px;align-items:center">
+          <div class="qr"></div>
+          <div style="flex:1">
+            <div class="menu-item"><span>Es Kopi Susu Gula Aren</span><span class="p">Rp 18rb</span></div>
+            <div class="menu-item"><span>Americano</span><span class="p">Rp 15rb</span></div>
+            <div class="menu-item"><span>Matcha Latte</span><span class="p">Rp 25rb</span></div>
+            <div class="menu-item"><span>Croissant</span><span class="p">Rp 22rb</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- f3 -->
+    <div class="feature">
+      <div class="f-text">
+        <div class="f-kicker">03 · Sistem Poin &amp; Member</div>
+        <h3>Bikin pelanggan balik lagi — otomatis.</h3>
+        <p>Setiap belanja Rp 1.000 dapat 1 poin. Kumpulin 100 poin, tukar voucher Rp 5.000. Pelanggan daftar member langsung lewat WhatsApp — cukup ketik nama, nggak perlu download aplikasi atau kartu fisik.</p>
+        <div class="f-chips"><span>1 Poin / Rp 1.000</span><span>Voucher Otomatis</span><span>Daftar via WhatsApp</span></div>
+      </div>
+      <div class="f-visual chat-anim" data-chat data-loop="5000">
+        <div class="bubble b-in" style="max-width:92%">Mau daftar member kak? Tiap order dapat poin, bisa ditukar minuman gratis ☕ Ketik nama aja buat daftar 🙂</div>
+        <div class="bubble b-out" style="max-width:60%">Dimas</div>
+        <div class="bubble b-points" style="max-width:92%">✅ Sip Dimas, udah terdaftar! Order tadi langsung dapat +36 poin.</div>
+        <button class="replay-btn" data-replay>↻ Putar ulang</button>
+      </div>
+    </div>
+
+    <!-- f4 -->
+    <div class="feature">
+      <div class="f-text">
+        <div class="f-kicker">04 · Kelola Order dari WhatsApp</div>
+        <h3>Lihat &amp; kelola order tanpa buka dashboard.</h3>
+        <p>Order baru langsung masuk ke WhatsApp Anda dengan notifikasi. Chat bot Anda buat lihat order hari ini, tandai pesanan selesai, atau cek penjualan — semua dari chat, nggak perlu buka aplikasi atau laptop.</p>
+        <div class="f-chips"><span>Notif Real-Time</span><span>Kelola via Chat</span><span>Tanpa Login</span></div>
+      </div>
+      <div class="f-visual">
+        <div class="order-row" style="margin:0 0 9px"><div><div class="oi">#1042 · Es Kopi Susu ×2</div><div class="od">less sugar</div></div><div class="stat stat-new">Baru</div></div>
+        <div class="order-row" style="margin:0 0 9px"><div><div class="oi">#1041 · Americano ×1</div><div class="od">meja 4</div></div><div class="stat stat-done">Selesai</div></div>
+        <div class="mini-stats" style="margin-top:4px">
+          <div class="mini"><div class="n">48</div><div class="l">Order</div></div>
+          <div class="mini"><div class="n">Rp 1,4jt</div><div class="l">Penjualan</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="wrap">
+    <div class="eyebrow">Kenapa SOSMED AI</div>
+    <h2 class="sec-title">Bukan yang termurah. Yang paling pas untuk coffee shop.</h2>
+    <div class="why-grid" style="margin-top:14px">
+      <div class="why-card"><div class="ic">☕</div><h3>Khusus F&amp;B</h3><p>Bukan tools generik untuk semua usaha. Tiap fitur dirancang untuk cara kerja kafe: varian menu (es/panas, less sugar), QR meja, poin untuk pelanggan langganan.</p></div>
+      <div class="why-card"><div class="ic">🛡️</div><h3>WhatsApp Resmi Meta</h3><p>Kami pakai WhatsApp Business API resmi Meta — nomor Anda aman dari banned, bisa kirim promo dengan aman. Bukan tools bajakan yang minta scan QR.</p></div>
+      <div class="why-card"><div class="ic">💳</div><h3>Satu Harga, Semua Fitur</h3><p>Nggak ada biaya tersembunyi, nggak ada add-on yang bikin tagihan membengkak. Anda tahu persis bayar berapa tiap bulan.</p></div>
+      <div class="why-card"><div class="ic">📈</div><h3>Bayar Sendiri</h3><p>Mulai Rp 199 ribu/bulan — sekitar Rp 6.600/hari, kurang dari satu cup kopi. Satu order tambahan sehari aja sudah balik modal berkali lipat.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NO DASHBOARD / ALL IN WHATSAPP -->
+<section id="tanpa-dashboard" class="nodash">
+  <div class="wrap">
+    <div class="eyebrow">Tanpa Aplikasi, Tanpa Login</div>
+    <h2 class="sec-title">Semua di WhatsApp. Sisi customer dan sisi Anda.</h2>
+    <p class="sec-lead">Pemilik kafe nggak perlu buka dashboard, nggak perlu install aplikasi, nggak perlu hapal sistem baru. Anda kelola seluruh bisnis dengan chat — di WhatsApp yang sudah Anda pakai tiap hari.</p>
+
+    <div class="nodash-intro">
+      <div class="nodash-text">
+        <h3>Anda sudah jago pakai WhatsApp. Itu aja cukup.</h3>
+        <p>Kebanyakan tools bisnis maksa Anda belajar dashboard rumit, buka laptop, login tiap hari. SOSMED AI kebalikannya — Anda cukup chat bot Anda sendiri untuk lihat order, ubah menu, cek penjualan, atau tandai pesanan selesai.</p>
+        <p>Customer pesan lewat WhatsApp. Anda kelola juga lewat WhatsApp. Satu aplikasi, dua sisi, nol ribet.</p>
+        <div class="kill">
+          <div class="kill-row"><span class="x">✕</span> <s>Buka dashboard di laptop</s> &nbsp;→&nbsp; <span class="now">Chat bot Anda</span></div>
+          <div class="kill-row"><span class="x">✕</span> <s>Install aplikasi baru</s> &nbsp;→&nbsp; <span class="now">Pakai WhatsApp biasa</span></div>
+          <div class="kill-row"><span class="x">✕</span> <s>Login &amp; hapal password</s> &nbsp;→&nbsp; <span class="now">Langsung dari chat</span></div>
+          <div class="kill-row"><span class="x">✕</span> <s>Belajar sistem baru</s> &nbsp;→&nbsp; <span class="now">Anda sudah bisa</span></div>
+        </div>
+      </div>
+
+      <!-- owner-side whatsapp demo -->
+      <div class="owner-phone">
+        <div class="demo-tag"><span class="rec"></span> SISI OWNER</div>
+        <div class="wa-top">
+          <div class="wa-av">AI</div>
+          <div>
+            <div class="wa-name">SOSMED AI · Asisten Anda</div>
+            <div class="wa-status">● kelola bisnis lewat chat</div>
+          </div>
+        </div>
+        <div class="wa-body chat-anim" data-chat data-loop="5500" style="height:360px">
+          <div class="bubble b-out">order hari ini berapa?<span class="b-meta">09:12 ✓✓</span></div>
+          <div class="bubble b-in">Pagi! Sampai sekarang 12 order masuk, total Rp 348.000 ☕ Ada 2 order baru yang belum dikonfirmasi.<span class="b-meta">09:12</span></div>
+          <div class="bubble b-out">laporan harian dong<span class="b-meta">09:13 ✓✓</span></div>
+          <div class="bubble b-in">📊 Laporan Hari Ini (s/d 09:13)<br>• Order: 12 (Rp 348.000)<br>• Best seller: Es Kopi Susu (7)<br>• Jam tersibuk: 08:00–09:00<br>• Member baru: 3<br>• Order via bot: 9 · walk-in: 3<span class="b-meta">09:13</span></div>
+          <div class="bubble b-out">matiin es kopi susu, stok habis<span class="b-meta">09:14 ✓✓</span></div>
+          <div class="bubble b-in">Siap! "Es Kopi Susu Gula Aren" sudah saya nonaktifkan 👍 Customer nggak bisa pesan sampai diaktifkan lagi.<span class="b-meta">09:14</span></div>
+          <div class="bubble b-out">laporan bulan ini gimana?<span class="b-meta">09:15 ✓✓</span></div>
+          <div class="bubble b-in">📈 Laporan Mei 2026<br>• Total order: 1.284 (Rp 38,6 jt)<br>• Naik 18% dari April 📈<br>• Member aktif: 312 (+47)<br>• Repeat rate: 64%<br>• Top menu: Es Kopi Susu, Americano, Croissant<br>Mau saya kirim versi PDF lengkap?<span class="b-meta">09:15</span></div>
+        </div>
+        <button class="replay-btn" data-replay>↻ Putar ulang</button>
+      </div>
+    </div>
+
+    <!-- two sides -->
+    <div class="sides">
+      <div class="side-card side-cust">
+        <div class="side-head">
+          <div class="side-ic">💬</div>
+          <div><h3>Sisi Customer</h3><div class="side-sub">Pesan & cek lewat WhatsApp</div></div>
+        </div>
+        <ul class="side-list">
+          <li><span class="cmd">"menu"</span> Lihat menu &amp; harga terkini</li>
+          <li><span class="cmd">"pesan…"</span> Order langsung dari chat</li>
+          <li><span class="cmd">"cek poin"</span> Lihat saldo poin &amp; voucher</li>
+          <li><span class="cmd">"daftar"</span> Jadi member cukup ketik nama</li>
+          <li><span class="cmd">"jam buka?"</span> Info jam &amp; lokasi otomatis</li>
+        </ul>
+      </div>
+      <div class="side-card side-own">
+        <div class="side-head">
+          <div class="side-ic">☕</div>
+          <div><h3>Sisi Owner</h3><div class="side-sub">Kelola bisnis lewat WhatsApp</div></div>
+        </div>
+        <ul class="side-list">
+          <li><span class="cmd">"order hari ini"</span> Lihat order &amp; penjualan</li>
+          <li><span class="cmd">"laporan harian"</span> Ringkasan penjualan hari ini</li>
+          <li><span class="cmd">"laporan bulanan"</span> Performa bulan + tren &amp; PDF</li>
+          <li><span class="cmd">"matiin [menu]"</span> Nonaktifkan menu yang habis</li>
+          <li><span class="cmd">"#1042 selesai"</span> Tandai pesanan selesai</li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width:760px;margin:28px auto 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow);display:flex;gap:16px;align-items:flex-start">
+      <div style="flex-shrink:0;width:42px;height:42px;border-radius:11px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:20px">🖥️</div>
+      <div>
+        <div style="font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:5px">Butuh lebih lengkap? Dashboard tetap tersedia.</div>
+        <p style="font-size:14px;color:var(--ink-soft);margin:0">WhatsApp cukup untuk operasional harian. Tapi kalau Anda mau laporan penjualan mendetail, kelola puluhan menu sekaligus, atau lihat analitik member — dashboard web lengkap siap kapan pun Anda butuh. WhatsApp-first, dashboard kalau perlu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI TECH / INTELLIGENCE -->
+<section id="teknologi" class="tech">
+  <div class="wrap">
+    <div class="eyebrow">Teknologi di Balik Layar</div>
+    <h2 class="sec-title">AI yang ngerti Indonesia — bukan sekadar tempelan.</h2>
+    <p class="sec-lead">SOSMED AI ditenagai mesin AI multi-model yang dirancang khusus untuk bahasa dan perilaku konsumen Indonesia. Cepat, hemat, dan terdengar manusiawi.</p>
+
+    <div class="tech-grid">
+      <div class="tech-feats">
+        <div class="tech-feat">
+          <div class="ic">🧠</div>
+          <div>
+            <h3>Native Bahasa Indonesia, bukan terjemahan</h3>
+            <p>Dilatih untuk ngerti cara orang Indonesia chat — dari "gas kak", "es batunya banyakin", sampai gaya Jaksel. Bot membalas dengan tone yang pas, bukan kaku ala robot translate.</p>
+          </div>
+        </div>
+        <div class="tech-feat">
+          <div class="ic">⚡</div>
+          <div>
+            <h3>Multi-model routing yang cerdas</h3>
+            <p>Setiap pesan diarahkan ke model AI yang paling tepat — yang ringan untuk tanya menu, yang canggih untuk percakapan rumit. Hasilnya: balasan cepat, biaya efisien, kualitas tinggi.</p>
+          </div>
+        </div>
+        <div class="tech-feat">
+          <div class="ic">🎯</div>
+          <div>
+            <h3>Ngerti konteks F&amp;B</h3>
+            <p>Paham varian menu, modifier (es/panas, less sugar, extra shot), dan istilah kafe. Memvalidasi pesanan dengan menu asli Anda — nggak pernah ngarang item yang nggak ada.</p>
+          </div>
+        </div>
+        <div class="tech-feat">
+          <div class="ic">🛡️</div>
+          <div>
+            <h3>Aman, terkendali, dan akurat</h3>
+            <p>Harga dan total selalu dihitung dari data Anda, bukan dari AI. Yang di luar jangkauan otomatis dialihkan ke Anda. Tidak ada halusinasi soal harga atau stok.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI routing visual -->
+      <div class="ai-viz">
+        <div class="ai-viz-top"><span class="pulse"></span> Mesin AI · memproses pesan</div>
+        <div class="ai-msg">"halo kak, es kopi susu 2 ya, less sugar, sama croissant 1 🙏"</div>
+        <div class="ai-flow">
+          <div class="ai-node">
+            <span class="lbl"><span class="dot2" style="background:#E9A178"></span> Deteksi maksud</span>
+            <span class="tag tag-route">Order + Menu</span>
+          </div>
+          <div class="ai-node">
+            <span class="lbl"><span class="dot2" style="background:#5FD98A"></span> Cek menu &amp; varian</span>
+            <span class="tag tag-fast">Tervalidasi</span>
+          </div>
+          <div class="ai-node">
+            <span class="lbl"><span class="dot2" style="background:#E9A178"></span> Hitung total dari data</span>
+            <span class="tag tag-route">Rp 58.000</span>
+          </div>
+          <div class="ai-node">
+            <span class="lbl"><span class="dot2" style="background:#5FD98A"></span> Balas + kasih poin</span>
+            <span class="tag tag-fast">1,8 detik</span>
+          </div>
+        </div>
+        <div class="ai-foot">Diproses dengan model AI yang dipilih otomatis per tugas</div>
+      </div>
+    </div>
+
+    <div class="models">
+      <div class="model-chip"><span class="md"></span> Routing Multi-Model</div>
+      <div class="model-chip"><span class="md"></span> Caching Cerdas</div>
+      <div class="model-chip"><span class="md"></span> Validasi Anti-Halusinasi</div>
+      <div class="model-chip"><span class="md"></span> Optimasi Biaya Otomatis</div>
+    </div>
+  </div>
+</section>
+
+<!-- AI-NATIVE DIFFERENCE -->
+<section id="beda" class="native">
+  <div class="wrap">
+    <div class="eyebrow">Apa Bedanya</div>
+    <h2 class="sec-title">Kami bukan chatbot. Kami AI-native.</h2>
+    <p class="sec-lead">Kebanyakan "bot WhatsApp" cuma menu balasan otomatis dengan template kaku. SOSMED AI dibangun di atas kecerdasan buatan sungguhan — ngerti maksud, konteks, dan bahasa, bukan sekadar mencocokkan kata kunci.</p>
+
+    <div class="vs-grid">
+      <div class="vs-card vs-old">
+        <span class="vs-label">Chatbot Biasa</span>
+        <h3>Bot template &amp; keyword</h3>
+        <ul class="vs-list">
+          <li><span class="vs-ic">✕</span> Balas hanya kalau kata kuncinya pas — salah ketik sedikit, bingung.</li>
+          <li><span class="vs-ic">✕</span> "Tekan 1 untuk menu, tekan 2 untuk pesan" — kaku seperti mesin.</li>
+          <li><span class="vs-ic">✕</span> Nggak ngerti "es-nya dikit aja ya, gula setengah" — di luar skrip langsung gagal.</li>
+          <li><span class="vs-ic">✕</span> Jawaban sama untuk semua orang, terasa robotik.</li>
+          <li><span class="vs-ic">✕</span> Perlu disetting manual tiap skenario, ribet diubah.</li>
+        </ul>
+      </div>
+      <div class="vs-card vs-new">
+        <span class="vs-label">✦ SOSMED AI</span>
+        <h3>AI-native, ngerti maksud</h3>
+        <ul class="vs-list">
+          <li><span class="vs-ic">✓</span> Paham maksud walau diketik berantakan, typo, atau campur bahasa.</li>
+          <li><span class="vs-ic">✓</span> Ngobrol natural seperti barista beneran — santai, ramah, manusiawi.</li>
+          <li><span class="vs-ic">✓</span> Ngerti "es-nya dikit, gula setengah, gelas gede" tanpa perlu disetting.</li>
+          <li><span class="vs-ic">✓</span> Tone menyesuaikan konteks — dari sapaan ramah sampai konfirmasi order.</li>
+          <li><span class="vs-ic">✓</span> Belajar dari menu &amp; data Anda otomatis — nggak perlu skrip manual.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section id="banding" style="background:#fff">
+  <div class="wrap">
+    <div class="eyebrow">Perbandingan</div>
+    <h2 class="sec-title">SOSMED AI vs. solusi lain.</h2>
+    <p class="sec-lead">Kenapa coffee shop memilih SOSMED AI dibanding chatbot generik, tools impor, atau hire admin manual.</p>
+
+    <div class="compare-wrap">
+      <div class="compare">
+        <table class="ctable">
+          <thead>
+            <tr>
+              <th class="feat-col">Fitur</th>
+              <th class="us">SOSMED AI</th>
+              <th>Chatbot Generik</th>
+              <th>Tools Impor</th>
+              <th>Admin Manual</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feat-col">AI-native (ngerti maksud)</td>
+              <td class="us"><span class="yes">✓ Ya</span></td>
+              <td><span class="no">✕ Template</span></td>
+              <td><span class="partial">~ Sebagian</span></td>
+              <td><span class="partial">~ Manusia</span></td>
+            </tr>
+            <tr>
+              <td class="feat-col">Khusus F&amp;B (varian menu, QR meja)</td>
+              <td class="us"><span class="yes">✓ Ya</span></td>
+              <td><span class="no">✕ Generik</span></td>
+              <td><span class="no">✕ Generik</span></td>
+              <td><span class="partial">~ Tergantung</span></td>
+            </tr>
+            <tr>
+              <td class="feat-col">Bahasa Indonesia native</td>
+              <td class="us"><span class="yes">✓ Ya</span></td>
+              <td><span class="partial">~ Terbatas</span></td>
+              <td><span class="no">✕ Translate</span></td>
+              <td><span class="yes">✓ Ya</span></td>
+            </tr>
+            <tr>
+              <td class="feat-col">Sistem poin &amp; member</td>
+              <td class="us"><span class="yes">✓ Built-in</span></td>
+              <td><span class="no">✕ Tidak</span></td>
+              <td><span class="partial">~ Add-on</span></td>
+              <td><span class="no">✕ Manual</span></td>
+            </tr>
+            <tr>
+              <td class="feat-col">WhatsApp Business API resmi Meta</td>
+              <td class="us"><span class="yes">✓ Ya</span></td>
+              <td><span class="partial">~ Sering bajakan</span></td>
+              <td><span class="yes">✓ Ya</span></td>
+              <td><span class="no">✕ Pribadi</span></td>
+            </tr>
+            <tr>
+              <td class="feat-col">Kerja 24 jam tanpa lelah</td>
+              <td class="us"><span class="yes">✓ Ya</span></td>
+              <td><span class="yes">✓ Ya</span></td>
+              <td><span class="yes">✓ Ya</span></td>
+              <td><span class="no">✕ Jam kerja</span></td>
+            </tr>
+            <tr>
+              <td class="feat-col">Harga untuk UMKM F&amp;B</td>
+              <td class="us"><span class="yes">✓ Rp 199rb</span></td>
+              <td><span class="partial">~ Variatif</span></td>
+              <td><span class="no">✕ Mahal</span></td>
+              <td><span class="no">✕ Rp 2jt+</span></td>
+            </tr>
+            <tr>
+              <td class="feat-col">Setup &amp; pakai sederhana</td>
+              <td class="us"><span class="yes">✓ 30 menit</span></td>
+              <td><span class="partial">~ Ribet</span></td>
+              <td><span class="no">✕ Teknis</span></td>
+              <td><span class="yes">✓ Mudah</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="price-note" style="margin-top:20px">Perbandingan berdasarkan karakteristik umum tiap kategori solusi. Tidak menyebut merek tertentu.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="cara-kerja">
+  <div class="wrap">
+    <div class="eyebrow">Cara Kerja</div>
+    <h2 class="sec-title">Dari daftar sampai terima order otomatis — 30 menit.</h2>
+    <div class="steps" style="margin-top:14px">
+      <div class="step"><div class="num">1</div><h3>Hubungkan WhatsApp</h3><p>Sambungkan nomor WhatsApp kafe Anda lewat WhatsApp Business API resmi Meta. Tim kami bantu prosesnya.</p></div>
+      <div class="step"><div class="num">2</div><h3>Isi Menu Anda</h3><p>Masukkan menu (atau foto menu yang ada — kami bantu input). Atur jam buka, alamat, dan aturan poin.</p></div>
+      <div class="step"><div class="num">3</div><h3>Bot Mulai Jalan</h3><p>Bot langsung aktif — terima order, kasih poin, kirim struk. Anda tinggal lihat order masuk sambil bikin kopi.</p></div>
+    </div>
+    <p class="how-foot">Setup di tempat. Tanpa install apa-apa. Tanpa skill teknis.<br>Kalau bisa pakai WhatsApp, Anda bisa pakai SOSMED AI.</p>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="untuk-fnb" style="background:#fff">
+  <div class="wrap">
+    <div class="eyebrow">Cocok Untuk</div>
+    <h2 class="sec-title">Dibuat khusus untuk bisnis F&amp;B.</h2>
+    <div class="uc-grid" style="margin-top:14px">
+      <div class="uc"><div class="emo">☕</div><h3>Coffee Shop &amp; Kafe</h3><p>Terima order pas rame, kasih poin tiap cup, bikin pelanggan jadi langganan. Single outlet sampai 2–3 cabang.</p></div>
+      <div class="uc"><div class="emo">🍜</div><h3>Restoran &amp; Warung</h3><p>Kelola order delivery & takeaway dari satu dashboard. Menu digital yang gampang di-update.</p></div>
+      <div class="uc"><div class="emo">🧋</div><h3>Kedai Minuman &amp; Dessert</h3><p>Sistem poin yang bikin pelanggan balik. Member digital tanpa kartu fisik. Boba, jus, es krim.</p></div>
+      <div class="uc"><div class="emo">🍰</div><h3>Bakery &amp; Pastry</h3><p>Terima pre-order kue & roti via WhatsApp, kelola pesanan custom, kirim struk & reminder otomatis.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="harga" class="pricing">
+  <div class="wrap">
+    <div class="eyebrow">Harga</div>
+    <h2 class="sec-title">Pilih paket yang pas untuk kafe Anda.</h2>
+    <p class="sec-lead">Harga spesial founding user — dikunci selamanya untuk pendaftar pertama.</p>
+    <div class="price-grid">
+      <div class="price">
+        <h3>Starter</h3>
+        <div class="for">Untuk single-outlet coffee shop &amp; warung</div>
+        <div class="amt">Rp 199rb<span>/bulan</span></div>
+        <ul>
+          <li>Bot Order Otomatis WhatsApp</li>
+          <li>Menu Digital + QR Code</li>
+          <li>Sistem Poin &amp; Member</li>
+          <li>Dashboard Order Real-Time</li>
+          <li>Struk &amp; Voucher Otomatis</li>
+          <li>Hingga 1.500 pesan AI/bulan · 1 outlet</li>
+          <li>WhatsApp Business API resmi</li>
+        </ul>
+        <button class="btn btn-soon" disabled><span class="dot"></span> Segera Hadir</button>
+      </div>
+      <div class="price feat">
+        <div class="pop">Paling Populer</div>
+        <h3>Growth</h3>
+        <div class="for">Untuk kafe yang ramai &amp; serius scale up</div>
+        <div class="amt">Rp 299rb<span>/bulan</span></div>
+        <ul>
+          <li>Semua fitur Starter</li>
+          <li>Auto-reply terjadwal (out-of-hours)</li>
+          <li>Segmentasi member</li>
+          <li>Hingga 5.000 pesan AI/bulan · 1 outlet</li>
+          <li>Priority support</li>
+        </ul>
+        <button class="btn btn-soon" disabled><span class="dot"></span> Segera Hadir</button>
+      </div>
+      <div class="price">
+        <h3>Multi-Outlet</h3>
+        <div class="for">Untuk usaha dengan 2–3 cabang</div>
+        <div class="amt">Rp 549rb<span>/bulan</span></div>
+        <ul>
+          <li>Semua fitur Growth</li>
+          <li>Hingga 3 outlet</li>
+          <li>Dashboard gabungan multi-outlet</li>
+          <li>Hingga 12.000 pesan AI/bulan</li>
+          <li>Dedicated support</li>
+        </ul>
+        <button class="btn btn-soon" disabled><span class="dot"></span> Segera Hadir</button>
+      </div>
+    </div>
+    <p class="price-note">Semua fitur dalam paket sudah termasuk — tanpa biaya add-on tersembunyi.<br>Add-on lanjutan (AI Konten, integrasi GoFood/GrabFood) tersedia menyusul.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="sec-title">Yang sering ditanyain pemilik kafe.</h2>
+    <div class="faq-wrap" style="margin-top:14px">
+      <div class="faq-item"><button class="faq-q">Apa itu SOSMED AI?<span class="ic">+</span></button><div class="faq-a"><p>Asisten WhatsApp berbasis AI khusus untuk coffee shop dan restoran kecil. Bot kami terima order otomatis, balas pelanggan 24 jam, dan kelola sistem poin member — semua lewat WhatsApp yang sudah Anda pakai.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Saya nggak ngerti teknologi, bisa pakai?<span class="ic">+</span></button><div class="faq-a"><p>Bisa banget. Nggak perlu install aplikasi atau belajar sistem ribet. Tim kami bantu setting dalam 30 menit. Kalau bisa pakai WhatsApp, Anda bisa pakai SOSMED AI.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Apakah nomor WhatsApp kafe saya aman?<span class="ic">+</span></button><div class="faq-a"><p>Sangat aman. Kami pakai WhatsApp Business API resmi dari Meta — bukan tools bajakan yang minta scan QR. Nomor Anda nggak berisiko kena banned, dan bisa kirim promo dengan aman.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Gimana sistem poinnya bekerja?<span class="ic">+</span></button><div class="faq-a"><p>Setiap belanja Rp 1.000 dapat 1 poin. Kumpulin 100 poin, dapat voucher Rp 5.000. Pelanggan daftar member langsung lewat WhatsApp, cukup ketik nama. Poin dihitung otomatis, voucher dikirim otomatis.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Pelanggan saya kebanyakan bayar tunai, bisa dapat poin?<span class="ic">+</span></button><div class="faq-a"><p>Untuk awal, poin otomatis untuk order via WhatsApp. Fitur QR di kasir untuk pelanggan walk-in sedang kami siapkan dan tersedia menyusul.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Berapa harganya?<span class="ic">+</span></button><div class="faq-a"><p>Mulai Rp 199 ribu/bulan untuk Starter, semua fitur sudah termasuk. Pendaftar awal dapat harga founding user yang dikunci selamanya.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Kapan bisa mulai pakai?<span class="ic">+</span></button><div class="faq-a"><p>Kami sedang finalisasi dan akan segera membuka akses untuk batch pertama. Pantau halaman ini dan media sosial kami untuk info peluncuran.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Bisa integrasi dengan GoFood/GrabFood/ShopeeFood?<span class="ic">+</span></button><div class="faq-a"><p>Sedang kami kembangkan sebagai add-on. Info rilisnya akan diumumkan menyusul.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <div class="final-card">
+      <h2>Jadi coffee shop pertama yang pakai SOSMED AI.</h2>
+      <p>SOSMED AI sedang dalam tahap akhir. Asisten WhatsApp AI yang akan mengubah cara kafe dan restoran Indonesia terima order dan jaga pelanggan.</p>
+      <div class="final-cta">
+        <button class="btn btn-soon" disabled><span class="dot"></span> Segera Hadir / Coming Soon</button>
+        <a class="btn btn-ig" href="https://www.instagram.com/sosmed.io" target="_blank" rel="noopener">Ikuti Kami di Instagram</a>
+      </div>
+      <p class="final-note">Akses awal terbatas · Peluncuran segera diumumkan · Tanpa spam</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="logo"><span class="mark">S</span> SOSMED AI</a>
+        <p>WhatsApp Anda, AI assistant bisnis Anda. Asisten WhatsApp AI untuk coffee shop dan restoran kecil Indonesia.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Produk</h4>
+        <a href="#fitur">Fitur</a>
+        <a href="#cara-kerja">Cara Kerja</a>
+        <a href="#untuk-fnb">Untuk F&amp;B</a>
+        <a href="#harga">Harga</a>
+      </div>
+      <div class="foot-col">
+        <h4>Perusahaan</h4>
+        <a href="#">Tentang Kami</a>
+        <a href="#">Manifesto</a>
+        <a href="#">Karier</a>
+        <a href="mailto:hello@sosmed.io">Kontak</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="#">Privasi</a>
+        <a href="#">Syarat &amp; Ketentuan</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 SOSMED AI. All rights reserved.</span>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/sosmed.io" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@sosmed.io" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.linkedin.com/company/sosmed-ai" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Animated chat demos (height-stable) =====
+  function playChat(chat){
+    const bubbles = Array.from(chat.querySelectorAll('.bubble, .ui-pill'));
+    const loopMs = parseInt(chat.dataset.loop || '6000', 10);
+    if(chat._timers) chat._timers.forEach(t=>clearTimeout(t));
+    chat._timers = [];
+
+    // reset: all bubbles pending (out of flow), container stays fixed height
+    bubbles.forEach(b=>{b.classList.remove('seen');b.classList.add('pending');});
+    const oldTyping = chat.querySelector('.typing'); if(oldTyping) oldTyping.remove();
+    chat.scrollTop = 0;
+
+    let delay = 350;
+    bubbles.forEach((b)=>{
+      const isIn = b.classList.contains('b-in') || b.classList.contains('b-points') || b.classList.contains('ui-pill');
+      const typeTime = isIn ? 800 : 400;
+      // typing indicator
+      const t1 = setTimeout(()=>{
+        const typing = document.createElement('div');
+        typing.className = 'typing' + (isIn ? '' : ' out');
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        chat.appendChild(typing);
+        requestAnimationFrame(()=>typing.classList.add('show'));
+        chat.scrollTop = chat.scrollHeight;
+        chat._activeTyping = typing;
+      }, delay);
+      chat._timers.push(t1);
+      // reveal bubble (move into flow + fade in), remove typing, scroll within container
+      const t2 = setTimeout(()=>{
+        if(chat._activeTyping){chat._activeTyping.remove();chat._activeTyping=null;}
+        b.classList.remove('pending');
+        // force reflow so the transition fires
+        void b.offsetWidth;
+        b.classList.add('seen');
+        chat.scrollTop = chat.scrollHeight;
+      }, delay + typeTime);
+      chat._timers.push(t2);
+      delay += typeTime + 700;
+    });
+
+    // show replay + schedule loop
+    const replay = chat.parentElement.querySelector('[data-replay]');
+    const tEnd = setTimeout(()=>{ if(replay) replay.classList.add('show'); }, delay);
+    chat._timers.push(tEnd);
+    const tLoop = setTimeout(()=>{ if(replay) replay.classList.remove('show'); playChat(chat); }, delay + loopMs);
+    chat._timers.push(tLoop);
+  }
+
+  // init: mark all bubbles pending immediately so containers render at fixed height with nothing showing
+  document.querySelectorAll('[data-chat]').forEach(chat=>{
+    chat.querySelectorAll('.bubble, .ui-pill').forEach(b=>b.classList.add('pending'));
+  });
+
+  // start on scroll into view
+  const chatObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !e.target._started){
+        e.target._started = true;
+        playChat(e.target);
+      }
+    });
+  }, {threshold:.35});
+  document.querySelectorAll('[data-chat]').forEach(c=>chatObserver.observe(c));
+
+  // replay buttons
+  document.querySelectorAll('[data-replay]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const chat = btn.parentElement.querySelector('[data-chat]');
+      btn.classList.remove('show');
+      playChat(chat);
+    });
+  });
+
+  // ===== Mobile burger menu =====
+  (function(){
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobileMenu');
+    if(!burger || !menu) return;
+    const open = ()=>{menu.classList.add('open');burger.classList.add('open');document.body.classList.add('menu-lock');};
+    const close = ()=>{menu.classList.remove('open');burger.classList.remove('open');document.body.classList.remove('menu-lock');};
+    burger.addEventListener('click',()=>{menu.classList.contains('open')?close():open();});
+    menu.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',close));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  })();
+
+  // ===== FAQ accordion =====
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.parentElement;
+      const open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null});
+      if(!open){item.classList.add('open');const a=item.querySelector('.faq-a');a.style.maxHeight=a.scrollHeight+'px'}
+    });
+  });
+</script>
+</body>
+</html>
