@@ -1,8 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+
+const FLIP_PHRASES = [
+  "Coffee Shop & Cafe",
+  "Restoran & Warung",
+  "Bakery & Pastry Shop",
+];
 
 /* ---- line icons: 24x24, inherit each section's accent via currentColor ---- */
 const iconProps = {
@@ -129,6 +135,22 @@ function IconLock() {
 }
 
 export default function Home() {
+  // ===== hero flipping word =====
+  const [flipIdx, setFlipIdx] = useState(0);
+  const [flipPrev, setFlipPrev] = useState<number | null>(null);
+
+  useEffect(() => {
+    // respect reduced-motion: don't rotate, just show the first phrase statically
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      setFlipIdx((cur) => {
+        setFlipPrev(cur);
+        return (cur + 1) % FLIP_PHRASES.length;
+      });
+    }, 2500);
+    return () => window.clearInterval(id);
+  }, []);
+
   useEffect(() => {
     // AbortController lets us remove every addEventListener at once on cleanup,
     // so React Strict Mode's double-mount doesn't double-fire or leak listeners.
@@ -286,8 +308,27 @@ export default function Home() {
             <span className="dot"></span> AI untuk Coffee Shop &amp; Restoran ·
             Segera Hadir
           </div>
-          <h1 className="reveal d2">
-            WhatsApp Anda, <span className="hl">AI assistant</span> coffee shop
+          <h1 className="reveal d2 hero-headline">
+            WhatsApp Anda, AI assistant
+            <br />
+            untuk{" "}
+            <span className="flip" aria-live="polite">
+              <span className="flip-sizer" aria-hidden="true">
+                Bakery &amp; Pastry Shop
+              </span>
+              {flipPrev !== null && (
+                <span
+                  key={`flip-out-${flipIdx}`}
+                  className="flip-word out"
+                  aria-hidden="true"
+                >
+                  {FLIP_PHRASES[flipPrev]}
+                </span>
+              )}
+              <span key={`flip-in-${flipIdx}`} className="flip-word in">
+                {FLIP_PHRASES[flipIdx]}
+              </span>
+            </span>{" "}
             Anda.
           </h1>
           <p className="sub reveal d3">
@@ -1015,7 +1056,7 @@ export default function Home() {
               <div className="ai-flow">
                 <div className="ai-node">
                   <span className="lbl">
-                    <span className="dot2" style={{ background: "#E9A178" }}></span>{" "}
+                    <span className="dot2" style={{ background: "#B9A6FB" }}></span>{" "}
                     Deteksi maksud
                   </span>
                   <span className="tag tag-route">Order + Menu</span>
@@ -1029,7 +1070,7 @@ export default function Home() {
                 </div>
                 <div className="ai-node">
                   <span className="lbl">
-                    <span className="dot2" style={{ background: "#E9A178" }}></span>{" "}
+                    <span className="dot2" style={{ background: "#B9A6FB" }}></span>{" "}
                     Hitung total dari data
                   </span>
                   <span className="tag tag-route">Rp 58.000</span>
