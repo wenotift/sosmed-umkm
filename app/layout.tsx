@@ -6,7 +6,7 @@ const SITE_URL = "https://sosmed.io";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "SOSMED AI — Asisten WhatsApp AI untuk Coffee Shop & Restoran",
+    default: "SOSMED AI | Asisten WhatsApp AI untuk Coffee Shop & Restoran",
     template: "%s | SOSMED AI",
   },
   description:
@@ -36,24 +36,24 @@ export const metadata: Metadata = {
     locale: "id_ID",
     url: SITE_URL,
     siteName: "SOSMED AI",
-    title: "SOSMED AI — WhatsApp Anda, AI Assistant Bisnis Anda",
+    title: "SOSMED AI | WhatsApp Anda, AI Assistant Bisnis Anda",
     description:
       "Asisten WhatsApp AI untuk coffee shop & restoran Indonesia. Terima order, jaga pelanggan, semua otomatis lewat WhatsApp.",
     images: [
       {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "SOSMED AI — Asisten WhatsApp AI untuk F&B Indonesia",
+        url: "/images/og-image-umkm-sosmed-ai.jpg",
+        width: 2025,
+        height: 1350,
+        alt: "SOSMED AI - asisten WhatsApp AI untuk UMKM F&B Indonesia",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SOSMED AI — WhatsApp Anda, AI Assistant Bisnis Anda",
+    title: "SOSMED AI | WhatsApp Anda, AI Assistant Bisnis Anda",
     description:
       "Asisten WhatsApp AI untuk coffee shop & restoran Indonesia. Order otomatis, loyalty, tanpa aplikasi.",
-    images: ["/og-image.png"],
+    images: ["/images/og-image-umkm-sosmed-ai.jpg"],
   },
   robots: {
     index: true,
@@ -186,7 +186,7 @@ export default function RootLayout({
           crossOrigin=""
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <script

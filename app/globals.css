@@ -16,7 +16,7 @@
     --shadow-lg:0 4px 12px rgba(26,20,16,.06),0 24px 60px rgba(26,20,16,.10);
     --shadow-xl:0 2px 6px rgba(26,20,16,.05),0 30px 80px rgba(124,45,18,.14);
     --maxw:1180px;
-    --display:'Bricolage Grotesque',sans-serif;
+    --display:'Inter',sans-serif;
     --body:'Plus Jakarta Sans',sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -46,7 +46,7 @@
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   a{text-decoration:none;color:inherit}
-  h1,h2,h3,h4{font-family:var(--display);line-height:1.05;letter-spacing:-.02em;font-weight:700}
+  h1,h2,h3,h4{font-family:var(--display);line-height:1.05;letter-spacing:-.025em;font-weight:700}
 
   /* ===== buttons ===== */
   .btn{
