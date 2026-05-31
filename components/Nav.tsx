@@ -139,9 +139,6 @@ export default function Nav() {
             </div>
           </nav>
           <div className="nav-cta">
-            <Link className="btn btn-ghost" href="/harga">
-              Lihat Harga
-            </Link>
             <button
               type="button"
               className={`burger${mobileOpen ? " open" : ""}`}
