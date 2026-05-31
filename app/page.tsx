@@ -2,6 +2,130 @@
 
 import { useEffect } from "react";
 
+/* ---- line icons: 24x24, inherit each section's accent via currentColor ---- */
+const iconProps = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+} as const;
+
+function IconCoffee() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <path d="M4 9h13v4.5a5.5 5.5 0 0 1-5.5 5.5h-2A5.5 5.5 0 0 1 4 13.5Z" />
+      <path d="M17 10.5h1.5a2.5 2.5 0 0 1 0 5H17" />
+      <path d="M8 3v2M11.5 3v2" />
+    </svg>
+  );
+}
+
+function IconShieldCheck() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <path d="M12 3 5 6v5c0 4.5 3 7.6 7 9 4-1.4 7-4.5 7-9V6l-7-3Z" />
+      <path d="m8.8 12 2.2 2.2 4.2-4.4" />
+    </svg>
+  );
+}
+
+function IconCreditCard() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <path d="M3 9.5h18" />
+      <path d="M7 14.5h3.5" />
+    </svg>
+  );
+}
+
+function IconGrowth() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <path d="M4 4v15a1 1 0 0 0 1 1h15" />
+      <path d="m7.5 14 3.5-3.5 3 3L20 7" />
+      <path d="M16 7h4v4" />
+    </svg>
+  );
+}
+
+function IconSpark() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <path d="M11 3c.6 3.6 2.4 5.4 6 6-3.6.6-5.4 2.4-6 6-.6-3.6-2.4-5.4-6-6 3.6-.6 5.4-2.4 6-6Z" />
+      <path d="M18.5 14c.2 1.3.9 2 2.2 2.2-1.3.2-2 .9-2.2 2.2-.2-1.3-.9-2-2.2-2.2 1.3-.2 2-.9 2.2-2.2Z" />
+    </svg>
+  );
+}
+
+function IconBolt() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />
+    </svg>
+  );
+}
+
+function IconTarget() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <circle cx="12" cy="12" r="8" />
+      <circle cx="12" cy="12" r="3.5" />
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+    </svg>
+  );
+}
+
+function IconMessage() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" />
+      <path d="M8 9h8M8 12.5h5" />
+    </svg>
+  );
+}
+
+function IconBowl() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <path d="M2 10.5h20" />
+      <path d="M4 10.5a8 8 0 0 0 16 0" />
+      <path d="M9 6.8c-.4-.9.4-1.7 0-2.8M13 6.8c-.4-.9.4-1.7 0-2.8" />
+    </svg>
+  );
+}
+
+function IconCup() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <path d="M6 7h12l-1 12.6a2 2 0 0 1-2 1.4H9a2 2 0 0 1-2-1.4L6 7Z" />
+      <path d="M5 7h14" />
+      <path d="m13.5 2-2 5" />
+    </svg>
+  );
+}
+
+function IconBread() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <path d="M4 11a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5 2 2 0 0 1-2 2v5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-5a2 2 0 0 1-2-2Z" />
+      <path d="M10 9.5 8.8 12M14 9.5 12.8 12" />
+    </svg>
+  );
+}
+
+function IconLock() {
+  return (
+    <svg {...iconProps} aria-hidden="true">
+      <rect x="5" y="11" width="14" height="9" rx="2" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+      <path d="M12 14.5v2.5" />
+    </svg>
+  );
+}
+
 export default function Home() {
   useEffect(() => {
     // AbortController lets us remove every addEventListener at once on cleanup,
@@ -424,16 +548,16 @@ export default function Home() {
           <p>Dibangun khusus untuk cara kerja F&amp;B Indonesia</p>
           <div className="trust-row">
             <div className="trust-pill">
-              <span className="e">🛡️</span> WhatsApp Resmi Meta
+              <span className="e"><IconShieldCheck /></span> WhatsApp Resmi Meta
             </div>
             <div className="trust-pill">
-              <span className="e">⚡</span> Setup 30 Menit
+              <span className="e"><IconBolt /></span> Setup 30 Menit
             </div>
             <div className="trust-pill">
               <span className="e">🇮🇩</span> Bahasa Indonesia Native
             </div>
             <div className="trust-pill">
-              <span className="e">🔒</span> Aman &amp; Patuh UU PDP
+              <span className="e"><IconLock /></span> Aman &amp; Patuh UU PDP
             </div>
           </div>
         </div>
@@ -665,7 +789,7 @@ export default function Home() {
           </h2>
           <div className="why-grid" style={{ marginTop: "14px" }}>
             <div className="why-card">
-              <div className="ic">☕</div>
+              <div className="ic"><IconCoffee /></div>
               <h3>Khusus F&amp;B</h3>
               <p>
                 Bukan tools generik untuk semua usaha. Tiap fitur dirancang untuk
@@ -674,7 +798,7 @@ export default function Home() {
               </p>
             </div>
             <div className="why-card">
-              <div className="ic">🛡️</div>
+              <div className="ic"><IconShieldCheck /></div>
               <h3>WhatsApp Resmi Meta</h3>
               <p>
                 Kami pakai WhatsApp Business API resmi Meta — nomor Anda aman dari
@@ -683,7 +807,7 @@ export default function Home() {
               </p>
             </div>
             <div className="why-card">
-              <div className="ic">💳</div>
+              <div className="ic"><IconCreditCard /></div>
               <h3>Satu Harga, Semua Fitur</h3>
               <p>
                 Nggak ada biaya tersembunyi, nggak ada add-on yang bikin tagihan
@@ -691,7 +815,7 @@ export default function Home() {
               </p>
             </div>
             <div className="why-card">
-              <div className="ic">📈</div>
+              <div className="ic"><IconGrowth /></div>
               <h3>Bayar Sendiri</h3>
               <p>
                 Mulai Rp 199 ribu/bulan — sekitar Rp 6.600/hari, kurang dari satu
@@ -823,7 +947,7 @@ export default function Home() {
           <div className="sides">
             <div className="side-card side-cust">
               <div className="side-head">
-                <div className="side-ic">💬</div>
+                <div className="side-ic"><IconMessage /></div>
                 <div>
                   <h3>Sisi Customer</h3>
                   <div className="side-sub">Pesan &amp; cek lewat WhatsApp</div>
@@ -854,7 +978,7 @@ export default function Home() {
             </div>
             <div className="side-card side-own">
               <div className="side-head">
-                <div className="side-ic">☕</div>
+                <div className="side-ic"><IconCoffee /></div>
                 <div>
                   <h3>Sisi Owner</h3>
                   <div className="side-sub">Kelola bisnis lewat WhatsApp</div>
@@ -957,7 +1081,7 @@ export default function Home() {
           <div className="tech-grid">
             <div className="tech-feats">
               <div className="tech-feat">
-                <div className="ic">🧠</div>
+                <div className="ic"><IconSpark /></div>
                 <div>
                   <h3>Native Bahasa Indonesia, bukan terjemahan</h3>
                   <p>
@@ -969,7 +1093,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="tech-feat">
-                <div className="ic">⚡</div>
+                <div className="ic"><IconBolt /></div>
                 <div>
                   <h3>Multi-model routing yang cerdas</h3>
                   <p>
@@ -980,7 +1104,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="tech-feat">
-                <div className="ic">🎯</div>
+                <div className="ic"><IconTarget /></div>
                 <div>
                   <h3>Ngerti konteks F&amp;B</h3>
                   <p>
@@ -991,7 +1115,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="tech-feat">
-                <div className="ic">🛡️</div>
+                <div className="ic"><IconShieldCheck /></div>
                 <div>
                   <h3>Aman, terkendali, dan akurat</h3>
                   <p>
@@ -1341,7 +1465,7 @@ export default function Home() {
           <h2 className="sec-title">Dibuat khusus untuk bisnis F&amp;B.</h2>
           <div className="uc-grid" style={{ marginTop: "14px" }}>
             <div className="uc">
-              <div className="emo">☕</div>
+              <div className="emo"><IconCoffee /></div>
               <h3>Coffee Shop &amp; Kafe</h3>
               <p>
                 Terima order pas rame, kasih poin tiap cup, bikin pelanggan jadi
@@ -1349,7 +1473,7 @@ export default function Home() {
               </p>
             </div>
             <div className="uc">
-              <div className="emo">🍜</div>
+              <div className="emo"><IconBowl /></div>
               <h3>Restoran &amp; Warung</h3>
               <p>
                 Kelola order delivery &amp; takeaway dari satu dashboard. Menu
@@ -1357,7 +1481,7 @@ export default function Home() {
               </p>
             </div>
             <div className="uc">
-              <div className="emo">🧋</div>
+              <div className="emo"><IconCup /></div>
               <h3>Kedai Minuman &amp; Dessert</h3>
               <p>
                 Sistem poin yang bikin pelanggan balik. Member digital tanpa
@@ -1365,7 +1489,7 @@ export default function Home() {
               </p>
             </div>
             <div className="uc">
-              <div className="emo">🍰</div>
+              <div className="emo"><IconBread /></div>
               <h3>Bakery &amp; Pastry</h3>
               <p>
                 Terima pre-order kue &amp; roti via WhatsApp, kelola pesanan

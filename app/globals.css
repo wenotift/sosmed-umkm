@@ -461,3 +461,10 @@
   .reveal{opacity:0;transform:translateY(16px);animation:rise .7s ease forwards}
   @keyframes rise{to{opacity:1;transform:none}}
   .d1{animation-delay:.05s}.d2{animation-delay:.13s}.d3{animation-delay:.21s}.d4{animation-delay:.29s}.d5{animation-delay:.37s}
+
+  /* line-icon sizing (SVGs inherit each icon container's accent via currentColor) */
+  .ic svg{width:22px;height:22px;display:block}
+  .tech-feat .ic svg{width:21px;height:21px}
+  .side-ic svg{width:22px;height:22px;display:block}
+  .uc .emo svg{width:24px;height:24px;display:block}
+  .trust-pill .e svg{width:17px;height:17px;display:block}
