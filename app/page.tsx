@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 /* ---- line icons: 24x24, inherit each section's accent via currentColor ---- */
 const iconProps = {
@@ -236,40 +238,6 @@ export default function Home() {
       );
     });
 
-    // ===== Mobile burger menu =====
-    (function () {
-      const burger = document.getElementById("burger");
-      const menu = document.getElementById("mobileMenu");
-      if (!burger || !menu) return;
-      const open = () => {
-        menu.classList.add("open");
-        burger.classList.add("open");
-        document.body.classList.add("menu-lock");
-      };
-      const close = () => {
-        menu.classList.remove("open");
-        burger.classList.remove("open");
-        document.body.classList.remove("menu-lock");
-      };
-      burger.addEventListener(
-        "click",
-        () => {
-          menu.classList.contains("open") ? close() : open();
-        },
-        { signal }
-      );
-      menu
-        .querySelectorAll("[data-close]")
-        .forEach((el) => el.addEventListener("click", close, { signal }));
-      document.addEventListener(
-        "keydown",
-        (e) => {
-          if (e.key === "Escape") close();
-        },
-        { signal }
-      );
-    })();
-
     // ===== FAQ accordion =====
     document.querySelectorAll(".faq-q").forEach((q) => {
       q.addEventListener(
@@ -309,99 +277,7 @@ export default function Home() {
 
   return (
     <>
-      {/* NAV */}
-      <header className="nav">
-        <div className="wrap nav-inner">
-          <a href="#" className="logo">
-            <img
-              src="/logo/sosmed-ai-logo-black-version.png"
-              alt="SOSMED AI"
-              width={130}
-              height={30}
-            />
-          </a>
-          <nav className="nav-links">
-            <a href="#fitur">Fitur</a>
-            <a href="#tanpa-dashboard">Tanpa Dashboard</a>
-            <a href="#teknologi">Teknologi</a>
-            <a href="#beda">Bedanya</a>
-            <a href="#harga">Harga</a>
-          </nav>
-          <div className="nav-cta">
-            <a className="btn btn-ghost" href="#harga">
-              Lihat Harga
-            </a>
-            <button className="burger" id="burger" aria-label="Buka menu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* MOBILE MENU DRAWER */}
-      <div className="mobile-menu" id="mobileMenu">
-        <div className="scrim" data-close></div>
-        <div className="drawer">
-          <div className="drawer-top">
-            <a href="#" className="logo">
-              <img
-                src="/logo/sosmed-ai-logo-black-version.png"
-                alt="SOSMED AI"
-                width={130}
-                height={30}
-              />
-            </a>
-            <button className="drawer-close" data-close aria-label="Tutup menu">
-              ×
-            </button>
-          </div>
-          <nav className="drawer-links">
-            <a href="#fitur" data-close>
-              Fitur
-            </a>
-            <a href="#tanpa-dashboard" data-close>
-              Tanpa Dashboard
-            </a>
-            <a href="#teknologi" data-close>
-              Teknologi
-            </a>
-            <a href="#beda" data-close>
-              Bedanya
-            </a>
-            <a href="#cara-kerja" data-close>
-              Cara Kerja
-            </a>
-            <a href="#untuk-fnb" data-close>
-              Untuk F&amp;B
-            </a>
-            <a href="#harga" data-close>
-              Harga
-            </a>
-            <a href="#faq" data-close>
-              FAQ
-            </a>
-          </nav>
-          <div className="drawer-cta">
-            <button
-              className="btn btn-soon"
-              disabled
-              style={{ width: "100%", justifyContent: "center" }}
-            >
-              <span className="dot"></span> Segera Hadir
-            </button>
-            <a
-              className="btn btn-ghost"
-              href="https://www.instagram.com/sosmed.io"
-              target="_blank"
-              rel="noopener"
-            >
-              Ikuti di Instagram
-            </a>
-          </div>
-        </div>
-      </div>
+      <Nav />
 
       {/* HERO */}
       <section className="hero">
@@ -1720,72 +1596,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer>
-        <div className="wrap">
-          <div className="foot-grid">
-            <div className="foot-brand">
-              <a href="#" className="logo">
-                <img
-                  src="/logo/sosmed-ai-logo-black-version.png"
-                  alt="SOSMED AI"
-                  width={130}
-                  height={30}
-                />
-              </a>
-              <p>
-                WhatsApp Anda, AI assistant bisnis Anda. Asisten WhatsApp AI
-                untuk coffee shop dan restoran kecil Indonesia.
-              </p>
-            </div>
-            <div className="foot-col">
-              <h4>Produk</h4>
-              <a href="#fitur">Fitur</a>
-              <a href="#cara-kerja">Cara Kerja</a>
-              <a href="#untuk-fnb">Untuk F&amp;B</a>
-              <a href="#harga">Harga</a>
-            </div>
-            <div className="foot-col">
-              <h4>Perusahaan</h4>
-              <a href="#">Tentang Kami</a>
-              <a href="#">Manifesto</a>
-              <a href="#">Karier</a>
-              <a href="mailto:hello@sosmed.io">Kontak</a>
-            </div>
-            <div className="foot-col">
-              <h4>Legal</h4>
-              <a href="#">Privasi</a>
-              <a href="#">Syarat &amp; Ketentuan</a>
-            </div>
-          </div>
-          <div className="foot-bottom">
-            <span>© 2026 SOSMED AI. All rights reserved.</span>
-            <div className="foot-social">
-              <a
-                href="https://www.instagram.com/sosmed.io"
-                target="_blank"
-                rel="noopener"
-              >
-                Instagram
-              </a>
-              <a
-                href="https://www.tiktok.com/@sosmed.io"
-                target="_blank"
-                rel="noopener"
-              >
-                TikTok
-              </a>
-              <a
-                href="https://www.linkedin.com/company/sosmed-ai"
-                target="_blank"
-                rel="noopener"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
