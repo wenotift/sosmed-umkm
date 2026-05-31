@@ -5,9 +5,12 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 const FLIP_PHRASES = [
-  "Coffee Shop & Cafe",
-  "Restoran & Warung",
-  "Bakery & Pastry Shop",
+  "Coffee Shop",
+  "Bakery Shop",
+  "Pastry Shop",
+  "Restoran",
+  "Warung",
+  "F&B lainnya",
 ];
 
 /* ---- line icons: 24x24, inherit each section's accent via currentColor ---- */
@@ -147,7 +150,7 @@ export default function Home() {
         setFlipPrev(cur);
         return (cur + 1) % FLIP_PHRASES.length;
       });
-    }, 2500);
+    }, 2200);
     return () => window.clearInterval(id);
   }, []);
 
@@ -304,17 +307,12 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="wrap">
-          <div className="badge reveal d1">
-            <span className="dot"></span> AI untuk Coffee Shop &amp; Restoran ·
-            Segera Hadir
-          </div>
-          <h1 className="reveal d2 hero-headline">
-            WhatsApp Anda, AI assistant
+          <h1 className="reveal d1 hero-headline">
+            WhatsApp Anda, AI Assistant untuk
             <br />
-            untuk{" "}
             <span className="flip" aria-live="polite">
               <span className="flip-sizer" aria-hidden="true">
-                Bakery &amp; Pastry Shop
+                Bakery Shop
               </span>
               {flipPrev !== null && (
                 <span
@@ -328,8 +326,7 @@ export default function Home() {
               <span key={`flip-in-${flipIdx}`} className="flip-word in">
                 {FLIP_PHRASES[flipIdx]}
               </span>
-            </span>{" "}
-            Anda.
+            </span>
           </h1>
           <p className="sub reveal d3">
             Terima order otomatis 24 jam dan bikin pelanggan balik lagi dengan
