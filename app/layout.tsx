@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | SOSMED AI",
   },
   description:
-    "SOSMED AI mengubah WhatsApp jadi asisten bisnis otomatis untuk coffee shop dan restoran Indonesia. Terima order 24 jam, balas pelanggan, dan bikin mereka balik lagi dengan sistem poin — semua lewat WhatsApp, tanpa aplikasi atau login. Pakai WhatsApp Business API resmi Meta.",
+    "SOSMED AI mengubah WhatsApp jadi asisten bisnis otomatis untuk coffee shop dan restoran Indonesia. Terima order 24 jam, balas pelanggan, dan bikin mereka balik lagi dengan sistem poin | semua lewat WhatsApp, tanpa aplikasi atau login. Pakai WhatsApp Business API resmi Meta.",
   keywords: [
     "bot WhatsApp coffee shop",
     "order otomatis WhatsApp",
