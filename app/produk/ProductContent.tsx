@@ -147,31 +147,73 @@ export default function ProductContent() {
         <div className="wrap">
           <div className="intel-grid">
             <div className="intel-card pv pd1">
-              <div className="glow"></div>
-              <div className="step">01 · MEMAHAMI</div>
+              <div className="step">01 · Memahami</div>
               <h3>Menangkap maksud</h3>
               <p>
                 Membaca niat di balik pesan — typo, singkatan, bahasa campur —
                 bukan sekadar mencocokkan kata kunci.
               </p>
+              <div className="ic-visual">
+                <div className="parse-in">
+                  &quot;2 es kopi susu yg gede less sugar&quot;
+                </div>
+                <div className="parse-arrow">↓</div>
+                <div className="parse-tags">
+                  <span className="ptag">
+                    Item: <b>Es Kopi Susu</b>
+                  </span>
+                  <span className="ptag">
+                    Qty: <b>2</b>
+                  </span>
+                  <span className="ptag">
+                    Size: <b>L</b>
+                  </span>
+                  <span className="ptag">
+                    Sugar: <b>less</b>
+                  </span>
+                </div>
+              </div>
             </div>
             <div className="intel-card pv pd2">
-              <div className="glow"></div>
-              <div className="step">02 · MEMUTUSKAN</div>
+              <div className="step">02 · Memutuskan</div>
               <h3>Memvalidasi dari data</h3>
               <p>
                 Setiap harga, stok, dan ketersediaan diambil dari sistem Anda.
                 AI menafsirkan; data yang menentukan.
               </p>
+              <div className="ic-visual">
+                <div className="dcheck">
+                  <span className="dc-ic">✓</span>
+                  <span>Es Kopi Susu (L)</span>
+                  <span className="dc-val">Rp 18.000</span>
+                </div>
+                <div className="dcheck">
+                  <span className="dc-ic">✓</span>
+                  <span>Stok tersedia</span>
+                  <span className="dc-val">Ready</span>
+                </div>
+                <div className="dtotal">
+                  <span>Total (×2)</span>
+                  <b>Rp 36.000</b>
+                </div>
+              </div>
             </div>
             <div className="intel-card pv pd3">
-              <div className="glow"></div>
-              <div className="step">03 · MERESPONS</div>
+              <div className="step">03 · Merespons</div>
               <h3>Membalas selayaknya manusia</h3>
               <p>
                 Bahasa Indonesia yang luwes dengan tone yang menyesuaikan konteks
                 — terasa seperti staf, bukan mesin.
               </p>
+              <div className="ic-visual ic-chat">
+                <div className="mini-bubble">
+                  Siap kak! 2 Es Kopi Susu (L, less sugar) dicatat ya 😊 Total Rp
+                  36.000
+                </div>
+                <div className="mini-meta">
+                  <span className="md"></span> Dibalas dalam 2 detik
+                </div>
+              </div>
             </div>
           </div>
         </div>
