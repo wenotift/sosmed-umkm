@@ -411,9 +411,10 @@
   @media(max-width:860px){.price-grid{grid-template-columns:1fr;max-width:420px}}
   .price{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 26px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
   .price:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-  .price.feat{border:2px solid var(--accent);box-shadow:var(--shadow-xl);position:relative;overflow:hidden}
-  .price.feat::before{content:"";position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(160,80,248,.12),transparent 70%);pointer-events:none}
-  .price.feat .pop{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:12px;font-weight:600;padding:4px 14px;border-radius:999px}
+  .price.feat{border:2px solid var(--accent);box-shadow:var(--shadow-xl);position:relative;padding-top:34px}
+  /* corner glow kept INSIDE the card (no overflow:hidden) so the badge can sit above the top edge unclipped */
+  .price.feat::before{content:"";position:absolute;top:0;right:0;width:220px;height:180px;background:radial-gradient(160px 160px at 100% 0,rgba(160,80,248,.15),transparent 70%);border-radius:inherit;pointer-events:none}
+  .price.feat .pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 8px rgba(160,80,248,.35);z-index:2}
   .price h3{font-size:20px;margin-bottom:4px}
   .price .for{font-size:13px;color:var(--ink-soft);margin-bottom:18px;min-height:38px}
   .price .amt{font-family:var(--display);font-weight:800;font-size:34px;margin-bottom:3px}
