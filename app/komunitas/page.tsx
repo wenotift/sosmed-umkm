@@ -3,6 +3,7 @@ import SoonPage from "@/components/SoonPage";
 
 export const metadata: Metadata = {
   title: "Komunitas",
+  description: "Komunitas SOSMED AI — kumpulan pemilik bisnis F&B Indonesia yang pakai asisten WhatsApp AI. Segera hadir.",
   robots: { index: false },
 };
 

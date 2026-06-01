@@ -70,13 +70,30 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(250,248,255,.8);back
 
 /* intelligence steps */
 .intel{padding:40px 0 30px}
-.intel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:920px;margin:0 auto}
-@media(max-width:760px){.intel-grid{grid-template-columns:1fr}}
-.intel-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.intel-card .step{font-family:var(--display);font-weight:800;font-size:13px;color:var(--accent);letter-spacing:.05em;margin-bottom:12px}
-.intel-card h3{font-size:19px;margin-bottom:8px}
-.intel-card p{font-size:14px;color:var(--ink-soft)}
-.intel-card .glow{position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(160,80,248,.12),transparent 70%)}
+.intel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:var(--maxw);margin:0 auto}
+@media(max-width:880px){.intel-grid{grid-template-columns:1fr;max-width:460px}}
+.intel-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.intel-card .step{font-family:var(--display);font-weight:800;font-size:11.5px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:11px}
+.intel-card h3{font-size:18px;margin-bottom:7px;letter-spacing:-.02em}
+.intel-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:20px}
+.ic-visual{margin-top:auto;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:15px;min-height:158px;display:flex;flex-direction:column;justify-content:center;gap:9px}
+/* card 1 — parsing */
+.parse-in{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:12px;color:var(--ink);box-shadow:0 1px 2px rgba(22,18,31,.04)}
+.parse-arrow{text-align:center;color:var(--accent);font-size:13px;font-weight:700;line-height:1}
+.parse-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ptag{font-size:10.5px;font-weight:600;background:var(--accent-soft);color:var(--accent-ink);border:1px solid #E9DCFB;border-radius:7px;padding:4px 8px}
+.ptag b{font-weight:800}
+/* card 2 — data check */
+.dcheck{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:12px;color:var(--ink)}
+.dc-ic{flex-shrink:0;width:17px;height:17px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;display:grid;place-items:center;font-weight:700}
+.dcheck .dc-val{margin-left:auto;font-weight:700;color:var(--accent-ink);font-size:11.5px}
+.dtotal{display:flex;justify-content:space-between;align-items:center;padding:9px 11px;border-top:1px dashed #e3ddee;margin-top:2px;font-size:12.5px;font-weight:700;color:var(--ink)}
+.dtotal b{color:var(--accent-ink)}
+/* card 3 — response */
+.ic-chat{justify-content:center}
+.mini-bubble{background:#DCF8C6;border-radius:11px;border-top-left-radius:3px;padding:10px 12px;font-size:12px;color:#1f2d1f;line-height:1.45;align-self:flex-start;max-width:95%;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.mini-meta{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--ink-soft);margin-top:4px}
+.mini-meta .md{width:6px;height:6px;border-radius:50%;background:var(--green)}
 
 /* section base */
 section.feat{padding:70px 0;border-top:1px solid var(--line)}
@@ -250,9 +267,40 @@ footer{border-top:1px solid var(--line);padding:40px 0;text-align:center;color:v
 <section class="intel">
   <div class="wrap">
     <div class="intel-grid">
-      <div class="intel-card reveal d1"><div class="glow"></div><div class="step">01 · MEMAHAMI</div><h3>Menangkap maksud</h3><p>Membaca niat di balik pesan — typo, singkatan, bahasa campur — bukan sekadar mencocokkan kata kunci.</p></div>
-      <div class="intel-card reveal d2"><div class="glow"></div><div class="step">02 · MEMUTUSKAN</div><h3>Memvalidasi dari data</h3><p>Setiap harga, stok, dan ketersediaan diambil dari sistem Anda. AI menafsirkan; data yang menentukan.</p></div>
-      <div class="intel-card reveal d3"><div class="glow"></div><div class="step">03 · MERESPONS</div><h3>Membalas selayaknya manusia</h3><p>Bahasa Indonesia yang luwes dengan tone yang menyesuaikan konteks — terasa seperti staf, bukan mesin.</p></div>
+      <div class="intel-card reveal d1">
+        <div class="step">01 · Memahami</div>
+        <h3>Menangkap maksud</h3>
+        <p>Membaca niat di balik pesan — typo, singkatan, bahasa campur — bukan sekadar mencocokkan kata kunci.</p>
+        <div class="ic-visual">
+          <div class="parse-in">"2 es kopi susu yg gede less sugar"</div>
+          <div class="parse-arrow">↓</div>
+          <div class="parse-tags">
+            <span class="ptag">Item: <b>Es Kopi Susu</b></span>
+            <span class="ptag">Qty: <b>2</b></span>
+            <span class="ptag">Size: <b>L</b></span>
+            <span class="ptag">Sugar: <b>less</b></span>
+          </div>
+        </div>
+      </div>
+      <div class="intel-card reveal d2">
+        <div class="step">02 · Memutuskan</div>
+        <h3>Memvalidasi dari data</h3>
+        <p>Setiap harga, stok, dan ketersediaan diambil dari sistem Anda. AI menafsirkan; data yang menentukan.</p>
+        <div class="ic-visual">
+          <div class="dcheck"><span class="dc-ic">✓</span><span>Es Kopi Susu (L)</span><span class="dc-val">Rp 18.000</span></div>
+          <div class="dcheck"><span class="dc-ic">✓</span><span>Stok tersedia</span><span class="dc-val">Ready</span></div>
+          <div class="dtotal"><span>Total (×2)</span><b>Rp 36.000</b></div>
+        </div>
+      </div>
+      <div class="intel-card reveal d3">
+        <div class="step">03 · Merespons</div>
+        <h3>Membalas selayaknya manusia</h3>
+        <p>Bahasa Indonesia yang luwes dengan tone yang menyesuaikan konteks — terasa seperti staf, bukan mesin.</p>
+        <div class="ic-visual ic-chat">
+          <div class="mini-bubble">Siap kak! 2 Es Kopi Susu (L, less sugar) dicatat ya 😊 Total Rp 36.000</div>
+          <div class="mini-meta"><span class="md"></span> Dibalas dalam 2 detik</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -3,6 +3,7 @@ import SoonPage from "@/components/SoonPage";
 
 export const metadata: Metadata = {
   title: "Forum",
+  description: "Forum SOSMED AI — tempat berbagi tips dan tanya jawab antar pengguna asisten WhatsApp AI. Segera hadir.",
   robots: { index: false },
 };
 
