@@ -471,7 +471,7 @@ export default function Home() {
                   src="/logo/sosmed-ai-logo-white-version.png"
                   alt="Sosmed AI"
                 />
-                <span className="pkg-tag">Lengkap</span>
+                <span className="pkg-tag">Satu Paket</span>
               </div>
               <h2>Semua yang bisnis Anda butuhkan, dalam satu paket.</h2>
               <p className="pkg-sub">
