@@ -60,6 +60,9 @@
   .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
   .btn-ghost:hover{border-color:var(--ink);background:#fff}
   .btn-sm{padding:9px 18px;font-size:14px}
+  /* navbar + mobile-menu buttons: soft rounded-rectangle (not full pill) */
+  .nav-auth .btn,.drawer-cta .btn{border-radius:11px}
+  .nav-auth .btn{padding:10px 19px}
   .btn-soon{
     background:var(--ink);color:#fff;position:relative;cursor:not-allowed;opacity:.92;
   }
