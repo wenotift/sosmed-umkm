@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sosmed AI — Closing CTA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#A050F8; --accent-2:#C880F8; --accent-ink:#7018D8; --accent-soft:#F3ECFE;
+    --green:#16A34A; --bg:#FAF8FF; --ink:#16121F; --ink-soft:#6B6478; --line:#ECE7F5;
+    --radius-lg:28px; --radius:18px;
+    --display:'Inter',sans-serif; --body:'Plus Jakarta Sans',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--body);background:#fff;color:var(--ink);padding:60px 24px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto}
+  .btn{font-family:var(--body);font-weight:600;font-size:15px;border-radius:13px;padding:14px 24px;cursor:pointer;border:1px solid transparent;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+
+  /* ===== CLOSING CTA (dark) ===== */
+  .cta-close{
+    position:relative;overflow:hidden;text-align:center;
+    border-radius:var(--radius-lg);
+    background:radial-gradient(130% 130% at 50% 0%,#3A1D6E 0%,#1E1330 45%,#100A1A 100%);
+    padding:72px 40px 60px;
+  }
+  .cta-close::before{
+    content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);
+    width:680px;height:420px;
+    background:radial-gradient(circle,rgba(160,80,248,.35),transparent 65%);
+    pointer-events:none;
+  }
+  .cta-close > *{position:relative;z-index:1}
+  .ctac-badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.04em;color:#E8DEFB;background:rgba(255,255,255,.07);border:1px solid rgba(200,128,248,.3);border-radius:999px;padding:7px 14px;margin-bottom:22px;backdrop-filter:blur(4px)}
+  .cb-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.25)}
+  .cta-close h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:clamp(28px,3.6vw,46px);line-height:1.1;color:#fff;margin-bottom:18px}
+  .cta-close p{font-size:16px;color:#C9BDE0;line-height:1.6;max-width:56ch;margin:0 auto 30px}
+  .btn-ig{background:#fff;color:var(--ink);font-weight:600}
+  .btn-ig svg{stroke:var(--ink)}
+  .btn-ig:hover{transform:translateY(-1px);background:#F3ECFE}
+  .ctac-fine{font-size:12.5px;color:#9D8FB5;margin-top:18px;letter-spacing:.01em}
+
+  @media(max-width:820px){
+    .cta-close{padding:52px 26px 44px}
+    .cta-close p{font-size:15px}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="cta-close">
+      <div class="ctac-badge"><span class="cb-dot"></span> Segera Hadir</div>
+      <h2>Saatnya kafe, coffee shop, &amp; restoran Anda<br>bekerja lebih cerdas.</h2>
+      <p>Sosmed AI bakal jadi asisten WhatsApp yang bantu Anda kembangkan bisnis, tingkatkan produktivitas, dan layani pelanggan tanpa repot.</p>
+      <a class="btn btn-ig" href="https://www.instagram.com/sosmed.io" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        Ikuti Kami di Instagram
+      </a>
+      <div class="ctac-fine">Sebentar lagi hadir untuk bisnis F&amp;B Anda.</div>
+    </div>
+  </div>
+</body>
+</html>

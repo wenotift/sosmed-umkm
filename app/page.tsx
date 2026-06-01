@@ -1633,29 +1633,49 @@ export default function Home() {
       {/* FINAL CTA */}
       <section className="final">
         <div className="wrap">
-          <div className="final-card">
-            <h2>Jadi bisnis F&amp;B pertama yang pakai Sosmed AI.</h2>
-            <p>
-              Sosmed AI sedang dalam tahap akhir. Asisten WhatsApp AI yang akan
-              mengubah cara bisnis F&amp;B Indonesia terima order dan jaga
-              pelanggan.
-            </p>
-            <div className="final-cta">
-              <button className="btn btn-soon" disabled>
-                <span className="dot"></span> Segera Hadir
-              </button>
-              <a
-                className="btn btn-ig"
-                href="https://www.instagram.com/sosmed.io"
-                target="_blank"
-                rel="noopener"
-              >
-                Ikuti Kami di Instagram
-              </a>
+          <div className="cta-close">
+            <div className="ctac-badge">
+              <span className="cb-dot"></span> Segera Hadir
             </div>
-            <p className="final-note">
-              Akses awal terbatas · Peluncuran segera diumumkan · Tanpa spam
+            <h2>
+              Saatnya kafe, coffee shop, &amp; restoran Anda
+              <br />
+              bekerja lebih cerdas.
+            </h2>
+            <p>
+              Sosmed AI bakal jadi asisten WhatsApp yang bantu Anda kembangkan
+              bisnis, tingkatkan produktivitas, dan layani pelanggan tanpa
+              repot.
             </p>
+            <a
+              className="btn btn-ig"
+              href="https://www.instagram.com/sosmed.io"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4.5" />
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1.2"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+              Ikuti Kami di Instagram
+            </a>
+            <div className="ctac-fine">
+              Sebentar lagi hadir untuk bisnis F&amp;B Anda.
+            </div>
           </div>
         </div>
       </section>
