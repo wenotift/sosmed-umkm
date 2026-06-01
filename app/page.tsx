@@ -1056,7 +1056,7 @@ export default function Home() {
               <div className="ai-flow">
                 <div className="ai-node">
                   <span className="lbl">
-                    <span className="dot2" style={{ background: "#B9A6FB" }}></span>{" "}
+                    <span className="dot2" style={{ background: "#C9A6FB" }}></span>{" "}
                     Deteksi maksud
                   </span>
                   <span className="tag tag-route">Order + Menu</span>
@@ -1070,7 +1070,7 @@ export default function Home() {
                 </div>
                 <div className="ai-node">
                   <span className="lbl">
-                    <span className="dot2" style={{ background: "#B9A6FB" }}></span>{" "}
+                    <span className="dot2" style={{ background: "#C9A6FB" }}></span>{" "}
                     Hitung total dari data
                   </span>
                   <span className="tag tag-route">Rp 58.000</span>
