@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "bot WhatsApp coffee shop",
     "order otomatis WhatsApp",
     "sistem poin loyalty F&B",
-    "WhatsApp Business API resmi Indonesia",
+    "WhatsApp Business API Indonesia",
     "AI customer service restoran",
     "loyalty program kafe",
     "member card digital WhatsApp",
@@ -122,7 +122,7 @@ const faqPageLd = {
       name: "Apakah nomor WhatsApp kafe saya aman?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Sangat aman. Kami pakai WhatsApp Business API resmi dari Meta — bukan tools bajakan yang minta scan QR. Nomor Anda nggak berisiko kena banned, dan bisa kirim promo dengan aman.",
+        text: "Sangat aman. Kami membangun di atas WhatsApp Business API — bukan tools bajakan yang minta scan QR — sehingga lebih stabil dan sesuai ketentuan WhatsApp. Nomor Anda lebih terjaga, dan bisa kirim promo dengan lebih tenang.",
       },
     },
     {

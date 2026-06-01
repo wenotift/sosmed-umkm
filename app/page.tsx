@@ -367,7 +367,7 @@ export default function Home() {
               <b>•</b> Menu QR
             </span>
             <span className="chip">
-              <b>•</b> WhatsApp Resmi Meta
+              <b>•</b> WhatsApp Business API
             </span>
           </div>
 
@@ -465,7 +465,7 @@ export default function Home() {
           <p>Dibangun khusus untuk cara kerja F&amp;B Indonesia</p>
           <div className="trust-row">
             <div className="trust-pill">
-              <span className="e"><IconShieldCheck /></span> WhatsApp Resmi Meta
+              <span className="e"><IconShieldCheck /></span> WhatsApp Business API
             </div>
             <div className="trust-pill">
               <span className="e"><IconBolt /></span> Setup 30 Menit
@@ -716,11 +716,11 @@ export default function Home() {
             </div>
             <div className="why-card">
               <div className="ic"><IconShieldCheck /></div>
-              <h3>WhatsApp Resmi Meta</h3>
+              <h3>WhatsApp Business API</h3>
               <p>
-                Kami pakai WhatsApp Business API resmi Meta — nomor Anda aman dari
-                banned, bisa kirim promo dengan aman. Bukan tools bajakan yang
-                minta scan QR.
+                Kami membangun di atas WhatsApp Business API — bukan tools
+                bajakan yang minta scan QR — jadi lebih stabil, sesuai ketentuan
+                WhatsApp, dan bisa kirim promo dengan lebih tenang.
               </p>
             </div>
             <div className="why-card">
@@ -1262,9 +1262,7 @@ export default function Home() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="feat-col">
-                      WhatsApp Business API resmi Meta
-                    </td>
+                    <td className="feat-col">WhatsApp Business API</td>
                     <td className="us">
                       <span className="yes">✓ Ya</span>
                     </td>
@@ -1346,8 +1344,8 @@ export default function Home() {
               <div className="num">1</div>
               <h3>Hubungkan WhatsApp</h3>
               <p>
-                Sambungkan nomor WhatsApp kafe Anda lewat WhatsApp Business API
-                resmi Meta. Tim kami bantu prosesnya.
+                Sambungkan nomor WhatsApp kafe Anda lewat WhatsApp Business API.
+                Tim kami bantu prosesnya.
               </p>
             </div>
             <div className="step">
@@ -1442,7 +1440,7 @@ export default function Home() {
                 <li>Dashboard Order Real-Time</li>
                 <li>Struk &amp; Voucher Otomatis</li>
                 <li>Hingga 1.500 pesan AI/bulan · 1 outlet</li>
-                <li>WhatsApp Business API resmi</li>
+                <li>WhatsApp Business API</li>
               </ul>
               <button className="btn btn-soon" disabled>
                 <span className="dot"></span> Segera Hadir
@@ -1535,9 +1533,10 @@ export default function Home() {
               </button>
               <div className="faq-a">
                 <p>
-                  Sangat aman. Kami pakai WhatsApp Business API resmi dari Meta —
-                  bukan tools bajakan yang minta scan QR. Nomor Anda nggak
-                  berisiko kena banned, dan bisa kirim promo dengan aman.
+                  Sangat aman. Kami membangun di atas WhatsApp Business API —
+                  bukan tools bajakan yang minta scan QR — sehingga lebih stabil
+                  dan sesuai ketentuan WhatsApp. Nomor Anda lebih terjaga, dan
+                  bisa kirim promo dengan lebih tenang.
                 </p>
               </div>
             </div>

@@ -20,7 +20,7 @@ const PLANS = [
       "Dashboard Order Real-Time",
       "Struk & Voucher Otomatis",
       "Hingga 1.500 pesan AI/bulan · 1 outlet",
-      "WhatsApp Business API resmi",
+      "WhatsApp Business API",
     ],
   },
   {
