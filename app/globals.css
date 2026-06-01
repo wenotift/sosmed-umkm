@@ -486,7 +486,14 @@
     .pkg-grid{gap:24px}
   }
   @media(max-width:480px){
-    .pkg-grid{grid-template-columns:1fr}
+    /* compact horizontal rows: icon left, title + description right */
+    .pkg-grid{grid-template-columns:1fr;gap:0}
+    .pkg-feat{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+    .pkg-feat:last-child{border-bottom:none;padding-bottom:0}
+    .pkg-feat .pf-ic{width:36px;height:36px;border-radius:10px;margin-bottom:0;grid-row:span 2}
+    .pkg-feat .pf-ic svg{width:19px;height:19px}
+    .pkg-feat h3{align-self:center;margin-bottom:4px}
+    .pkg-feat p{grid-column:2}
   }
 
   /* footer */
