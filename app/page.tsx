@@ -393,46 +393,97 @@ export default function Home() {
                   ↻ Putar ulang
                 </button>
               </div>
-              {/* dashboard */}
-              <div className="panel">
-                <div className="panel-head">
-                  <div className="panel-title">Order Masuk Hari Ini</div>
-                  <div className="panel-tag">● Live</div>
+              {/* dashboard summary — monthly recap + top menu (illustrative demo data) */}
+              <div className="dpanels">
+                <div className="dpanel">
+                  <div className="dp-head">
+                    <h4>Ringkasan Bulan Ini</h4>
+                    <span className="per">Mei 2026 ⌄</span>
+                  </div>
+                  <div className="dstats">
+                    <div className="dstat">
+                      <div className="dl">
+                        <svg viewBox="0 0 24 24" strokeWidth="2">
+                          <circle cx="12" cy="12" r="9" />
+                          <path d="M12 7v5l3 2" />
+                        </svg>{" "}
+                        Total Order
+                      </div>
+                      <div className="dv">1.284</div>
+                      <div className="dd">↑ 18%</div>
+                    </div>
+                    <div className="dstat">
+                      <div className="dl">
+                        <svg viewBox="0 0 24 24" strokeWidth="2">
+                          <rect x="2" y="5" width="20" height="14" rx="2" />
+                        </svg>{" "}
+                        Pendapatan
+                      </div>
+                      <div className="dv">Rp 38,6 jt</div>
+                      <div className="dd">↑ 18%</div>
+                    </div>
+                    <div className="dstat">
+                      <div className="dl">
+                        <svg viewBox="0 0 24 24" strokeWidth="2">
+                          <circle cx="12" cy="8" r="4" />
+                          <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
+                        </svg>{" "}
+                        Member Aktif
+                      </div>
+                      <div className="dv">312</div>
+                      <div className="dd">(+47)</div>
+                    </div>
+                    <div className="dstat">
+                      <div className="dl">
+                        <svg viewBox="0 0 24 24" strokeWidth="2">
+                          <path d="M17 2l4 4-4 4M7 22l-4-4 4-4" />
+                        </svg>{" "}
+                        Repeat Rate
+                      </div>
+                      <div className="dv">64%</div>
+                      <div className="dd">↑ 8%</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="order-row">
-                  <div>
-                    <div className="oi">#1042 · Es Kopi Susu ×2</div>
-                    <div className="od">less sugar · ambil sendiri</div>
+
+                <div className="dpanel">
+                  <div className="dp-head">
+                    <h4>Top Menu</h4>
                   </div>
-                  <div className="stat stat-new">Baru</div>
-                </div>
-                <div className="order-row">
-                  <div>
-                    <div className="oi">#1041 · Americano ×1</div>
-                    <div className="od">panas · meja 4</div>
+                  <div className="top-row">
+                    <span className="top-rank">1</span>
+                    <div className="top-mid">
+                      <div className="tn">
+                        Es Kopi Susu <span className="tc">426 (33%)</span>
+                      </div>
+                      <div className="top-bar">
+                        <i style={{ width: "100%" }} />
+                      </div>
+                    </div>
                   </div>
-                  <div className="stat stat-done">Selesai</div>
-                </div>
-                <div className="order-row">
-                  <div>
-                    <div className="oi">#1040 · Croissant ×2</div>
-                    <div className="od">takeaway</div>
+                  <div className="top-row">
+                    <span className="top-rank">2</span>
+                    <div className="top-mid">
+                      <div className="tn">
+                        Americano <span className="tc">318 (25%)</span>
+                      </div>
+                      <div className="top-bar">
+                        <i style={{ width: "75%" }} />
+                      </div>
+                    </div>
                   </div>
-                  <div className="stat stat-done">Selesai</div>
-                </div>
-                <div className="mini-stats">
-                  <div className="mini">
-                    <div className="n">48</div>
-                    <div className="l">Order hari ini</div>
+                  <div className="top-row">
+                    <span className="top-rank">3</span>
+                    <div className="top-mid">
+                      <div className="tn">
+                        Croissant <span className="tc">196 (15%)</span>
+                      </div>
+                      <div className="top-bar">
+                        <i style={{ width: "46%" }} />
+                      </div>
+                    </div>
                   </div>
-                  <div className="mini">
-                    <div className="n">Rp 1,4jt</div>
-                    <div className="l">Penjualan</div>
-                  </div>
-                  <div className="mini">
-                    <div className="n">126</div>
-                    <div className="l">Member aktif</div>
-                  </div>
+                  <div className="dsee">Lihat semua ›</div>
                 </div>
               </div>
             </div>
