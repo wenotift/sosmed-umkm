@@ -43,11 +43,7 @@ export default function Footer() {
                 height={379}
               />
             </Link>
-            <p>
-              <strong>WA Anda, AI Assistant Bisnis Anda.</strong>
-              <br />
-              AI-native yang hadir langsung di WhatsApp Anda.
-            </p>
+            <p>Beyond Chatbots. AI-Native.</p>
             <div className="foot-social">
               {SOCIALS.map((s) => (
                 <a
@@ -67,9 +63,6 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <p className="foot-close">
-              Bekerja seperti asisten. Beroperasi dengan AI.
-            </p>
           </div>
 
           <div className="foot-grid">
