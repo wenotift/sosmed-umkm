@@ -4,12 +4,12 @@ export const SITE_URL = "https://umkm.sosmed.io";
 
 // Shared OG/Twitter card title (brand line) — kept identical across routes so
 // titles don't change; only the description differs per page.
-const OG_TITLE = "SOSMED AI | WhatsApp Anda, AI Assistant Bisnis Anda";
+const OG_TITLE = "Sosmed AI | WhatsApp Anda, AI Assistant Bisnis Anda";
 const OG_IMAGE = {
   url: "/images/og-image-umkm-sosmed-ai.jpg",
   width: 1350,
   height: 900,
-  alt: "SOSMED AI — asisten WhatsApp AI untuk bisnis F&B Indonesia",
+  alt: "Sosmed AI — asisten WhatsApp AI untuk bisnis F&B Indonesia",
 };
 
 /**
@@ -34,7 +34,7 @@ export function pageMetadata(opts: {
       type: "website",
       locale: "id_ID",
       url,
-      siteName: "SOSMED AI",
+      siteName: "Sosmed AI",
       title: OG_TITLE,
       description,
       images: [OG_IMAGE],

@@ -485,8 +485,10 @@ export default function Home() {
       <section className="problem">
         <div className="wrap">
           <div className="eyebrow">Kenyataan Sehari-hari di Bisnis F&amp;B</div>
-          <h2 className="sec-title">
-            Berapa banyak order hilang karena chat nggak sempat dibales?
+          <h2 className="sec-title sec-title-2line">
+            Berapa banyak order hilang
+            <br />
+            karena chat nggak sempat dibales?
           </h2>
           <div className="prob-grid">
             <div className="prob">
@@ -521,7 +523,7 @@ export default function Home() {
           </div>
           <p className="prob-foot">
             Rata-rata bisnis F&amp;B kehilangan <b>Rp 2–4 juta per bulan</b>{" "}
-            hanya dari order yang nggak kebales. SOSMED AI menutup celah itu.
+            hanya dari order yang nggak kebales. Sosmed AI menutup celah itu.
           </p>
         </div>
       </section>
@@ -534,7 +536,7 @@ export default function Home() {
             Satu sistem. Semua yang bisnis Anda butuhkan.
           </h2>
           <p className="sec-lead">
-            Bukan sekadar chatbot. SOSMED AI adalah sistem lengkap untuk order,
+            Bukan sekadar chatbot. Sosmed AI adalah sistem lengkap untuk order,
             menu, member, dan poin yang jalan otomatis di WhatsApp yang sudah
             Anda pakai tiap hari.
           </p>
@@ -701,7 +703,7 @@ export default function Home() {
       {/* WHY */}
       <section className="why">
         <div className="wrap">
-          <div className="eyebrow">Kenapa SOSMED AI</div>
+          <div className="eyebrow">Kenapa Sosmed AI</div>
           <h2 className="sec-title">
             Bukan yang termurah. Yang paling pas untuk bisnis F&amp;B.
           </h2>
@@ -763,7 +765,7 @@ export default function Home() {
               <h3>Anda sudah jago pakai WhatsApp. Itu aja cukup.</h3>
               <p>
                 Kebanyakan tools bisnis maksa Anda belajar dashboard rumit, buka
-                laptop, login tiap hari. SOSMED AI kebalikannya. Anda cukup chat
+                laptop, login tiap hari. Sosmed AI kebalikannya. Anda cukup chat
                 bot Anda sendiri untuk lihat order, ubah menu, cek penjualan,
                 atau tandai pesanan selesai.
               </p>
@@ -799,7 +801,7 @@ export default function Home() {
               <div className="wa-top">
                 <div className="wa-av">AI</div>
                 <div>
-                  <div className="wa-name">SOSMED AI · Asisten Anda</div>
+                  <div className="wa-name">Sosmed AI · Asisten Anda</div>
                   <div className="wa-status">● kelola bisnis lewat chat</div>
                 </div>
               </div>
@@ -991,7 +993,7 @@ export default function Home() {
             AI yang ngerti Indonesia, bukan sekadar tempelan.
           </h2>
           <p className="sec-lead">
-            SOSMED AI ditenagai mesin AI multi-model yang dirancang khusus untuk
+            Sosmed AI ditenagai mesin AI multi-model yang dirancang khusus untuk
             bahasa dan perilaku konsumen Indonesia. Cepat, hemat, dan terdengar
             manusiawi.
           </p>
@@ -1111,10 +1113,14 @@ export default function Home() {
       <section id="beda" className="native">
         <div className="wrap">
           <div className="eyebrow">Apa Bedanya</div>
-          <h2 className="sec-title">Kami bukan chatbot. Kami AI-native.</h2>
+          <h2 className="sec-title sec-title-2line">
+            Kami bukan chatbot.
+            <br />
+            Kami AI-native.
+          </h2>
           <p className="sec-lead">
             Kebanyakan &quot;bot WhatsApp&quot; cuma menu balasan otomatis dengan
-            template kaku. SOSMED AI dibangun di atas kecerdasan buatan sungguhan
+            template kaku. Sosmed AI dibangun di atas kecerdasan buatan sungguhan
             yang ngerti maksud, konteks, dan bahasa, bukan sekadar mencocokkan
             kata kunci.
           </p>
@@ -1148,7 +1154,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="vs-card vs-new">
-              <span className="vs-label">✦ SOSMED AI</span>
+              <span className="vs-label">✦ Sosmed AI</span>
               <h3>AI-native, ngerti maksud</h3>
               <ul className="vs-list">
                 <li>
@@ -1181,9 +1187,9 @@ export default function Home() {
       <section id="banding" style={{ background: "#fff" }}>
         <div className="wrap">
           <div className="eyebrow">Perbandingan</div>
-          <h2 className="sec-title">SOSMED AI vs. solusi lain.</h2>
+          <h2 className="sec-title">Sosmed AI vs. solusi lain.</h2>
           <p className="sec-lead">
-            Kenapa bisnis F&amp;B memilih SOSMED AI dibanding chatbot generik,
+            Kenapa bisnis F&amp;B memilih Sosmed AI dibanding chatbot generik,
             tools impor, atau hire admin manual.
           </p>
 
@@ -1193,7 +1199,7 @@ export default function Home() {
                 <thead>
                   <tr>
                     <th className="feat-col">Fitur</th>
-                    <th className="us">SOSMED AI</th>
+                    <th className="us">Sosmed AI</th>
                     <th>Chatbot Generik</th>
                     <th>Tools Impor</th>
                     <th>Admin Manual</th>
@@ -1337,8 +1343,10 @@ export default function Home() {
       <section id="cara-kerja">
         <div className="wrap">
           <div className="eyebrow">Cara Kerja</div>
-          <h2 className="sec-title">
-            Dari daftar sampai terima order otomatis, cuma 30 menit.
+          <h2 className="sec-title sec-title-2line">
+            Dari daftar sampai terima
+            <br />
+            order otomatis, cuma 30 menit.
           </h2>
           <div className="steps" style={{ marginTop: "14px" }}>
             <div className="step">
@@ -1369,7 +1377,7 @@ export default function Home() {
           <p className="how-foot">
             Setup di tempat. Tanpa install apa-apa. Tanpa skill teknis.
             <br />
-            Kalau bisa pakai WhatsApp, Anda bisa pakai SOSMED AI.
+            Kalau bisa pakai WhatsApp, Anda bisa pakai Sosmed AI.
           </p>
         </div>
       </section>
@@ -1378,7 +1386,9 @@ export default function Home() {
       <section id="untuk-fnb" style={{ background: "#fff" }}>
         <div className="wrap">
           <div className="eyebrow">Cocok Untuk</div>
-          <h2 className="sec-title">Dibuat khusus untuk bisnis F&amp;B.</h2>
+          <h2 className="sec-title sec-title-1line">
+            Dibuat khusus untuk bisnis F&amp;B.
+          </h2>
           <div className="uc-grid" style={{ marginTop: "14px" }}>
             <div className="uc">
               <div className="emo"><IconCoffee /></div>
@@ -1416,82 +1426,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING */}
-      <section id="harga" className="pricing">
+      {/* PRICING BANNER (replaces the old inline pricing section) */}
+      <section className="price-banner-sec">
         <div className="wrap">
-          <div className="eyebrow">Harga</div>
-          <h2 className="sec-title">Pilih paket yang pas untuk bisnis Anda.</h2>
-          <p className="sec-lead">
-            Harga spesial founding user, dikunci selamanya untuk pendaftar
-            pertama.
-          </p>
-          <div className="price-grid">
-            <div className="price">
-              <h3>Starter</h3>
-              <div className="for">
-                Untuk single-outlet F&amp;B &amp; UMKM kecil
-              </div>
-              <div className="amt">
-                Rp 199rb<span>/bulan</span>
-              </div>
-              <ul>
-                <li>Bot Order Otomatis WhatsApp</li>
-                <li>Menu Digital + QR Code</li>
-                <li>Sistem Poin &amp; Member</li>
-                <li>Dashboard Order Real-Time</li>
-                <li>Struk &amp; Voucher Otomatis</li>
-                <li>Hingga 1.500 pesan AI/bulan · 1 outlet</li>
-                <li>WhatsApp Business API</li>
-              </ul>
-              <button className="btn btn-soon" disabled>
-                <span className="dot"></span> Segera Hadir
-              </button>
+          <div className="price-banner">
+            <div className="pb-text">
+              <h3>Mulai Rp 7 ribu per hari.</h3>
+              <p>
+                Lebih murah dari satu cup kopi. Satu order tambahan sehari aja
+                sudah balik modal, dan Anda bisa hemat waktu sekaligus biaya yang
+                biasanya kebuang.
+              </p>
             </div>
-            <div className="price feat">
-              <div className="pop">Paling Populer</div>
-              <h3>Growth</h3>
-              <div className="for">
-                Untuk bisnis F&amp;B yang ramai &amp; serius scale up
-              </div>
-              <div className="amt">
-                Rp 299rb<span>/bulan</span>
-              </div>
-              <ul>
-                <li>Semua fitur Starter</li>
-                <li>Auto-reply terjadwal (out-of-hours)</li>
-                <li>Segmentasi member</li>
-                <li>Hingga 5.000 pesan AI/bulan · 1 outlet</li>
-                <li>Priority support</li>
-              </ul>
-              <button className="btn btn-soon" disabled>
-                <span className="dot"></span> Segera Hadir
-              </button>
-            </div>
-            <div className="price">
-              <h3>Multi-Outlet</h3>
-              <div className="for">Untuk usaha dengan 2–3 cabang</div>
-              <div className="amt">
-                Rp 549rb<span>/bulan</span>
-              </div>
-              <ul>
-                <li>Semua fitur Growth</li>
-                <li>Hingga 3 outlet</li>
-                <li>Dashboard gabungan multi-outlet</li>
-                <li>Hingga 12.000 pesan AI/bulan</li>
-                <li>Dedicated support</li>
-              </ul>
-              <button className="btn btn-soon" disabled>
-                <span className="dot"></span> Segera Hadir
-              </button>
-            </div>
+            <Link className="pb-btn" href="/harga">
+              Lihat Harga →
+            </Link>
           </div>
-          <p className="price-note">
-            Semua fitur dalam paket sudah termasuk, tanpa biaya add-on
-            tersembunyi.
-            <br />
-            Add-on lanjutan (AI Konten, integrasi GoFood/GrabFood) tersedia
-            menyusul.
-          </p>
         </div>
       </section>
 
@@ -1503,7 +1453,7 @@ export default function Home() {
           <div className="faq-wrap" style={{ marginTop: "14px" }}>
             <div className="faq-item">
               <button className="faq-q">
-                Apa itu SOSMED AI?<span className="ic">+</span>
+                Apa itu Sosmed AI?<span className="ic">+</span>
               </button>
               <div className="faq-a">
                 <p>
@@ -1523,7 +1473,7 @@ export default function Home() {
                 <p>
                   Bisa banget. Nggak perlu install aplikasi atau belajar sistem
                   ribet. Tim kami bantu setting dalam 30 menit. Kalau bisa pakai
-                  WhatsApp, Anda bisa pakai SOSMED AI.
+                  WhatsApp, Anda bisa pakai Sosmed AI.
                 </p>
               </div>
             </div>
@@ -1607,31 +1557,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING BANNER */}
-      <section className="price-banner-sec">
-        <div className="wrap">
-          <div className="price-banner">
-            <div className="pb-text">
-              <h3>Satu harga, semua fitur.</h3>
-              <p>
-                Tanpa biaya tersembunyi, tanpa add-on. Bayar sendiri dalam
-                hitungan order.
-              </p>
-            </div>
-            <Link className="pb-btn" href="/harga">
-              Lihat Harga →
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* FINAL CTA */}
       <section className="final">
         <div className="wrap">
           <div className="final-card">
-            <h2>Jadi bisnis F&amp;B pertama yang pakai SOSMED AI.</h2>
+            <h2>Jadi bisnis F&amp;B pertama yang pakai Sosmed AI.</h2>
             <p>
-              SOSMED AI sedang dalam tahap akhir. Asisten WhatsApp AI yang akan
+              Sosmed AI sedang dalam tahap akhir. Asisten WhatsApp AI yang akan
               mengubah cara bisnis F&amp;B Indonesia terima order dan jaga
               pelanggan.
             </p>

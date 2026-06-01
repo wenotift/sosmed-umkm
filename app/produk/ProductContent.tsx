@@ -127,7 +127,7 @@ export default function ProductContent() {
             <span className="grad">AI-Native.</span>
           </h1>
           <p className="psub pv pd2">
-            Bukan bot template yang menunggu kata kunci. SOSMED AI memahami
+            Bukan bot template yang menunggu kata kunci. Sosmed AI memahami
             maksud pelanggan, mengambil keputusan dari data bisnis Anda, dan
             merespons selayaknya staf terbaik Anda — 24 jam, di dalam WhatsApp.
           </p>
@@ -234,7 +234,7 @@ export default function ProductContent() {
               </div>
               <h3>Order Otomatis</h3>
               <div className="fopen">
-                Pelanggan numpuk di kasir, order chat kelewat. SOSMED AI bikin
+                Pelanggan numpuk di kasir, order chat kelewat. Sosmed AI bikin
                 pelanggan order sendiri lewat WhatsApp — kapan saja, tanpa antre,
                 tanpa aplikasi.
               </div>
@@ -660,7 +660,7 @@ export default function ProductContent() {
                     <span className="wa-back">‹</span>
                     <div className="wa-av">AI</div>
                     <div className="wa-meta">
-                      <div className="wa-name">SOSMED AI · Asisten</div>
+                      <div className="wa-name">Sosmed AI · Asisten</div>
                       <div className="wa-sub">kelola bisnis lewat chat</div>
                     </div>
                     <div className="wa-ico">📞 ⋮</div>

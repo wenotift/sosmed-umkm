@@ -7,7 +7,7 @@ import PricingContent from "./PricingContent";
 export const metadata: Metadata = pageMetadata({
   title: "Harga",
   description:
-    "Harga transparan SOSMED AI untuk bisnis F&B: satu paket, semua fitur AI-native, tanpa biaya tersembunyi. Mulai Rp 199 ribu/bulan. Lihat paketnya.",
+    "Harga transparan Sosmed AI untuk bisnis F&B: satu paket, semua fitur AI-native, tanpa biaya tersembunyi. Mulai Rp 199 ribu/bulan. Lihat paketnya.",
   path: "/harga",
 });
 

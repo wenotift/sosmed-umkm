@@ -4,7 +4,7 @@ import SoonPage from "@/components/SoonPage";
 
 export const metadata: Metadata = pageMetadata({
   title: "Forum",
-  description: "Halaman Forum SOSMED AI — segera hadir.",
+  description: "Halaman Forum Sosmed AI — segera hadir.",
   path: "/forum",
   noindex: true,
 });

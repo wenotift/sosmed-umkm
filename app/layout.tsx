@@ -6,11 +6,11 @@ const SITE_URL = "https://umkm.sosmed.io";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "SOSMED AI | Asisten WhatsApp AI untuk Coffee Shop & Restoran",
-    template: "%s | SOSMED AI",
+    default: "Sosmed AI | Asisten WhatsApp AI untuk Coffee Shop & Restoran",
+    template: "%s | Sosmed AI",
   },
   description:
-    "SOSMED AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
+    "Sosmed AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
   keywords: [
     "bot WhatsApp coffee shop",
     "order otomatis WhatsApp",
@@ -23,10 +23,10 @@ export const metadata: Metadata = {
     "AI native WhatsApp Indonesia",
     "sistem order kafe",
   ],
-  authors: [{ name: "SOSMED AI" }],
-  creator: "SOSMED AI",
-  publisher: "SOSMED AI",
-  applicationName: "SOSMED AI",
+  authors: [{ name: "Sosmed AI" }],
+  creator: "Sosmed AI",
+  publisher: "Sosmed AI",
+  applicationName: "Sosmed AI",
   category: "technology",
   alternates: {
     canonical: SITE_URL,
@@ -35,24 +35,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     url: SITE_URL,
-    siteName: "SOSMED AI",
-    title: "SOSMED AI | WhatsApp Anda, AI Assistant Bisnis Anda",
+    siteName: "Sosmed AI",
+    title: "Sosmed AI | WhatsApp Anda, AI Assistant Bisnis Anda",
     description:
-      "SOSMED AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
+      "Sosmed AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
     images: [
       {
         url: "/images/og-image-umkm-sosmed-ai.jpg",
         width: 1350,
         height: 900,
-        alt: "SOSMED AI — asisten WhatsApp AI untuk bisnis F&B Indonesia",
+        alt: "Sosmed AI — asisten WhatsApp AI untuk bisnis F&B Indonesia",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SOSMED AI | WhatsApp Anda, AI Assistant Bisnis Anda",
+    title: "Sosmed AI | WhatsApp Anda, AI Assistant Bisnis Anda",
     description:
-      "SOSMED AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
+      "Sosmed AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
     images: ["/images/og-image-umkm-sosmed-ai.jpg"],
   },
   // Stay OUT of Google search for now (noindex), but follow links.
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
 const softwareApplicationLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "SOSMED AI",
+  name: "Sosmed AI",
   applicationCategory: "BusinessApplication",
   operatingSystem: "WhatsApp / Web",
   description:
@@ -77,7 +77,7 @@ const softwareApplicationLd = {
   offers: { "@type": "Offer", price: "199000", priceCurrency: "IDR" },
   publisher: {
     "@type": "Organization",
-    name: "SOSMED AI",
+    name: "Sosmed AI",
     url: SITE_URL,
   },
 };
@@ -85,7 +85,7 @@ const softwareApplicationLd = {
 const organizationLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "SOSMED AI",
+  name: "Sosmed AI",
   url: SITE_URL,
   logo: `${SITE_URL}/icon.png`,
   description:
@@ -103,7 +103,7 @@ const faqPageLd = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Apa itu SOSMED AI?",
+      name: "Apa itu Sosmed AI?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Asisten WhatsApp berbasis AI khusus untuk bisnis F&B kecil seperti kafe, restoran, dan warung. Bot kami terima order otomatis, balas pelanggan 24 jam, dan kelola sistem poin member, semua lewat WhatsApp yang sudah Anda pakai.",
@@ -114,7 +114,7 @@ const faqPageLd = {
       name: "Saya nggak ngerti teknologi, bisa pakai?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Bisa banget. Nggak perlu install aplikasi atau belajar sistem ribet. Tim kami bantu setting dalam 30 menit. Kalau bisa pakai WhatsApp, Anda bisa pakai SOSMED AI.",
+        text: "Bisa banget. Nggak perlu install aplikasi atau belajar sistem ribet. Tim kami bantu setting dalam 30 menit. Kalau bisa pakai WhatsApp, Anda bisa pakai Sosmed AI.",
       },
     },
     {

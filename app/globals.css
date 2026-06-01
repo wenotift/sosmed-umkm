@@ -328,6 +328,10 @@
   section{padding:72px 0}
   .eyebrow{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;text-align:center}
   .sec-title{font-size:clamp(25px,3.2vw,36px);font-weight:800;text-align:center;max-width:20ch;margin:0 auto 16px}
+  /* single-line heading: never wrap; font scales down on narrow screens so it still fits */
+  .sec-title-1line{max-width:none;white-space:nowrap;font-size:clamp(17px,4.7vw,36px)}
+  /* forced two-line headings (via <br/>): drop the 20ch cap so each line holds on desktop */
+  .sec-title-2line{max-width:none}
   .sec-lead{text-align:center;color:var(--ink-soft);max-width:56ch;margin:0 auto 50px;font-size:15.5px}
 
   /* problem strip */
