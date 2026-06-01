@@ -1716,9 +1716,9 @@ export default function Home() {
               <span className="cb-dot"></span> Segera Hadir
             </div>
             <h2>
-              Saatnya kafe, coffee shop, &amp; restoran Anda
+              Saatnya bikin AI bekerja untuk
               <br />
-              bekerja lebih cerdas.
+              coffee shop dan restoran Anda.
             </h2>
             <p>
               Sosmed AI bakal jadi asisten WhatsApp yang bantu Anda kembangkan
