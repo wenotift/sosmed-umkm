@@ -1430,17 +1430,90 @@ export default function Home() {
       <section className="price-banner-sec">
         <div className="wrap">
           <div className="price-banner">
-            <div className="pb-text">
-              <h3>Mulai Rp 7 ribu per hari.</h3>
-              <p>
+            <div className="pb-left">
+              <div className="pb-eyebrow">Harga</div>
+              <h2>
+                Mulai Rp 7 ribu<span className="small">per hari.</span>
+              </h2>
+              <p className="pb-body">
                 Lebih murah dari satu cup kopi. Satu order tambahan sehari aja
                 sudah balik modal, dan Anda bisa hemat waktu sekaligus biaya yang
                 biasanya kebuang.
               </p>
+              <div className="pb-btns">
+                {/* coming-soon, intentionally NOT a link until launch */}
+                <button type="button" className="btn btn-solid" disabled>
+                  <span className="dot"></span> Daftar
+                </button>
+                <Link className="btn btn-ghost" href="/harga">
+                  Lihat Harga →
+                </Link>
+              </div>
+              <div className="pb-soon">Pendaftaran segera dibuka.</div>
             </div>
-            <Link className="pb-btn" href="/harga">
-              Lihat Harga →
-            </Link>
+
+            <div className="pb-right">
+              <div className="pb-graphic">
+                <div className="wa-win">
+                  <div className="mp-bar">
+                    <span className="mp-back">‹</span>
+                    <div className="mp-av">KS</div>
+                    <div className="mp-meta">
+                      <div className="mp-name">Kopi Senja</div>
+                      <div className="mp-sub">online</div>
+                    </div>
+                    <div className="mp-ico">⋮</div>
+                  </div>
+                  <div className="mp-chat">
+                    <div className="mb out">
+                      es kopi susu 2, less sugar
+                      <span className="tm">21:14 ✓✓</span>
+                    </div>
+                    <div className="mb in">
+                      Siap kak! Total Rp 36.000. Diambil atau diantar?
+                      <span className="tm">21:14</span>
+                    </div>
+                    <div className="mb out">
+                      ambil aja<span className="tm">21:15 ✓✓</span>
+                    </div>
+                    <div className="mb in">
+                      Oke! Bayar via QRIS ya 👇<span className="tm">21:15</span>
+                    </div>
+                  </div>
+                  <div className="mp-input">
+                    <span>Ketik pesan…</span>
+                    <span className="snd">➤</span>
+                  </div>
+                </div>
+
+                <div className="dash-card">
+                  <div className="dc-head">
+                    <span className="dc-ic">📊</span> Laporan Hari Ini
+                  </div>
+                  <div className="dc-stat">
+                    <span className="dc-lbl">Order masuk</span>
+                    <span className="dc-val">48</span>
+                  </div>
+                  <div className="dc-stat">
+                    <span className="dc-lbl">Penjualan</span>
+                    <span className="dc-val up">Rp 1,4 jt</span>
+                  </div>
+                  <div className="dc-stat">
+                    <span className="dc-lbl">Member baru</span>
+                    <span className="dc-val">6</span>
+                  </div>
+                  <div className="dc-bars">
+                    <span style={{ height: "40%" }}></span>
+                    <span style={{ height: "62%" }}></span>
+                    <span style={{ height: "48%" }}></span>
+                    <span style={{ height: "80%" }}></span>
+                    <span style={{ height: "70%" }}></span>
+                    <span style={{ height: "95%" }}></span>
+                    <span style={{ height: "84%" }}></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
