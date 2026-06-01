@@ -445,8 +445,15 @@
   /* footer */
   footer{background:var(--bg);border-top:1px solid var(--line);padding:56px 0 34px}
   .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
-  @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr}}
-  @media(max-width:460px){.foot-grid{grid-template-columns:1fr}}
+  /* mobile: brand block full-width on top, then link columns 2-up with the
+     last column (Perusahaan) full-width below; everything left-aligned */
+  @media(max-width:760px){
+    .foot-grid{grid-template-columns:1fr 1fr;gap:34px 24px;text-align:left}
+    .foot-grid > .foot-brand{grid-column:1 / -1}
+    .foot-grid > .foot-col:last-child{grid-column:1 / -1}
+    .foot-grid .foot-col h4{color:var(--ink)}
+    .foot-brand .foot-social svg{width:22px;height:22px}
+  }
   .foot-brand .logo{margin-bottom:14px}
   .foot-brand p{font-size:13.5px;color:var(--ink-soft);max-width:30ch}
   .foot-col h4{font-family:var(--body);font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);margin-bottom:14px;font-weight:700}
