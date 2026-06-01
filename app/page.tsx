@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ShowcaseChat from "./ShowcaseChat";
 
 const FLIP_PHRASES = [
   "Restoran",
@@ -826,118 +827,88 @@ export default function Home() {
       </section>
 
       {/* NO DASHBOARD / ALL IN WHATSAPP */}
-      <section id="tanpa-dashboard" className="nodash">
+      <section id="tanpa-dashboard" className="nodash wa-showcase">
         <div className="wrap">
-          <div className="eyebrow">Tanpa Aplikasi, Tanpa Login</div>
-          <h2 className="sec-title">
-            Semua di WhatsApp. Sisi customer dan sisi Anda.
-          </h2>
-          <p className="sec-lead">
-            Pemilik usaha nggak perlu buka dashboard, nggak perlu install
-            aplikasi, nggak perlu hapal sistem baru. Anda kelola seluruh bisnis
-            dengan chat, di WhatsApp yang sudah Anda pakai tiap hari.
-          </p>
-
-          <div className="nodash-intro">
-            <div className="nodash-text">
-              <h3>Anda sudah jago pakai WhatsApp. Itu aja cukup.</h3>
-              <p>
-                Kebanyakan tools bisnis maksa Anda belajar dashboard rumit, buka
-                laptop, login tiap hari. Sosmed AI kebalikannya. Anda cukup chat
-                bot Anda sendiri untuk lihat order, ubah menu, cek penjualan,
-                atau tandai pesanan selesai.
-              </p>
-              <p>
-                Customer pesan lewat WhatsApp. Anda kelola juga lewat WhatsApp.
-                Satu aplikasi, dua sisi, nol ribet.
-              </p>
-              <div className="kill">
-                <div className="kill-row">
-                  <span className="x">✕</span> <s>Buka dashboard di laptop</s>{" "}
-                  &nbsp;→&nbsp; <span className="now">Chat bot Anda</span>
-                </div>
-                <div className="kill-row">
-                  <span className="x">✕</span> <s>Install aplikasi baru</s>{" "}
-                  &nbsp;→&nbsp; <span className="now">Pakai WhatsApp biasa</span>
-                </div>
-                <div className="kill-row">
-                  <span className="x">✕</span> <s>Login &amp; hapal password</s>{" "}
-                  &nbsp;→&nbsp; <span className="now">Langsung dari chat</span>
-                </div>
-                <div className="kill-row">
-                  <span className="x">✕</span> <s>Belajar sistem baru</s>{" "}
-                  &nbsp;→&nbsp; <span className="now">Anda sudah bisa</span>
+          {/* showcase: all in whatsapp */}
+          <div className="sw-card">
+            <div className="sw-top">
+              <div className="sw-content">
+                <h2 className="sw-title">
+                  Anda sudah jago pakai WhatsApp.{" "}
+                  <span className="sw-grad">Itu aja cukup.</span>
+                </h2>
+                <p className="sw-sub">
+                  Kebanyakan tools bisnis maksa Anda belajar dashboard rumit,
+                  login tiap hari. Sosmed AI kebalikannya.
+                </p>
+                <div className="sw-feats">
+                  <div className="sw-feat">
+                    <div className="sw-fic">
+                      <IconSpark />
+                    </div>
+                    <div>
+                      <h3>Tinggal chat ke Chatbot AI-Native</h3>
+                      <p>
+                        Lihat order, ubah menu, cek penjualan, atau tandai
+                        pesanan selesai.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="sw-feat">
+                    <div className="sw-fic">
+                      <IconMessage />
+                    </div>
+                    <div>
+                      <h3>Cuma pakai WhatsApp</h3>
+                      <p>
+                        Pelanggan pesan lewat WA, Anda kelola juga lewat
+                        WhatsApp.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="sw-feat">
+                    <div className="sw-fic">
+                      <IconBolt />
+                    </div>
+                    <div>
+                      <h3>Tanpa pakai Aplikasi</h3>
+                      <p>Gak perlu instal aplikasi atau login ke dashboard.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <ShowcaseChat />
             </div>
 
-            {/* owner-side whatsapp demo */}
-            <div className="owner-phone">
-              <div className="demo-tag">
-                <span className="rec"></span> SISI OWNER
+            <div className="sw-strip">
+              <div className="sw-mini">
+                <div className="sw-mic">
+                  <IconMessage />
+                </div>
+                <h4>WhatsApp First</h4>
+                <p>100% di WhatsApp</p>
               </div>
-              <div className="wa-top">
-                <div className="wa-av">AI</div>
-                <div>
-                  <div className="wa-name">Sosmed AI · Asisten Anda</div>
-                  <div className="wa-status">● kelola bisnis lewat chat</div>
+              <div className="sw-mini">
+                <div className="sw-mic">
+                  <IconSpark />
                 </div>
+                <h4>AI Assistant</h4>
+                <p>Jawaban instan</p>
               </div>
-              <div
-                className="wa-body chat-anim"
-                data-chat
-                data-loop="5500"
-                style={{ height: "360px" }}
-              >
-                <div className="bubble b-out">
-                  order hari ini berapa?
-                  <span className="b-meta">09:12 ✓✓</span>
+              <div className="sw-mini">
+                <div className="sw-mic">
+                  <IconLock />
                 </div>
-                <div className="bubble b-in">
-                  Pagi! Sampai sekarang 12 order masuk, total Rp 348.000 ☕ Ada 2
-                  order baru yang belum dikonfirmasi.
-                  <span className="b-meta">09:12</span>
-                </div>
-                <div className="bubble b-out">
-                  laporan harian dong<span className="b-meta">09:13 ✓✓</span>
-                </div>
-                <div className="bubble b-in">
-                  📊 Laporan Hari Ini (s/d 09:13)
-                  <br />• Order: 12 (Rp 348.000)
-                  <br />• Best seller: Es Kopi Susu (7)
-                  <br />• Jam tersibuk: 08:00–09:00
-                  <br />• Member baru: 3
-                  <br />• Order via bot: 9 · walk-in: 3
-                  <span className="b-meta">09:13</span>
-                </div>
-                <div className="bubble b-out">
-                  matiin es kopi susu, stok habis
-                  <span className="b-meta">09:14 ✓✓</span>
-                </div>
-                <div className="bubble b-in">
-                  Siap! &quot;Es Kopi Susu Gula Aren&quot; sudah saya nonaktifkan
-                  👍 Customer nggak bisa pesan sampai diaktifkan lagi.
-                  <span className="b-meta">09:14</span>
-                </div>
-                <div className="bubble b-out">
-                  laporan bulan ini gimana?
-                  <span className="b-meta">09:15 ✓✓</span>
-                </div>
-                <div className="bubble b-in">
-                  📈 Laporan Mei 2026
-                  <br />• Total order: 1.284 (Rp 38,6 jt)
-                  <br />• Naik 18% dari April 📈
-                  <br />• Member aktif: 312 (+47)
-                  <br />• Repeat rate: 64%
-                  <br />• Top menu: Es Kopi Susu, Americano, Croissant
-                  <br />
-                  Mau saya kirim versi PDF lengkap?
-                  <span className="b-meta">09:15</span>
-                </div>
+                <h4>Aman &amp; Privat</h4>
+                <p>Sesuai UU PDP</p>
               </div>
-              <button className="replay-btn" data-replay>
-                ↻ Putar ulang
-              </button>
+              <div className="sw-mini">
+                <div className="sw-mic">
+                  <IconBolt />
+                </div>
+                <h4>Hemat Waktu</h4>
+                <p>Kelola bisnis cepat</p>
+              </div>
             </div>
           </div>
 
@@ -1006,59 +977,23 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div
-            style={{
-              maxWidth: "760px",
-              margin: "28px auto 0",
-              background: "#fff",
-              border: "1px solid var(--line)",
-              borderRadius: "var(--radius)",
-              padding: "22px 24px",
-              boxShadow: "var(--shadow)",
-              display: "flex",
-              gap: "16px",
-              alignItems: "flex-start",
-            }}
-          >
-            <div
-              style={{
-                flexShrink: 0,
-                width: "42px",
-                height: "42px",
-                borderRadius: "11px",
-                background: "var(--accent-soft)",
-                color: "var(--accent)",
-                display: "grid",
-                placeItems: "center",
-                fontSize: "20px",
-              }}
-            >
-              🖥️
-            </div>
-            <div>
-              <div
-                style={{
-                  fontFamily: "var(--display)",
-                  fontWeight: 700,
-                  fontSize: "16px",
-                  marginBottom: "5px",
-                }}
-              >
+
+          {/* dashboard available — by request only */}
+          <div className="dash-band">
+            <div className="db-text">
+              <div className="db-h">
                 Butuh lebih lengkap? Dashboard tetap tersedia.
               </div>
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "var(--ink-soft)",
-                  margin: 0,
-                }}
-              >
+              <p>
                 WhatsApp cukup untuk operasional harian. Tapi kalau Anda mau
                 laporan penjualan mendetail, kelola puluhan menu sekaligus, atau
                 lihat analitik member, dashboard web lengkap siap kapan pun Anda
                 butuh. WhatsApp dulu, dashboard kalau perlu.
               </p>
             </div>
+            <span className="db-badge">
+              <IconLock /> By Request Only
+            </span>
           </div>
         </div>
       </section>
