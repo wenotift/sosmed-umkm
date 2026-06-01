@@ -70,7 +70,7 @@
   header.nav{position:sticky;top:0;z-index:50;background:rgba(251,249,246,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
   .logo{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.03em}
-  .logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(145deg,var(--accent-2),var(--accent));display:grid;place-items:center;color:#fff;font-size:16px;box-shadow:0 2px 8px rgba(112,80,248,.35)}
+  .logo img{height:30px;width:auto;display:block}
   .nav-links{display:flex;gap:30px;align-items:center}
   .nav-links a{font-size:14.5px;color:var(--ink-soft);font-weight:500;transition:.15s}
   .nav-links a:hover{color:var(--ink)}

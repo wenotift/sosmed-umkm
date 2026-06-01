@@ -9,9 +9,9 @@ export default function Footer() {
             <Link href="/" className="logo" aria-label="SOSMED AI — Beranda">
               <img
                 src="/logo/sosmed-ai-logo-black-version.png"
-                alt="SOSMED AI"
-                width={130}
-                height={30}
+                alt="Sosmed AI"
+                width={1167}
+                height={379}
               />
             </Link>
             <p>
