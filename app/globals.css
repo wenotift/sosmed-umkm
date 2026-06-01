@@ -448,7 +448,7 @@
   footer{background:var(--bg);border-top:1px solid var(--line);padding:56px 0 34px}
   /* brand block sits full-width on top; link columns in a row below it */
   .foot-brand{margin-bottom:44px}
-  .foot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-bottom:40px}
+  .foot-grid{display:grid;grid-template-columns:repeat(3,max-content);justify-content:start;gap:72px;margin-bottom:40px}
   /* mobile: link columns stack to 2 across, left-aligned */
   @media(max-width:760px){
     .foot-grid{grid-template-columns:1fr 1fr;gap:34px 24px}
