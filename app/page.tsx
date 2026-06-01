@@ -675,7 +675,15 @@ export default function Home() {
             </div>
             <div className="f-visual">
               <div style={{ display: "flex", gap: "18px", alignItems: "center" }}>
-                <div className="qr"></div>
+                <div className="qr">
+                  <svg className="qr-svg" viewBox="0 0 64 64" aria-hidden="true">
+                    <rect width="64" height="64" fill="#fff" />
+                    <path fill="currentColor" d="M6 6h16v16H6zM42 6h16v16H42zM6 42h16v16H6z" />
+                    <path fill="#fff" d="M9 9h10v10H9zM45 9h10v10H45zM9 45h10v10H9z" />
+                    <path fill="currentColor" d="M11.5 11.5h5v5h-5zM47.5 11.5h5v5h-5zM11.5 47.5h5v5h-5z" />
+                    <path fill="currentColor" d="M28 8h4v4h-4zM36 8h4v4h-4zM28 16h4v4h-4zM32 24h4v4h-4zM8 28h4v4H8zM16 28h4v4h-4zM24 28h4v4h-4zM28 32h4v4h-4zM40 28h4v4h-4zM48 32h4v4h-4zM56 28h4v4h-4zM28 40h4v4h-4zM36 44h4v4h-4zM44 40h4v4h-4zM52 44h4v4h-4zM28 48h4v4h-4zM32 56h4v4h-4zM40 52h4v4h-4zM48 56h4v4h-4zM56 48h4v4h-4zM40 36h4v4h-4zM40 60h4v4h-4z" />
+                  </svg>
+                </div>
                 <div style={{ flex: 1 }}>
                   <div className="menu-item">
                     <span>Es Kopi Susu Gula Aren</span>
