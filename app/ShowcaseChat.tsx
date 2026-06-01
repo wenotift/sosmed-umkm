@@ -4,9 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Auto-playing WhatsApp chat mockup for the homepage "all-in-WhatsApp"
- * showcase. Lives inside the same dark iPhone bezel used by the product
- * page (see .sw-phone in globals.css, which mirrors .product-page .phone).
- * Numbers shown are illustrative demo data, not real results.
+ * showcase. Renders as a bare rounded card (.sw-screen in globals.css) —
+ * no phone bezel. Numbers shown are illustrative demo data, not real results.
  */
 
 type Msg =
@@ -95,80 +94,77 @@ export default function ShowcaseChat() {
   }, [messages, typing]);
 
   return (
-    <div className="sw-phone" aria-hidden="true">
-      <div className="sw-notch" />
-      <div className="sw-screen">
-        <div className="sw-bar">
-          <span className="sw-back">‹</span>
-          <div className="sw-av">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true">
-              <path d="M12 2c.7 4.2 2.8 6.3 7 7-4.2.7-6.3 2.8-7 7-.7-4.2-2.8-6.3-7-7 4.2-.7 6.3-2.8 7-7Z" />
-            </svg>
-          </div>
-          <div className="sw-meta">
-            <div className="sw-name">Sosmed AI Assistant</div>
-            <div className="sw-online">online</div>
-          </div>
-          <div className="sw-icons">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M16 10.5 21 7v10l-5-3.5z" />
-              <rect x="3" y="6" width="13" height="12" rx="2" />
-            </svg>
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" />
-            </svg>
-          </div>
+    <div className="sw-screen" aria-hidden="true">
+      <div className="sw-bar">
+        <span className="sw-back">‹</span>
+        <div className="sw-av">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true">
+            <path d="M12 2c.7 4.2 2.8 6.3 7 7-4.2.7-6.3 2.8-7 7-.7-4.2-2.8-6.3-7-7 4.2-.7 6.3-2.8 7-7Z" />
+          </svg>
         </div>
+        <div className="sw-meta">
+          <div className="sw-name">Sosmed AI Assistant</div>
+          <div className="sw-online">online</div>
+        </div>
+        <div className="sw-icons">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M16 10.5 21 7v10l-5-3.5z" />
+            <rect x="3" y="6" width="13" height="12" rx="2" />
+          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" />
+          </svg>
+        </div>
+      </div>
 
-        <div className="sw-chat" ref={bodyRef}>
-          {messages.map((m, i) => {
-            if (m.kind === "report") {
-              return (
-                <div key={i} className="sw-bub in">
-                  <ReportCard />
-                </div>
-              );
-            }
-            if (m.kind === "file") {
-              return (
-                <div key={i} className="sw-bub in sw-filebub">
-                  <span className="sw-doc">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#7018D8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-                      <path d="M14 3v5h5" />
-                    </svg>
-                  </span>
-                  <span className="sw-finfo">
-                    <b>Laporan Mei 2026.pdf</b>
-                    <span>245 KB</span>
-                  </span>
-                </div>
-              );
-            }
+      <div className="sw-chat" ref={bodyRef}>
+        {messages.map((m, i) => {
+          if (m.kind === "report") {
             return (
-              <div key={i} className={`sw-bub ${m.kind}`}>
-                {m.text}
-                <span className="sw-time">
-                  {m.time}
-                  {m.kind === "out" && <Ticks />}
+              <div key={i} className="sw-bub in">
+                <ReportCard />
+              </div>
+            );
+          }
+          if (m.kind === "file") {
+            return (
+              <div key={i} className="sw-bub in sw-filebub">
+                <span className="sw-doc">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#7018D8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                    <path d="M14 3v5h5" />
+                  </svg>
+                </span>
+                <span className="sw-finfo">
+                  <b>Laporan Mei 2026.pdf</b>
+                  <span>245 KB</span>
                 </span>
               </div>
             );
-          })}
-          {typing && (
-            <div className="sw-typing">
-              <span /><span /><span />
+          }
+          return (
+            <div key={i} className={`sw-bub ${m.kind}`}>
+              {m.text}
+              <span className="sw-time">
+                {m.time}
+                {m.kind === "out" && <Ticks />}
+              </span>
             </div>
-          )}
-        </div>
-
-        <div className="sw-input">
-          <div className="sw-field">Ketik pesan</div>
-          <div className="sw-send">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="#fff" aria-hidden="true">
-              <path d="M3 3l18 9-18 9 4-9-4-9z" />
-            </svg>
+          );
+        })}
+        {typing && (
+          <div className="sw-typing">
+            <span /><span /><span />
           </div>
+        )}
+      </div>
+
+      <div className="sw-input">
+        <div className="sw-field">Ketik pesan</div>
+        <div className="sw-send">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="#fff" aria-hidden="true">
+            <path d="M3 3l18 9-18 9 4-9-4-9z" />
+          </svg>
         </div>
       </div>
     </div>

@@ -887,39 +887,38 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+                <div className="sw-strip">
+                  <div className="sw-mini">
+                    <div className="sw-mic">
+                      <IconMessage />
+                    </div>
+                    <h4>WhatsApp First</h4>
+                    <p>100% di WhatsApp</p>
+                  </div>
+                  <div className="sw-mini">
+                    <div className="sw-mic">
+                      <IconSpark />
+                    </div>
+                    <h4>AI Assistant</h4>
+                    <p>Jawaban instan</p>
+                  </div>
+                  <div className="sw-mini">
+                    <div className="sw-mic">
+                      <IconLock />
+                    </div>
+                    <h4>Aman &amp; Privat</h4>
+                    <p>Sesuai UU PDP</p>
+                  </div>
+                  <div className="sw-mini">
+                    <div className="sw-mic">
+                      <IconBolt />
+                    </div>
+                    <h4>Hemat Waktu</h4>
+                    <p>Kelola bisnis cepat</p>
+                  </div>
+                </div>
               </div>
               <ShowcaseChat />
-            </div>
-
-            <div className="sw-strip">
-              <div className="sw-mini">
-                <div className="sw-mic">
-                  <IconMessage />
-                </div>
-                <h4>WhatsApp First</h4>
-                <p>100% di WhatsApp</p>
-              </div>
-              <div className="sw-mini">
-                <div className="sw-mic">
-                  <IconSpark />
-                </div>
-                <h4>AI Assistant</h4>
-                <p>Jawaban instan</p>
-              </div>
-              <div className="sw-mini">
-                <div className="sw-mic">
-                  <IconLock />
-                </div>
-                <h4>Aman &amp; Privat</h4>
-                <p>Sesuai UU PDP</p>
-              </div>
-              <div className="sw-mini">
-                <div className="sw-mic">
-                  <IconBolt />
-                </div>
-                <h4>Hemat Waktu</h4>
-                <p>Kelola bisnis cepat</p>
-              </div>
             </div>
           </div>
 
