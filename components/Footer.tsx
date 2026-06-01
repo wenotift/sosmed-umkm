@@ -46,9 +46,7 @@ export default function Footer() {
             <p>
               <strong>WA Anda, AI Assistant Bisnis Anda.</strong>
               <br />
-              Platform AI-native yang hadir langsung di WhatsApp Anda. Memahami
-              konteks, membantu pelanggan, dan menyelesaikan berbagai tugas
-              bisnis sehari-hari melalui percakapan yang alami.
+              AI-native yang hadir langsung di WhatsApp Anda.
             </p>
             <div className="foot-social">
               {SOCIALS.map((s) => (
@@ -70,7 +68,7 @@ export default function Footer() {
               ))}
             </div>
             <p className="foot-close">
-              Bekerja seperti asisten. Beroperasi seperti AI.
+              Bekerja seperti asisten. Beroperasi dengan AI.
             </p>
           </div>
 
