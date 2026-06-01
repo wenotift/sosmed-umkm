@@ -20,7 +20,7 @@
     --body:'Plus Jakarta Sans',sans-serif;
     /* shared heading type scale — one source of truth so section
        headings can't drift to different sizes again (esp. on mobile) */
-    --fs-h1:clamp(28px,5.8vw,48px);   /* hero — largest */
+    --fs-h1:clamp(32px,7vw,58px);     /* hero — the one intentional exception: largest heading on the page */
     --fs-h2:clamp(23px,3.2vw,36px);   /* every section heading */
   }
   *{margin:0;padding:0;box-sizing:border-box}
