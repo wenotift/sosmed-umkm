@@ -172,10 +172,12 @@ export default function Nav() {
           <div className="nav-cta">
             {/* desktop auth buttons (hidden on mobile — also in the mobile menu) */}
             <div className="nav-auth">
-              {/* TODO: /login route not built yet — placeholder link */}
-              <Link href="#" className="btn btn-ghost btn-sm">
-                Login
-              </Link>
+              {/* TODO: set business WhatsApp — replace href with
+                  https://wa.me/<NUMBER>?text=Halo%20Sosmed%20AI%2C%20saya%20mau%20tanya%20soal%20produk.
+                  and add target="_blank" rel="noopener" */}
+              <a href="#" className="btn btn-ghost btn-sm">
+                Chat Kami
+              </a>
               {/* TODO: /daftar route not built yet — placeholder link */}
               <Link href="#" className="btn btn-primary btn-sm">
                 Daftar
@@ -236,10 +238,12 @@ export default function Nav() {
           </div>
         </nav>
         <div className="drawer-cta">
-          {/* TODO: /login route not built yet — placeholder link */}
-          <Link href="#" className="btn btn-ghost" onClick={closeMenu}>
-            Login
-          </Link>
+          {/* TODO: set business WhatsApp — replace href with
+              https://wa.me/<NUMBER>?text=Halo%20Sosmed%20AI%2C%20saya%20mau%20tanya%20soal%20produk.
+              and add target="_blank" rel="noopener" */}
+          <a href="#" className="btn btn-ghost" onClick={closeMenu}>
+            Chat Kami
+          </a>
           {/* TODO: /daftar route not built yet — placeholder link */}
           <Link href="#" className="btn btn-primary" onClick={closeMenu}>
             Daftar
