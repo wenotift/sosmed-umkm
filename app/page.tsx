@@ -335,7 +335,7 @@ export default function Home() {
             Terima order otomatis 24 jam dan bikin pelanggan balik lagi dengan
             sistem poin — semua jalan sendiri lewat WhatsApp. Anda kelola
             semuanya dari chat juga: tanpa dashboard, tanpa aplikasi, tanpa
-            login. Dibuat khusus untuk kafe dan restoran kecil Indonesia.
+            login.
           </p>
           <div className="hero-cta reveal d4">
             <button className="btn btn-soon" disabled>
