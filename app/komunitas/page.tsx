@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import SoonPage from "@/components/SoonPage";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Komunitas",
-  description: "Komunitas SOSMED AI — kumpulan pemilik bisnis F&B Indonesia yang pakai asisten WhatsApp AI. Segera hadir.",
-  robots: { index: false },
-};
+  description: "Halaman Komunitas SOSMED AI — segera hadir.",
+  path: "/komunitas",
+  noindex: true,
+});
 
 export default function Page() {
   return <SoonPage title="Komunitas" />;

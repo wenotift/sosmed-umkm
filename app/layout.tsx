@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | SOSMED AI",
   },
   description:
-    "SOSMED AI mengubah WhatsApp jadi asisten bisnis otomatis untuk coffee shop dan restoran Indonesia. Terima order 24 jam, balas pelanggan, dan bikin mereka balik lagi dengan sistem poin | semua lewat WhatsApp, tanpa aplikasi atau login. Pakai WhatsApp Business API resmi Meta.",
+    "SOSMED AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
   keywords: [
     "bot WhatsApp coffee shop",
     "order otomatis WhatsApp",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "SOSMED AI",
     title: "SOSMED AI | WhatsApp Anda, AI Assistant Bisnis Anda",
     description:
-      "Asisten WhatsApp AI-native untuk bisnis F&B Indonesia — terima order, jaga pelanggan, dan kelola bisnis, semua otomatis lewat WhatsApp.",
+      "SOSMED AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
     images: [
       {
         url: "/images/og-image-umkm-sosmed-ai.jpg",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SOSMED AI | WhatsApp Anda, AI Assistant Bisnis Anda",
     description:
-      "Asisten WhatsApp AI untuk bisnis F&B Indonesia. Order otomatis, loyalty, kelola bisnis — semua lewat WhatsApp.",
+      "SOSMED AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
     images: ["/images/og-image-umkm-sosmed-ai.jpg"],
   },
   // Stay OUT of Google search for now (noindex), but follow links.
