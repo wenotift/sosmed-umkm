@@ -18,6 +18,10 @@
     --maxw:1180px;
     --display:'Inter',sans-serif;
     --body:'Plus Jakarta Sans',sans-serif;
+    /* shared heading type scale — one source of truth so section
+       headings can't drift to different sizes again (esp. on mobile) */
+    --fs-h1:clamp(28px,5.8vw,48px);   /* hero — largest */
+    --fs-h2:clamp(23px,3.2vw,36px);   /* every section heading */
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -128,7 +132,7 @@
     padding:7px 14px;border-radius:999px;margin-bottom:26px;
   }
   .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-  .hero h1{font-size:clamp(26px,5.4vw,48px);font-weight:800;max-width:15ch;margin:0 auto 20px;color:#3A3330}
+  .hero h1{font-size:var(--fs-h1);font-weight:800;max-width:15ch;margin:0 auto 20px;color:#3A3330}
   .hero h1 .hl{color:var(--accent);position:relative;white-space:nowrap}
   .hero p.sub{font-size:clamp(15px,1.6vw,17px);color:var(--ink-soft);max-width:52ch;margin:0 auto 30px}
   .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
@@ -327,9 +331,11 @@
   /* ===== section base ===== */
   section{padding:72px 0}
   .eyebrow{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;text-align:center}
-  .sec-title{font-size:clamp(25px,3.2vw,36px);font-weight:800;text-align:center;max-width:20ch;margin:0 auto 16px}
-  /* single-line heading: never wrap; font scales down on narrow screens so it still fits */
-  .sec-title-1line{max-width:none;white-space:nowrap;font-size:clamp(17px,4.7vw,36px)}
+  .sec-title{font-size:var(--fs-h2);font-weight:800;text-align:center;max-width:20ch;margin:0 auto 16px}
+  /* single-line heading: stays one line on desktop; on narrow screens it
+     wraps (instead of shrinking) so it keeps the shared section-heading size */
+  .sec-title-1line{max-width:none;white-space:nowrap}
+  @media(max-width:600px){ .sec-title-1line{white-space:normal} }
   /* forced two-line headings (via <br/>): drop the 20ch cap so each line holds on desktop */
   .sec-title-2line{max-width:none}
   .sec-lead{text-align:center;color:var(--ink-soft);max-width:56ch;margin:0 auto 50px;font-size:15.5px}
@@ -445,7 +451,7 @@
   .cta-close > *{position:relative;z-index:1}
   .ctac-badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.04em;color:#E8DEFB;background:rgba(255,255,255,.07);border:1px solid rgba(200,128,248,.3);border-radius:999px;padding:7px 14px;margin-bottom:22px;backdrop-filter:blur(4px)}
   .cb-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.25)}
-  .cta-close h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:clamp(25px,3.2vw,36px);line-height:1.15;color:#fff;margin:0 auto 18px;max-width:none}
+  .cta-close h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:var(--fs-h2);line-height:1.15;color:#fff;margin:0 auto 18px;max-width:none}
   .cta-close p{font-size:16px;color:#C9BDE0;line-height:1.6;max-width:56ch;margin:0 auto 30px}
   .cta-close .btn-ig{background:#fff;color:var(--ink);font-weight:600}
   .cta-close .btn-ig svg{stroke:var(--ink)}
@@ -464,7 +470,7 @@
   .pkg-brand{display:inline-flex;align-items:center;gap:12px;margin-bottom:40px}
   .pkg-logo-img{height:26px;width:auto;display:block}
   .pkg-tag{font-size:10.5px;font-weight:700;color:#fff;background:rgba(255,255,255,.16);border-radius:6px;padding:3px 8px;letter-spacing:.02em}
-  .pkg-left h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,2.8vw,34px);line-height:1.12;color:#fff;letter-spacing:-.02em;margin-bottom:14px}
+  .pkg-left h2{font-family:var(--display);font-weight:700;font-size:var(--fs-h2);line-height:1.12;color:#fff;letter-spacing:-.02em;margin-bottom:14px}
   .pkg-sub{font-size:14px;color:rgba(255,255,255,.72);line-height:1.5;margin-bottom:30px;max-width:34ch}
   .pkg-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--ink);font-family:var(--body);font-weight:600;font-size:14px;border-radius:11px;padding:12px 20px;text-decoration:none;transition:.2s}
   .pkg-btn:hover{transform:translateY(-1px);background:var(--accent-soft)}
@@ -477,7 +483,6 @@
     .pkg-card{grid-template-columns:1fr;gap:34px;padding:36px 28px}
     .pkg-card::after{-webkit-mask-image:linear-gradient(180deg,transparent 30%,#000);mask-image:linear-gradient(180deg,transparent 30%,#000)}
     .pkg-brand{margin-bottom:20px}
-    .pkg-left h2{font-size:26px}
     .pkg-grid{gap:24px}
   }
   @media(max-width:480px){
@@ -833,7 +838,7 @@
   .price-banner::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:46px 46px;opacity:.55;-webkit-mask-image:linear-gradient(90deg,transparent,#000 35%);mask-image:linear-gradient(90deg,transparent,#000 35%);pointer-events:none}
   .price-banner .pb-left{position:relative;z-index:2;padding:52px 56px}
   .price-banner .pb-eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
-  .price-banner .pb-left h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:clamp(30px,3.4vw,44px);line-height:1.08;color:var(--ink)}
+  .price-banner .pb-left h2{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:var(--fs-h2);line-height:1.08;color:var(--ink)}
   .price-banner .pb-left h2 .small{display:block;font-size:.62em;font-weight:700;color:var(--ink-soft);letter-spacing:-.02em;margin-top:2px}
   .price-banner .pb-body{font-size:15px;color:var(--ink-soft);line-height:1.55;margin:18px 0 28px;max-width:42ch}
   .price-banner .pb-btns{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
