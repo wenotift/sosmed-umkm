@@ -829,13 +829,24 @@ export default function Home() {
       {/* NO DASHBOARD / ALL IN WHATSAPP */}
       <section id="tanpa-dashboard" className="nodash wa-showcase">
         <div className="wrap">
+          <div className="eyebrow">Tanpa Aplikasi, Tanpa Login</div>
+          <h2 className="sec-title">
+            Semua di WhatsApp. Baik customer maupun Anda.
+          </h2>
+          <p className="sec-lead">
+            Pemilik usaha nggak perlu buka dashboard, nggak perlu install
+            aplikasi atau hapal sistem apapun. Kelola seluruh aktivitas bisnis
+            dengan chat di WhatsApp.
+          </p>
+
           {/* showcase: all in whatsapp */}
           <div className="sw-card">
             <div className="sw-top">
               <div className="sw-content">
                 <h2 className="sw-title">
-                  Anda sudah jago pakai WhatsApp.{" "}
-                  <span className="sw-grad">Itu aja cukup.</span>
+                  Anda sudah jago pakai
+                  <br />
+                  WhatsApp. <span className="sw-grad">Itu aja cukup.</span>
                 </h2>
                 <p className="sw-sub">
                   Kebanyakan tools bisnis maksa Anda belajar dashboard rumit,
