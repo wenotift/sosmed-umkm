@@ -42,10 +42,30 @@ export default function Nav() {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const ddRef = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<number | null>(null);
 
   const isResourceActive = RESOURCES.some((r) => r.href === pathname);
 
-  // lock body scroll while the drawer is open
+  // ----- desktop dropdown: hover-intent open/close -----
+  const openResources = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setResourcesOpen(true);
+  };
+  // short delay so moving the cursor across the gap to the panel doesn't flicker
+  const scheduleClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => setResourcesOpen(false), 150);
+  };
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
+  }, []);
+
+  // lock body scroll while the mobile menu is open
   useEffect(() => {
     document.body.classList.toggle("menu-lock", mobileOpen);
     return () => document.body.classList.remove("menu-lock");
@@ -70,7 +90,7 @@ export default function Nav() {
     };
   }, [resourcesOpen]);
 
-  // Escape closes the mobile drawer
+  // Escape closes the mobile menu
   useEffect(() => {
     if (!mobileOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -80,17 +100,17 @@ export default function Nav() {
     return () => document.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
-  const closeDrawer = () => {
+  const closeMenu = () => {
     setMobileOpen(false);
     setMobileResourcesOpen(false);
   };
 
   return (
     <>
-      {/* NAV */}
+      {/* NAV — fixed/sticky on top; logo + burger always visible */}
       <header className="nav">
         <div className="wrap nav-inner">
-          <Link href="/" className="logo" aria-label="SOSMED AI — Beranda">
+          <Link href="/" className="logo" aria-label="Sosmed AI - Beranda">
             <img
               src="/logo/sosmed-ai-logo-black-version.png"
               alt="Sosmed AI"
@@ -109,13 +129,24 @@ export default function Nav() {
                 {m.label}
               </Link>
             ))}
-            <div className="nav-dropdown" ref={ddRef}>
+            <div
+              className="nav-dropdown"
+              ref={ddRef}
+              onMouseEnter={openResources}
+              onMouseLeave={scheduleClose}
+              onFocus={openResources}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                  setResourcesOpen(false);
+                }
+              }}
+            >
               <button
                 type="button"
                 className={`nav-dd-btn${isResourceActive ? " active" : ""}`}
                 aria-haspopup="true"
                 aria-expanded={resourcesOpen}
-                onClick={() => setResourcesOpen((v) => !v)}
+                onClick={openResources}
               >
                 Resources <Chevron className="chev" />
               </button>
@@ -139,11 +170,23 @@ export default function Nav() {
             </div>
           </nav>
           <div className="nav-cta">
+            {/* desktop auth buttons (hidden on mobile — also in the mobile menu) */}
+            <div className="nav-auth">
+              {/* TODO: /login route not built yet — placeholder link */}
+              <Link href="#" className="btn btn-ghost btn-sm">
+                Login
+              </Link>
+              {/* TODO: /daftar route not built yet — placeholder link */}
+              <Link href="#" className="btn btn-primary btn-sm">
+                Daftar
+              </Link>
+            </div>
             <button
               type="button"
               className={`burger${mobileOpen ? " open" : ""}`}
               aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
               aria-expanded={mobileOpen}
+              aria-controls="mobileMenu"
               onClick={() => setMobileOpen((v) => !v)}
             >
               <span></span>
@@ -154,88 +197,53 @@ export default function Nav() {
         </div>
       </header>
 
-      {/* MOBILE MENU DRAWER */}
-      <div className={`mobile-menu${mobileOpen ? " open" : ""}`}>
-        <div className="scrim" onClick={closeDrawer}></div>
-        <div className="drawer">
-          <div className="drawer-top">
+      {/* MOBILE MENU — full-screen panel that drops BELOW the navbar */}
+      <div id="mobileMenu" className={`mobile-menu${mobileOpen ? " open" : ""}`}>
+        <nav className="drawer-links">
+          {MAIN.map((m) => (
             <Link
-              href="/"
-              className="logo"
-              onClick={closeDrawer}
-              aria-label="SOSMED AI — Beranda"
+              key={m.href}
+              href={m.href}
+              onClick={closeMenu}
+              className={pathname === m.href ? "active" : undefined}
+              aria-current={pathname === m.href ? "page" : undefined}
             >
-              <img
-                src="/logo/sosmed-ai-logo-black-version.png"
-                alt="Sosmed AI"
-                width={1167}
-                height={379}
-              />
+              {m.label}
             </Link>
-            <button
-              type="button"
-              className="drawer-close"
-              onClick={closeDrawer}
-              aria-label="Tutup menu"
-            >
-              ×
-            </button>
-          </div>
-          <nav className="drawer-links">
-            {MAIN.map((m) => (
-              <Link
-                key={m.href}
-                href={m.href}
-                onClick={closeDrawer}
-                className={pathname === m.href ? "active" : undefined}
-                aria-current={pathname === m.href ? "page" : undefined}
-              >
-                {m.label}
-              </Link>
-            ))}
-            <button
-              type="button"
-              className="drawer-acc-btn"
-              aria-expanded={mobileResourcesOpen}
-              onClick={() => setMobileResourcesOpen((v) => !v)}
-            >
-              Resources <Chevron className="chev" />
-            </button>
-            <div className={`drawer-acc${mobileResourcesOpen ? " open" : ""}`}>
-              <div className="drawer-acc-inner">
-                {RESOURCES.map((r) => (
-                  <Link
-                    key={r.href}
-                    href={r.href}
-                    className={`drawer-sub${
-                      pathname === r.href ? " active" : ""
-                    }`}
-                    onClick={closeDrawer}
-                    aria-current={pathname === r.href ? "page" : undefined}
-                  >
-                    {r.label}
-                  </Link>
-                ))}
-              </div>
+          ))}
+          <button
+            type="button"
+            className="drawer-acc-btn"
+            aria-expanded={mobileResourcesOpen}
+            onClick={() => setMobileResourcesOpen((v) => !v)}
+          >
+            Resources <Chevron className="chev" />
+          </button>
+          <div className={`drawer-acc${mobileResourcesOpen ? " open" : ""}`}>
+            <div className="drawer-acc-inner">
+              {RESOURCES.map((r) => (
+                <Link
+                  key={r.href}
+                  href={r.href}
+                  className={`drawer-sub${pathname === r.href ? " active" : ""}`}
+                  onClick={closeMenu}
+                  aria-current={pathname === r.href ? "page" : undefined}
+                >
+                  {r.label}
+                </Link>
+              ))}
             </div>
-          </nav>
-          <div className="drawer-cta">
-            <button
-              className="btn btn-soon"
-              disabled
-              style={{ width: "100%", justifyContent: "center" }}
-            >
-              <span className="dot"></span> Segera Hadir
-            </button>
-            <a
-              className="btn btn-ghost"
-              href="https://www.instagram.com/sosmed.io"
-              target="_blank"
-              rel="noopener"
-            >
-              Ikuti di Instagram
-            </a>
           </div>
+        </nav>
+        <div className="drawer-cta">
+          {/* TODO: /login route not built yet — placeholder link */}
+          <Link href="#" className="btn btn-ghost" onClick={closeMenu}>
+            Login
+          </Link>
+          {/* TODO: /daftar route not built yet — placeholder link */}
+          <Link href="#" className="btn btn-primary" onClick={closeMenu}>
+            Daftar
+          </Link>
         </div>
       </div>
     </>

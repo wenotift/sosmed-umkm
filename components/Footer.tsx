@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div className="foot-brand">
-            <Link href="/" className="logo" aria-label="SOSMED AI — Beranda">
+            <Link href="/" className="logo" aria-label="Sosmed AI - Beranda">
               <img
                 src="/logo/sosmed-ai-logo-black-version.png"
                 alt="Sosmed AI"
