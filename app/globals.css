@@ -153,18 +153,19 @@
     background:radial-gradient(ellipse at center, rgba(160,80,248,.22), transparent 70%);
     filter:blur(40px);
   }
-  .hv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  .hv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
   @media(max-width:760px){.hv-grid{grid-template-columns:1fr}}
 
   .phone{
     background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
     box-shadow:var(--shadow-xl);overflow:hidden;
+    display:flex;flex-direction:column;
   }
   .wa-top{background:#075E54;color:#fff;padding:14px 16px;display:flex;align-items:center;gap:11px}
   .wa-av{width:36px;height:36px;border-radius:50%;background:#A050F8;display:grid;place-items:center;font-weight:700;font-size:14px;font-family:var(--display)}
   .wa-name{font-weight:600;font-size:14.5px;line-height:1.2}
   .wa-status{font-size:11px;opacity:.8}
-  .wa-body{padding:18px 14px;background:#ECE5DD;display:flex;flex-direction:column;gap:10px;height:360px;overflow-y:auto}
+  .wa-body{padding:18px 14px;background:#ECE5DD;display:flex;flex-direction:column;gap:10px;flex:1;min-height:360px;overflow-y:auto}
   .bubble{max-width:80%;padding:9px 12px;border-radius:12px;font-size:13.5px;line-height:1.45;box-shadow:0 1px 1px rgba(0,0,0,.06)}
   .b-in{background:#fff;align-self:flex-start;border-top-left-radius:3px}
   .b-out{background:#DCF8C6;align-self:flex-end;border-top-right-radius:3px}
