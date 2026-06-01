@@ -354,14 +354,58 @@
   .sw-mini .sw-mic svg{width:22px;height:22px}
   .sw-mini h4{font-family:var(--display);font-weight:700;font-size:14.5px;margin-bottom:2px}
   .sw-mini p{font-size:12.5px;color:var(--ink-soft)}
-  /* sides + dash band share the wrap width with the card */
-  .wa-showcase .sides{max-width:none;margin:0 0 22px}
-  .wa-showcase .dash-band{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;box-shadow:var(--shadow)}
-  .wa-showcase .dash-band .db-text{flex:1;min-width:240px}
-  .wa-showcase .dash-band .db-h{font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:5px}
-  .wa-showcase .dash-band .db-text p{font-size:14px;color:var(--ink-soft);margin:0}
-  .db-badge{display:inline-flex;align-items:center;gap:7px;flex-shrink:0;background:var(--accent-soft);color:var(--accent-ink);font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:9px 15px;border-radius:999px}
-  .db-badge svg{width:13px;height:13px}
+  /* command cards (ported from sosmed-whatsapp-dua-sisi.html) — share wrap width with the card */
+  .wa-showcase .cmd-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px}
+  .wa-showcase .cmd-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;box-shadow:0 12px 36px -18px rgba(112,24,216,.16)}
+  .wa-showcase .cmd-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .wa-showcase .cmd-hic{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;flex-shrink:0}
+  .wa-showcase .cmd-hic.cust{background:var(--green-soft)}
+  .wa-showcase .cmd-hic.cust svg{stroke:var(--green)}
+  .wa-showcase .cmd-hic.own{background:var(--accent)}
+  .wa-showcase .cmd-hic.own svg{stroke:#fff}
+  .wa-showcase .cmd-hic svg{width:26px;height:26px;fill:none}
+  .wa-showcase .cmd-htx{flex:1}
+  .wa-showcase .cmd-htx h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em}
+  .wa-showcase .cmd-htx p{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .wa-showcase .cmd-badge{font-size:11px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);border-radius:8px;padding:5px 10px;white-space:nowrap}
+  .wa-showcase .cmd-row{display:grid;grid-template-columns:auto 116px 1fr;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid #F4EFFB}
+  .wa-showcase .cmd-row:last-child{border-bottom:none}
+  .wa-showcase .cmd-ic{width:30px;height:30px;border-radius:8px;background:#F7F3FD;display:grid;place-items:center}
+  .wa-showcase .cmd-ic svg{width:16px;height:16px;stroke:var(--accent);fill:none}
+  .wa-showcase .cmd-pill{font-family:var(--body);font-weight:700;font-size:13px;color:var(--accent-ink);background:var(--accent-soft);border-radius:9px;padding:7px 11px;text-align:center}
+  .wa-showcase .cmd-desc{font-size:13.5px;color:var(--ink);position:relative;padding-left:14px}
+  .wa-showcase .cmd-desc::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:18px;background:var(--line)}
+  /* dashboard band (ported) */
+  .wa-showcase .dash-band{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:36px 40px;box-shadow:0 12px 36px -18px rgba(112,24,216,.16);display:grid;grid-template-columns:.92fr 1.08fr;gap:40px;align-items:center}
+  .wa-showcase .dash-left h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;font-size:clamp(24px,2.6vw,30px);line-height:1.15;margin-bottom:14px}
+  .wa-showcase .dash-left h2 .grad{background:linear-gradient(135deg,var(--accent-2),var(--accent-ink));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .wa-showcase .dash-left p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:22px;max-width:48ch}
+  .wa-showcase .db-req{display:inline-flex;align-items:center;gap:7px;background:var(--accent-soft);color:var(--accent-ink);font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:9px 16px}
+  .wa-showcase .db-req svg{width:14px;height:14px;stroke:var(--accent-ink);fill:none}
+  .wa-showcase .db-mock{position:relative}
+  .wa-showcase .dbm-win{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 22px 50px -20px rgba(112,24,216,.3);display:grid;grid-template-columns:46px 1fr}
+  .wa-showcase .dbm-bar{grid-column:1 / -1;display:flex;gap:6px;padding:11px 14px;border-bottom:1px solid var(--line)}
+  .wa-showcase .dbm-bar span{width:9px;height:9px;border-radius:50%;background:#E2DAF0}
+  .wa-showcase .dbm-side{background:#1f1733;display:flex;flex-direction:column;align-items:center;gap:16px;padding:18px 0}
+  .wa-showcase .dbm-side i{width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,.12);display:block}
+  .wa-showcase .dbm-side i.on{background:var(--accent)}
+  .wa-showcase .dbm-main{padding:18px}
+  .wa-showcase .dbm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+  .wa-showcase .dbm-stat{background:#FAF8FF;border:1px solid #F0EAFA;border-radius:11px;padding:11px 12px}
+  .wa-showcase .dbm-stat .l{font-size:9px;color:var(--ink-soft);margin-bottom:4px}
+  .wa-showcase .dbm-stat .v{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .wa-showcase .dbm-stat .d{font-size:9.5px;color:var(--green);font-weight:600;margin-top:2px}
+  .wa-showcase .dbm-chart .ct{font-size:11px;font-weight:700;margin-bottom:8px}
+  .wa-showcase .dbm-chart svg{width:100%;height:auto;display:block}
+  .wa-showcase .db-float{position:absolute;right:-14px;bottom:24px;width:62px;height:62px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 16px 34px -12px rgba(112,24,216,.35)}
+  .wa-showcase .db-float svg{width:28px;height:28px;stroke:var(--accent-ink);fill:none}
+  @media(max-width:860px){
+    .wa-showcase .cmd-grid{grid-template-columns:1fr;gap:16px}
+    .wa-showcase .cmd-card{padding:22px}
+    .wa-showcase .cmd-row{grid-template-columns:auto 104px 1fr;gap:10px}
+    .wa-showcase .dash-band{grid-template-columns:1fr;gap:28px;padding:28px 22px}
+    .wa-showcase .db-float{display:none}
+  }
 
   /* bare rounded WhatsApp card (no phone bezel) */
   .sw-screen{width:300px;max-width:100%;margin:0 auto;background:#E5DDD5;border:1px solid #F0E9FB;border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden;height:496px;display:flex;flex-direction:column}

@@ -922,88 +922,144 @@ export default function Home() {
             </div>
           </div>
 
-          {/* two sides */}
-          <div className="sides">
-            <div className="side-card side-cust">
-              <div className="side-head">
-                <div className="side-ic"><IconMessage /></div>
-                <div>
+          {/* command cards — Sisi Customer / Sisi Owner */}
+          <div className="cmd-grid">
+            <div className="cmd-card">
+              <div className="cmd-head">
+                <div className="cmd-hic cust">
+                  <svg viewBox="0 0 24 24" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 11.5a8.4 8.4 0 0 1-12 7.6L3 21l1.9-6A8.4 8.4 0 1 1 21 11.5z" />
+                  </svg>
+                </div>
+                <div className="cmd-htx">
                   <h3>Sisi Customer</h3>
-                  <div className="side-sub">Pesan &amp; cek lewat WhatsApp</div>
+                  <p>Pesan &amp; cek lewat WhatsApp</p>
                 </div>
+                <span className="cmd-badge">Customer First</span>
               </div>
-              <ul className="side-list">
-                <li>
-                  <span className="cmd">&quot;menu&quot;</span> Lihat menu &amp;
-                  harga terkini
-                </li>
-                <li>
-                  <span className="cmd">&quot;pesan…&quot;</span> Order langsung
-                  dari chat
-                </li>
-                <li>
-                  <span className="cmd">&quot;cek poin&quot;</span> Lihat saldo
-                  poin &amp; voucher
-                </li>
-                <li>
-                  <span className="cmd">&quot;daftar&quot;</span> Jadi member
-                  cukup ketik nama
-                </li>
-                <li>
-                  <span className="cmd">&quot;jam buka?&quot;</span> Info jam
-                  &amp; lokasi otomatis
-                </li>
-              </ul>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" /></svg></span>
+                <span className="cmd-pill">&quot;menu&quot;</span>
+                <span className="cmd-desc">Lihat menu &amp; harga terkini</span>
+              </div>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z" /></svg></span>
+                <span className="cmd-pill">&quot;pesan…&quot;</span>
+                <span className="cmd-desc">Order langsung dari chat</span>
+              </div>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" /><path d="M16 12h.01" /></svg></span>
+                <span className="cmd-pill">&quot;cek poin&quot;</span>
+                <span className="cmd-desc">Lihat saldo poin &amp; voucher</span>
+              </div>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 4-6 8-6s8 2 8 6" /></svg></span>
+                <span className="cmd-pill">&quot;daftar&quot;</span>
+                <span className="cmd-desc">Jadi member cukup ketik nama</span>
+              </div>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg></span>
+                <span className="cmd-pill">&quot;jam buka?&quot;</span>
+                <span className="cmd-desc">Info jam &amp; lokasi otomatis</span>
+              </div>
             </div>
-            <div className="side-card side-own">
-              <div className="side-head">
-                <div className="side-ic"><IconCoffee /></div>
-                <div>
-                  <h3>Sisi Owner</h3>
-                  <div className="side-sub">Kelola bisnis lewat WhatsApp</div>
+
+            <div className="cmd-card">
+              <div className="cmd-head">
+                <div className="cmd-hic own">
+                  <svg viewBox="0 0 24 24" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 9l1.5-5h15L21 9M3 9v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9M3 9h18M8 9v3a2 2 0 0 0 4 0 2 2 0 0 0 4 0V9" />
+                  </svg>
                 </div>
+                <div className="cmd-htx">
+                  <h3>Sisi Owner</h3>
+                  <p>Kelola bisnis lewat WhatsApp</p>
+                </div>
+                <span className="cmd-badge">Business Control</span>
               </div>
-              <ul className="side-list">
-                <li>
-                  <span className="cmd">&quot;order hari ini&quot;</span> Lihat
-                  order &amp; penjualan
-                </li>
-                <li>
-                  <span className="cmd">&quot;laporan harian&quot;</span>{" "}
-                  Ringkasan penjualan hari ini
-                </li>
-                <li>
-                  <span className="cmd">&quot;laporan bulanan&quot;</span>{" "}
-                  Performa bulan + tren &amp; PDF
-                </li>
-                <li>
-                  <span className="cmd">&quot;matiin [menu]&quot;</span>{" "}
-                  Nonaktifkan menu yang habis
-                </li>
-                <li>
-                  <span className="cmd">&quot;#1042 selesai&quot;</span> Tandai
-                  pesanan selesai
-                </li>
-              </ul>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="3" width="14" height="18" rx="2" /><path d="M9 7h6M9 11h6M9 15h4" /></svg></span>
+                <span className="cmd-pill">&quot;order hari ini&quot;</span>
+                <span className="cmd-desc">Lihat order &amp; penjualan</span>
+              </div>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20V4M4 20h16M8 16v-4M13 16V8M18 16v-7" /></svg></span>
+                <span className="cmd-pill">&quot;laporan harian&quot;</span>
+                <span className="cmd-desc">Ringkasan penjualan harian</span>
+              </div>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 18l5-5 3 3 7-7M21 9V4h-5" /></svg></span>
+                <span className="cmd-pill">&quot;laporan bulanan&quot;</span>
+                <span className="cmd-desc">Performa bulanan + tren &amp; PDF</span>
+              </div>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="10" rx="5" /><circle cx="8" cy="12" r="2.5" fill="currentColor" stroke="none" /></svg></span>
+                <span className="cmd-pill">&quot;matiin [menu]&quot;</span>
+                <span className="cmd-desc">Nonaktifkan menu yang habis</span>
+              </div>
+              <div className="cmd-row">
+                <span className="cmd-ic"><svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M8 12l3 3 5-6" /></svg></span>
+                <span className="cmd-pill">&quot;#1042 selesai&quot;</span>
+                <span className="cmd-desc">Tandai pesanan selesai</span>
+              </div>
             </div>
           </div>
 
-          {/* dashboard available — by request only */}
+          {/* dashboard band — available by request, with mockup */}
           <div className="dash-band">
-            <div className="db-text">
-              <div className="db-h">
-                Butuh lebih lengkap? Dashboard tetap tersedia.
-              </div>
+            <div className="dash-left">
+              <h2>
+                Butuh lebih lengkap?
+                <br />
+                <span className="grad">Dashboard tetap tersedia.</span>
+              </h2>
               <p>
                 WhatsApp cukup untuk operasional harian. Tapi kalau Anda mau
                 laporan penjualan mendetail, kelola puluhan menu sekaligus, atau
                 lihat analitik member, dashboard web lengkap siap kapan pun Anda
-                butuh. WhatsApp dulu, dashboard kalau perlu.
+                butuhkan. WhatsApp dulu, dashboard kalau perlu.
               </p>
+              <span className="db-req">
+                <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="5" y="11" width="14" height="10" rx="2" />
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                </svg>{" "}
+                By Request Only
+              </span>
             </div>
-            <span className="db-badge">
-              <IconLock /> By Request Only
-            </span>
+
+            <div className="db-mock">
+              <div className="dbm-win">
+                <div className="dbm-bar"><span></span><span></span><span></span></div>
+                <div className="dbm-side"><i className="on"></i><i></i><i></i><i></i><i></i></div>
+                <div className="dbm-main">
+                  <div className="dbm-stats">
+                    <div className="dbm-stat"><div className="l">Total Order</div><div className="v">1.284</div><div className="d">↑ 18%</div></div>
+                    <div className="dbm-stat"><div className="l">Pendapatan</div><div className="v">Rp 38,6 jt</div><div className="d">↑ 18%</div></div>
+                    <div className="dbm-stat"><div className="l">Member Aktif</div><div className="v">312</div><div className="d">(+47)</div></div>
+                  </div>
+                  <div className="dbm-chart">
+                    <div className="ct">Tren Penjualan</div>
+                    <svg viewBox="0 0 480 150" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="dbFill" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0" stopColor="#C880F8" stopOpacity=".28" />
+                          <stop offset="1" stopColor="#C880F8" stopOpacity="0" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M10 110 C 70 95, 90 70, 140 80 C 190 90, 210 45, 260 70 C 300 90, 320 55, 360 75 C 400 92, 430 40, 470 38 L470 140 L10 140 Z" fill="url(#dbFill)" />
+                      <path d="M10 110 C 70 95, 90 70, 140 80 C 190 90, 210 45, 260 70 C 300 90, 320 55, 360 75 C 400 92, 430 40, 470 38" fill="none" stroke="#A050F8" strokeWidth="2.5" strokeLinecap="round" />
+                      <circle cx="470" cy="38" r="4" fill="#A050F8" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div className="db-float">
+                <svg viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 20V4M4 20h16M8 16v-4M13 16V8M18 16v-7" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </section>
