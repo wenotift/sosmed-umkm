@@ -570,3 +570,41 @@
     .flip-word.in,.flip-word.out{animation:none}
     .flip-word.out{display:none}
   }
+
+  /* ===== /harga pricing page ===== */
+  .pricing-page .pricing-hero{padding:64px 0 8px;text-align:center}
+  .pricing-page .pricing-hero h1{font-size:clamp(30px,4.6vw,46px);font-weight:800;color:#3A3330;max-width:18ch;margin:0 auto 16px}
+  .pricing-page .pricing-hero .lead{font-size:clamp(15px,1.7vw,17px);color:var(--ink-soft);max-width:54ch;margin:0 auto 18px}
+  .pricing-page .pricing-hero .trust{display:inline-block;font-size:13px;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);border:1px solid #E3D5FE;padding:7px 14px;border-radius:999px}
+
+  /* billing toggle */
+  .bill-wrap{display:flex;justify-content:center;margin:0 auto 40px}
+  .bill-toggle{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;box-shadow:var(--shadow)}
+  .bill-toggle button{display:inline-flex;align-items:center;gap:8px;border:none;background:none;cursor:pointer;font-family:var(--body);font-size:14px;font-weight:600;color:var(--ink-soft);padding:9px 18px;border-radius:999px;transition:.18s}
+  .bill-toggle button.active{background:linear-gradient(145deg,var(--accent-2),var(--accent));color:#fff;box-shadow:0 2px 8px rgba(160,80,248,.3)}
+  .bill-toggle .save{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink)}
+  .bill-toggle button.active .save{background:rgba(255,255,255,.22);color:#fff}
+
+  /* plan cards on this page: button mid-card, include label, purple checks */
+  .pricing-page .price .btn{margin-top:18px}
+  .pricing-page .incl-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-top:6px}
+  .pricing-page .price ul{margin:12px 0 0}
+  .pricing-page .price li::before{color:var(--accent)}
+
+  /* cross-sell banner */
+  .xsell{max-width:1000px;margin:30px auto 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .xsell .xs-text{font-size:15px;color:var(--ink);font-weight:500;max-width:62ch;margin:0}
+  .xsell .xs-text b{font-weight:700}
+  .xsell .btn{flex-shrink:0}
+
+  /* comparison table groups + purple checks + Growth highlight */
+  .price-table thead th{text-align:center}
+  .price-table td:not(.feat-col){text-align:center}
+  .price-table .group-row td{text-align:left;background:var(--bg);font-family:var(--display);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);padding-top:18px;padding-bottom:10px}
+  .price-table td.us{background:var(--accent-soft)}
+  .price-table .chk{color:var(--accent);font-weight:700;font-size:16px}
+  .price-table .dash{color:var(--ink-soft);opacity:.45}
+  .price-table .soon-cell{display:inline-block;font-size:11.5px;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);padding:3px 9px;border-radius:999px}
+
+  /* faq accordion (state-driven; reuse .faq-* but reveal via .open) */
+  .pricing-page .faq-item.open .faq-a{max-height:320px}

@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
-import SoonPage from "@/components/SoonPage";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import PricingContent from "./PricingContent";
 
 export const metadata: Metadata = {
   title: "Harga",
-  robots: { index: false },
+  description:
+    "Harga transparan SOSMED AI untuk bisnis F&B Indonesia — satu harga, semua fitur, tanpa biaya tersembunyi. Mulai Rp 199.000/bulan, harga spesial founding user.",
 };
 
-export default function Page() {
-  return <SoonPage title="Harga" />;
+export default function HargaPage() {
+  return (
+    <>
+      <Nav />
+      <PricingContent />
+      <Footer />
+    </>
+  );
 }
