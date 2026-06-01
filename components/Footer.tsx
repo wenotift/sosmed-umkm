@@ -33,8 +33,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="wrap">
-        <div className="foot-grid">
-          <div className="foot-brand">
+        <div className="foot-brand">
             <Link href="/" className="logo" aria-label="Sosmed AI - Beranda">
               <img
                 src="/logo/sosmed-ai-logo-black-version.png"
@@ -65,8 +64,9 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div className="foot-col">
-            <h4>Produk</h4>
+          <div className="foot-grid">
+            <div className="foot-col">
+              <h4>Produk</h4>
             <Link href="/produk">Produk</Link>
             <Link href="/solusi">Solusi</Link>
             <Link href="/harga">Harga</Link>

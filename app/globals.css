@@ -444,13 +444,12 @@
 
   /* footer */
   footer{background:var(--bg);border-top:1px solid var(--line);padding:56px 0 34px}
-  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
-  /* mobile: brand block full-width on top, then link columns 2-up with the
-     last column (Perusahaan) full-width below; everything left-aligned */
+  /* brand block sits full-width on top; link columns in a row below it */
+  .foot-brand{margin-bottom:44px}
+  .foot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-bottom:40px}
+  /* mobile: link columns stack to 2 across, left-aligned */
   @media(max-width:760px){
-    .foot-grid{grid-template-columns:1fr 1fr;gap:34px 24px;text-align:left}
-    .foot-grid > .foot-brand{grid-column:1 / -1}
-    .foot-grid > .foot-col:last-child{grid-column:1 / -1}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:34px 24px}
     .foot-grid .foot-col h4{color:var(--ink)}
     .foot-brand .foot-social svg{width:22px;height:22px}
   }
