@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from "react";
 const MAIN = [
   { label: "Produk", href: "/produk" },
   { label: "Solusi", href: "/solusi" },
-  { label: "Harga", href: "/harga" },
   { label: "Partner", href: "/partner" },
 ];
 

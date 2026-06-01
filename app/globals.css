@@ -786,3 +786,16 @@
   .product-page .closing h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.035em;line-height:1.05;max-width:18ch;margin:0 auto 16px}
   .product-page .closing p{color:var(--ink-soft);font-size:18px;margin-bottom:28px}
   .product-page .closing-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  /* ===== homepage pricing banner (Harga left the nav) ===== */
+  .price-banner-sec{padding:20px 0 36px}
+  .price-banner{
+    background:linear-gradient(135deg,var(--accent-2),var(--accent-ink));
+    color:#fff;border-radius:var(--radius-lg);padding:30px 36px;box-shadow:var(--shadow-lg);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  }
+  .price-banner .pb-text h3{font-size:clamp(20px,2.4vw,26px);color:#fff;margin-bottom:6px;letter-spacing:-.02em}
+  .price-banner .pb-text p{font-size:15px;color:rgba(255,255,255,.85);margin:0;max-width:52ch}
+  .price-banner .pb-btn{flex-shrink:0;background:#fff;color:var(--accent-ink);font-family:var(--body);font-weight:700;font-size:15px;padding:12px 22px;border-radius:11px;white-space:nowrap;transition:.2s ease}
+  .price-banner .pb-btn:hover{background:var(--accent-soft)}
+  @media(max-width:600px){.price-banner{padding:26px 22px;flex-direction:column;align-items:flex-start}}

@@ -106,7 +106,7 @@ const faqPageLd = {
       name: "Apa itu SOSMED AI?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Asisten WhatsApp berbasis AI khusus untuk coffee shop dan restoran kecil. Bot kami terima order otomatis, balas pelanggan 24 jam, dan kelola sistem poin member — semua lewat WhatsApp yang sudah Anda pakai.",
+        text: "Asisten WhatsApp berbasis AI khusus untuk bisnis F&B kecil seperti kafe, restoran, dan warung. Bot kami terima order otomatis, balas pelanggan 24 jam, dan kelola sistem poin member, semua lewat WhatsApp yang sudah Anda pakai.",
       },
     },
     {
@@ -119,10 +119,10 @@ const faqPageLd = {
     },
     {
       "@type": "Question",
-      name: "Apakah nomor WhatsApp kafe saya aman?",
+      name: "Apakah nomor WhatsApp bisnis saya aman?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Sangat aman. Kami membangun di atas WhatsApp Business API — bukan tools bajakan yang minta scan QR — sehingga lebih stabil dan sesuai ketentuan WhatsApp. Nomor Anda lebih terjaga, dan bisa kirim promo dengan lebih tenang.",
+        text: "Sangat aman. Kami membangun di atas WhatsApp Business API, bukan tools bajakan yang minta scan QR. Jadi lebih stabil dan sesuai ketentuan WhatsApp, nomor Anda lebih terjaga, dan bisa kirim promo dengan lebih tenang.",
       },
     },
     {

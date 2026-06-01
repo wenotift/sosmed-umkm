@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
@@ -333,7 +334,7 @@ export default function Home() {
           </h1>
           <p className="sub reveal d3">
             Terima order otomatis 24 jam dan bikin pelanggan balik lagi dengan
-            sistem poin — semua jalan sendiri lewat WhatsApp. Anda kelola
+            sistem poin. Semuanya jalan sendiri lewat WhatsApp, dan Anda kelola
             semuanya dari chat juga: tanpa dashboard, tanpa aplikasi, tanpa
             login.
           </p>
@@ -483,7 +484,7 @@ export default function Home() {
       {/* PROBLEM */}
       <section className="problem">
         <div className="wrap">
-          <div className="eyebrow">Kenyataan Sehari-hari di Kafe</div>
+          <div className="eyebrow">Kenyataan Sehari-hari di Bisnis F&amp;B</div>
           <h2 className="sec-title">
             Berapa banyak order hilang karena chat nggak sempat dibales?
           </h2>
@@ -492,7 +493,7 @@ export default function Home() {
               <div className="x">✕</div>
               <p>
                 <b>Chat masuk pas lagi rame.</b> Pelanggan nanya menu, nunggu
-                lama, nggak dibales, pindah ke kafe sebelah.
+                lama, nggak dibales, akhirnya pindah ke tempat sebelah.
               </p>
             </div>
             <div className="prob">
@@ -507,20 +508,20 @@ export default function Home() {
               <p>
                 <b>Capek bales pertanyaan yang sama.</b> &quot;Buka jam
                 berapa?&quot;, &quot;ada apa aja?&quot;, &quot;berapa
-                totalnya?&quot; — berjam-jam tiap hari.
+                totalnya?&quot;, berjam-jam tiap hari.
               </p>
             </div>
             <div className="prob">
               <div className="x">✕</div>
               <p>
                 <b>Pelanggan dateng sekali, terus lupa.</b> Padahal 60–70% omzet
-                kafe dari pelanggan langganan.
+                bisnis F&amp;B datang dari pelanggan langganan.
               </p>
             </div>
           </div>
           <p className="prob-foot">
-            Rata-rata coffee shop kehilangan <b>Rp 2–4 juta per bulan</b> hanya
-            dari order yang nggak kebales. SOSMED AI menutup celah itu.
+            Rata-rata bisnis F&amp;B kehilangan <b>Rp 2–4 juta per bulan</b>{" "}
+            hanya dari order yang nggak kebales. SOSMED AI menutup celah itu.
           </p>
         </div>
       </section>
@@ -530,12 +531,12 @@ export default function Home() {
         <div className="wrap">
           <div className="eyebrow">Yang Anda Dapatkan</div>
           <h2 className="sec-title">
-            Satu sistem. Semua yang kafe Anda butuhkan.
+            Satu sistem. Semua yang bisnis Anda butuhkan.
           </h2>
           <p className="sec-lead">
-            Bukan sekadar chatbot. SOSMED AI adalah sistem lengkap — order, menu,
-            member, dan poin — yang jalan otomatis di WhatsApp yang sudah Anda
-            pakai tiap hari.
+            Bukan sekadar chatbot. SOSMED AI adalah sistem lengkap untuk order,
+            menu, member, dan poin yang jalan otomatis di WhatsApp yang sudah
+            Anda pakai tiap hari.
           </p>
 
           {/* f1 */}
@@ -545,9 +546,9 @@ export default function Home() {
               <h3>Balas pelanggan 24 jam, tanpa pegang HP terus.</h3>
               <p>
                 AI balas tanya menu, jam buka, dan terima order langsung dari
-                chat — bahasa Indonesia santai, ngerti pesanan kayak &quot;es
+                chat. Bahasa Indonesia santai, ngerti pesanan kayak &quot;es
                 kopi susu less sugar, gelas gede&quot;. Yang ribet baru
-                dialihkan ke barista Anda.
+                dialihkan ke staf Anda.
               </p>
               <div className="f-chips">
                 <span>24 Jam</span>
@@ -582,8 +583,8 @@ export default function Home() {
               <h3>Ganti menu JPG yang ribet di-update.</h3>
               <p>
                 Menu online yang bisa Anda ubah dalam 30 detik. Cetak QR untuk di
-                meja — pelanggan scan, lihat menu, pesan dari tempat duduk. Ganti
-                harga sekali, langsung berubah di mana-mana.
+                meja, pelanggan tinggal scan, lihat menu, lalu pesan dari tempat
+                duduk. Ganti harga sekali, langsung berubah di mana-mana.
               </p>
               <div className="f-chips">
                 <span>Update Instan</span>
@@ -620,12 +621,12 @@ export default function Home() {
           <div className="feature">
             <div className="f-text">
               <div className="f-kicker">03 · Sistem Poin &amp; Member</div>
-              <h3>Bikin pelanggan balik lagi — otomatis.</h3>
+              <h3>Bikin pelanggan balik lagi, otomatis.</h3>
               <p>
                 Setiap belanja Rp 1.000 dapat 1 poin. Kumpulin 100 poin, tukar
-                voucher Rp 5.000. Pelanggan daftar member langsung lewat WhatsApp
-                — cukup ketik nama, nggak perlu download aplikasi atau kartu
-                fisik.
+                voucher Rp 5.000. Pelanggan daftar member langsung lewat
+                WhatsApp, cukup ketik nama, nggak perlu download aplikasi atau
+                kartu fisik.
               </p>
               <div className="f-chips">
                 <span>1 Poin / Rp 1.000</span>
@@ -658,7 +659,7 @@ export default function Home() {
               <p>
                 Order baru langsung masuk ke WhatsApp Anda dengan notifikasi.
                 Chat bot Anda buat lihat order hari ini, tandai pesanan selesai,
-                atau cek penjualan — semua dari chat, nggak perlu buka aplikasi
+                atau cek penjualan. Semua dari chat, nggak perlu buka aplikasi
                 atau laptop.
               </p>
               <div className="f-chips">
@@ -702,7 +703,7 @@ export default function Home() {
         <div className="wrap">
           <div className="eyebrow">Kenapa SOSMED AI</div>
           <h2 className="sec-title">
-            Bukan yang termurah. Yang paling pas untuk coffee shop.
+            Bukan yang termurah. Yang paling pas untuk bisnis F&amp;B.
           </h2>
           <div className="why-grid" style={{ marginTop: "14px" }}>
             <div className="why-card">
@@ -710,17 +711,17 @@ export default function Home() {
               <h3>Khusus F&amp;B</h3>
               <p>
                 Bukan tools generik untuk semua usaha. Tiap fitur dirancang untuk
-                cara kerja kafe: varian menu (es/panas, less sugar), QR meja,
-                poin untuk pelanggan langganan.
+                cara kerja bisnis F&amp;B: varian menu (ukuran, topping, level
+                pedas), QR meja, poin untuk pelanggan langganan.
               </p>
             </div>
             <div className="why-card">
               <div className="ic"><IconShieldCheck /></div>
               <h3>WhatsApp Business API</h3>
               <p>
-                Kami membangun di atas WhatsApp Business API — bukan tools
-                bajakan yang minta scan QR — jadi lebih stabil, sesuai ketentuan
-                WhatsApp, dan bisa kirim promo dengan lebih tenang.
+                Kami membangun di atas WhatsApp Business API, bukan tools bajakan
+                yang minta scan QR. Jadi lebih stabil, sesuai ketentuan WhatsApp,
+                dan bisa kirim promo dengan lebih tenang.
               </p>
             </div>
             <div className="why-card">
@@ -735,8 +736,8 @@ export default function Home() {
               <div className="ic"><IconGrowth /></div>
               <h3>Bayar Sendiri</h3>
               <p>
-                Mulai Rp 199 ribu/bulan — sekitar Rp 6.600/hari, kurang dari satu
-                cup kopi. Satu order tambahan sehari aja sudah balik modal
+                Mulai Rp 199 ribu/bulan, sekitar Rp 6.600/hari, kurang dari satu
+                porsi menu. Satu order tambahan sehari aja sudah balik modal
                 berkali lipat.
               </p>
             </div>
@@ -752,9 +753,9 @@ export default function Home() {
             Semua di WhatsApp. Sisi customer dan sisi Anda.
           </h2>
           <p className="sec-lead">
-            Pemilik kafe nggak perlu buka dashboard, nggak perlu install
+            Pemilik usaha nggak perlu buka dashboard, nggak perlu install
             aplikasi, nggak perlu hapal sistem baru. Anda kelola seluruh bisnis
-            dengan chat — di WhatsApp yang sudah Anda pakai tiap hari.
+            dengan chat, di WhatsApp yang sudah Anda pakai tiap hari.
           </p>
 
           <div className="nodash-intro">
@@ -762,7 +763,7 @@ export default function Home() {
               <h3>Anda sudah jago pakai WhatsApp. Itu aja cukup.</h3>
               <p>
                 Kebanyakan tools bisnis maksa Anda belajar dashboard rumit, buka
-                laptop, login tiap hari. SOSMED AI kebalikannya — Anda cukup chat
+                laptop, login tiap hari. SOSMED AI kebalikannya. Anda cukup chat
                 bot Anda sendiri untuk lihat order, ubah menu, cek penjualan,
                 atau tandai pesanan selesai.
               </p>
@@ -974,8 +975,8 @@ export default function Home() {
               >
                 WhatsApp cukup untuk operasional harian. Tapi kalau Anda mau
                 laporan penjualan mendetail, kelola puluhan menu sekaligus, atau
-                lihat analitik member — dashboard web lengkap siap kapan pun Anda
-                butuh. WhatsApp-first, dashboard kalau perlu.
+                lihat analitik member, dashboard web lengkap siap kapan pun Anda
+                butuh. WhatsApp dulu, dashboard kalau perlu.
               </p>
             </div>
           </div>
@@ -987,7 +988,7 @@ export default function Home() {
         <div className="wrap">
           <div className="eyebrow">Teknologi di Balik Layar</div>
           <h2 className="sec-title">
-            AI yang ngerti Indonesia — bukan sekadar tempelan.
+            AI yang ngerti Indonesia, bukan sekadar tempelan.
           </h2>
           <p className="sec-lead">
             SOSMED AI ditenagai mesin AI multi-model yang dirancang khusus untuk
@@ -1002,7 +1003,7 @@ export default function Home() {
                 <div>
                   <h3>Native Bahasa Indonesia, bukan terjemahan</h3>
                   <p>
-                    Dilatih untuk ngerti cara orang Indonesia chat — dari
+                    Dilatih untuk ngerti cara orang Indonesia chat, dari
                     &quot;gas kak&quot;, &quot;es batunya banyakin&quot;, sampai
                     gaya Jaksel. Bot membalas dengan tone yang pas, bukan kaku
                     ala robot translate.
@@ -1014,9 +1015,9 @@ export default function Home() {
                 <div>
                   <h3>Multi-model routing yang cerdas</h3>
                   <p>
-                    Setiap pesan diarahkan ke model AI yang paling tepat — yang
+                    Setiap pesan diarahkan ke model AI yang paling tepat: yang
                     ringan untuk tanya menu, yang canggih untuk percakapan rumit.
-                    Hasilnya: balasan cepat, biaya efisien, kualitas tinggi.
+                    Hasilnya balasan cepat, biaya efisien, kualitas tinggi.
                   </p>
                 </div>
               </div>
@@ -1025,9 +1026,9 @@ export default function Home() {
                 <div>
                   <h3>Ngerti konteks F&amp;B</h3>
                   <p>
-                    Paham varian menu, modifier (es/panas, less sugar, extra
-                    shot), dan istilah kafe. Memvalidasi pesanan dengan menu asli
-                    Anda — nggak pernah ngarang item yang nggak ada.
+                    Paham varian menu, modifier (ukuran, topping, level pedas,
+                    extra shot), dan istilah F&amp;B. Memvalidasi pesanan dengan
+                    menu asli Anda, nggak pernah ngarang item yang nggak ada.
                   </p>
                 </div>
               </div>
@@ -1114,8 +1115,8 @@ export default function Home() {
           <p className="sec-lead">
             Kebanyakan &quot;bot WhatsApp&quot; cuma menu balasan otomatis dengan
             template kaku. SOSMED AI dibangun di atas kecerdasan buatan sungguhan
-            — ngerti maksud, konteks, dan bahasa, bukan sekadar mencocokkan kata
-            kunci.
+            yang ngerti maksud, konteks, dan bahasa, bukan sekadar mencocokkan
+            kata kunci.
           </p>
 
           <div className="vs-grid">
@@ -1125,15 +1126,15 @@ export default function Home() {
               <ul className="vs-list">
                 <li>
                   <span className="vs-ic">✕</span> Balas hanya kalau kata
-                  kuncinya pas — salah ketik sedikit, bingung.
+                  kuncinya pas. Salah ketik sedikit, langsung bingung.
                 </li>
                 <li>
                   <span className="vs-ic">✕</span> &quot;Tekan 1 untuk menu,
-                  tekan 2 untuk pesan&quot; — kaku seperti mesin.
+                  tekan 2 untuk pesan&quot;, kaku seperti mesin.
                 </li>
                 <li>
                   <span className="vs-ic">✕</span> Nggak ngerti &quot;es-nya
-                  dikit aja ya, gula setengah&quot; — di luar skrip langsung
+                  dikit aja ya, gula setengah&quot;, di luar skrip langsung
                   gagal.
                 </li>
                 <li>
@@ -1155,20 +1156,20 @@ export default function Home() {
                   berantakan, typo, atau campur bahasa.
                 </li>
                 <li>
-                  <span className="vs-ic">✓</span> Ngobrol natural seperti
-                  barista beneran — santai, ramah, manusiawi.
+                  <span className="vs-ic">✓</span> Ngobrol natural seperti staf
+                  beneran, santai, ramah, manusiawi.
                 </li>
                 <li>
                   <span className="vs-ic">✓</span> Ngerti &quot;es-nya dikit,
                   gula setengah, gelas gede&quot; tanpa perlu disetting.
                 </li>
                 <li>
-                  <span className="vs-ic">✓</span> Tone menyesuaikan konteks —
+                  <span className="vs-ic">✓</span> Tone menyesuaikan konteks,
                   dari sapaan ramah sampai konfirmasi order.
                 </li>
                 <li>
                   <span className="vs-ic">✓</span> Belajar dari menu &amp; data
-                  Anda otomatis — nggak perlu skrip manual.
+                  Anda otomatis, tanpa perlu skrip manual.
                 </li>
               </ul>
             </div>
@@ -1182,8 +1183,8 @@ export default function Home() {
           <div className="eyebrow">Perbandingan</div>
           <h2 className="sec-title">SOSMED AI vs. solusi lain.</h2>
           <p className="sec-lead">
-            Kenapa coffee shop memilih SOSMED AI dibanding chatbot generik, tools
-            impor, atau hire admin manual.
+            Kenapa bisnis F&amp;B memilih SOSMED AI dibanding chatbot generik,
+            tools impor, atau hire admin manual.
           </p>
 
           <div className="compare-wrap">
@@ -1337,22 +1338,22 @@ export default function Home() {
         <div className="wrap">
           <div className="eyebrow">Cara Kerja</div>
           <h2 className="sec-title">
-            Dari daftar sampai terima order otomatis — 30 menit.
+            Dari daftar sampai terima order otomatis, cuma 30 menit.
           </h2>
           <div className="steps" style={{ marginTop: "14px" }}>
             <div className="step">
               <div className="num">1</div>
               <h3>Hubungkan WhatsApp</h3>
               <p>
-                Sambungkan nomor WhatsApp kafe Anda lewat WhatsApp Business API.
-                Tim kami bantu prosesnya.
+                Sambungkan nomor WhatsApp bisnis Anda lewat WhatsApp Business
+                API. Tim kami bantu prosesnya.
               </p>
             </div>
             <div className="step">
               <div className="num">2</div>
               <h3>Isi Menu Anda</h3>
               <p>
-                Masukkan menu (atau foto menu yang ada — kami bantu input). Atur
+                Masukkan menu (atau foto menu yang ada, kami bantu input). Atur
                 jam buka, alamat, dan aturan poin.
               </p>
             </div>
@@ -1360,8 +1361,8 @@ export default function Home() {
               <div className="num">3</div>
               <h3>Bot Mulai Jalan</h3>
               <p>
-                Bot langsung aktif — terima order, kasih poin, kirim struk. Anda
-                tinggal lihat order masuk sambil bikin kopi.
+                Bot langsung aktif: terima order, kasih poin, kirim struk. Anda
+                tinggal lihat order masuk sambil ngurus pesanan.
               </p>
             </div>
           </div>
@@ -1419,16 +1420,16 @@ export default function Home() {
       <section id="harga" className="pricing">
         <div className="wrap">
           <div className="eyebrow">Harga</div>
-          <h2 className="sec-title">Pilih paket yang pas untuk kafe Anda.</h2>
+          <h2 className="sec-title">Pilih paket yang pas untuk bisnis Anda.</h2>
           <p className="sec-lead">
-            Harga spesial founding user — dikunci selamanya untuk pendaftar
+            Harga spesial founding user, dikunci selamanya untuk pendaftar
             pertama.
           </p>
           <div className="price-grid">
             <div className="price">
               <h3>Starter</h3>
               <div className="for">
-                Untuk single-outlet coffee shop &amp; warung
+                Untuk single-outlet F&amp;B &amp; UMKM kecil
               </div>
               <div className="amt">
                 Rp 199rb<span>/bulan</span>
@@ -1450,7 +1451,7 @@ export default function Home() {
               <div className="pop">Paling Populer</div>
               <h3>Growth</h3>
               <div className="for">
-                Untuk kafe yang ramai &amp; serius scale up
+                Untuk bisnis F&amp;B yang ramai &amp; serius scale up
               </div>
               <div className="amt">
                 Rp 299rb<span>/bulan</span>
@@ -1485,7 +1486,7 @@ export default function Home() {
             </div>
           </div>
           <p className="price-note">
-            Semua fitur dalam paket sudah termasuk — tanpa biaya add-on
+            Semua fitur dalam paket sudah termasuk, tanpa biaya add-on
             tersembunyi.
             <br />
             Add-on lanjutan (AI Konten, integrasi GoFood/GrabFood) tersedia
@@ -1498,7 +1499,7 @@ export default function Home() {
       <section id="faq">
         <div className="wrap">
           <div className="eyebrow">FAQ</div>
-          <h2 className="sec-title">Yang sering ditanyain pemilik kafe.</h2>
+          <h2 className="sec-title">Yang sering ditanyain pemilik bisnis F&amp;B.</h2>
           <div className="faq-wrap" style={{ marginTop: "14px" }}>
             <div className="faq-item">
               <button className="faq-q">
@@ -1506,10 +1507,10 @@ export default function Home() {
               </button>
               <div className="faq-a">
                 <p>
-                  Asisten WhatsApp berbasis AI khusus untuk coffee shop dan
-                  restoran kecil. Bot kami terima order otomatis, balas pelanggan
-                  24 jam, dan kelola sistem poin member — semua lewat WhatsApp
-                  yang sudah Anda pakai.
+                  Asisten WhatsApp berbasis AI khusus untuk bisnis F&amp;B kecil
+                  seperti kafe, restoran, dan warung. Bot kami terima order
+                  otomatis, balas pelanggan 24 jam, dan kelola sistem poin
+                  member, semua lewat WhatsApp yang sudah Anda pakai.
                 </p>
               </div>
             </div>
@@ -1528,15 +1529,15 @@ export default function Home() {
             </div>
             <div className="faq-item">
               <button className="faq-q">
-                Apakah nomor WhatsApp kafe saya aman?
+                Apakah nomor WhatsApp bisnis saya aman?
                 <span className="ic">+</span>
               </button>
               <div className="faq-a">
                 <p>
-                  Sangat aman. Kami membangun di atas WhatsApp Business API —
-                  bukan tools bajakan yang minta scan QR — sehingga lebih stabil
-                  dan sesuai ketentuan WhatsApp. Nomor Anda lebih terjaga, dan
-                  bisa kirim promo dengan lebih tenang.
+                  Sangat aman. Kami membangun di atas WhatsApp Business API,
+                  bukan tools bajakan yang minta scan QR. Jadi lebih stabil dan
+                  sesuai ketentuan WhatsApp, nomor Anda lebih terjaga, dan bisa
+                  kirim promo dengan lebih tenang.
                 </p>
               </div>
             </div>
@@ -1606,14 +1607,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PRICING BANNER */}
+      <section className="price-banner-sec">
+        <div className="wrap">
+          <div className="price-banner">
+            <div className="pb-text">
+              <h3>Satu harga, semua fitur.</h3>
+              <p>
+                Tanpa biaya tersembunyi, tanpa add-on. Bayar sendiri dalam
+                hitungan order.
+              </p>
+            </div>
+            <Link className="pb-btn" href="/harga">
+              Lihat Harga →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* FINAL CTA */}
       <section className="final">
         <div className="wrap">
           <div className="final-card">
-            <h2>Jadi coffee shop pertama yang pakai SOSMED AI.</h2>
+            <h2>Jadi bisnis F&amp;B pertama yang pakai SOSMED AI.</h2>
             <p>
               SOSMED AI sedang dalam tahap akhir. Asisten WhatsApp AI yang akan
-              mengubah cara kafe dan restoran Indonesia terima order dan jaga
+              mengubah cara bisnis F&amp;B Indonesia terima order dan jaga
               pelanggan.
             </p>
             <div className="final-cta">
