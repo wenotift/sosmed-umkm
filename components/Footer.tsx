@@ -15,8 +15,10 @@ export default function Footer() {
               />
             </Link>
             <p>
-              WhatsApp Anda, AI assistant bisnis Anda. Asisten WhatsApp AI untuk
-              coffee shop dan restoran kecil Indonesia.
+              WhatsApp Anda, AI assistant bisnis Anda.
+              <br />
+              Platform AI yang mengubah WhatsApp jadi asisten bisnis otomatis
+              untuk UMKM Indonesia.
             </p>
           </div>
           <div className="foot-col">
