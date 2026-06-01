@@ -468,7 +468,7 @@ export default function Home() {
               <div className="pkg-brand">
                 <img
                   className="pkg-logo-img"
-                  src="/logo/sosmed-ai-logo-white-version.png"
+                  src="/logo/sosmed-ai-logo-all-white-version.png"
                   alt="Sosmed AI"
                 />
                 <span className="pkg-tag">Satu Paket</span>
