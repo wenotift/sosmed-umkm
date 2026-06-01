@@ -33,7 +33,8 @@ export default function Footer() {
   return (
     <footer>
       <div className="wrap">
-        <div className="foot-brand">
+        <div className="foot-main">
+          <div className="foot-brand">
             <Link href="/" className="logo" aria-label="Sosmed AI - Beranda">
               <img
                 src="/logo/sosmed-ai-logo-black-version.png"
@@ -58,42 +59,50 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={s.label}
                 >
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
                     <path d={s.path} />
                   </svg>
                 </a>
               ))}
             </div>
+            <p className="foot-close">
+              Bekerja seperti asisten. Beroperasi seperti AI.
+            </p>
           </div>
+
           <div className="foot-grid">
             <div className="foot-col">
               <h4>Produk</h4>
-            <Link href="/produk">Produk</Link>
-            <Link href="/solusi">Solusi</Link>
-            <Link href="/harga">Harga</Link>
-            <Link href="/partner">Partner</Link>
-          </div>
-          <div className="foot-col">
-            <h4>Resources</h4>
-            <Link href="/blog">Blog</Link>
-            <Link href="/bantuan">Bantuan</Link>
-            <Link href="/forum">Forum</Link>
-            <Link href="/komunitas">Komunitas</Link>
-            <Link href="/karir">Karir</Link>
-          </div>
-          <div className="foot-col">
-            <h4>Perusahaan</h4>
-            <a href="#">Tentang Kami</a>
-            <a href="mailto:hello@sosmed.io">Kontak</a>
-            <a href="#">Privasi</a>
-            <a href="#">Syarat &amp; Ketentuan</a>
+              <Link href="/produk">Produk</Link>
+              <Link href="/solusi">Solusi</Link>
+              <Link href="/harga">Harga</Link>
+              <Link href="/partner">Partner</Link>
+            </div>
+            <div className="foot-col">
+              <h4>Resources</h4>
+              <Link href="/blog">Blog</Link>
+              <Link href="/bantuan">Bantuan</Link>
+              <Link href="/forum">Forum</Link>
+              <Link href="/komunitas">Komunitas</Link>
+              <Link href="/karir">Karir</Link>
+            </div>
+            <div className="foot-col">
+              <h4>Perusahaan</h4>
+              <a href="#">Tentang Kami</a>
+              <a href="mailto:hello@sosmed.io">Kontak</a>
+              <a href="#">Privasi</a>
+              <a href="#">Syarat &amp; Ketentuan</a>
+            </div>
           </div>
         </div>
+
         <div className="foot-bottom">
-          <span className="foot-close">
-            Bekerja seperti asisten. Beroperasi seperti AI.
-          </span>
-          <span>© 2026 Sosmed AI. All rights reserved.</span>
+          <span>© 2026 Sosmed AI</span>
+          <span>All rights reserved.</span>
         </div>
       </div>
     </footer>
