@@ -92,6 +92,58 @@ const ORDER_STEPS: ChatStep[] = [
   { type: "reset" },
 ];
 
+/* Block 01 — customer orders via chat (illustrative demo data) */
+const ORDER_AUTO_STEPS: ChatStep[] = [
+  { type: "show", msg: { kind: "out", text: "es kopi susu 2, less sugar yg gede ya kak", time: "21:14" }, after: 900 },
+  { type: "typing", after: 1100 },
+  { type: "show", msg: { kind: "in", text: "Siap kak! Es Kopi Susu 2 (Large, less sugar) — total Rp 40.000. Diambil atau diantar?", time: "21:14" }, after: 900 },
+  { type: "show", msg: { kind: "out", text: "ambil aja", time: "21:15" }, after: 900 },
+  { type: "typing", after: 1000 },
+  { type: "show", msg: { kind: "in", text: "Oke! Bayar Rp 40.000 via QRIS di bawah, lalu kirim bukti ya 👇", time: "21:15" }, after: 700 },
+  {
+    type: "show",
+    after: 1500,
+    msg: {
+      kind: "node",
+      node: (
+        <div className="sw-qris">
+          <div className="sw-qbox">
+            <svg className="qr-svg" viewBox="0 0 64 64" aria-hidden="true">
+              <rect width="64" height="64" fill="#fff" />
+              <path fill="currentColor" d="M6 6h16v16H6zM42 6h16v16H42zM6 42h16v16H6z" />
+              <path fill="#fff" d="M9 9h10v10H9zM45 9h10v10H45zM9 45h10v10H9z" />
+              <path fill="currentColor" d="M11.5 11.5h5v5h-5zM47.5 11.5h5v5h-5zM11.5 47.5h5v5h-5z" />
+              <path fill="currentColor" d="M28 8h4v4h-4zM36 8h4v4h-4zM28 16h4v4h-4zM32 24h4v4h-4zM8 28h4v4H8zM16 28h4v4h-4zM24 28h4v4h-4zM28 32h4v4h-4zM40 28h4v4h-4zM48 32h4v4h-4zM56 28h4v4h-4zM28 40h4v4h-4zM36 44h4v4h-4zM44 40h4v4h-4zM52 44h4v4h-4zM28 48h4v4h-4zM32 56h4v4h-4zM40 52h4v4h-4zM48 56h4v4h-4zM56 48h4v4h-4zM40 36h4v4h-4zM40 60h4v4h-4z" />
+            </svg>
+          </div>
+          <div className="sw-qcap">
+            QRIS · Kopi Senja
+            <br />
+            <b>Rp 40.000</b>
+          </div>
+        </div>
+      ),
+    },
+  },
+  { type: "show", msg: { kind: "out", text: "udah transfer kak 🙏", time: "21:16" }, after: 900 },
+  { type: "typing", after: 1100 },
+  { type: "show", msg: { kind: "in", text: "Pembayaran terkonfirmasi ✅ Order #1042 disiapin ☕", time: "21:16" }, after: 3400 },
+  { type: "reset" },
+];
+
+/* Block 03 — member registration & points via chat (illustrative demo data) */
+const MEMBER_STEPS: ChatStep[] = [
+  { type: "typing", after: 1200 },
+  { type: "show", msg: { kind: "in", text: "Mau daftar member kak? Tiap pembayaran dapat poin, bisa ditukar minuman gratis ☕ Ketik nama aja 🙂", time: "10:02" }, after: 900 },
+  { type: "show", msg: { kind: "out", text: "Dimas", time: "10:02" }, after: 900 },
+  { type: "typing", after: 1000 },
+  { type: "show", msg: { kind: "in", text: "✅ Sip Dimas, terdaftar! Pembayaran tadi dikonfirmasi — +40 poin masuk.", time: "10:02" }, after: 900 },
+  { type: "show", msg: { kind: "out", text: "cek poin dong", time: "10:05" }, after: 900 },
+  { type: "typing", after: 1000 },
+  { type: "show", msg: { kind: "in", text: "Saldo poin kamu 284 🎉 16 poin lagi buat voucher Rp 5.000!", time: "10:05" }, after: 3400 },
+  { type: "reset" },
+];
+
 export default function ProductContent() {
   useEffect(() => {
     const timers: number[] = [];
@@ -377,79 +429,7 @@ export default function ProductContent() {
               </div>
             </div>
             <div className="device-wrap pv pd2">
-              <div className="phone">
-                <div className="notch"></div>
-                <div className="demo-tag">
-                  <span className="rec"></span> DEMO
-                </div>
-                <div className="screen">
-                  <div className="wa-bar">
-                    <span className="wa-back">‹</span>
-                    <div className="wa-av">KS</div>
-                    <div className="wa-meta">
-                      <div className="wa-name">Kopi Senja</div>
-                      <div className="wa-sub">online · dibalas otomatis</div>
-                    </div>
-                    <div className="wa-ico">📞 ⋮</div>
-                  </div>
-                  <div className="wa-chat" data-demo="1">
-                    <div className="b out">
-                      2 es kopi susu less sugar yg gede, 1 croissant ya kak
-                      <span className="t">21:14 ✓✓</span>
-                    </div>
-                    <div className="b in">
-                      Siap kak! Ini rincian pesanannya 👇
-                      <span className="t">21:14</span>
-                    </div>
-                    <div className="b bill">
-                      <div className="bh">🧾 Pesanan</div>
-                      <div className="bl">
-                        <span>2× Es Kopi Susu (L)</span>
-                        <span>36.000</span>
-                      </div>
-                      <div className="bl">
-                        <span>1× Butter Croissant</span>
-                        <span>22.000</span>
-                      </div>
-                      <div className="bt">
-                        <span>Total</span>
-                        <b>Rp 58.000</b>
-                      </div>
-                    </div>
-                    <div className="b in">
-                      Diambil atau diantar? Kalau sudah pas, bayar via QRIS di
-                      bawah lalu kirim bukti ya 👇<span className="t">21:15</span>
-                    </div>
-                    <div className="b qris">
-                      <div className="qbox">
-                        <svg className="qr-svg" viewBox="0 0 64 64" aria-hidden="true">
-                          <rect width="64" height="64" fill="#fff" />
-                          <path fill="currentColor" d="M6 6h16v16H6zM42 6h16v16H42zM6 42h16v16H6z" />
-                          <path fill="#fff" d="M9 9h10v10H9zM45 9h10v10H45zM9 45h10v10H9z" />
-                          <path fill="currentColor" d="M11.5 11.5h5v5h-5zM47.5 11.5h5v5h-5zM11.5 47.5h5v5h-5z" />
-                          <path fill="currentColor" d="M28 8h4v4h-4zM36 8h4v4h-4zM28 16h4v4h-4zM32 24h4v4h-4zM8 28h4v4H8zM16 28h4v4h-4zM24 28h4v4h-4zM28 32h4v4h-4zM40 28h4v4h-4zM48 32h4v4h-4zM56 28h4v4h-4zM28 40h4v4h-4zM36 44h4v4h-4zM44 40h4v4h-4zM52 44h4v4h-4zM28 48h4v4h-4zM32 56h4v4h-4zM40 52h4v4h-4zM48 56h4v4h-4zM56 48h4v4h-4zM40 36h4v4h-4zM40 60h4v4h-4z" />
-                        </svg>
-                      </div>
-                      <div className="qcap">
-                        QRIS · Kopi Senja
-                        <br />
-                        <b>Rp 58.000</b>
-                      </div>
-                    </div>
-                    <div className="b out">
-                      udah transfer kak 🙏<span className="t">21:16 ✓✓</span>
-                    </div>
-                    <div className="b in">
-                      Pembayaran terkonfirmasi ✅ Order #1042 disiapin ☕
-                      <span className="t">21:16</span>
-                    </div>
-                  </div>
-                  <div className="wa-input">
-                    <div className="field">Ketik pesan…</div>
-                    <div className="send">➤</div>
-                  </div>
-                </div>
-              </div>
+              <WhatsAppChat steps={ORDER_AUTO_STEPS} />
             </div>
           </div>
         </div>
@@ -584,48 +564,7 @@ export default function ProductContent() {
               </div>
             </div>
             <div className="device-wrap pv pd2">
-              <div className="phone">
-                <div className="notch"></div>
-                <div className="demo-tag">
-                  <span className="rec"></span> DEMO
-                </div>
-                <div className="screen">
-                  <div className="wa-bar">
-                    <span className="wa-back">‹</span>
-                    <div className="wa-av">KS</div>
-                    <div className="wa-meta">
-                      <div className="wa-name">Kopi Senja</div>
-                      <div className="wa-sub">online</div>
-                    </div>
-                    <div className="wa-ico">📞 ⋮</div>
-                  </div>
-                  <div className="wa-chat" data-demo="2">
-                    <div className="b in">
-                      Mau daftar member kak? Tiap pembayaran dapat poin, bisa
-                      ditukar minuman gratis ☕ Ketik nama aja 🙂
-                      <span className="t">10:02</span>
-                    </div>
-                    <div className="b out">
-                      Dimas<span className="t">10:02 ✓✓</span>
-                    </div>
-                    <div className="b pts">
-                      ✅ Sip Dimas, terdaftar! Pembayaran tadi dikonfirmasi — +40
-                      poin masuk.
-                    </div>
-                    <div className="b out">
-                      cek poin dong<span className="t">10:05 ✓✓</span>
-                    </div>
-                    <div className="b in">
-                      Saldo poin kamu 284 🎉 16 poin lagi buat voucher Rp 5.000!
-                      <span className="t">10:05</span>
-                    </div>
-                  </div>
-                  <div className="wa-input">
-                    <div className="field">Ketik pesan…</div>
-                    <div className="send">➤</div>
-                  </div>
-                </div>
-              </div>
+              <WhatsAppChat steps={MEMBER_STEPS} />
             </div>
           </div>
         </div>
