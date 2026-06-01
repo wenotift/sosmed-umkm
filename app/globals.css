@@ -461,6 +461,7 @@
   .foot-col a{display:block;font-size:14px;color:var(--ink);margin-bottom:10px;opacity:.8;transition:.15s}
   .foot-col a:hover{opacity:1;color:var(--accent)}
   .foot-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:22px;font-size:13px;color:var(--ink-soft);flex-wrap:wrap;gap:12px}
+  .foot-close{font-style:italic;color:var(--ink-soft);opacity:.9}
   .foot-social{display:flex;gap:18px;margin-top:18px}
   .foot-social a{display:inline-flex;color:var(--ink-soft);transition:color .15s ease}
   .foot-social a:hover{color:var(--accent)}

@@ -43,10 +43,11 @@ export default function Footer() {
               />
             </Link>
             <p>
-              WhatsApp Anda, AI assistant bisnis Anda.
+              <strong>WA Anda, AI Assistant Bisnis Anda.</strong>
               <br />
-              Platform AI yang mengubah WhatsApp jadi asisten bisnis otomatis
-              untuk UMKM Indonesia.
+              Platform AI-native yang hadir langsung di WhatsApp Anda. Memahami
+              konteks, membantu pelanggan, dan menyelesaikan berbagai tugas
+              bisnis sehari-hari melalui percakapan yang alami.
             </p>
             <div className="foot-social">
               {SOCIALS.map((s) => (
@@ -89,7 +90,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="foot-bottom">
-          <span>© 2026 SOSMED AI. All rights reserved.</span>
+          <span className="foot-close">
+            Bekerja seperti asisten. Beroperasi seperti AI.
+          </span>
+          <span>© 2026 Sosmed AI. All rights reserved.</span>
         </div>
       </div>
     </footer>
