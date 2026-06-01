@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = "https://sosmed.io";
+const SITE_URL = "https://umkm.sosmed.io";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     siteName: "SOSMED AI",
     title: "SOSMED AI | WhatsApp Anda, AI Assistant Bisnis Anda",
     description:
-      "Asisten WhatsApp AI untuk coffee shop & restoran Indonesia. Terima order, jaga pelanggan, semua otomatis lewat WhatsApp.",
+      "Asisten WhatsApp AI-native untuk bisnis F&B Indonesia — terima order, jaga pelanggan, dan kelola bisnis, semua otomatis lewat WhatsApp.",
     images: [
       {
         url: "/images/og-image-umkm-sosmed-ai.jpg",
-        width: 2025,
-        height: 1350,
-        alt: "SOSMED AI - asisten WhatsApp AI untuk UMKM F&B Indonesia",
+        width: 1350,
+        height: 900,
+        alt: "SOSMED AI — asisten WhatsApp AI untuk bisnis F&B Indonesia",
       },
     ],
   },
@@ -52,19 +52,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SOSMED AI | WhatsApp Anda, AI Assistant Bisnis Anda",
     description:
-      "Asisten WhatsApp AI untuk coffee shop & restoran Indonesia. Order otomatis, loyalty, tanpa aplikasi.",
+      "Asisten WhatsApp AI untuk bisnis F&B Indonesia. Order otomatis, loyalty, kelola bisnis — semua lewat WhatsApp.",
     images: ["/images/og-image-umkm-sosmed-ai.jpg"],
   },
+  // Stay OUT of Google search for now (noindex), but follow links.
+  // robots.txt still allows crawling so social unfurl bots (WhatsApp,
+  // LinkedInBot, Twitterbot, facebookexternalhit) can fetch the preview.
   robots: {
-    index: true,
+    index: false,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
+    googleBot: { index: false, follow: true },
   },
 };
 
