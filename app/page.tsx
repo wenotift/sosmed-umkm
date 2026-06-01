@@ -351,27 +351,6 @@ export default function Home() {
             30 menit
           </p>
 
-          <div className="chips reveal d5">
-            <span className="chip">
-              <b>•</b> Order Otomatis
-            </span>
-            <span className="chip">
-              <b>•</b> Balas 24 Jam
-            </span>
-            <span className="chip">
-              <b>•</b> Sistem Poin
-            </span>
-            <span className="chip">
-              <b>•</b> Member Digital
-            </span>
-            <span className="chip">
-              <b>•</b> Menu QR
-            </span>
-            <span className="chip">
-              <b>•</b> WhatsApp Business API
-            </span>
-          </div>
-
           {/* HERO VISUAL */}
           <div className="hero-visual reveal d5">
             <div className="hv-grid">
@@ -476,6 +455,105 @@ export default function Home() {
             </div>
             <div className="trust-pill">
               <span className="e"><IconLock /></span> Aman &amp; Patuh UU PDP
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ALL-IN-ONE PACKAGE CARD */}
+      <section className="pkg">
+        <div className="wrap">
+          <div className="pkg-card">
+            <div className="pkg-left">
+              <div className="pkg-brand">
+                <img
+                  className="pkg-logo-img"
+                  src="/logo/sosmed-ai-logo-white-version.png"
+                  alt="Sosmed AI"
+                />
+                <span className="pkg-tag">Lengkap</span>
+              </div>
+              <h2>Semua yang bisnis Anda butuhkan, dalam satu paket.</h2>
+              <p className="pkg-sub">
+                Satu langganan, semua fitur. Tanpa add-on, tanpa biaya
+                tersembunyi — semuanya jalan dari WhatsApp.
+              </p>
+              <a className="pkg-btn" href="/produk">
+                Lihat Cara Kerja →
+              </a>
+            </div>
+
+            <div className="pkg-grid">
+              <div className="pkg-feat">
+                <div className="pf-ic">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M3 5h18M3 12h18M3 19h12" />
+                    <circle cx="20" cy="19" r="2.2" fill="#E9DCFF" stroke="none" />
+                  </svg>
+                </div>
+                <h3>Order Otomatis</h3>
+                <p>
+                  Pelanggan order sendiri lewat chat — lengkap dengan rincian
+                  dan QRIS.
+                </p>
+              </div>
+              <div className="pkg-feat">
+                <div className="pf-ic">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z" />
+                  </svg>
+                </div>
+                <h3>Poin &amp; Member</h3>
+                <p>Poin masuk tiap transaksi, pelanggan balik lagi tanpa kartu fisik.</p>
+              </div>
+              <div className="pkg-feat">
+                <div className="pf-ic">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                    <path d="M14 14h3v3M21 21v-7M17 21h4" />
+                  </svg>
+                </div>
+                <h3>Menu Digital + QR</h3>
+                <p>Scan QR di meja, pilih menu, order lanjut otomatis di WhatsApp.</p>
+              </div>
+              <div className="pkg-feat">
+                <div className="pf-ic">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 19V5M4 19h16" />
+                    <rect x="7" y="11" width="3" height="5" />
+                    <rect x="12" y="8" width="3" height="8" />
+                    <rect x="17" y="13" width="3" height="3" />
+                  </svg>
+                </div>
+                <h3>Kelola dari WhatsApp</h3>
+                <p>Laporan, konfirmasi, atur menu — semua dari chat. Tanpa dashboard.</p>
+              </div>
             </div>
           </div>
         </div>
