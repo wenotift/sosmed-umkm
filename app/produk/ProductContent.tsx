@@ -2,6 +2,95 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import WhatsAppChat, { type ChatStep } from "../WhatsAppChat";
+
+/* Block 02 — owner manages the menu via chat (illustrative demo data) */
+const MENU_STEPS: ChatStep[] = [
+  { type: "show", msg: { kind: "out", text: "tambah menu Matcha Latte 25rb", time: "10:01" }, after: 900 },
+  { type: "typing", after: 1000 },
+  { type: "show", msg: { kind: "in", text: "✅ Matcha Latte (Rp 25rb) ditambahkan ke menu.", time: "10:01" }, after: 800 },
+  { type: "show", msg: { kind: "out", text: "ubah harga americano jadi 16rb", time: "10:02" }, after: 900 },
+  { type: "typing", after: 1000 },
+  { type: "show", msg: { kind: "in", text: "✅ Americano: Rp 15rb → Rp 16rb.", time: "10:02" }, after: 800 },
+  { type: "show", msg: { kind: "out", text: "hapus croissant, sudah tidak dijual", time: "10:03" }, after: 900 },
+  { type: "typing", after: 1000 },
+  { type: "show", msg: { kind: "in", text: "✅ Croissant dihapus dari menu.", time: "10:03" }, after: 800 },
+  { type: "show", msg: { kind: "out", text: "banana cake habis", time: "10:04" }, after: 900 },
+  { type: "typing", after: 1100 },
+  { type: "show", msg: { kind: "in", text: "✅ Banana Cake ditandai habis hari ini. Pelanggan nggak bisa pesan sampai Anda aktifkan lagi.", time: "10:04" }, after: 800 },
+  {
+    type: "show",
+    after: 3600,
+    msg: {
+      kind: "node",
+      node: (
+        <div className="sw-report">
+          <div className="sw-rhead">📝 Menu sekarang</div>
+          <div className="sw-rrow"><span>Es Kopi Susu Gula Aren</span><b>Rp 18rb</b></div>
+          <div className="sw-rrow"><span>Americano</span><b><s>Rp 15rb</s> Rp 16rb</b></div>
+          <div className="sw-rrow"><span>Matcha Latte ✨</span><b>Rp 25rb</b></div>
+          <div className="sw-rrow"><span>Banana Cake</span><b className="muted"><span className="sw-badge">Habis</span></b></div>
+        </div>
+      ),
+    },
+  },
+  { type: "reset" },
+];
+
+/* Block 04 — owner manages orders via chat (illustrative demo data) */
+const ORDER_STEPS: ChatStep[] = [
+  {
+    type: "show",
+    after: 1700,
+    msg: {
+      kind: "node",
+      node: (
+        <div className="sw-report">
+          <div className="sw-rhead">🔔 Order baru #1042 <span className="sw-badge">Baru</span></div>
+          <div className="sw-rsub">Es Kopi Susu ×2 · less sugar · meja 3</div>
+          <div className="sw-rrow"><span>Total · bukti transfer 📎</span><b>Rp 36.000</b></div>
+        </div>
+      ),
+    },
+  },
+  { type: "show", msg: { kind: "out", text: "konfirmasi 1042", time: "10:05" }, after: 900 },
+  { type: "typing", after: 1000 },
+  { type: "show", msg: { kind: "in", text: "✅ Pembayaran #1042 dikonfirmasi. Pesanan masuk ke antrian dapur.", time: "10:05" }, after: 900 },
+  { type: "show", msg: { kind: "out", text: "ada order pending?", time: "10:06" }, after: 900 },
+  { type: "typing", after: 1000 },
+  {
+    type: "show",
+    after: 1300,
+    msg: {
+      kind: "node",
+      node: (
+        <div className="sw-report">
+          <div className="sw-rhead">⏳ Order Pending (2)</div>
+          <div className="sw-rrow"><span>#1043 · Matcha Latte ×1</span><b className="muted">meja 2</b></div>
+          <div className="sw-rrow"><span>#1044 · Americano ×1</span><b className="muted">takeaway</b></div>
+        </div>
+      ),
+    },
+  },
+  { type: "show", msg: { kind: "out", text: "laporan harian", time: "10:06" }, after: 900 },
+  { type: "typing", after: 1100 },
+  {
+    type: "show",
+    after: 3600,
+    msg: {
+      kind: "node",
+      node: (
+        <div className="sw-report">
+          <div className="sw-rhead">📊 Laporan Hari Ini (s/d 10:06)</div>
+          <div className="sw-rrow"><span>Order</span><b>48</b></div>
+          <div className="sw-rrow"><span>Penjualan</span><b>Rp 1,4jt</b></div>
+          <div className="sw-rtop">Via bot 9 · walk-in 3 · Best seller: Es Kopi Susu</div>
+        </div>
+      ),
+    },
+  },
+  { type: "reset" },
+];
 
 export default function ProductContent() {
   useEffect(() => {
@@ -416,59 +505,7 @@ export default function ProductContent() {
               </div>
             </div>
             <div className="device-wrap pv pd2">
-              <div className="phone">
-                <div className="notch"></div>
-                <div className="screen">
-                  <div className="menu-screen">
-                    <div className="menu-hero">
-                      <div className="nm">Kopi Senja</div>
-                      <div className="ds">☕ Coffee Shop · Buka sampai 23:00</div>
-                    </div>
-                    <div className="menu-cat">Kopi</div>
-                    <div className="mi">
-                      <div className="ph">☕</div>
-                      <div className="info">
-                        <div className="nm">Es Kopi Susu Gula Aren</div>
-                        <div className="dc">Best seller</div>
-                      </div>
-                      <div className="pr">18rb</div>
-                      <div className="add">+</div>
-                    </div>
-                    <div className="mi">
-                      <div className="ph">☕</div>
-                      <div className="info">
-                        <div className="nm">Americano</div>
-                        <div className="dc">Panas / Es</div>
-                      </div>
-                      <div className="pr">15rb</div>
-                      <div className="add">+</div>
-                    </div>
-                    <div className="mi">
-                      <div className="ph">🍵</div>
-                      <div className="info">
-                        <div className="nm">Matcha Latte</div>
-                        <div className="dc">Premium grade</div>
-                      </div>
-                      <div className="pr">25rb</div>
-                      <div className="add">+</div>
-                    </div>
-                    <div className="menu-cat">Pastry</div>
-                    <div className="mi">
-                      <div className="ph">🥐</div>
-                      <div className="info">
-                        <div className="nm">Butter Croissant</div>
-                        <div className="dc">Fresh daily</div>
-                      </div>
-                      <div className="pr">22rb</div>
-                      <div className="add">+</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="qr-float pv pd3">
-                <div className="qr"></div>
-                <div className="cap">Scan di meja</div>
-              </div>
+              <WhatsAppChat steps={MENU_STEPS} />
             </div>
           </div>
         </div>
@@ -650,61 +687,7 @@ export default function ProductContent() {
               </div>
             </div>
             <div className="device-wrap pv pd2">
-              <div className="phone">
-                <div className="notch"></div>
-                <div className="demo-tag">
-                  <span className="rec"></span> SISI OWNER
-                </div>
-                <div className="screen">
-                  <div className="wa-bar">
-                    <span className="wa-back">‹</span>
-                    <div className="wa-av">AI</div>
-                    <div className="wa-meta">
-                      <div className="wa-name">Sosmed AI · Asisten</div>
-                      <div className="wa-sub">kelola bisnis lewat chat</div>
-                    </div>
-                    <div className="wa-ico">📞 ⋮</div>
-                  </div>
-                  <div className="wa-chat" data-demo="3">
-                    <div className="b out">
-                      laporan hari ini dong<span className="t">09:13 ✓✓</span>
-                    </div>
-                    <div className="rep" data-rep="">
-                      <div className="h">📊 Laporan Hari Ini</div>
-                      <div className="ln">
-                        <span>Order</span>
-                        <b>48</b>
-                      </div>
-                      <div className="ln">
-                        <span>Penjualan</span>
-                        <b>Rp 1,4 jt</b>
-                      </div>
-                      <div className="ln">
-                        <span>Best seller</span>
-                        <b>Es Kopi Susu</b>
-                      </div>
-                      <div className="ln" style={{ border: "none" }}>
-                        <span>Member baru</span>
-                        <b>6</b>
-                      </div>
-                    </div>
-                    <div className="b out">
-                      rekap bulan ini, PDF ya<span className="t">09:14 ✓✓</span>
-                    </div>
-                    <div className="b file">
-                      <span className="fic">📄</span>
-                      <div className="finfo">
-                        <b>Laporan-Mei-2026.pdf</b>
-                        <span>Rekap bulanan · 248 KB</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="wa-input">
-                    <div className="field">Ketik pesan…</div>
-                    <div className="send">➤</div>
-                  </div>
-                </div>
-              </div>
+              <WhatsAppChat steps={ORDER_STEPS} />
             </div>
           </div>
         </div>

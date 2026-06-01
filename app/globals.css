@@ -388,6 +388,11 @@
   .sw-rrow b{color:#1f2d1f;font-weight:700}
   .sw-rrow b.up{color:var(--green)}
   .sw-rtop{margin-top:6px;padding-top:6px;border-top:1px dashed #d8d0c4;color:#5b6b5b;font-style:italic;line-height:1.4}
+  .sw-rhead{font-family:var(--display);font-weight:700;color:#1f2d1f;font-size:12px;margin-bottom:7px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .sw-rsub{color:#5b6b5b;font-size:11px;line-height:1.4;margin-bottom:7px}
+  .sw-rrow b.muted{color:#9a948a;font-weight:600}
+  .sw-rrow s{color:#9a948a}
+  .sw-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.02em;padding:1px 7px;border-radius:999px;background:#e3ddd3;color:#7a7468}
   .sw-typing{align-self:flex-start;background:#fff;border-radius:9px;border-top-left-radius:2px;padding:9px 12px;display:inline-flex;gap:4px;box-shadow:0 1px .5px rgba(0,0,0,.13)}
   .sw-typing span{width:6px;height:6px;border-radius:50%;background:#9aa0a6;animation:swType 1.3s infinite}
   .sw-typing span:nth-child(2){animation-delay:.18s}
