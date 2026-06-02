@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { blogIndexJsonLd, blogBreadcrumbJsonLd } from "./schema";
+import { blogThumb } from "./articles";
 
 export const metadata: Metadata = {
   // Keep noindex: posts below are placeholder/sample content for now.
@@ -125,7 +126,12 @@ export default function BlogPage() {
             href="/blog/mulai-jualan-online-warung-kafe"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <div className="thumb big g1">
+            <div
+              className="thumb big"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.55)), url('${blogThumb("mulai-jualan-online-warung-kafe")}')`,
+              }}
+            >
               <span className="t-badge">Panduan</span>
               <div className="t-title">
                 Mulai Jualan Online untuk Warung &amp; Kafe: Panduan Lengkap
@@ -165,7 +171,12 @@ export default function BlogPage() {
                 key={post.slug}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <div className={`thumb ${post.g}`}>
+                <div
+                  className="thumb"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.28)), url('${blogThumb(post.slug)}')`,
+                  }}
+                >
                   <span className="t-badge">{post.tag}</span>
                   <ChatWatermark />
                 </div>

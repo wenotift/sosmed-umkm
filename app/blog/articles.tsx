@@ -1123,3 +1123,29 @@ export const ARTICLES: Record<string, Article> = {
 };
 
 export const ARTICLE_SLUGS = Object.keys(ARTICLES);
+
+/**
+ * Blog photos live in /public/blog as blog-{stem}-cover.jpg (16:9 article
+ * banners) and blog-{stem}-cover-thumb.jpg (4:3 card thumbnails). The file
+ * stems differ from the article slugs, so map slug -> stem here (single
+ * source of truth). Titles are always real HTML text over the photo.
+ */
+const BLOG_IMAGE_STEM: Record<string, string> = {
+  "mulai-jualan-online-warung-kafe": "mulai-jualan-online",
+  "5-cara-pelanggan-jadi-langganan": "5-cara-langganan",
+  "order-whatsapp-lebih-cepat": "order-whatsapp",
+  "menu-digital-mudah-dipesan": "menu-digital",
+  "sistem-poin-sederhana": "sistem-poin",
+  "mengelola-pesanan-jam-ramai": "jam-ramai",
+  "laporan-penjualan-harian": "laporan-harian",
+};
+
+export function blogCover(slug: string): string {
+  const stem = BLOG_IMAGE_STEM[slug];
+  return stem ? `/blog/blog-${stem}-cover.jpg` : "";
+}
+
+export function blogThumb(slug: string): string {
+  const stem = BLOG_IMAGE_STEM[slug];
+  return stem ? `/blog/blog-${stem}-cover-thumb.jpg` : "";
+}

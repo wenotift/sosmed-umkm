@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { pageMetadata } from "@/lib/seo";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollSpy from "./ScrollSpy";
-import { ARTICLES, ARTICLE_SLUGS } from "../articles";
+import { ARTICLES, ARTICLE_SLUGS, blogCover, blogThumb } from "../articles";
 import { articleJsonLd, articleBreadcrumbJsonLd } from "../schema";
 
 export function generateStaticParams() {
@@ -81,6 +82,14 @@ export default async function ArticlePage({
 
           {/* COVER */}
           <div className="cover">
+            <Image
+              src={blogCover(slug)}
+              alt={article.title}
+              fill
+              priority
+              sizes="(max-width: 980px) 100vw, 980px"
+            />
+            <div className="cover-scrim" />
             <span className="wm">
               <svg viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -128,7 +137,12 @@ export default async function ArticlePage({
             <div className="rgrid">
               {article.related.map((r) => (
                 <Link className="rcard" href={`/blog/${r.slug}`} key={r.slug}>
-                  <div className={`thumb ${r.g}`}>
+                  <div
+                    className="thumb"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.28)), url('${blogThumb(r.slug)}')`,
+                    }}
+                  >
                     <span className="t-badge">{r.tag}</span>
                   </div>
                   <h4>{r.title}</h4>
