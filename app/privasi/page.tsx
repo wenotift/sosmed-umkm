@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     path: "/privasi",
   }),
   // Render the exact title from the reference (bypass the "%s | Sosmed AI" template).
-  title: { absolute: "Kebijakan Privasi — Sosmed AI" },
+  title: { absolute: "Kebijakan Privasi - Sosmed AI" },
 };
 
 export default function PrivasiPage() {

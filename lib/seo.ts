@@ -9,7 +9,7 @@ const OG_IMAGE = {
   url: "/images/og-image-umkm-sosmed-ai.jpg",
   width: 1350,
   height: 900,
-  alt: "Sosmed AI — asisten WhatsApp AI untuk bisnis F&B Indonesia",
+  alt: "Sosmed AI - asisten WhatsApp AI untuk bisnis F&B Indonesia",
 };
 
 /**

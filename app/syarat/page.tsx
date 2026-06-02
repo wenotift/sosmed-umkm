@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     path: "/syarat",
   }),
   // Render the exact title from the reference (bypass the "%s | Sosmed AI" template).
-  title: { absolute: "Syarat & Ketentuan — Sosmed AI" },
+  title: { absolute: "Syarat & Ketentuan - Sosmed AI" },
 };
 
 export default function SyaratPage() {

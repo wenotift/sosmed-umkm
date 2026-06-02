@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     path: "/tentang",
   }),
   // Render the exact title from the reference (bypass the "%s | Sosmed AI" template).
-  title: { absolute: "Tentang Kami — Sosmed AI" },
+  title: { absolute: "Tentang Kami - Sosmed AI" },
 };
 
 export default function TentangPage() {
