@@ -24,6 +24,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "*", allow: "/" },
       ...aiBots.map((ua) => ({ userAgent: ua, allow: "/" })),
     ],
+    sitemap: "https://umkm.sosmed.io/sitemap.xml",
     host: "https://umkm.sosmed.io",
   };
 }

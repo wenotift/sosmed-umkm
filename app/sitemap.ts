@@ -13,13 +13,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE}/produk`,
       lastModified,
       changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${BASE}/harga`,
       lastModified,
       changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.8,
     },
   ];
 }
