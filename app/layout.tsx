@@ -55,13 +55,15 @@ export const metadata: Metadata = {
       "Sosmed AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
     images: ["/images/og-image-umkm-sosmed-ai.jpg"],
   },
-  // Stay OUT of Google search for now (noindex), but follow links.
-  // robots.txt still allows crawling so social unfurl bots (WhatsApp,
-  // LinkedInBot, Twitterbot, facebookexternalhit) can fetch the preview.
+  // Publicly indexable at launch; follow links. robots.txt allows crawling
+  // and social unfurl bots (WhatsApp, LinkedInBot, Twitterbot,
+  // facebookexternalhit) can fetch previews. (The 7 "Segera Hadir"
+  // placeholder routes keep their own per-page noindex via lib/seo.ts
+  // until they have real content.)
   robots: {
-    index: false,
+    index: true,
     follow: true,
-    googleBot: { index: false, follow: true },
+    googleBot: { index: true, follow: true },
   },
 };
 
