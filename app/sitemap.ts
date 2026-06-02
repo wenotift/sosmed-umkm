@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { ARTICLE_SLUGS } from "./blog/articles";
 
 const BASE = "https://umkm.sosmed.io";
 
@@ -39,5 +40,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    {
+      url: `${BASE}/blog`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    ...ARTICLE_SLUGS.map((slug) => ({
+      url: `${BASE}/blog/${slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
   ];
 }

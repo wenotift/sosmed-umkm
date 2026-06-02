@@ -2,10 +2,10 @@ import type { ReactNode } from "react";
 
 /**
  * Blog article content map (slug -> Article). All articles share one layout
- * (rendered by app/blog/[slug]/page.tsx). Content is placeholder/sample -
- * "Hari ini" dates, "Tim Sosmed AI" byline; sales-summary numbers keep their
- * "sampel, bukan data nyata" caption. Every blog page is noindex and excluded
- * from the sitemap.
+ * (rendered by app/blog/[slug]/page.tsx). Content is sample/illustrative -
+ * "2 Juni 2026" publish date (datePublished), "Tim Sosmed AI" byline;
+ * sales-summary numbers keep their "sampel, bukan data nyata" caption. Blog
+ * pages are indexable and listed in the sitemap.
  */
 
 export type ArticleSection = {
@@ -27,6 +27,7 @@ export type Article = {
   title: string;
   category: string;
   readTime: string;
+  datePublished: string; // ISO date, e.g. "2026-06-02"
   coverTitle: string;
   description: string;
   lede: ReactNode;
@@ -154,6 +155,7 @@ export const ARTICLES: Record<string, Article> = {
     title: "Mulai Jualan Online untuk Warung & Kafe: Panduan Lengkap",
     category: "Panduan",
     readTime: "8 menit baca",
+    datePublished: "2026-06-02",
     coverTitle: "Mulai jualan online cukup dari WhatsApp",
     description:
       "Panduan langkah demi langkah memindahkan order, menu, pembayaran, dan pelanggan setia warung & kafe ke WhatsApp - tanpa aplikasi rumit dan tanpa biaya besar di awal.",
@@ -415,6 +417,7 @@ export const ARTICLES: Record<string, Article> = {
     title: "5 Cara Bikin Pelanggan Warung Kopi Jadi Langganan",
     category: "Tips Bisnis",
     readTime: "4 menit baca",
+    datePublished: "2026-06-02",
     coverTitle: "Bikin pelanggan kembali lagi, lagi, dan lagi",
     description:
       "Mendapat pelanggan baru itu mahal. Membuat pelanggan lama kembali jauh lebih murah - dan lebih menguntungkan. Berikut lima cara sederhana.",
@@ -555,6 +558,7 @@ export const ARTICLES: Record<string, Article> = {
     title: "Kenapa Order via WhatsApp Lebih Cepat dari Aplikasi",
     category: "Panduan",
     readTime: "4 menit baca",
+    datePublished: "2026-06-02",
     coverTitle: "WhatsApp: tempat pelanggan Anda sudah berada",
     description:
       "Banyak yang mengira butuh aplikasi khusus untuk menerima order. Padahal, untuk kebanyakan warung dan kafe, WhatsApp justru lebih cepat dan lebih disukai pelanggan.",
@@ -676,6 +680,7 @@ export const ARTICLES: Record<string, Article> = {
     title: "Cara Atur Menu Digital yang Bikin Pelanggan Gampang Pesan",
     category: "Tips Bisnis",
     readTime: "4 menit baca",
+    datePublished: "2026-06-02",
     coverTitle: "Menu yang jelas = lebih banyak order",
     description:
       "Menu yang membingungkan membuat pelanggan ragu dan akhirnya tidak jadi pesan. Menu digital yang rapi melakukan sebaliknya.",
@@ -786,6 +791,7 @@ export const ARTICLES: Record<string, Article> = {
     title: "Sistem Poin Sederhana untuk Usaha F&B Kecil",
     category: "Panduan",
     readTime: "4 menit baca",
+    datePublished: "2026-06-02",
     coverTitle: "Loyalitas tak harus rumit",
     description:
       "Program loyalitas tidak harus ribet. Sistem poin sederhana sudah cukup untuk membuat pelanggan kembali lagi.",
@@ -895,6 +901,7 @@ export const ARTICLES: Record<string, Article> = {
     title: "Mengelola Pesanan Saat Jam Ramai Tanpa Keteteran",
     category: "Tips Bisnis",
     readTime: "4 menit baca",
+    datePublished: "2026-06-02",
     coverTitle: "Tetap rapi saat paling sibuk",
     description:
       "Jam ramai adalah saat paling menguntungkan sekaligus paling bikin stres. Dengan sistem yang tepat, Anda bisa tetap rapi.",
@@ -1014,6 +1021,7 @@ export const ARTICLES: Record<string, Article> = {
     title: "Laporan Penjualan Harian: Apa yang Perlu Dipantau",
     category: "Panduan",
     readTime: "4 menit baca",
+    datePublished: "2026-06-02",
     coverTitle: "Angka sederhana, keputusan lebih baik",
     description:
       "Anda tidak bisa memperbaiki yang tidak Anda ukur. Untungnya, beberapa angka sederhana sudah cukup untuk mengambil keputusan yang lebih baik.",

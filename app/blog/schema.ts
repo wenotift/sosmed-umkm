@@ -6,10 +6,8 @@ import { ARTICLES, ARTICLE_SLUGS, blogCover, type Article } from "./articles";
  * derived from the ARTICLES content map (app/blog/articles.tsx) - the same
  * data the pages render - so structured data never diverges from on-page text.
  *
- * NOTE on dates: the content map has no real publish date (the visible byline
- * "Hari ini" is placeholder). Per the SEO guardrail we do NOT invent a date,
- * so `datePublished`/`dateModified` are intentionally OMITTED until a real
- * date field exists. BlogPosting remains valid without them.
+ * Dates come from the content map's `datePublished` field (ISO). dateModified
+ * mirrors datePublished until articles are revised.
  */
 
 const OG_IMAGE = `${SITE_URL}/images/og-image-umkm-sosmed-ai.jpg`;
@@ -44,9 +42,10 @@ export function articleJsonLd(slug: string, article: Article) {
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     image: coverUrl(slug),
     articleSection: article.category,
+    datePublished: article.datePublished,
+    dateModified: article.datePublished,
     author: AUTHOR,
     publisher: PUBLISHER,
-    // datePublished/dateModified intentionally omitted - no real date yet.
   };
 }
 
@@ -87,6 +86,8 @@ export function blogIndexJsonLd() {
         description: a.description,
         url: `${SITE_URL}/blog/${slug}`,
         articleSection: a.category,
+        datePublished: a.datePublished,
+        dateModified: a.datePublished,
         author: AUTHOR,
       };
     }),

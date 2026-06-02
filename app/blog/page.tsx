@@ -7,13 +7,12 @@ import { blogIndexJsonLd, blogBreadcrumbJsonLd } from "./schema";
 import { blogThumb } from "./articles";
 
 export const metadata: Metadata = {
-  // Keep noindex: posts below are placeholder/sample content for now.
+  // Indexable (live): inherits the site robots index:true, follow:true.
   ...pageMetadata({
     title: "Blog",
     description:
       "Blog Sosmed AI - tips, panduan, dan cerita praktis untuk membantu pemilik warung, kafe, dan restoran kecil mengelola usaha lebih rapi dan tumbuh lebih cepat.",
     path: "/blog",
-    noindex: true,
     // Per-page card title (not the homepage brand line). Index keeps the
     // generic site OG image, but with a clean (hyphen) alt.
     ogTitle: "Blog - Sosmed AI",
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 // WhatsApp-chat watermark used on each card thumbnail.
-// Placeholder/sample posts (no CMS yet). Dates are "Hari ini", byline "Tim Sosmed AI".
+// Sample/illustrative posts (no CMS yet). Publish date "2 Juni 2026", byline "Tim Sosmed AI".
 const POSTS = [
   {
     slug: "5-cara-pelanggan-jadi-langganan",
@@ -128,7 +127,7 @@ export default function BlogPage() {
             ></div>
             <div>
               <div className="fmeta">
-                <span className="cat">Panduan</span> · Hari ini
+                <span className="cat">Panduan</span> · 2 Juni 2026
               </div>
               <h2>Mulai Jualan Online untuk Warung &amp; Kafe: Panduan Lengkap</h2>
               <p className="ex">
@@ -174,7 +173,7 @@ export default function BlogPage() {
                     <span className="av">S</span> <b>Tim Sosmed AI</b>
                   </div>
                   <div className="meta-row">
-                    <span>Hari ini</span>
+                    <span>2 Juni 2026</span>
                     <span className="sep"></span>
                     <span className="tag">{post.tag}</span>
                   </div>

@@ -22,12 +22,11 @@ export async function generateMetadata({
   const article = ARTICLES[slug];
   if (!article) return { title: "Artikel - Sosmed AI" };
   return {
-    // Keep noindex: placeholder/sample content (no CMS).
+    // Indexable (live): inherits the site robots index:true, follow:true.
     ...pageMetadata({
       title: article.title,
       description: article.description,
       path: `/blog/${slug}`,
-      noindex: true,
       ogType: "article",
       ogTitle: `${article.title} - Sosmed AI`,
       image: blogCover(slug),
@@ -78,7 +77,7 @@ export default async function ArticlePage({
               <span className="av">S</span>
               <span style={{ textAlign: "left" }}>
                 <b>Tim Sosmed AI</b>
-                <span className="date">Hari ini · {article.readTime}</span>
+                <span className="date">2 Juni 2026 · {article.readTime}</span>
               </span>
             </div>
           </div>
@@ -140,8 +139,8 @@ export default async function ArticlePage({
                   <h4>{r.title}</h4>
                   <p>{r.excerpt}</p>
                   <div className="rmeta">
-                    <span className="r-cat">{r.tag}</span> Tim Sosmed AI · Hari
-                    ini
+                    <span className="r-cat">{r.tag}</span> Tim Sosmed AI · 2
+                    Juni 2026
                   </div>
                 </Link>
               ))}
