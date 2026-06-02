@@ -24,10 +24,31 @@ export function pageMetadata(opts: {
   path?: string;
   noindex?: boolean;
   ogType?: "website" | "article";
+  /** og/twitter card title. Defaults to the shared brand line (OG_TITLE).
+   *  Pass the page's own title for per-page cards (e.g. blog). */
+  ogTitle?: string;
+  /** og/twitter image URL. Defaults to the shared site OG image. */
+  image?: string;
+  /** og:image alt text. Defaults to the shared site OG image alt. */
+  imageAlt?: string;
 }): Metadata {
-  const { title, description, path = "", noindex = false, ogType = "website" } =
-    opts;
+  const {
+    title,
+    description,
+    path = "",
+    noindex = false,
+    ogType = "website",
+    ogTitle,
+    image,
+    imageAlt,
+  } = opts;
   const url = `${SITE_URL}${path}`;
+  const cardTitle = ogTitle ?? OG_TITLE;
+  const imgUrl = image ?? OG_IMAGE.url;
+  const imgAlt = imageAlt ?? OG_IMAGE.alt;
+  const ogImage = image
+    ? { url: imgUrl, alt: imgAlt }
+    : { ...OG_IMAGE, alt: imgAlt };
   return {
     title,
     description,
@@ -37,15 +58,15 @@ export function pageMetadata(opts: {
       locale: "id_ID",
       url,
       siteName: "Sosmed AI",
-      title: OG_TITLE,
+      title: cardTitle,
       description,
-      images: [OG_IMAGE],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
-      title: OG_TITLE,
+      title: cardTitle,
       description,
-      images: [OG_IMAGE.url],
+      images: [{ url: imgUrl, alt: imgAlt }],
     },
     ...(noindex ? { robots: { index: false, follow: true } } : {}),
   };

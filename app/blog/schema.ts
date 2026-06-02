@@ -1,10 +1,10 @@
 import { SITE_URL } from "@/lib/seo";
-import { ARTICLES, ARTICLE_SLUGS, type Article } from "./articles";
+import { ARTICLES, ARTICLE_SLUGS, blogCover, type Article } from "./articles";
 
 /**
  * JSON-LD builders for the blog. Single source of truth: everything here is
- * derived from the ARTICLES content map (app/blog/articles.tsx) — the same
- * data the pages render — so structured data never diverges from on-page text.
+ * derived from the ARTICLES content map (app/blog/articles.tsx) - the same
+ * data the pages render - so structured data never diverges from on-page text.
  *
  * NOTE on dates: the content map has no real publish date (the visible byline
  * "Hari ini" is placeholder). Per the SEO guardrail we do NOT invent a date,
@@ -14,7 +14,13 @@ import { ARTICLES, ARTICLE_SLUGS, type Article } from "./articles";
 
 const OG_IMAGE = `${SITE_URL}/images/og-image-umkm-sosmed-ai.jpg`;
 
-// Publisher (the company) — mirrors the Organization in app/layout.tsx.
+// Absolute URL for an article's own cover, falling back to the site OG image.
+function coverUrl(slug: string): string {
+  const cover = blogCover(slug);
+  return cover ? `${SITE_URL}${cover}` : OG_IMAGE;
+}
+
+// Publisher (the company) - mirrors the Organization in app/layout.tsx.
 const PUBLISHER = {
   "@type": "Organization",
   name: "Sosmed AI",
@@ -22,7 +28,7 @@ const PUBLISHER = {
   logo: { "@type": "ImageObject", url: `${SITE_URL}/icon.png` },
 };
 
-// Author — matches the visible "Tim Sosmed AI" byline (a team, not a person).
+// Author - matches the visible "Tim Sosmed AI" byline (a team, not a person).
 const AUTHOR = { "@type": "Organization", name: "Tim Sosmed AI" };
 
 /** BlogPosting for a single article. */
@@ -36,11 +42,11 @@ export function articleJsonLd(slug: string, article: Article) {
     inLanguage: "id-ID",
     url,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    image: OG_IMAGE,
+    image: coverUrl(slug),
     articleSection: article.category,
     author: AUTHOR,
     publisher: PUBLISHER,
-    // datePublished/dateModified intentionally omitted — no real date yet.
+    // datePublished/dateModified intentionally omitted - no real date yet.
   };
 }
 
@@ -62,7 +68,7 @@ export function articleBreadcrumbJsonLd(slug: string, article: Article) {
   };
 }
 
-/** Blog listing schema for the /blog index — lists every article. */
+/** Blog listing schema for the /blog index - lists every article. */
 export function blogIndexJsonLd() {
   return {
     "@context": "https://schema.org",

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 /**
  * Scroll-spy for the article's right-side "Daftar Isi" TOC. Highlights the
- * active section link as you scroll. Renders nothing — the TOC markup itself
+ * active section link as you scroll. Renders nothing - the TOC markup itself
  * is server-rendered (works without JS); this only toggles the .active class.
  * Ported from the reference's inline scroll-spy script.
  */

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 /**
  * Blog article content map (slug -> Article). All articles share one layout
- * (rendered by app/blog/[slug]/page.tsx). Content is placeholder/sample —
+ * (rendered by app/blog/[slug]/page.tsx). Content is placeholder/sample -
  * "Hari ini" dates, "Tim Sosmed AI" byline; sales-summary numbers keep their
  * "sampel, bukan data nyata" caption. Every blog page is noindex and excluded
  * from the sitemap.
@@ -156,17 +156,17 @@ export const ARTICLES: Record<string, Article> = {
     readTime: "8 menit baca",
     coverTitle: "Mulai jualan online cukup dari WhatsApp",
     description:
-      "Panduan langkah demi langkah memindahkan order, menu, pembayaran, dan pelanggan setia warung & kafe ke WhatsApp — tanpa aplikasi rumit dan tanpa biaya besar di awal.",
+      "Panduan langkah demi langkah memindahkan order, menu, pembayaran, dan pelanggan setia warung & kafe ke WhatsApp - tanpa aplikasi rumit dan tanpa biaya besar di awal.",
     lede: (
       <>
         Banyak pemilik warung dan kafe merasa &quot;jualan online&quot; itu
-        ribet — harus bikin aplikasi, belajar marketplace, atau bayar mahal.
+        ribet - harus bikin aplikasi, belajar marketplace, atau bayar mahal.
         Padahal, Anda bisa mulai dari alat yang sudah Anda kuasai setiap hari:
         WhatsApp. Berikut panduan langkah demi langkah.
       </>
     ),
     tldr: [
-      "Tidak perlu aplikasi mahal — mulai jualan online cukup dari WhatsApp yang sudah Anda pakai.",
+      "Tidak perlu aplikasi mahal - mulai jualan online cukup dari WhatsApp yang sudah Anda pakai.",
       "Susun menu digital yang jelas (kategori + harga) supaya pelanggan gampang pesan.",
       "Tentukan alur order & pembayaran yang konsisten agar tidak ada pesanan terlewat.",
       "Bangun pelanggan setia lewat sistem poin sederhana dan layanan yang personal.",
@@ -255,7 +255,7 @@ export const ARTICLES: Record<string, Article> = {
                 dipindai.
               </li>
               <li>
-                Cantumkan harga dengan jelas — pelanggan tidak suka harus
+                Cantumkan harga dengan jelas - pelanggan tidak suka harus
                 bertanya dulu.
               </li>
               <li>
@@ -295,7 +295,7 @@ export const ARTICLES: Record<string, Article> = {
             </ul>
             <p>
               Saat order makin banyak, mencatat manual mulai terasa berat. Di
-              sinilah alat bantu seperti Sosmed AI membantu — order dari chat
+              sinilah alat bantu seperti Sosmed AI membantu - order dari chat
               tercatat otomatis tanpa Anda salin satu per satu.
             </p>
             <Figure cap="Ilustrasi: alur konfirmasi order dan pembayaran.">
@@ -303,7 +303,7 @@ export const ARTICLES: Record<string, Article> = {
                 msgs={[
                   {
                     side: "out",
-                    text: "Pesanan kakak: 2x Es Kopi Susu — total Rp 36.000. Lanjut ya?",
+                    text: "Pesanan kakak: 2x Es Kopi Susu - total Rp 36.000. Lanjut ya?",
                   },
                   { side: "in", text: "Iya kak" },
                   {
@@ -330,12 +330,12 @@ export const ARTICLES: Record<string, Article> = {
             </p>
             <ul>
               <li>
-                Sistem poin atau stempel digital — beli sekian kali, dapat
+                Sistem poin atau stempel digital - beli sekian kali, dapat
                 gratis atau diskon.
               </li>
               <li>Sapaan personal dan ucapan terima kasih setelah order.</li>
               <li>
-                Info promo ke pelanggan yang pernah memesan, secukupnya — jangan
+                Info promo ke pelanggan yang pernah memesan, secukupnya - jangan
                 sampai mengganggu.
               </li>
             </ul>
@@ -357,7 +357,7 @@ export const ARTICLES: Record<string, Article> = {
               ramai. Dari sini Anda bisa memutuskan kapan menambah stok, menu
               mana yang perlu didorong, dan kapan butuh tambahan tenaga.
             </p>
-            <Figure cap="Contoh ilustrasi laporan — angka hanya sampel, bukan data nyata.">
+            <Figure cap="Contoh ilustrasi laporan - angka hanya sampel, bukan data nyata.">
               <SummMockup />
             </Figure>
           </>
@@ -373,12 +373,12 @@ export const ARTICLES: Record<string, Article> = {
               Mulai dari yang kecil: rapikan WhatsApp Business, susun menu
               digital, dan tentukan alur order. Setelah itu berjalan, baru
               pikirkan alat yang mengotomatiskan pencatatan, poin, dan laporan
-              supaya Anda bisa fokus melayani pelanggan — bukan sibuk mengurus
+              supaya Anda bisa fokus melayani pelanggan - bukan sibuk mengurus
               administrasi.
             </p>
             <p>
               Sosmed AI dibangun untuk membantu langkah itu, semua langsung dari
-              WhatsApp — agar Anda bisa fokus melayani pelanggan, bukan sibuk
+              WhatsApp - agar Anda bisa fokus melayani pelanggan, bukan sibuk
               mengurus administrasi.
             </p>
           </>
@@ -417,16 +417,16 @@ export const ARTICLES: Record<string, Article> = {
     readTime: "4 menit baca",
     coverTitle: "Bikin pelanggan kembali lagi, lagi, dan lagi",
     description:
-      "Mendapat pelanggan baru itu mahal. Membuat pelanggan lama kembali jauh lebih murah — dan lebih menguntungkan. Berikut lima cara sederhana.",
+      "Mendapat pelanggan baru itu mahal. Membuat pelanggan lama kembali jauh lebih murah - dan lebih menguntungkan. Berikut lima cara sederhana.",
     lede: (
       <>
         Mendapat pelanggan baru itu mahal. Membuat pelanggan lama kembali jauh
-        lebih murah — dan lebih menguntungkan. Berikut lima cara sederhana.
+        lebih murah - dan lebih menguntungkan. Berikut lima cara sederhana.
       </>
     ),
     tldr: [
       "Pelanggan setia lebih murah daripada terus mencari pelanggan baru.",
-      "Sapa pelanggan secara personal — orang suka diingat.",
+      "Sapa pelanggan secara personal - orang suka diingat.",
       "Beri alasan untuk kembali lewat sistem poin atau promo kecil.",
       "Jaga konsistensi rasa dan layanan.",
       "Dengarkan dan tanggapi masukan pelanggan.",
@@ -438,7 +438,7 @@ export const ARTICLES: Record<string, Article> = {
         toc: "Kenapa setia penting",
         body: (
           <p>
-            Pelanggan setia tidak hanya kembali — mereka belanja lebih sering,
+            Pelanggan setia tidak hanya kembali - mereka belanja lebih sering,
             lebih percaya, dan sering merekomendasikan usaha Anda ke teman.
             Membangun mereka jauh lebih murah daripada terus beriklan untuk
             pelanggan baru.
@@ -478,8 +478,8 @@ export const ARTICLES: Record<string, Article> = {
         body: (
           <>
             <p>
-              Beri alasan konkret untuk kembali. Sistem poin sederhana — beli
-              sekian kali, dapat gratis atau diskon — sangat efektif dan tidak
+              Beri alasan konkret untuk kembali. Sistem poin sederhana - beli
+              sekian kali, dapat gratis atau diskon - sangat efektif dan tidak
               butuh kartu fisik.
             </p>
             <Figure cap="Ilustrasi: sistem poin digital.">
@@ -495,7 +495,7 @@ export const ARTICLES: Record<string, Article> = {
         body: (
           <p>
             Rasa dan layanan yang berubah-ubah membuat pelanggan ragu.
-            Konsistensi membangun kepercayaan — pelanggan tahu persis apa yang
+            Konsistensi membangun kepercayaan - pelanggan tahu persis apa yang
             akan mereka dapat setiap kali datang.
           </p>
         ),
@@ -507,7 +507,7 @@ export const ARTICLES: Record<string, Article> = {
         body: (
           <p>
             Kabari pelanggan soal menu baru atau promo, secukupnya. Jangan
-            berlebihan sampai mengganggu — cukup sesekali agar usaha Anda tetap
+            berlebihan sampai mengganggu - cukup sesekali agar usaha Anda tetap
             diingat.
           </p>
         ),
@@ -566,7 +566,7 @@ export const ARTICLES: Record<string, Article> = {
       </>
     ),
     tldr: [
-      "Pelanggan sudah punya WhatsApp — nol friksi, tanpa unduh apa pun.",
+      "Pelanggan sudah punya WhatsApp - nol friksi, tanpa unduh apa pun.",
       "Tidak ada hambatan registrasi atau login.",
       "Percakapan natural memudahkan tanya-jawab.",
       "Jauh lebih murah daripada membangun aplikasi sendiri.",
@@ -580,7 +580,7 @@ export const ARTICLES: Record<string, Article> = {
         body: (
           <p>
             Aplikasi sendiri terdengar canggih, tapi menuntut pelanggan
-            mengunduh, mendaftar, dan belajar antarmuka baru — hambatan yang
+            mengunduh, mendaftar, dan belajar antarmuka baru - hambatan yang
             membuat banyak orang batal memesan.
           </p>
         ),
@@ -618,7 +618,7 @@ export const ARTICLES: Record<string, Article> = {
         body: (
           <p>
             Di chat, pelanggan bisa langsung bertanya soal menu, custom pesanan,
-            atau alamat. Bolak-balik tanya-jawab terjadi secara alami — sesuatu
+            atau alamat. Bolak-balik tanya-jawab terjadi secara alami - sesuatu
             yang sering kaku di aplikasi.
           </p>
         ),
@@ -687,7 +687,7 @@ export const ARTICLES: Record<string, Article> = {
     ),
     tldr: [
       "Kelompokkan menu per kategori agar mudah dipindai.",
-      "Cantumkan harga dengan jelas — jangan bikin pelanggan bertanya dulu.",
+      "Cantumkan harga dengan jelas - jangan bikin pelanggan bertanya dulu.",
       "Gunakan nama menu yang mudah dimengerti.",
       "Soroti menu andalan untuk membantu pelanggan memilih.",
       "Selalu perbarui ketika ada perubahan.",
@@ -728,7 +728,7 @@ export const ARTICLES: Record<string, Article> = {
         toc: "Harga jelas",
         body: (
           <p>
-            Selalu cantumkan harga. Pelanggan tidak suka harus bertanya — dan
+            Selalu cantumkan harga. Pelanggan tidak suka harus bertanya - dan
             banyak yang malas, lalu batal memesan.
           </p>
         ),
@@ -798,7 +798,7 @@ export const ARTICLES: Record<string, Article> = {
     tldr: [
       "Mulai dari aturan yang sangat sederhana.",
       "Tetapkan hadiah yang jelas dan terasa berharga.",
-      "Buat mudah diikuti — tanpa kartu fisik yang gampang hilang.",
+      "Buat mudah diikuti - tanpa kartu fisik yang gampang hilang.",
       "Ingatkan pelanggan soal saldo poin mereka.",
       "Pantau dan sesuaikan seiring waktu.",
     ],
@@ -837,7 +837,7 @@ export const ARTICLES: Record<string, Article> = {
         toc: "Hadiah menarik",
         body: (
           <p>
-            Hadiah harus terasa sepadan dengan usaha mengumpulkannya — misalnya
+            Hadiah harus terasa sepadan dengan usaha mengumpulkannya - misalnya
             minuman gratis atau diskon yang berarti. Hadiah yang terlalu kecil
             tidak memotivasi.
           </p>
@@ -860,8 +860,8 @@ export const ARTICLES: Record<string, Article> = {
         toc: "Ingatkan",
         body: (
           <p>
-            Pelanggan sering lupa mereka punya poin. Pengingat singkat —
-            &quot;16 poin lagi menuju voucher&quot; — mendorong mereka kembali.
+            Pelanggan sering lupa mereka punya poin. Pengingat singkat -
+            &quot;16 poin lagi menuju voucher&quot; - mendorong mereka kembali.
           </p>
         ),
       },
@@ -1025,7 +1025,7 @@ export const ARTICLES: Record<string, Article> = {
     ),
     tldr: [
       "Pantau total order dan pendapatan setiap hari.",
-      "Kenali menu terlaris — dan yang paling lambat.",
+      "Kenali menu terlaris - dan yang paling lambat.",
       "Perhatikan jam paling ramai.",
       "Bandingkan performa dari hari ke hari.",
       "Gunakan data untuk keputusan stok dan promo.",
@@ -1042,7 +1042,7 @@ export const ARTICLES: Record<string, Article> = {
               membantu Anda melihat apa yang berhasil dan apa yang perlu
               diperbaiki.
             </p>
-            <Figure cap="Contoh ilustrasi laporan — angka hanya sampel, bukan data nyata.">
+            <Figure cap="Contoh ilustrasi laporan - angka hanya sampel, bukan data nyata.">
               <SummMockup />
             </Figure>
           </>

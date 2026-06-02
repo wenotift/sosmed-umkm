@@ -11,12 +11,16 @@ export const metadata: Metadata = {
   ...pageMetadata({
     title: "Blog",
     description:
-      "Blog Sosmed AI — tips, panduan, dan cerita praktis untuk membantu pemilik warung, kafe, dan restoran kecil mengelola usaha lebih rapi dan tumbuh lebih cepat.",
+      "Blog Sosmed AI - tips, panduan, dan cerita praktis untuk membantu pemilik warung, kafe, dan restoran kecil mengelola usaha lebih rapi dan tumbuh lebih cepat.",
     path: "/blog",
     noindex: true,
+    // Per-page card title (not the homepage brand line). Index keeps the
+    // generic site OG image, but with a clean (hyphen) alt.
+    ogTitle: "Blog - Sosmed AI",
+    imageAlt: "Sosmed AI - asisten WhatsApp AI untuk bisnis F&B Indonesia",
   }),
   // Render the exact title from the reference (bypass the "%s | Sosmed AI" template).
-  title: { absolute: "Blog — Sosmed AI" },
+  title: { absolute: "Blog - Sosmed AI" },
 };
 
 // WhatsApp-chat watermark used on each card thumbnail.
@@ -28,7 +32,7 @@ const POSTS = [
     tag: "Tips Bisnis",
     title: "5 Cara Bikin Pelanggan Warung Kopi Jadi Langganan",
     excerpt:
-      "Ide sederhana membangun pelanggan setia tanpa modal besar — dari sapaan personal sampai sistem poin.",
+      "Ide sederhana membangun pelanggan setia tanpa modal besar - dari sapaan personal sampai sistem poin.",
   },
   {
     slug: "order-whatsapp-lebih-cepat",
@@ -129,7 +133,7 @@ export default function BlogPage() {
               <h2>Mulai Jualan Online untuk Warung &amp; Kafe: Panduan Lengkap</h2>
               <p className="ex">
                 Langkah demi langkah memindahkan order, menu, dan pelanggan
-                setia Anda ke WhatsApp — tanpa aplikasi rumit dan tanpa biaya
+                setia Anda ke WhatsApp - tanpa aplikasi rumit dan tanpa biaya
                 besar di awal.
               </p>
               <div className="byline">
@@ -179,7 +183,7 @@ export default function BlogPage() {
             ))}
           </div>
 
-          {/* NEWSLETTER (visual only — no live endpoint) */}
+          {/* NEWSLETTER (visual only - no live endpoint) */}
           <div className="news">
             <div>
               <span className="pill">
@@ -199,7 +203,7 @@ export default function BlogPage() {
             </div>
             <div className="side">
               Sosmed AI membantu pemilik warung, kafe, dan restoran kecil
-              mengelola order, menu, poin, dan laporan — semua langsung dari
+              mengelola order, menu, poin, dan laporan - semua langsung dari
               WhatsApp.
             </div>
           </div>

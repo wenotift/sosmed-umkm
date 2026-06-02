@@ -20,7 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const article = ARTICLES[slug];
-  if (!article) return { title: "Artikel — Sosmed AI" };
+  if (!article) return { title: "Artikel - Sosmed AI" };
   return {
     // Keep noindex: placeholder/sample content (no CMS).
     ...pageMetadata({
@@ -29,8 +29,11 @@ export async function generateMetadata({
       path: `/blog/${slug}`,
       noindex: true,
       ogType: "article",
+      ogTitle: `${article.title} - Sosmed AI`,
+      image: blogCover(slug),
+      imageAlt: article.title,
     }),
-    title: { absolute: `${article.title} — Sosmed AI` },
+    title: { absolute: `${article.title} - Sosmed AI` },
   };
 }
 
@@ -80,7 +83,7 @@ export default async function ArticlePage({
             </div>
           </div>
 
-          {/* COVER — clean image, nothing layered on top */}
+          {/* COVER - clean image, nothing layered on top */}
           <div className="cover">
             <Image
               src={blogCover(slug)}
@@ -97,7 +100,7 @@ export default async function ArticlePage({
               <p className="lede">{article.lede}</p>
 
               <div className="tldr">
-                <div className="h">TL;DR — Ringkasan singkat</div>
+                <div className="h">TL;DR - Ringkasan singkat</div>
                 <ul>
                   {article.tldr.map((item, i) => (
                     <li key={i}>{item}</li>
