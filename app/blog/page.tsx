@@ -3,6 +3,7 @@ import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { blogIndexJsonLd, blogBreadcrumbJsonLd } from "./schema";
 
 export const metadata: Metadata = {
   // Keep noindex: posts below are placeholder/sample content for now.
@@ -83,6 +84,16 @@ const POSTS = [
 export default function BlogPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogIndexJsonLd()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogBreadcrumbJsonLd()),
+        }}
+      />
       <Nav />
       <main className="blog-page">
         <div className="wrap">

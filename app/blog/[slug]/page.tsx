@@ -6,6 +6,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollSpy from "./ScrollSpy";
 import { ARTICLES, ARTICLE_SLUGS } from "../articles";
+import { articleJsonLd, articleBreadcrumbJsonLd } from "../schema";
 
 export function generateStaticParams() {
   return ARTICLE_SLUGS.map((slug) => ({ slug }));
@@ -26,6 +27,7 @@ export async function generateMetadata({
       description: article.description,
       path: `/blog/${slug}`,
       noindex: true,
+      ogType: "article",
     }),
     title: { absolute: `${article.title} — Sosmed AI` },
   };
@@ -42,6 +44,18 @@ export default async function ArticlePage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleJsonLd(slug, article)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleBreadcrumbJsonLd(slug, article)),
+        }}
+      />
       <Nav />
       <main className="article-page">
         <div className="wrap">

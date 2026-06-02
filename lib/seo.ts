@@ -23,15 +23,17 @@ export function pageMetadata(opts: {
   description: string;
   path?: string;
   noindex?: boolean;
+  ogType?: "website" | "article";
 }): Metadata {
-  const { title, description, path = "", noindex = false } = opts;
+  const { title, description, path = "", noindex = false, ogType = "website" } =
+    opts;
   const url = `${SITE_URL}${path}`;
   return {
     title,
     description,
     alternates: { canonical: url },
     openGraph: {
-      type: "website",
+      type: ogType,
       locale: "id_ID",
       url,
       siteName: "Sosmed AI",

@@ -1,0 +1,33 @@
+# Sosmed AI
+
+> Sosmed AI adalah asisten bisnis berbasis AI yang berjalan langsung di WhatsApp untuk UMKM F&B Indonesia (warung, kafe, restoran kecil) — bukan sekadar chatbot. Membantu pemilik usaha menerima order otomatis, mengelola menu digital, menjalankan sistem poin & member, dan melihat laporan penjualan, semua dari WhatsApp tanpa aplikasi atau dashboard tambahan. Saat ini dalam tahap peluncuran awal. Bahasa: Indonesia. Situs: https://umkm.sosmed.io
+
+## Halaman utama
+
+- [Beranda](https://umkm.sosmed.io): Ringkasan produk — asisten WhatsApp AI-native untuk bisnis F&B.
+- [Produk](https://umkm.sosmed.io/produk): Cara kerja fitur — order otomatis, menu digital + QR, sistem poin & member, kelola order dari WhatsApp.
+- [Harga](https://umkm.sosmed.io/harga): Paket dan harga (satu paket, semua fitur).
+- [Tentang Kami](https://umkm.sosmed.io/tentang): Misi dan prinsip Sosmed AI.
+
+## Blog
+
+Tips, panduan, dan cerita praktis untuk pemilik warung, kafe, dan restoran kecil. Catatan: konten blog saat ini berupa contoh dan sedang dalam pengembangan.
+
+- [Blog](https://umkm.sosmed.io/blog): Indeks artikel.
+- [Mulai Jualan Online untuk Warung & Kafe: Panduan Lengkap](https://umkm.sosmed.io/blog/mulai-jualan-online-warung-kafe)
+- [5 Cara Bikin Pelanggan Warung Kopi Jadi Langganan](https://umkm.sosmed.io/blog/5-cara-pelanggan-jadi-langganan)
+- [Kenapa Order via WhatsApp Lebih Cepat dari Aplikasi](https://umkm.sosmed.io/blog/order-whatsapp-lebih-cepat)
+- [Cara Atur Menu Digital yang Bikin Pelanggan Gampang Pesan](https://umkm.sosmed.io/blog/menu-digital-mudah-dipesan)
+- [Sistem Poin Sederhana untuk Usaha F&B Kecil](https://umkm.sosmed.io/blog/sistem-poin-sederhana)
+- [Mengelola Pesanan Saat Jam Ramai Tanpa Keteteran](https://umkm.sosmed.io/blog/mengelola-pesanan-jam-ramai)
+- [Laporan Penjualan Harian: Apa yang Perlu Dipantau](https://umkm.sosmed.io/blog/laporan-penjualan-harian)
+
+## Legal
+
+- [Kebijakan Privasi](https://umkm.sosmed.io/privasi): Pemrosesan data sesuai UU No. 27 Tahun 2022 (UU PDP).
+- [Syarat & Ketentuan](https://umkm.sosmed.io/syarat): Ketentuan penggunaan layanan.
+
+## Kontak
+
+- Email umum: hello@sosmed.io
+- Privasi & data: support@sosmed.io
