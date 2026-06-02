@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   ...pageMetadata({
     title: "Kebijakan Privasi",
     description:
-      "Kebijakan Privasi Sosmed AI: bagaimana kami memproses data pribadi sesuai UU No. 27 Tahun 2022 (UU PDP) — tujuan, data, dasar pemrosesan, prosesor, dan hak Anda.",
+      "Kebijakan Privasi Sosmed AI: bagaimana kami memproses data pribadi sesuai UU No. 27 Tahun 2022 (UU PDP) — tujuan, data, dasar pemrosesan, pihak ketiga, dan hak Anda.",
     path: "/privasi",
   }),
   // Render the exact title from the reference (bypass the "%s | Sosmed AI" template).
@@ -36,395 +36,292 @@ export default function PrivasiPage() {
           <h1>Kebijakan Privasi</h1>
           <div className="updated">Terakhir diperbarui: 2 Juni 2026</div>
 
-          <div className="intro">
-            <strong>Pengendali Data &amp; Kontak:</strong> Kebijakan Privasi ini
-            diterbitkan oleh PT Beneran Hype Terus (&quot;Sosmed AI&quot;,
-            &quot;kami&quot;), beralamat di Jakarta Selatan, DKI Jakarta,
-            Indonesia. Untuk pertanyaan terkait privasi, Anda dapat menghubungi
-            kami di support@sosmed.io. Kami menghargai privasi Anda dan
-            berkomitmen menggunakan data hanya sebatas yang diperlukan untuk
-            menyediakan dan meningkatkan layanan, sesuai dengan Undang-Undang
-            No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (&quot;UU
-            PDP&quot;).
+          <p className="lead">
+            <strong>Pengendali Data &amp; Kontak.</strong> Kebijakan Privasi ini
+            (&quot;Kebijakan&quot;) diterbitkan oleh PT Beneran Hype Terus
+            (&quot;Sosmed AI&quot;, &quot;Kami&quot;), beralamat di Jakarta
+            Selatan, DKI Jakarta, Indonesia. Untuk pertanyaan terkait privasi,
+            hubungi Kami di support@sosmed.io. Kami berkomitmen menggunakan Data
+            Pribadi hanya sebatas yang diperlukan untuk menyediakan dan
+            meningkatkan Layanan, sesuai dengan Undang-Undang No. 27 Tahun 2022
+            tentang Pelindungan Data Pribadi (&quot;UU PDP&quot;).
+          </p>
+          <p className="lead">
+            <strong>Ruang Lingkup.</strong> Kebijakan ini menjelaskan bagaimana
+            Kami memproses Data Pribadi Anda saat Anda mengunjungi situs Kami,
+            mendaftar, menggunakan Layanan, menerima komunikasi dari Kami, atau
+            melakukan pembayaran. Untuk setiap situasi, Kami menjelaskan data apa
+            yang digunakan, tujuannya, dasar pemrosesannya, Pihak Ketiga yang
+            Kami libatkan, serta hak-hak Anda. Dengan menggunakan Layanan, Anda
+            menyetujui praktik yang diuraikan dalam Kebijakan ini.
+          </p>
+
+          <h2>1. Definisi</h2>
+          <div className="def">
+            <b>&quot;Data Pribadi&quot;</b> berarti data tentang orang
+            perseorangan yang teridentifikasi atau dapat diidentifikasi secara
+            tersendiri atau dikombinasikan dengan informasi lainnya, baik
+            langsung maupun tidak langsung.
           </div>
-          <div className="intro">
-            <strong>Ruang Lingkup:</strong> Kebijakan ini menjelaskan bagaimana
-            kami memproses data pribadi dalam berbagai situasi: saat Anda
-            mengunjungi situs kami, mendaftar, menggunakan layanan, menerima
-            komunikasi dari kami, atau melakukan pembayaran. Untuk setiap
-            situasi, kami menjelaskan data apa yang digunakan, untuk tujuan apa,
-            dasar pemrosesannya, pihak penyedia layanan (prosesor) yang kami
-            libatkan, serta hak-hak Anda sebagai pemilik data pribadi
-            berdasarkan UU PDP.
+          <div className="def">
+            <b>&quot;Layanan&quot;</b> berarti seluruh produk dan layanan Sosmed
+            AI, termasuk asisten bisnis berbasis AI yang berjalan di WhatsApp
+            serta situs web Kami.
+          </div>
+          <div className="def">
+            <b>&quot;Anda&quot;</b> berarti pengguna Layanan — baik pemilik usaha
+            yang mendaftar maupun pelanggan akhir yang berinteraksi melalui
+            Layanan.
+          </div>
+          <div className="def">
+            <b>&quot;Pihak Ketiga&quot;</b> berarti pihak di luar Kami yang
+            menyediakan layanan untuk mendukung penyelenggaraan Layanan Kami.
+          </div>
+          <div className="def">
+            <b>&quot;Hukum yang Berlaku&quot;</b> berarti seluruh peraturan
+            perundang-undangan Republik Indonesia yang berlaku, termasuk UU PDP.
           </div>
 
-          {/* 1 */}
-          <h2>
-            <span className="n">(1)</span>Saat Anda Mengunjungi Situs Kami
-          </h2>
-          <div className="blk">
-            <span className="lbl">Ringkasan</span>
-            <p>
-              Kami menggunakan situs untuk memberi informasi tentang Sosmed AI.
-              Kami meminimalkan data pribadi dalam proses ini. Situs di-hosting
-              oleh Vercel, dan analitik pengunjung situs hanya diaktifkan sesuai
-              persetujuan Anda.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Tujuan</span>
-            <p>
-              Memuat situs untuk Anda serta menjaga keamanan dan performanya.
-              Dengan persetujuan Anda, kami juga mengumpulkan data analitik (mis.
-              kunjungan halaman) untuk memahami penggunaan situs dan
-              meningkatkan konten.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Data yang Dikumpulkan</span>
-            <p>
-              Saat Anda berkunjung, kami (atau alat analitik kami) dapat
-              mengumpulkan informasi seperti alamat IP, jenis/versi peramban,
-              dan situs perujuk. Cookie esensial hanya digunakan agar situs
-              berfungsi. Untuk analitik, identifier hanya digunakan jika Anda
-              menyetujuinya.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Dasar Pemrosesan</span>
-            <p>
-              Pengiriman situs didasarkan pada kepentingan sah kami untuk
-              menyediakan situs yang aman dan berfungsi. Untuk analitik, kami
-              mengandalkan persetujuan Anda (Pasal 20 UU PDP).
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Prosesor</span>
-            <ul>
-              <li>
-                <b>Vercel</b> — hosting situs dan analitik pengunjung situs
-                (Vercel Analytics).
-              </li>
-              <li>
-                <b>Google Analytics</b> — memahami penggunaan situs secara
-                agregat.
-              </li>
-            </ul>
-            <p style={{ marginTop: "8px" }}>
-              Analitik ini hanya mengukur kunjungan dan penggunaan{" "}
-              <b>situs web</b> secara umum (mis. halaman yang dibuka), bukan data
-              pribadi atau data order pelanggan yang diproses melalui layanan
-              WhatsApp (lihat bagian 3).
-            </p>
-          </div>
+          <h2>2. Saat Anda Mengunjungi Situs Kami</h2>
+          <p>
+            <span className="lead-in">Ringkasan.</span> Kami menggunakan situs
+            untuk memberi informasi tentang Sosmed AI dan meminimalkan Data
+            Pribadi dalam proses ini. Situs di-hosting oleh Vercel, dan analitik
+            pengunjung situs hanya diaktifkan sesuai persetujuan Anda.
+          </p>
+          <p>
+            <span className="lead-in">Tujuan.</span> Memuat situs serta menjaga
+            keamanan dan performanya. Dengan persetujuan Anda, Kami juga
+            mengumpulkan data analitik (mis. kunjungan halaman) untuk memahami
+            penggunaan situs dan meningkatkan konten.
+          </p>
+          <p>
+            <span className="lead-in">Data yang dikumpulkan.</span> Informasi
+            seperti alamat IP, jenis/versi peramban, dan situs perujuk. Cookie
+            esensial hanya digunakan agar situs berfungsi; untuk analitik,
+            identifier hanya digunakan jika Anda menyetujuinya.
+          </p>
+          <p>
+            <span className="lead-in">Dasar pemrosesan.</span> Kepentingan sah
+            Kami untuk menyediakan situs yang aman dan berfungsi; untuk analitik,
+            persetujuan Anda sesuai UU PDP.
+          </p>
+          <p>
+            <span className="lead-in">Pihak Ketiga.</span> <b>Vercel</b> (hosting
+            situs dan analitik pengunjung) dan <b>Google Analytics</b> (memahami
+            penggunaan situs secara agregat). Analitik ini hanya mengukur
+            kunjungan dan penggunaan situs web secara umum, bukan Data Pribadi
+            atau data order pelanggan yang diproses melalui Layanan WhatsApp
+            (lihat bagian 4).
+          </p>
 
-          {/* 2 */}
-          <h2>
-            <span className="n">(2)</span>Saat Anda Mendaftar (Waitlist / Akun)
-          </h2>
-          <div className="blk">
-            <span className="lbl">Ringkasan</span>
-            <p>
-              Saat Anda mendaftar ke waitlist atau membuat akun, kami
-              mengumpulkan informasi yang diperlukan untuk membuat dan mengelola
-              pendaftaran Anda.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Tujuan</span>
-            <p>
-              Membuat dan mengelola pendaftaran/akun Anda, serta menghubungi
-              Anda terkait peluncuran layanan.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Data yang Dikumpulkan</span>
-            <p>
-              Umumnya nama usaha, nomor WhatsApp, dan/atau alamat email. Saat
-              pendaftaran, kami juga dapat menerima data teknis seperti alamat
-              IP untuk keamanan.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Dasar Pemrosesan</span>
-            <p>
-              Pelaksanaan perjanjian (untuk menyediakan layanan yang Anda minta)
-              dan/atau persetujuan Anda saat mendaftar.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Prosesor</span>
-            <ul>
-              <li>
-                <b>Supabase</b> — penyimpanan data akun/waitlist (server di
-                Singapura, <code>ap-southeast-1</code>).
-              </li>
-              <li>
-                <b>Resend</b> — pengiriman email pendaftaran/notifikasi.
-              </li>
-            </ul>
-          </div>
-          <div className="blk">
-            <span className="lbl">Penyimpanan</span>
-            <p>
-              Data pendaftaran disimpan selama Anda menjadi pengguna aktif. Data
-              waitlist yang tidak menjadi akun dapat dihapus setelah 1 bulan.
-            </p>
-          </div>
+          <h2>3. Saat Anda Mendaftar (Waitlist / Akun)</h2>
+          <p>
+            <span className="lead-in">Ringkasan.</span> Saat Anda mendaftar ke
+            waitlist atau membuat akun, Kami mengumpulkan informasi yang
+            diperlukan untuk membuat dan mengelola pendaftaran Anda.
+          </p>
+          <p>
+            <span className="lead-in">Tujuan.</span> Membuat dan mengelola
+            pendaftaran/akun Anda, serta menghubungi Anda terkait peluncuran
+            Layanan.
+          </p>
+          <p>
+            <span className="lead-in">Data yang dikumpulkan.</span> Umumnya nama
+            usaha, nomor WhatsApp, dan/atau alamat surel. Saat pendaftaran, Kami
+            juga dapat menerima data teknis seperti alamat IP untuk keamanan.
+          </p>
+          <p>
+            <span className="lead-in">Dasar pemrosesan.</span> Pelaksanaan
+            perjanjian (untuk menyediakan Layanan yang Anda minta) dan/atau
+            persetujuan Anda saat mendaftar.
+          </p>
+          <p>
+            <span className="lead-in">Pihak Ketiga.</span> <b>Supabase</b> —
+            penyimpanan data akun/waitlist (server di Singapura,{" "}
+            <code>ap-southeast-1</code>); <b>Resend</b> — pengiriman surel
+            pendaftaran/notifikasi.
+          </p>
+          <p>
+            <span className="lead-in">Penyimpanan.</span> Data pendaftaran
+            disimpan selama Anda menjadi pengguna aktif. Data waitlist yang tidak
+            menjadi akun dapat dihapus setelah 1 bulan.
+          </p>
 
-          {/* 3 */}
-          <h2>
-            <span className="n">(3)</span>Saat Anda Menggunakan Layanan (via
-            WhatsApp)
-          </h2>
-          <div className="blk">
-            <span className="lbl">Ringkasan</span>
-            <p>
-              Saat Anda menggunakan Sosmed AI melalui WhatsApp — baik sebagai
-              pemilik usaha maupun sebagai pelanggan dari usaha tersebut — kami
-              memproses data percakapan dan order untuk menjalankan fungsi
-              layanan.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Tujuan</span>
-            <p>
-              (A) Menyediakan fitur inti layanan (menerima &amp; memproses
-              order, mengelola menu, sistem poin, laporan); (B) memantau dan
-              meningkatkan layanan; (C) dukungan pengguna; dan (D) keamanan.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Data yang Dikumpulkan</span>
-            <ul>
-              <li>
-                <b>Data percakapan WhatsApp</b> — pesan, nomor WhatsApp, dan isi
-                order yang Anda kirim atau terima melalui layanan.
-              </li>
-              <li>
-                <b>Data order &amp; usaha</b> — item menu, harga, status
-                pesanan, dan data poin/member yang dimasukkan ke dalam sistem.
-              </li>
-              <li>
-                <b>Data penggunaan</b> — log aktivitas dan kesalahan untuk
-                menjaga keandalan layanan.
-              </li>
-            </ul>
-          </div>
-          <div className="blk">
-            <span className="lbl">Dasar Pemrosesan</span>
-            <p>
-              Sebagian besar pemrosesan diperlukan untuk pelaksanaan perjanjian
-              layanan dengan Anda; sebagian lain berdasarkan kepentingan sah
-              kami untuk menjaga fungsi, keamanan, dan kegunaan produk.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Prosesor</span>
-            <ul>
-              <li>
-                <b>360dialog (Meta Business Partner)</b> — pengiriman dan
-                penerimaan pesan melalui WhatsApp Business Platform.
-              </li>
-              <li>
-                <b>Supabase</b> — penyimpanan data order, menu, member, dan
-                percakapan.
-              </li>
-              <li>
-                <b>Penyedia model AI (LLM)</b> — OpenAI, Anthropic, Google
-                Gemini, dan DeepSeek, untuk memahami maksud pesan dan menyusun
-                balasan. Isi pesan dapat dikirim ke salah satu penyedia ini
-                untuk diproses.
-              </li>
-            </ul>
-          </div>
-          <div className="blk">
-            <span className="lbl">Penyimpanan</span>
-            <p>
-              Data yang Anda buat dalam layanan disimpan hingga Anda
-              menghapusnya atau meminta penghapusan akun. Setelah dihapus, data
-              dapat tertinggal sementara di cadangan (backup) sebelum dimusnahkan
-              sepenuhnya.
-            </p>
-          </div>
+          <h2>4. Saat Anda Menggunakan Layanan (via WhatsApp)</h2>
+          <p>
+            <span className="lead-in">Ringkasan.</span> Saat Anda menggunakan
+            Sosmed AI melalui WhatsApp — baik sebagai pemilik usaha maupun
+            pelanggan dari usaha tersebut — Kami memproses data percakapan dan
+            order untuk menjalankan fungsi Layanan.
+          </p>
+          <p>
+            <span className="lead-in">Tujuan.</span> Menyediakan fitur inti
+            Layanan (menerima &amp; memproses order, mengelola menu, sistem poin,
+            laporan); memantau dan meningkatkan Layanan; dukungan pengguna; dan
+            keamanan.
+          </p>
+          <p>
+            <span className="lead-in">Data yang dikumpulkan.</span>
+          </p>
+          <ul>
+            <li>
+              <b>Data percakapan WhatsApp</b> — pesan, nomor WhatsApp, dan isi
+              order yang Anda kirim atau terima melalui Layanan.
+            </li>
+            <li>
+              <b>Data order &amp; usaha</b> — item menu, harga, status pesanan,
+              serta data poin/member yang dimasukkan ke sistem.
+            </li>
+            <li>
+              <b>Data penggunaan</b> — log aktivitas dan kesalahan untuk menjaga
+              keandalan Layanan.
+            </li>
+          </ul>
+          <p>
+            <span className="lead-in">Dasar pemrosesan.</span> Sebagian besar
+            pemrosesan diperlukan untuk pelaksanaan perjanjian Layanan dengan
+            Anda; sebagian lain berdasarkan kepentingan sah Kami untuk menjaga
+            fungsi, keamanan, dan kegunaan Layanan.
+          </p>
+          <p>
+            <span className="lead-in">Pihak Ketiga.</span>
+          </p>
+          <ul>
+            <li>
+              <b>360dialog (Meta Business Partner)</b> — pengiriman dan
+              penerimaan pesan melalui WhatsApp Business Platform.
+            </li>
+            <li>
+              <b>Supabase</b> — penyimpanan data order, menu, member, dan
+              percakapan.
+            </li>
+            <li>
+              <b>Penyedia model AI</b> — OpenAI, Anthropic, Google Gemini, dan
+              DeepSeek, untuk memahami maksud pesan dan menyusun balasan. Isi
+              pesan dapat dikirim ke salah satu penyedia ini untuk diproses.
+            </li>
+          </ul>
+          <p>
+            <span className="lead-in">Penyimpanan.</span> Data yang Anda buat
+            dalam Layanan disimpan hingga Anda menghapusnya atau meminta
+            penghapusan akun. Setelah dihapus, data dapat tertinggal sementara di
+            cadangan (backup) sebelum dimusnahkan sepenuhnya.
+          </p>
 
-          {/* 4 */}
-          <h2>
-            <span className="n">(4)</span>Saat Anda Menerima Komunikasi atau
-            Menghubungi Kami
-          </h2>
-          <div className="blk">
-            <span className="lbl">Ringkasan</span>
-            <p>
-              Jika Anda berlangganan info atau menghubungi kami, kami
-              menggunakan informasi yang Anda berikan untuk merespons dan
-              mengirim pembaruan yang relevan. Anda dapat berhenti berlangganan
-              kapan saja.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Tujuan</span>
-            <p>
-              Memberikan informasi dan layanan yang Anda minta, serta mengirim
-              pembaruan produk yang relevan.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Data yang Dikumpulkan</span>
-            <p>
-              Nama, nomor WhatsApp, alamat email, dan isi pesan yang Anda kirim
-              kepada kami.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Dasar Pemrosesan</span>
-            <p>
-              Persetujuan (untuk komunikasi pemasaran) atau pelaksanaan
-              perjanjian (untuk komunikasi terkait layanan dan dukungan).
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Prosesor</span>
-            <p>
-              Kami tidak menggunakan alat CRM atau sistem dukungan pihak ketiga
-              untuk komunikasi ini. Pesan Anda ditangani langsung melalui email
-              kami di hello@sosmed.io.
-            </p>
-          </div>
+          <h2>5. Saat Anda Menerima Komunikasi atau Menghubungi Kami</h2>
+          <p>
+            <span className="lead-in">Ringkasan.</span> Jika Anda berlangganan
+            info atau menghubungi Kami, Kami menggunakan informasi yang Anda
+            berikan untuk merespons dan mengirim pembaruan yang relevan. Anda
+            dapat berhenti berlangganan kapan saja.
+          </p>
+          <p>
+            <span className="lead-in">Data yang dikumpulkan.</span> Nama, nomor
+            WhatsApp, alamat surel, dan isi pesan yang Anda kirim kepada Kami.
+          </p>
+          <p>
+            <span className="lead-in">Dasar pemrosesan.</span> Persetujuan (untuk
+            komunikasi pemasaran) atau pelaksanaan perjanjian (untuk komunikasi
+            terkait Layanan dan dukungan).
+          </p>
+          <p>
+            <span className="lead-in">Pihak Ketiga.</span> Kami tidak menggunakan
+            alat CRM atau sistem dukungan Pihak Ketiga untuk komunikasi ini.
+            Pesan Anda ditangani langsung melalui surel Kami di hello@sosmed.io.
+          </p>
 
-          {/* 5 */}
-          <h2>
-            <span className="n">(5)</span>Saat Anda Melakukan Pembayaran
-          </h2>
-          <div className="blk">
-            <span className="lbl">Ringkasan</span>
-            <p>
-              Untuk paket berbayar, kami memproses informasi penagihan yang
-              diperlukan. Kami tidak menyimpan detail kartu Anda — pembayaran
-              ditangani oleh penyedia pembayaran yang aman.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Tujuan</span>
-            <p>
-              Menagih biaya layanan dan mengelola penagihan, serta menyimpan
-              riwayat transaksi untuk keperluan akuntansi dan pajak.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Data yang Dikumpulkan</span>
-            <p>
-              Informasi penagihan seperti nama, kontak, dan detail transaksi.
-              Detail pembayaran sensitif dikumpulkan langsung oleh penyedia
-              pembayaran; kami hanya menerima referensi/token transaksi.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Dasar Pemrosesan</span>
-            <p>
-              Pelaksanaan perjanjian (untuk memproses pembayaran) dan kewajiban
-              hukum (untuk menyimpan catatan keuangan).
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Prosesor</span>
-            <ul>
-              <li>
-                <b>Xendit</b> — pemrosesan pembayaran lokal Indonesia (mis. QRIS
-                dan transfer/virtual account).
-              </li>
-            </ul>
-          </div>
-          <div className="blk">
-            <span className="lbl">Penyimpanan</span>
-            <p>
-              Kami tidak menyimpan nomor kartu lengkap. Catatan keuangan
-              disimpan minimal selama periode yang diwajibkan peraturan
-              perpajakan Indonesia.
-            </p>
-          </div>
+          <h2>6. Saat Anda Melakukan Pembayaran</h2>
+          <p>
+            <span className="lead-in">Ringkasan.</span> Untuk paket berbayar,
+            Kami memproses informasi penagihan yang diperlukan. Kami tidak
+            menyimpan detail kartu Anda — pembayaran ditangani oleh penyedia
+            pembayaran yang aman.
+          </p>
+          <p>
+            <span className="lead-in">Data yang dikumpulkan.</span> Informasi
+            penagihan seperti nama, kontak, dan detail transaksi. Detail
+            pembayaran sensitif dikumpulkan langsung oleh penyedia pembayaran;
+            Kami hanya menerima referensi/token transaksi.
+          </p>
+          <p>
+            <span className="lead-in">Dasar pemrosesan.</span> Pelaksanaan
+            perjanjian (untuk memproses pembayaran) dan kewajiban hukum (untuk
+            menyimpan catatan keuangan).
+          </p>
+          <p>
+            <span className="lead-in">Pihak Ketiga.</span> <b>Xendit</b> —
+            pemrosesan pembayaran lokal Indonesia (mis. QRIS dan transfer/virtual
+            account).
+          </p>
+          <p>
+            <span className="lead-in">Penyimpanan.</span> Kami tidak menyimpan
+            nomor kartu lengkap. Catatan keuangan disimpan minimal selama periode
+            yang diwajibkan peraturan perpajakan Indonesia.
+          </p>
 
-          {/* 6 */}
-          <h2>
-            <span className="n">(6)</span>Transfer ke Luar Negeri
-          </h2>
-          <div className="blk">
-            <p>
-              Sebagian layanan yang kami gunakan memproses sebagian data Anda di
-              luar Indonesia — termasuk penyedia model AI (OpenAI, Anthropic,
-              Google Gemini, dan DeepSeek) serta infrastruktur cloud (Supabase
-              di Singapura). Untuk setiap transfer data ke luar wilayah
-              Indonesia, kami menerapkan upaya perlindungan yang memadai sesuai
-              dengan ketentuan UU PDP.
-            </p>
-          </div>
+          <h2>7. Pengungkapan kepada Pihak Lain</h2>
+          <p>
+            Kami <b>tidak akan menjual atau menyewakan</b> Data Pribadi Anda
+            kepada pihak mana pun. Kami hanya membagikan Data Pribadi kepada
+            Pihak Ketiga yang mendukung penyelenggaraan Layanan (sebagaimana
+            disebutkan di atas), atau apabila diwajibkan oleh Hukum yang Berlaku,
+            perintah otoritas yang berwenang, atau putusan pengadilan.
+          </p>
 
-          {/* 7 */}
-          <h2>
-            <span className="n">(7)</span>Hak Anda sebagai Pemilik Data Pribadi
-          </h2>
-          <div className="blk">
-            <p>
-              Berdasarkan UU PDP, Anda berhak untuk: mengakses dan memperoleh
-              salinan data pribadi Anda; memperbaiki data yang tidak akurat;
-              menghapus data pribadi; menarik persetujuan; membatasi atau
-              menolak pemrosesan tertentu; serta mengajukan keberatan. Untuk
-              menggunakan hak-hak ini, cukup kirim email ke support@sosmed.io
-              dan kami akan menindaklanjutinya. Kami akan merespons permintaan
-              Anda dalam waktu yang wajar sesuai ketentuan yang berlaku.
-            </p>
-          </div>
+          <h2>8. Transfer ke Luar Negeri</h2>
+          <p>
+            Sebagian Layanan yang Kami gunakan memproses sebagian data Anda di
+            luar Indonesia — termasuk penyedia model AI (OpenAI, Anthropic,
+            Google Gemini, dan DeepSeek) serta infrastruktur cloud (Supabase di
+            Singapura). Untuk setiap transfer data ke luar wilayah Indonesia,
+            Kami menerapkan upaya perlindungan yang memadai sesuai dengan
+            ketentuan UU PDP.
+          </p>
 
-          {/* 8 */}
-          <h2>
-            <span className="n">(8)</span>Informasi Tambahan
-          </h2>
-          <div className="blk">
-            <span className="lbl">Keamanan Data</span>
-            <p>
-              Kami menerapkan langkah teknis dan organisasi untuk melindungi
-              data pribadi Anda, termasuk enkripsi saat transit (HTTPS) dan
-              pembatasan akses ke data pribadi hanya kepada pihak yang
-              berkepentingan.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Penerima Lain</span>
-            <p>
-              Kami tidak membagikan data Anda kepada pihak di luar perusahaan
-              kecuali kepada prosesor kami, atau jika diwajibkan oleh hukum.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Data Anak</span>
-            <p>
-              Layanan kami tidak ditujukan untuk anak di bawah umur. Kami tidak
-              dengan sengaja mengumpulkan data pribadi anak. Jika kami mengetahui
-              hal ini terjadi, kami akan menghapusnya.
-            </p>
-          </div>
-          <div className="blk">
-            <span className="lbl">Perubahan Kebijakan</span>
-            <p>
-              Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu.
-              Untuk perubahan signifikan, kami akan memberi tahu melalui situs
-              atau email. Tanggal &quot;Terakhir diperbarui&quot; di atas
-              menunjukkan revisi terbaru.
-            </p>
-          </div>
+          <h2>9. Hak Anda sebagai Subjek Data Pribadi</h2>
+          <p>
+            Berdasarkan UU PDP, Anda berhak untuk mengakses dan memperoleh
+            salinan Data Pribadi Anda, memperbaiki data yang tidak akurat,
+            menghapus Data Pribadi, menarik persetujuan, membatasi atau menolak
+            pemrosesan tertentu, serta mengajukan keberatan. Untuk menggunakan
+            hak-hak ini, cukup kirim surel ke support@sosmed.io dan Kami akan
+            menindaklanjutinya dalam waktu yang wajar sesuai ketentuan yang
+            berlaku.
+          </p>
 
-          {/* 9 */}
-          <h2>
-            <span className="n">(9)</span>Hubungi Kami
-          </h2>
-          <div className="blk">
-            <p>
-              Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini atau
-              cara Sosmed AI menangani data Anda, silakan hubungi kami di
-              support@sosmed.io. Terima kasih telah membaca — kepercayaan Anda
-              penting bagi kami.
-            </p>
-          </div>
+          <h2>10. Informasi Tambahan</h2>
+          <p>
+            <span className="lead-in">Keamanan data.</span> Kami menerapkan
+            langkah teknis dan organisasi untuk melindungi Data Pribadi Anda,
+            termasuk enkripsi saat transit (HTTPS) dan pembatasan akses ke Data
+            Pribadi hanya kepada pihak yang berkepentingan.
+          </p>
+          <p>
+            <span className="lead-in">Data anak.</span> Layanan Kami tidak
+            ditujukan untuk anak di bawah umur. Kami tidak dengan sengaja
+            mengumpulkan Data Pribadi anak; jika Kami mengetahui hal ini terjadi,
+            Kami akan menghapusnya.
+          </p>
+          <p>
+            <span className="lead-in">Perubahan Kebijakan.</span> Kami dapat
+            memperbarui Kebijakan ini dari waktu ke waktu. Untuk perubahan
+            signifikan, Kami akan memberi tahu melalui situs atau surel. Tanggal
+            di atas menunjukkan revisi terbaru.
+          </p>
+          <p>
+            <span className="lead-in">Bahasa.</span> Apabila Kebijakan ini
+            disediakan dalam lebih dari satu bahasa dan terdapat ketidaksesuaian,
+            maka teks Bahasa Indonesia yang berlaku.
+          </p>
+
+          <h2>11. Hubungi Kami</h2>
+          <p>
+            Jika Anda memiliki pertanyaan tentang Kebijakan ini atau cara Sosmed
+            AI menangani Data Pribadi Anda, silakan hubungi Kami di
+            support@sosmed.io. Terima kasih telah membaca — kepercayaan Anda
+            penting bagi Kami.
+          </p>
 
           <div className="footer-legal">
             <Link href="/">← Kembali ke beranda</Link> &nbsp;·&nbsp;{" "}
