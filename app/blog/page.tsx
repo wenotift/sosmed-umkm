@@ -31,6 +31,7 @@ function ChatWatermark() {
 // Placeholder/sample posts (no CMS yet). Dates are "Hari ini", byline "Tim Sosmed AI".
 const POSTS = [
   {
+    slug: "5-cara-pelanggan-jadi-langganan",
     g: "g2",
     tag: "Tips Bisnis",
     title: "5 Cara Bikin Pelanggan Warung Kopi Jadi Langganan",
@@ -38,6 +39,7 @@ const POSTS = [
       "Ide sederhana membangun pelanggan setia tanpa modal besar — dari sapaan personal sampai sistem poin.",
   },
   {
+    slug: "order-whatsapp-lebih-cepat",
     g: "g3",
     tag: "Panduan",
     title: "Kenapa Order via WhatsApp Lebih Cepat dari Aplikasi",
@@ -45,6 +47,7 @@ const POSTS = [
       "Kenapa pelanggan lebih nyaman pesan lewat chat, dan bagaimana itu menguntungkan usaha Anda.",
   },
   {
+    slug: "menu-digital-mudah-dipesan",
     g: "g4",
     tag: "Tips Bisnis",
     title: "Cara Atur Menu Digital yang Bikin Pelanggan Gampang Pesan",
@@ -52,6 +55,7 @@ const POSTS = [
       "Menyusun menu yang jelas dan rapi sehingga pelanggan langsung tahu mau pesan apa.",
   },
   {
+    slug: "sistem-poin-sederhana",
     g: "g5",
     tag: "Panduan",
     title: "Sistem Poin Sederhana untuk Usaha F&B Kecil",
@@ -59,6 +63,7 @@ const POSTS = [
       "Cara kerja program loyalitas yang ringan dijalankan dan disukai pelanggan.",
   },
   {
+    slug: "mengelola-pesanan-jam-ramai",
     g: "g6",
     tag: "Tips Bisnis",
     title: "Mengelola Pesanan Saat Jam Ramai Tanpa Keteteran",
@@ -66,6 +71,7 @@ const POSTS = [
       "Tips menjaga pesanan tetap rapi dan tidak ada yang terlewat saat sedang sibuk-sibuknya.",
   },
   {
+    slug: "laporan-penjualan-harian",
     g: "g7",
     tag: "Panduan",
     title: "Laporan Penjualan Harian: Apa yang Perlu Dipantau",
@@ -103,7 +109,11 @@ export default function BlogPage() {
           </div>
 
           {/* FEATURED */}
-          <div className="featured">
+          <Link
+            className="featured"
+            href="/blog/mulai-jualan-online-warung-kafe"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <div className="thumb big g1">
               <span className="t-badge">Panduan</span>
               <div className="t-title">
@@ -124,7 +134,7 @@ export default function BlogPage() {
                 <span className="av">S</span> <b>Tim Sosmed AI</b>
               </div>
             </div>
-          </div>
+          </Link>
 
           {/* TABS (visual only) */}
           <div className="tabs">
@@ -138,7 +148,12 @@ export default function BlogPage() {
           {/* GRID */}
           <div className="grid">
             {POSTS.map((post) => (
-              <div className="card" key={post.title}>
+              <Link
+                className="card"
+                href={`/blog/${post.slug}`}
+                key={post.slug}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <div className={`thumb ${post.g}`}>
                   <span className="t-badge">{post.tag}</span>
                   <ChatWatermark />
@@ -156,7 +171,7 @@ export default function BlogPage() {
                     <span className="tag">{post.tag}</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
