@@ -734,6 +734,31 @@
   .drawer-acc .drawer-sub:hover,.drawer-acc .drawer-sub.active{background:var(--accent-soft);color:var(--accent-ink)}
 
   /* ===== "Segera Hadir" placeholder pages ===== */
+  /* legal / privacy page (single-column long-form) */
+  .legal-page{background:#fff;color:var(--ink);line-height:1.65}
+  .legal-wrap{max-width:760px;margin:0 auto;padding:48px 24px 96px}
+  .legal-wrap .back{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-size:14px;font-weight:600;color:var(--ink-soft);text-decoration:none;margin-bottom:40px;transition:color .15s}
+  .legal-wrap .back:hover{color:var(--accent-ink)}
+  .legal-wrap .back svg{width:16px;height:16px;stroke:currentColor;fill:none}
+  .legal-wrap h1{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:clamp(32px,5vw,44px);line-height:1.1;margin-bottom:12px;color:var(--ink)}
+  .legal-wrap .updated{font-size:14px;color:var(--ink-soft);margin-bottom:36px}
+  .legal-wrap .intro{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin-bottom:20px;font-size:15px;color:var(--ink-soft)}
+  .legal-wrap .intro strong{color:var(--ink);font-weight:700}
+  .legal-wrap .intro + .intro{margin-bottom:40px}
+  .legal-wrap h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:21px;margin:44px 0 8px;padding-top:8px;color:var(--ink);scroll-margin-top:24px}
+  .legal-wrap h2 .n{color:var(--accent-ink);font-weight:800;margin-right:6px}
+  .legal-wrap .blk{font-size:15px;color:var(--ink-soft);margin:14px 0}
+  .legal-wrap .blk .lbl{display:inline-block;font-family:var(--display);font-weight:700;font-size:12.5px;letter-spacing:.02em;color:var(--accent-ink);text-transform:uppercase;margin-bottom:3px}
+  .legal-wrap .blk p{margin-top:2px;color:var(--ink-soft)}
+  .legal-wrap .blk ul{margin:8px 0 8px 2px;list-style:none}
+  .legal-wrap .blk li{position:relative;padding-left:20px;margin-bottom:7px;color:var(--ink-soft)}
+  .legal-wrap .blk li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
+  .legal-wrap .blk li b,.legal-wrap .blk p b{color:var(--ink);font-weight:700}
+  .legal-wrap code{background:var(--accent-soft);color:var(--accent-ink);padding:1px 7px;border-radius:6px;font-size:13px;font-family:var(--display)}
+  .legal-wrap .footer-legal{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
+  .legal-wrap .footer-legal a{color:var(--accent-ink);text-decoration:none;font-weight:600}
+  .legal-wrap .footer-legal a:hover{text-decoration:underline}
+
   .soon-page{
     min-height:calc(100dvh - 69px);
     display:flex;align-items:center;justify-content:center;text-align:center;
