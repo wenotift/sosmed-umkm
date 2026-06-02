@@ -80,7 +80,7 @@ export default async function ArticlePage({
             </div>
           </div>
 
-          {/* COVER */}
+          {/* COVER — clean image, nothing layered on top */}
           <div className="cover">
             <Image
               src={blogCover(slug)}
@@ -89,13 +89,6 @@ export default async function ArticlePage({
               priority
               sizes="(max-width: 980px) 100vw, 980px"
             />
-            <div className="cover-scrim" />
-            <span className="wm">
-              <svg viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
-            </span>
-            <div className="ct">{article.coverTitle}</div>
           </div>
 
           {/* LAYOUT */}
@@ -139,15 +132,14 @@ export default async function ArticlePage({
                 <Link className="rcard" href={`/blog/${r.slug}`} key={r.slug}>
                   <div
                     className="thumb"
-                    style={{
-                      backgroundImage: `linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.28)), url('${blogThumb(r.slug)}')`,
-                    }}
-                  >
-                    <span className="t-badge">{r.tag}</span>
-                  </div>
+                    style={{ backgroundImage: `url('${blogThumb(r.slug)}')` }}
+                  ></div>
                   <h4>{r.title}</h4>
                   <p>{r.excerpt}</p>
-                  <div className="rmeta">Tim Sosmed AI · Hari ini</div>
+                  <div className="rmeta">
+                    <span className="r-cat">{r.tag}</span> Tim Sosmed AI · Hari
+                    ini
+                  </div>
                 </Link>
               ))}
             </div>

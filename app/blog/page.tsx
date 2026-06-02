@@ -20,16 +20,6 @@ export const metadata: Metadata = {
 };
 
 // WhatsApp-chat watermark used on each card thumbnail.
-function ChatWatermark() {
-  return (
-    <span className="wm">
-      <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-      </svg>
-    </span>
-  );
-}
-
 // Placeholder/sample posts (no CMS yet). Dates are "Hari ini", byline "Tim Sosmed AI".
 const POSTS = [
   {
@@ -129,14 +119,9 @@ export default function BlogPage() {
             <div
               className="thumb big"
               style={{
-                backgroundImage: `linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.55)), url('${blogThumb("mulai-jualan-online-warung-kafe")}')`,
+                backgroundImage: `url('${blogThumb("mulai-jualan-online-warung-kafe")}')`,
               }}
-            >
-              <span className="t-badge">Panduan</span>
-              <div className="t-title">
-                Mulai Jualan Online untuk Warung &amp; Kafe: Panduan Lengkap
-              </div>
-            </div>
+            ></div>
             <div>
               <div className="fmeta">
                 <span className="cat">Panduan</span> · Hari ini
@@ -174,12 +159,9 @@ export default function BlogPage() {
                 <div
                   className="thumb"
                   style={{
-                    backgroundImage: `linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.28)), url('${blogThumb(post.slug)}')`,
+                    backgroundImage: `url('${blogThumb(post.slug)}')`,
                   }}
-                >
-                  <span className="t-badge">{post.tag}</span>
-                  <ChatWatermark />
-                </div>
+                ></div>
                 <div className="cbody">
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
