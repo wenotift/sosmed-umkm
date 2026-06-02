@@ -90,7 +90,7 @@ export default function Footer() {
               <a href="#">Tentang Kami</a>
               <a href="mailto:hello@sosmed.io">Kontak</a>
               <Link href="/privasi">Privasi</Link>
-              <a href="#">Syarat &amp; Ketentuan</a>
+              <Link href="/syarat">Syarat &amp; Ketentuan</Link>
             </div>
           </div>
         </div>

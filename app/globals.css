@@ -755,6 +755,18 @@
   .legal-wrap .blk li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
   .legal-wrap .blk li b,.legal-wrap .blk p b{color:var(--ink);font-weight:700}
   .legal-wrap code{background:var(--accent-soft);color:var(--accent-ink);padding:1px 7px;border-radius:6px;font-size:13px;font-family:var(--display)}
+  /* decimal-clause structure (terms page) */
+  .legal-wrap .clause{font-size:15px;color:var(--ink-soft);margin:16px 0}
+  .legal-wrap .clause .id{font-family:var(--display);font-weight:700;color:var(--ink);margin-right:6px}
+  .legal-wrap .clause .lead{font-weight:700;color:var(--ink)}
+  .legal-wrap .clause p{margin:0}
+  .legal-wrap .clause + .clause{margin-top:14px}
+  .legal-wrap .clause ul{margin:10px 0 4px 2px;list-style:none}
+  .legal-wrap .clause li{position:relative;padding-left:20px;margin-bottom:7px}
+  .legal-wrap .clause li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
+  .legal-wrap .clause a{color:var(--accent-ink);font-weight:600;text-decoration:none}
+  .legal-wrap .clause a:hover{text-decoration:underline}
+  .legal-wrap .clause em.flag{font-style:italic;color:var(--ink-soft)}
   .legal-wrap .footer-legal{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
   .legal-wrap .footer-legal a{color:var(--accent-ink);text-decoration:none;font-weight:600}
   .legal-wrap .footer-legal a:hover{text-decoration:underline}
