@@ -724,57 +724,76 @@
     .home .tech-feat,.home .prob{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(255,255,255,.04)}
   }
 
-  /* ===== AI-Native banner (homepage, after the trust 4-pills) =====
-     Scoped to .ainat; every inner class is aib-* prefixed because .panel/.pill/
-     .cap/.active exist globally. Conceptual/illustrative (caption + grey nodes).
-     Darker purple (#4A157E) for link text; bright purple only in node-icon bg. */
-  .ainat .aib-top{max-width:760px;margin:0 auto 30px;text-align:center}
-  .ainat .aib-top h2{font-family:var(--display);font-weight:800;letter-spacing:-.025em;font-size:clamp(26px,3.4vw,38px);line-height:1.16;color:var(--ink)}
-  .ainat .aib-top p{font-family:var(--body);font-weight:400;font-size:16px;line-height:1.6;color:var(--ink-soft);margin:10px auto 0;max-width:54ch}
-  .ainat .aib-panel{border:1px solid var(--line);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:300px 1fr 248px;background:#fff}
-  .ainat .aib-left{padding:38px 30px;display:flex;flex-direction:column;border-right:1px solid var(--line);min-width:0}
-  .ainat .aib-left h3{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px}
-  .ainat .aib-left p{font-size:15.5px;color:var(--ink-soft);line-height:1.6}
-  .ainat .aib-link{margin-top:auto;padding-top:28px;font-family:var(--display);font-weight:600;font-size:15px;color:#4A157E;text-decoration:none;display:inline-flex;align-items:center;gap:7px}
-  .ainat .aib-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
-  .ainat .aib-flow{background:#FCFBFE;background-image:radial-gradient(circle,rgba(74,21,126,.06) 1px,transparent 1px);background-size:18px 18px;padding:26px 14px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);min-width:0}
-  .ainat .aib-flow .aib-flow-svg{width:100%;max-width:380px;display:block}
-  .ainat .aib-list{background:#FCFBFE;background-image:radial-gradient(circle,rgba(74,21,126,.06) 1px,transparent 1px);background-size:18px 18px;padding:30px 18px;display:flex;flex-direction:column;justify-content:center;gap:11px;min-width:0}
-  .ainat .aib-li{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-family:var(--display);font-weight:500;font-size:13.5px;color:var(--ink-soft);box-shadow:0 4px 12px rgba(74,21,126,.04)}
-  .ainat .aib-di{width:24px;height:24px;border-radius:7px;background:#F1EFF7;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .ainat .aib-di svg{width:13px;height:13px;stroke:#9A93A8;fill:none;stroke-width:2}
-  .ainat .aib-faint{opacity:.4}
-  .ainat .aib-faint2{opacity:.62}
-  .ainat .aib-li.aib-active{color:var(--ink);font-weight:700;border-color:#B7E6C7;box-shadow:0 10px 24px rgba(22,163,74,.1)}
-  .ainat .aib-li.aib-active .aib-di{background:#DCFCE7}
-  .ainat .aib-li.aib-active .aib-di svg{stroke:#16A34A}
-  /* node cards rendered inside the SVG foreignObjects */
-  .ainat .aib-node{height:100%;background:#fff;border:1.6px solid var(--line);border-radius:15px;padding:12px 14px;box-shadow:0 8px 20px rgba(74,21,126,.05);display:flex;flex-direction:column}
-  .ainat .aib-node.aib-ok{border-color:#B7E6C7}
-  .ainat .aib-node.aib-mut{opacity:.5;border-style:dashed;box-shadow:none}
-  .ainat .aib-nrow{display:flex;align-items:center;gap:10px}
-  .ainat .aib-nicon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .ainat .aib-nicon svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
-  .ainat .aib-ic-purple{background:linear-gradient(135deg,#A050F8,#7018D8)}
-  .ainat .aib-ic-green{background:linear-gradient(135deg,#22C55E,#16A34A)}
-  .ainat .aib-ic-grey{background:#9A93A8}
-  .ainat .aib-ntitle{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);line-height:1.2}
-  .ainat .aib-ntag{margin-left:auto;font-family:var(--display);font-size:10px;font-weight:600;color:var(--ink-soft);background:#F3F1F8;padding:2px 8px;border-radius:7px;white-space:nowrap}
-  .ainat .aib-nsub{font-size:12px;color:var(--ink-soft);margin-top:8px;padding-top:8px;border-top:1px solid var(--line);line-height:1.35}
-  .ainat .aib-pill{font-family:var(--display);font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;background:#DCFCE7;color:#16A34A}
-  .ainat .aib-pill svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.6}
-  .ainat .aib-tabtag{font-family:var(--display);font-size:11px;font-weight:600;color:var(--ink-soft);background:#F3F1F8;padding:3px 9px;border-radius:8px;display:inline-flex;align-items:center;gap:4px}
-  .ainat .aib-tabtag svg{width:11px;height:11px;stroke:var(--ink-soft);fill:none;stroke-width:2}
-  .ainat .aib-blabel{font-family:var(--display);font-size:11px;font-weight:600;padding:3px 11px;border-radius:20px;background:#fff;white-space:nowrap;text-align:center;border:1.3px solid #B7E6C7;color:#16A34A}
-  .ainat .aib-blabel.aib-mut{border-color:#D5D2DD;color:var(--ink-soft);opacity:.6}
-  .ainat .aib-cap{text-align:center;font-size:12.5px;color:var(--ink-soft);font-style:italic;margin-top:22px}
+  /* ===== AI-Native vs chatbot banner v2 (homepage, replaces the old .ainat) =====
+     Scoped to .natv2; every inner class is nv-* prefixed because .panel/.pill/
+     .li/.chip/.tag/.flow/.node etc. exist or are bare-global. Two scalable SVG
+     lane flows (reference-style nodes, left-spine connectors) + intent side-list.
+     Conceptual/illustrative (caption). Darker purple (#4A157E link, #7018D8
+     accent-ink icon strokes/keyword); bright purple never used as text. */
+  .natv2 .nv-top{max-width:680px;margin:0 auto 30px;text-align:center}
+  .natv2 .nv-top h2{font-family:var(--display);font-weight:800;letter-spacing:-.025em;font-size:clamp(26px,3.4vw,38px);line-height:1.16;color:var(--ink)}
+  .natv2 .nv-top p{font-family:var(--body);font-weight:400;font-size:16px;line-height:1.6;color:var(--ink-soft);margin-top:14px}
+  .natv2 .nv-panel{border:1px solid var(--line);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:280px 1fr 150px;background:#fff}
+  .natv2 .nv-panel>*{min-width:0}
+  .natv2 .nv-left{padding:38px 30px;display:flex;flex-direction:column;border-right:1px solid var(--line)}
+  .natv2 .nv-left h3{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px}
+  .natv2 .nv-left p{font-size:15.5px;color:var(--ink-soft);line-height:1.6}
+  .natv2 .nv-link{margin-top:auto;padding-top:28px;font-family:var(--display);font-weight:600;font-size:15px;color:#4A157E;text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+  .natv2 .nv-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+  .natv2 .nv-flow-wrap{background:#FCFBFE;background-image:radial-gradient(circle,rgba(60,40,90,.06) 1px,transparent 1.4px);background-size:16px 16px;padding:24px 16px;border-right:1px solid var(--line)}
+  .natv2 .nv-lanes{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .natv2 .nv-lanes>*{min-width:0}
+  .natv2 .nv-flow{width:100%;display:block}
+  .natv2 .nv-lane-title{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:6px}
+  .natv2 .nv-chip{font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink)}
+  .natv2 .nv-tag{font-family:var(--display);font-size:9.5px;font-weight:600;padding:2px 8px;border-radius:20px}
+  .natv2 .nv-tag.nv-grey{background:#F1EFF5;color:var(--ink-soft)}
+  .natv2 .nv-tag.nv-green{background:#DCFCE7;color:#16A34A}
+  .natv2 .nv-list{padding:16px 11px;display:flex;flex-direction:column;justify-content:center;gap:5px}
+  .natv2 .nv-li{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 7px;font-family:var(--display);font-weight:500;font-size:9px;color:var(--ink-soft);box-shadow:0 2px 6px rgba(74,21,126,.04)}
+  .natv2 .nv-di{width:15px;height:15px;border-radius:4px;background:#F1EFF7;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .natv2 .nv-di svg{width:8px;height:8px;stroke:#9A93A8;fill:none;stroke-width:2}
+  .natv2 .nv-faint{opacity:.4}
+  .natv2 .nv-faint2{opacity:.62}
+  .natv2 .nv-li.nv-active{color:var(--ink);font-weight:700;border-color:#B7E6C7;box-shadow:0 5px 12px rgba(22,163,74,.1)}
+  .natv2 .nv-li.nv-active .nv-di{background:#DCFCE7}
+  .natv2 .nv-li.nv-active .nv-di svg{stroke:#16A34A}
+  /* reference-style flow nodes (two lanes), rendered inside the SVG foreignObjects */
+  .natv2 .nv-rnode{background:#fff;border:1.3px solid #C6D2F5;border-radius:13px;padding:0 11px;height:100%;display:flex;flex-direction:column;justify-content:center;box-shadow:0 5px 15px rgba(58,91,217,.05)}
+  .natv2 .nv-rnode.nv-pu{border-color:#D9CBF1}
+  .natv2 .nv-rnode.nv-g{border-color:var(--line)}
+  .natv2 .nv-rnode.nv-mut{opacity:.55;border-style:dashed;box-shadow:none}
+  .natv2 .nv-rnode.nv-trig{border-radius:12px;justify-content:center}
+  .natv2 .nv-rrow{display:flex;align-items:center;gap:8px;padding:9px 0}
+  .natv2 .nv-rnode.nv-has-sub .nv-rrow{padding:9px 0 8px;border-bottom:1px solid var(--line)}
+  .natv2 .nv-ric{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .natv2 .nv-ric svg{width:13px;height:13px;fill:none;stroke-width:1.9}
+  .natv2 .nv-ic-blue{background:#EAF0FE}
+  .natv2 .nv-ic-blue svg{stroke:#3A5BD9}
+  .natv2 .nv-ic-purple{background:#F1ECFB}
+  .natv2 .nv-ic-purple svg{stroke:#7018D8}
+  .natv2 .nv-ic-green{background:#E3F6EA}
+  .natv2 .nv-ic-green svg{stroke:#16A34A}
+  .natv2 .nv-ic-grey{background:#F0EEF4}
+  .natv2 .nv-ic-grey svg{stroke:#8C8698}
+  .natv2 .nv-rtitle{font-family:var(--display);font-weight:700;font-size:12.5px;letter-spacing:-.01em;color:var(--ink);line-height:1.15}
+  .natv2 .nv-rtag{margin-left:auto;font-family:var(--display);font-weight:600;font-size:9px;color:var(--ink-soft);background:#F2F0F7;padding:2px 7px;border-radius:6px;flex-shrink:0}
+  .natv2 .nv-rsub{font-size:10.5px;color:var(--ink-soft);line-height:1.35;padding:7px 0 9px}
+  .natv2 .nv-rchip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:10.5px;color:var(--ink);box-shadow:0 2px 8px rgba(74,21,126,.03);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .natv2 .nv-rchip.nv-mut{color:var(--ink-soft);opacity:.7}
+  .natv2 .nv-rchip .nv-sp{flex-shrink:0;display:flex}
+  .natv2 .nv-rchip .nv-sp svg{width:12px;height:12px;stroke:#9A93A8;fill:none;stroke-width:1.8}
+  .natv2 .nv-rchip .nv-kw{color:#7018D8}
+  .natv2 .nv-rchip .nv-kg{color:#16A34A}
+  .natv2 .nv-cap{text-align:center;font-size:12.5px;color:var(--ink-soft);font-style:italic;margin-top:22px}
   @media(max-width:860px){
-    .ainat .aib-panel{grid-template-columns:1fr}
-    .ainat .aib-left{border-right:none;border-bottom:1px solid var(--line)}
-    .ainat .aib-flow{border-right:none;border-bottom:1px solid var(--line)}
-    .ainat .aib-left .aib-link{padding-top:18px}
+    .natv2 .nv-panel{grid-template-columns:1fr}
+    .natv2 .nv-left{border-right:none;border-bottom:1px solid var(--line)}
+    .natv2 .nv-flow-wrap{border-right:none;border-bottom:1px solid var(--line)}
+    .natv2 .nv-lanes{grid-template-columns:1fr;gap:16px}
+    .natv2 .nv-left .nv-link{padding-top:18px}
   }
-  @media(max-width:560px){.ainat .aib-br{display:none}}
+  @media(max-width:560px){.natv2 .nv-bp{display:none}}
 
   /* ===== Chatbot-vs-AI-Native flow comparison (homepage, after the 4-pills) =====
      Scoped to .cmpsec; every inner class is cf-* prefixed (.pill/.cap/.head/

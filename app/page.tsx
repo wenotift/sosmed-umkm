@@ -6,10 +6,10 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ShowcaseChat from "./ShowcaseChat";
 
-// AI-Native banner: F&B-intent list icon (repeated in the right side-list).
-function AiBannerDi() {
+// AI-Native banner v2: intent side-list icon (repeated in the right list).
+function NatV2Di() {
   return (
-    <span className="aib-di">
+    <span className="nv-di">
       <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="9" cy="9" r="2" />
         <circle cx="15" cy="15" r="2" />
@@ -19,27 +19,30 @@ function AiBannerDi() {
   );
 }
 
-// AI-Native banner center flow — static illustrative SVG (viewBox + width:100%
-// so it scales on mobile). Injected as-is for foreignObject fidelity; classes
-// are aib-* prefixed and styled scoped under .ainat. Conceptual, not a claim.
-const AINATIVE_FLOW_SVG = `<svg class="aib-flow-svg" viewBox="0 0 380 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi alur AI-Native">
-<defs><marker id="aibAh" markerWidth="14" markerHeight="14" refX="7" refY="7" orient="auto"><path d="M3 4 L7 9 L11 4" stroke="#5FC983" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></marker>
-<marker id="aibAhg" markerWidth="14" markerHeight="14" refX="7" refY="7" orient="auto"><path d="M3 4 L7 9 L11 4" stroke="#C9C5D2" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-<path d="M190 138 V 240" fill="none" stroke="#5FC983" stroke-width="2.4" marker-end="url(#aibAh)"/>
-<circle cx="190" cy="138" r="5.5" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<path d="M190 348 V 402" fill="none" stroke="#5FC983" stroke-width="2.4"/>
-<circle cx="190" cy="402" r="5.5" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<path d="M190 402 V 426 Q190 446 168 446 H 119 Q97 446 97 464 V 478" fill="none" stroke="#5FC983" stroke-width="2.4" marker-end="url(#aibAh)"/>
-<path d="M190 402 V 426 Q190 446 212 446 H 261 Q283 446 283 464 V 478" fill="none" stroke="#DAD7E0" stroke-width="2.4" marker-end="url(#aibAhg)"/>
-<foreignObject x="14" y="-2" width="120" height="26"><div xmlns="http://www.w3.org/1999/xhtml"><span class="aib-tabtag"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg> Pemicu</span></div></foreignObject>
-<foreignObject x="248" y="-2" width="120" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="aib-pill"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Masuk</span></div></foreignObject>
-<foreignObject x="14" y="32" width="352" height="106"><div xmlns="http://www.w3.org/1999/xhtml" class="aib-node aib-ok"><div class="aib-nrow"><span class="aib-nicon aib-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="aib-ntitle">Pesan masuk di WhatsApp</span><span class="aib-ntag">Input</span></div><div class="aib-nsub">"es kopsu 2 ya bang, less sugar 🙏"</div></div></foreignObject>
-<foreignObject x="234" y="222" width="132" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="aib-pill"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Dipahami</span></div></foreignObject>
-<foreignObject x="14" y="240" width="352" height="108"><div xmlns="http://www.w3.org/1999/xhtml" class="aib-node aib-ok"><div class="aib-nrow"><span class="aib-nicon aib-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5 10.1 10.9 5.5 9l4.6-1.4z"/></svg></span><span class="aib-ntitle">AI pahami &amp; tentukan maksud</span><span class="aib-ntag">AI-Native</span></div><div class="aib-nsub">Paham slang &amp; konteks, lalu arahkan - tanpa skrip</div></div></foreignObject>
-<foreignObject x="55" y="434" width="84" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center"><span class="aib-blabel">Order</span></div></foreignObject>
-<foreignObject x="231" y="434" width="104" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center"><span class="aib-blabel aib-mut">Tanya menu</span></div></foreignObject>
-<foreignObject x="8" y="478" width="178" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="aib-node aib-ok"><div class="aib-nrow"><span class="aib-nicon aib-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9l-5 5-3-3"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></span><span class="aib-ntitle">Catat pesanan</span></div><div class="aib-nsub">Order tercatat otomatis</div></div></foreignObject>
-<foreignObject x="194" y="478" width="178" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="aib-node aib-mut"><div class="aib-nrow"><span class="aib-nicon aib-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><span class="aib-ntitle">Kirim menu</span></div><div class="aib-nsub">Cabang lain</div></div></foreignObject>
+// AI-Native banner v2 lane flows — static illustrative SVGs (viewBox + width:100%
+// so they scale on mobile). Injected as-is for foreignObject fidelity; classes
+// are nv-* prefixed and styled scoped under .natv2. Conceptual, not a claim.
+const NV_CHATBOT_SVG = `<svg class="nv-flow" viewBox="0 0 330 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur chatbot biasa berbasis aturan">
+<path d="M22 50 V146 Q22 160 36 160 H58" fill="none" stroke="#DAD7E0" stroke-width="1.5"/>
+<path d="M22 160 V292 Q22 306 36 306 H58" fill="none" stroke="#DAD7E0" stroke-width="1.5"/>
+<path d="M22 50 V306" fill="none" stroke="#DAD7E0" stroke-width="1.5"/>
+<foreignObject x="8" y="8" width="220" height="42"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rnode nv-trig"><div class="nv-rrow"><span class="nv-ric nv-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="nv-rtitle">Pesan masuk</span></div></div></foreignObject>
+<foreignObject x="58" y="120" width="264" height="80"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rnode nv-g nv-has-sub"><div class="nv-rrow"><span class="nv-ric nv-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span><span class="nv-rtitle">Cocokkan kata kunci</span><span class="nv-rtag">Skrip</span></div><div class="nv-rsub">Sesuai daftar yang dilatih?</div></div></foreignObject>
+<foreignObject x="68" y="208" width="244" height="34"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rchip nv-mut"><span class="nv-sp"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span> Tidak cocok dengan skrip</div></foreignObject>
+<foreignObject x="58" y="278" width="264" height="56"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rnode nv-g nv-mut"><div class="nv-rrow"><span class="nv-ric nv-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><span class="nv-rtitle">"Maaf, kurang paham"</span></div></div></foreignObject>
+</svg>`;
+
+const NV_AI_SVG = `<svg class="nv-flow" viewBox="0 0 330 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur Sosmed AI yang AI-Native">
+<path d="M22 50 V146 Q22 160 36 160 H58" fill="none" stroke="#C3CBEE" stroke-width="1.5"/>
+<path d="M22 160 V292 Q22 306 36 306 H58" fill="none" stroke="#C3CBEE" stroke-width="1.5"/>
+<path d="M22 306 V398 Q22 412 36 412 H58" fill="none" stroke="#C3CBEE" stroke-width="1.5"/>
+<path d="M22 50 V412" fill="none" stroke="#C3CBEE" stroke-width="1.5"/>
+<foreignObject x="8" y="8" width="240" height="42"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rnode nv-trig"><div class="nv-rrow"><span class="nv-ric nv-ic-blue"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M9 10h.01M13 10h2"/></svg></span><span class="nv-rtitle">Pesan masuk</span></div></div></foreignObject>
+<foreignObject x="58" y="120" width="264" height="80"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rnode nv-has-sub"><div class="nv-rrow"><span class="nv-ric nv-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><span class="nv-rtitle">Pahami maksud</span><span class="nv-rtag">AI</span></div><div class="nv-rsub">Apa yang diinginkan pelanggan?</div></div></foreignObject>
+<foreignObject x="68" y="208" width="244" height="34"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rchip"><span class="nv-sp"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4L18 8.5l-4.4 1.5L12 14l-1.6-4L6 8.5l4.4-1.5z"/></svg></span> Order: <span class="nv-kw">2 Es Kopi Susu</span>, less sugar</div></foreignObject>
+<foreignObject x="58" y="278" width="264" height="80"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rnode nv-pu nv-has-sub"><div class="nv-rrow"><span class="nv-ric nv-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><span class="nv-rtitle">Cek menu &amp; stok</span><span class="nv-rtag">AI</span></div><div class="nv-rsub">Tersedia dan berapa harganya?</div></div></foreignObject>
+<foreignObject x="68" y="366" width="244" height="34"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rchip"><span class="nv-sp"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4L18 8.5l-4.4 1.5L12 14l-1.6-4L6 8.5l4.4-1.5z"/></svg></span> Es Kopi Susu (L) <span class="nv-kg">Rp 18.000</span></div></foreignObject>
+<foreignObject x="58" y="392" width="264" height="42"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rnode"><div class="nv-rrow"><span class="nv-ric nv-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></span><span class="nv-rtitle">Susun balasan</span><span class="nv-rtag">AI</span></div></div></foreignObject>
 </svg>`;
 
 // Chatbot-vs-AI-Native comparison: intent side-list icon (repeated).
@@ -662,13 +665,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI-NATIVE BANNER — illustrative concept (scoped .ainat) */}
-      <section className="ainat">
+      {/* AI-NATIVE vs CHATBOT BANNER (v2) — illustrative concept (scoped .natv2) */}
+      <section className="natv2">
         <div className="wrap">
-          <div className="aib-top">
+          <div className="nv-top">
             <h2>
               Ini bukan automation chatbot,
-              <br className="aib-br" />
+              <br className="nv-bp" />
               tapi AI-Native di WhatsApp Anda.
             </h2>
             <p>
@@ -677,15 +680,15 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="aib-panel">
-            <div className="aib-left">
+          <div className="nv-panel">
+            <div className="nv-left">
               <h3>AI yang paham maksud pelanggan.</h3>
               <p>
                 Dari order sampai tanya menu, AI menangkap maksud dari chat
                 sehari-hari lalu mengarahkannya sendiri - tanpa skrip yang harus
                 Anda latih.
               </p>
-              <Link className="aib-link" href="/produk">
+              <Link className="nv-link" href="/produk">
                 Pelajari cara kerjanya{" "}
                 <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M13 6l6 6-6 6" />
@@ -693,23 +696,36 @@ export default function Home() {
               </Link>
             </div>
 
-            <div
-              className="aib-flow"
-              aria-hidden="true"
-              dangerouslySetInnerHTML={{ __html: AINATIVE_FLOW_SVG }}
-            />
+            <div className="nv-flow-wrap">
+              <div className="nv-lanes">
+                <div className="nv-lane">
+                  <div className="nv-lane-title">
+                    <span className="nv-chip">Chatbot biasa</span>
+                    <span className="nv-tag nv-grey">Berbasis aturan</span>
+                  </div>
+                  <div dangerouslySetInnerHTML={{ __html: NV_CHATBOT_SVG }} />
+                </div>
+                <div className="nv-lane">
+                  <div className="nv-lane-title">
+                    <span className="nv-chip">Sosmed AI</span>
+                    <span className="nv-tag nv-green">AI-Native</span>
+                  </div>
+                  <div dangerouslySetInnerHTML={{ __html: NV_AI_SVG }} />
+                </div>
+              </div>
+            </div>
 
-            <div className="aib-list">
-              <div className="aib-li aib-faint"><AiBannerDi /> Tanya jam buka</div>
-              <div className="aib-li aib-faint2"><AiBannerDi /> Cek promo hari ini</div>
-              <div className="aib-li aib-active"><AiBannerDi /> Order makanan &amp; minuman</div>
-              <div className="aib-li"><AiBannerDi /> Tanya menu &amp; harga</div>
-              <div className="aib-li aib-faint2"><AiBannerDi /> Konfirmasi pembayaran</div>
-              <div className="aib-li aib-faint"><AiBannerDi /> Minta alamat &amp; ongkir</div>
+            <div className="nv-list">
+              <div className="nv-li nv-faint"><NatV2Di /> Tanya jam buka</div>
+              <div className="nv-li nv-faint2"><NatV2Di /> Cek promo hari ini</div>
+              <div className="nv-li nv-active"><NatV2Di /> Order makanan &amp; minuman</div>
+              <div className="nv-li"><NatV2Di /> Tanya menu &amp; harga</div>
+              <div className="nv-li nv-faint2"><NatV2Di /> Konfirmasi pembayaran</div>
+              <div className="nv-li nv-faint"><NatV2Di /> Minta alamat &amp; ongkir</div>
             </div>
           </div>
 
-          <p className="aib-cap">
+          <p className="nv-cap">
             Ilustrasi konsep cara kerja AI-Native. Sosmed AI masih dalam
             pengembangan.
           </p>
