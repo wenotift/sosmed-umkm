@@ -795,57 +795,6 @@
   }
   @media(max-width:560px){.natv2 .nv-bp{display:none}}
 
-  /* ===== Chatbot-vs-AI-Native flow comparison (homepage, after the 4-pills) =====
-     Scoped to .cmpsec; every inner class is cf-* prefixed (.pill/.cap/.head/
-     .eyebrow/.node/.lanes/.flow/.ili could collide). Two scalable SVG lane flows
-     (grey chatbot / green AI-native, single-color connectors) + intent side-list.
-     Conceptual/illustrative (caption). Darker purple (#4A157E) for the eyebrow;
-     bright purple only in node-icon gradient backgrounds. */
-  .cmpsec .cf-head{max-width:720px;margin-bottom:34px}
-  .cmpsec .cf-eyebrow{display:inline-block;font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#4A157E;margin-bottom:14px}
-  .cmpsec .cf-head h2{font-family:var(--display);font-weight:800;letter-spacing:-.025em;font-size:clamp(26px,3.4vw,38px);line-height:1.16;color:var(--ink)}
-  .cmpsec .cf-head p{font-size:17px;color:var(--ink-soft);line-height:1.6;margin-top:14px;max-width:600px}
-  .cmpsec .cf-canvas{border:1px solid var(--line);border-radius:24px;background:#FCFBFE;background-image:radial-gradient(circle,rgba(74,21,126,.04) 1px,transparent 1px);background-size:26px 26px;padding:26px 18px}
-  .cmpsec .cf-lanes{display:grid;grid-template-columns:1fr 1fr 232px;gap:24px;align-items:start}
-  .cmpsec .cf-lanes>*{min-width:0}
-  .cmpsec .cf-flow{width:100%;display:block}
-  .cmpsec .cf-lane-title{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:8px}
-  .cmpsec .cf-chip{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink)}
-  .cmpsec .cf-tag{font-family:var(--display);font-size:11px;font-weight:600;padding:3px 11px;border-radius:20px}
-  .cmpsec .cf-tag.cf-grey{background:#F1EFF5;color:var(--ink-soft)}
-  .cmpsec .cf-tag.cf-green{background:#DCFCE7;color:#16A34A}
-  .cmpsec .cf-lane-note{font-family:var(--body);font-size:13px;color:var(--ink-soft);text-align:center;line-height:1.45;margin-top:8px}
-  .cmpsec .cf-ilist{display:flex;flex-direction:column;gap:10px;align-self:stretch;justify-content:center;min-width:0}
-  .cmpsec .cf-ili{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px 14px;font-family:var(--display);font-weight:500;font-size:14px;color:var(--ink-soft);box-shadow:0 4px 12px rgba(74,21,126,.04)}
-  .cmpsec .cf-di{width:26px;height:26px;border-radius:8px;background:#F1EFF7;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .cmpsec .cf-di svg{width:13px;height:13px;stroke:#9A93A8;fill:none;stroke-width:2}
-  .cmpsec .cf-faint{opacity:.4}
-  .cmpsec .cf-faint2{opacity:.6}
-  .cmpsec .cf-ili.cf-active{color:var(--ink);font-weight:700;border-color:#B7E6C7;box-shadow:0 10px 24px rgba(22,163,74,.1)}
-  .cmpsec .cf-ili.cf-active .cf-di{background:#DCFCE7}
-  .cmpsec .cf-ili.cf-active .cf-di svg{stroke:#16A34A}
-  /* node cards rendered inside the SVG foreignObjects */
-  .cmpsec .cf-node{height:100%;background:#fff;border:1.6px solid var(--line);border-radius:15px;padding:11px 13px;box-shadow:0 8px 20px rgba(74,21,126,.05);display:flex;flex-direction:column}
-  .cmpsec .cf-node.cf-ok{border-color:#B7E6C7}
-  .cmpsec .cf-node.cf-dead{opacity:.55;border-style:dashed;box-shadow:none}
-  .cmpsec .cf-nrow{display:flex;align-items:center;gap:9px}
-  .cmpsec .cf-nicon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .cmpsec .cf-nicon svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2}
-  .cmpsec .cf-ic-purple{background:linear-gradient(135deg,#A050F8,#7018D8)}
-  .cmpsec .cf-ic-green{background:linear-gradient(135deg,#22C55E,#16A34A)}
-  .cmpsec .cf-ic-grey{background:#9A93A8}
-  .cmpsec .cf-ic-red{background:#E2557A}
-  .cmpsec .cf-ntitle{font-family:var(--display);font-weight:700;font-size:13.5px;line-height:1.2;color:var(--ink)}
-  .cmpsec .cf-ntag{margin-left:auto;font-family:var(--display);font-size:10px;font-weight:600;color:var(--ink-soft);background:#F3F1F8;padding:2px 8px;border-radius:7px;white-space:nowrap}
-  .cmpsec .cf-nsub{font-size:11.5px;color:var(--ink-soft);margin-top:7px;padding-top:7px;border-top:1px solid var(--line);line-height:1.35}
-  .cmpsec .cf-pill{font-family:var(--display);font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
-  .cmpsec .cf-pill.cf-green{background:#DCFCE7;color:#16A34A}
-  .cmpsec .cf-pill.cf-red{background:#FCE7EE;color:#E2557A}
-  .cmpsec .cf-pill svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.6}
-  .cmpsec .cf-blabel{font-family:var(--display);font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:20px;background:#fff;white-space:nowrap;text-align:center;border:1.3px solid var(--line);color:var(--ink-soft)}
-  .cmpsec .cf-cap{text-align:center;font-size:12.5px;color:var(--ink-soft);font-style:italic;margin-top:24px}
-  @media(max-width:820px){.cmpsec .cf-lanes{grid-template-columns:1fr;gap:18px}}
-
   /* footer */
   footer{background:var(--bg);border-top:1px solid var(--line);padding:56px 0 34px}
   /* brand block sits full-width on top; link columns in a row below it */

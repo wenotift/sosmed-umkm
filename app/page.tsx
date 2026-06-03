@@ -45,61 +45,6 @@ const NV_AI_SVG = `<svg class="nv-flow" viewBox="0 0 330 440" xmlns="http://www.
 <foreignObject x="58" y="392" width="264" height="42"><div xmlns="http://www.w3.org/1999/xhtml" class="nv-rnode"><div class="nv-rrow"><span class="nv-ric nv-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></span><span class="nv-rtitle">Susun balasan</span><span class="nv-rtag">AI</span></div></div></foreignObject>
 </svg>`;
 
-// Chatbot-vs-AI-Native comparison: intent side-list icon (repeated).
-function CmpDi() {
-  return (
-    <span className="cf-di">
-      <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="9" cy="9" r="2" />
-        <circle cx="15" cy="15" r="2" />
-        <path d="M9 11v2M11 9h2" />
-      </svg>
-    </span>
-  );
-}
-
-// Comparison lane flows — static illustrative SVGs (viewBox + width:100% so they
-// scale on mobile). Injected as-is for foreignObject fidelity; classes are cf-*
-// prefixed and styled scoped under .cmpsec. Single-color connectors per lane
-// (grey chatbot / green AI-native). Conceptual, not a claim of a shipped feature.
-const CMP_CHATBOT_SVG = `<svg class="cf-flow" viewBox="0 0 360 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur chatbot berbasis aturan">
-<defs><marker id="cfCb" markerWidth="14" markerHeight="14" refX="7" refY="7" orient="auto"><path d="M3 4 L7 9 L11 4" stroke="#C9C5D2" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-<path d="M180 118 V160" stroke="#D6D2DE" stroke-width="1.8" fill="none" marker-end="url(#cfCb)"/>
-<circle cx="180" cy="118" r="4" fill="#fff" stroke="#C9C5D2" stroke-width="2"/>
-<path d="M180 230 V272" stroke="#D6D2DE" stroke-width="1.8" fill="none" marker-end="url(#cfCb)"/>
-<path d="M180 364 V392" stroke="#D6D2DE" stroke-width="1.8" fill="none"/>
-<circle cx="180" cy="392" r="4" fill="#fff" stroke="#C9C5D2" stroke-width="2"/>
-<path d="M180 392 V414 Q180 432 158 432 H114 Q92 432 92 450 V450" stroke="#D6D2DE" stroke-width="1.8" fill="none" marker-end="url(#cfCb)"/>
-<path d="M180 392 V414 Q180 432 202 432 H246 Q268 432 268 450 V450" stroke="#D6D2DE" stroke-width="1.8" fill="none" marker-end="url(#cfCb)"/>
-<foreignObject x="200" y="20" width="146" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="cf-pill cf-red">Perlu disiapkan</span></div></foreignObject>
-<foreignObject x="14" y="36" width="332" height="82"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node"><div class="cf-nrow"><span class="cf-nicon cf-ic-red"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span class="cf-ntitle">Latih &amp; susun skrip</span><span class="cf-ntag">Manual</span></div></div></foreignObject>
-<foreignObject x="14" y="160" width="332" height="70"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node"><div class="cf-nrow"><span class="cf-nicon cf-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="cf-ntitle">Pesan masuk</span></div></div></foreignObject>
-<foreignObject x="14" y="272" width="332" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node"><div class="cf-nrow"><span class="cf-nicon cf-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span><span class="cf-ntitle">Cocokkan kata kunci</span><span class="cf-ntag">Aturan</span></div><div class="cf-nsub">Sesuai daftar skrip?</div></div></foreignObject>
-<foreignObject x="28" y="418" width="128" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center"><span class="cf-blabel">Cocok</span></div></foreignObject>
-<foreignObject x="196" y="418" width="144" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center"><span class="cf-blabel">Di luar skrip</span></div></foreignObject>
-<foreignObject x="10" y="450" width="164" height="78"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node"><div class="cf-nrow"><span class="cf-nicon cf-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9l-5 5-3-3"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></span><span class="cf-ntitle">Jawaban skrip</span></div></div></foreignObject>
-<foreignObject x="186" y="450" width="164" height="78"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node cf-dead"><div class="cf-nrow"><span class="cf-nicon cf-ic-red"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="cf-ntitle">"Tidak mengerti"</span></div></div></foreignObject>
-</svg>`;
-
-const CMP_AI_SVG = `<svg class="cf-flow" viewBox="0 0 360 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur Sosmed AI yang AI-Native">
-<defs><marker id="cfAi" markerWidth="14" markerHeight="14" refX="7" refY="7" orient="auto"><path d="M3 4 L7 9 L11 4" stroke="#5FC983" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-<path d="M180 106 V148" stroke="#5FC983" stroke-width="1.8" fill="none" marker-end="url(#cfAi)"/>
-<circle cx="180" cy="106" r="4" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<path d="M180 240 V282" stroke="#5FC983" stroke-width="1.8" fill="none" marker-end="url(#cfAi)"/>
-<circle cx="180" cy="240" r="4" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<path d="M180 374 V416" stroke="#5FC983" stroke-width="1.8" fill="none" marker-end="url(#cfAi)"/>
-<circle cx="180" cy="374" r="4" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<path d="M180 486 V528" stroke="#5FC983" stroke-width="1.8" fill="none" marker-end="url(#cfAi)"/>
-<circle cx="180" cy="486" r="4" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<foreignObject x="200" y="20" width="146" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="cf-pill cf-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Tanpa dilatih</span></div></foreignObject>
-<foreignObject x="14" y="36" width="332" height="70"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node cf-ok"><div class="cf-nrow"><span class="cf-nicon cf-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="cf-ntitle">Pesan masuk</span></div></div></foreignObject>
-<foreignObject x="14" y="148" width="332" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node cf-ok"><div class="cf-nrow"><span class="cf-nicon cf-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5 10.1 10.9 5.5 9l4.6-1.4z"/></svg></span><span class="cf-ntitle">Pahami maksud</span></div><div class="cf-nsub">Paham slang &amp; singkatan, bukan kata kunci</div></div></foreignObject>
-<foreignObject x="14" y="282" width="332" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node cf-ok"><div class="cf-nrow"><span class="cf-nicon cf-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M7 7L5.5 5.5M18.5 18.5L17 17M17 7l1.5-1.5M5.5 18.5L7 17"/></svg></span><span class="cf-ntitle">Menalar konteks</span></div><div class="cf-nsub">Termasuk pertanyaan acak - tetap nyambung</div></div></foreignObject>
-<foreignObject x="14" y="416" width="332" height="70"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node cf-ok"><div class="cf-nrow"><span class="cf-nicon cf-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/><path d="M3 12h12"/></svg></span><span class="cf-ntitle">Tentukan tindakan</span><span class="cf-ntag">Order/menu/poin</span></div></div></foreignObject>
-<foreignObject x="200" y="510" width="146" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="cf-pill cf-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Selesai</span></div></foreignObject>
-<foreignObject x="14" y="528" width="332" height="70"><div xmlns="http://www.w3.org/1999/xhtml" class="cf-node cf-ok"><div class="cf-nrow"><span class="cf-nicon cf-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cf-ntitle">Respons yang tepat</span></div></div></foreignObject>
-</svg>`;
-
 const FLIP_PHRASES = [
   "Restoran",
   "Warung",
@@ -607,61 +552,6 @@ export default function Home() {
               <span className="e"><IconLock /></span> Aman &amp; Patuh UU PDP
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CHATBOT-VS-AI-NATIVE FLOW COMPARISON — illustrative concept (scoped .cmpsec) */}
-      <section className="cmpsec">
-        <div className="wrap">
-          <div className="cf-head">
-            <span className="cf-eyebrow">Cara kerjanya</span>
-            <h2>Chatbot automation vs AI-Native</h2>
-            <p>
-              Keduanya hidup di WhatsApp, tapi cara kerjanya beda jauh. Begini
-              bedanya, langkah demi langkah.
-            </p>
-          </div>
-
-          <div className="cf-canvas">
-            <div className="cf-lanes">
-              <div className="cf-lane">
-                <div className="cf-lane-title">
-                  <span className="cf-chip">Chatbot automation</span>
-                  <span className="cf-tag cf-grey">Berbasis aturan</span>
-                </div>
-                <div dangerouslySetInnerHTML={{ __html: CMP_CHATBOT_SVG }} />
-                <p className="cf-lane-note">
-                  Harus dilatih, dirawat terus, dan tetap mentok di luar skrip.
-                </p>
-              </div>
-
-              <div className="cf-lane">
-                <div className="cf-lane-title">
-                  <span className="cf-chip">Sosmed AI</span>
-                  <span className="cf-tag cf-green">AI-Native</span>
-                </div>
-                <div dangerouslySetInnerHTML={{ __html: CMP_AI_SVG }} />
-                <p className="cf-lane-note">
-                  Tanpa dilatih - paham, menalar, dan makin pintar seiring
-                  dipakai.
-                </p>
-              </div>
-
-              <div className="cf-ilist">
-                <div className="cf-ili cf-faint"><CmpDi /> Tanya jam buka</div>
-                <div className="cf-ili cf-faint2"><CmpDi /> Cek promo hari ini</div>
-                <div className="cf-ili cf-active"><CmpDi /> Order makanan &amp; minuman</div>
-                <div className="cf-ili"><CmpDi /> Tanya menu &amp; harga</div>
-                <div className="cf-ili cf-faint2"><CmpDi /> Konfirmasi pembayaran</div>
-                <div className="cf-ili cf-faint"><CmpDi /> Minta alamat &amp; ongkir</div>
-              </div>
-            </div>
-          </div>
-
-          <p className="cf-cap">
-            Ilustrasi konsep cara kerja AI-Native. Sosmed AI masih dalam
-            pengembangan; sebagian kemampuan masih kami kerjakan.
-          </p>
         </div>
       </section>
 
