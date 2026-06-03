@@ -1268,6 +1268,11 @@
   .article-page .prose .lede{font-size:19px;line-height:1.6;color:var(--ink);margin-bottom:22px;font-weight:500}
   .article-page .prose h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:24px;color:var(--ink);margin:30px 0 12px;scroll-margin-top:24px}
   .article-page .prose p{margin:13px 0;line-height:1.75}
+  /* Each heading+body is wrapped in a <section>, which would otherwise inherit
+     the global section{padding:72px 0} and add ~144px between every section
+     (reads as huge paragraph gaps). Neutralize it so spacing is governed by the
+     h2/p margins above. */
+  .article-page .prose section{padding:0}
   .article-page .prose ul{margin:16px 0;padding-left:4px;list-style:none}
   .article-page .prose li{position:relative;padding-left:24px;margin-bottom:10px;line-height:1.65}
   .article-page .prose li::before{content:"";position:absolute;left:4px;top:11px;width:7px;height:7px;border-radius:50%;background:#4A157E}
