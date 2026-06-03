@@ -1178,7 +1178,7 @@
   }
 
   /* ===== Blog index (/blog) — placeholder content, scoped ===== */
-  .blog-page{background:#FBFAFE;color:var(--ink);line-height:1.6}
+  .blog-page{background:var(--bg);color:var(--ink);line-height:1.6}
   .blog-page .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
   .blog-page .back{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color .15s;margin:44px 0 0}
   .blog-page .back:hover{color:var(--ink)}
@@ -1199,7 +1199,10 @@
   .blog-page .byline{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink)}
   .blog-page .byline .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-ink));display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:700;font-size:12px}
   .blog-page .byline b{font-family:var(--display);font-weight:600}
-  .blog-page .tabs{display:flex;gap:26px;padding:36px 0 4px;font-family:var(--display);font-size:15.5px;font-weight:500;color:var(--ink-soft);flex-wrap:wrap}
+  /* tab row + top-right "Lihat Semua" action, aligned on one baseline */
+  .blog-page .tabbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:36px 0 0}
+  .blog-page .see-all{flex-shrink:0}
+  .blog-page .tabs{display:flex;gap:26px;padding:0 0 4px;font-family:var(--display);font-size:15.5px;font-weight:500;color:var(--ink-soft);flex-wrap:wrap}
   /* tabs are <button>s — reset UA chrome; keep them on one line per tab */
   .blog-page .tabs .t{padding:0 0 4px;margin:0;border:0;border-bottom:2px solid transparent;background:none;color:inherit;font:inherit;cursor:pointer;white-space:nowrap;flex-shrink:0;line-height:1.4}
   .blog-page .tabs .t.active{color:var(--ink);font-weight:600;border-bottom-color:var(--accent)}
@@ -1235,7 +1238,7 @@
   /* mobile: tab row becomes a single-line horizontal slider (swipe), no wrap,
      hidden scrollbar; the strip scrolls, the page does not overflow */
   @media(max-width:640px){
-    .blog-page .tabs{flex-wrap:nowrap;overflow-x:auto;gap:20px;padding-right:24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .blog-page .tabs{flex:1;min-width:0;flex-wrap:nowrap;overflow-x:auto;gap:20px;padding-right:16px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
     .blog-page .tabs::-webkit-scrollbar{display:none}
   }
   /* Newsletter form: stack input over button on mobile so the side-by-side row
@@ -1249,7 +1252,7 @@
   }
 
   /* ===== Blog article (/blog/[slug]) — placeholder content, scoped ===== */
-  .article-page{background:#FBFAFE;color:var(--ink);line-height:1.7}
+  .article-page{background:var(--bg);color:var(--ink);line-height:1.7}
   .article-page .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
   .article-page .back{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color .15s;margin:44px 0 0}
   .article-page .back:hover{color:var(--ink)}
@@ -1347,4 +1350,9 @@
     .article-page .figure{margin:16px 0}
     .article-page .figure .frame{padding:14px}
     .article-page .tldr{margin:16px 0}
+    /* "Artikel terkait": one-row swipeable slider, next card peeks; hidden
+       scrollbar; the strip scrolls so the page never gets horizontal overflow */
+    .article-page .rgrid{display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .article-page .rgrid::-webkit-scrollbar{display:none}
+    .article-page .rcard{flex:0 0 82vw;scroll-snap-align:start}
   }

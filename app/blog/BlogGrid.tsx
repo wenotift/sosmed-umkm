@@ -29,19 +29,28 @@ export default function BlogGrid({ posts }: { posts: BlogCard[] }) {
 
   return (
     <>
-      <div className="tabs" role="tablist" aria-label="Kategori artikel">
-        {CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            role="tab"
-            aria-selected={active === cat}
-            className={`t${active === cat ? " active" : ""}`}
-            onClick={() => setActive(cat)}
-          >
-            {cat}
-          </button>
-        ))}
+      <div className="tabbar">
+        <div className="tabs" role="tablist" aria-label="Kategori artikel">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              role="tab"
+              aria-selected={active === cat}
+              className={`t${active === cat ? " active" : ""}`}
+              onClick={() => setActive(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        <button
+          type="button"
+          className="btn btn-ghost btn-sm see-all"
+          onClick={() => setActive("Semua")}
+        >
+          Lihat Semua
+        </button>
       </div>
 
       {filtered.length > 0 ? (
