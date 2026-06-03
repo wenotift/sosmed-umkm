@@ -4,59 +4,65 @@ import Link from "next/link";
 import { useEffect } from "react";
 import WhatsAppChat, { type ChatStep } from "../WhatsAppChat";
 
-// Chatbot-vs-AI-Native comparison: intent side-list icon (repeated).
-function CmpProdDi() {
+// "Cara kerja model" how-it-works: decorative cube (repeated per sub-section).
+function HiwCube() {
   return (
-    <span className="cp-di">
-      <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="9" cy="9" r="2" />
-        <circle cx="15" cy="15" r="2" />
-        <path d="M9 11v2M11 9h2" />
+    <span className="hiw-cube">
+      <svg viewBox="0 0 120 120" fill="none" stroke="#D8D4E0" strokeWidth="1.5">
+        <path d="M60 30 L85 44 L85 72 L60 86 L35 72 L35 44 Z" />
+        <path d="M60 30 L60 58 M60 58 L85 44 M60 58 L35 44" />
       </svg>
     </span>
   );
 }
 
-// Comparison lane flows — static illustrative SVGs (viewBox + width:100% so they
-// scale on mobile). Injected as-is for foreignObject fidelity; classes are cp-*
-// prefixed and styled scoped under .cmpprod. Single-color connectors per lane
-// (grey chatbot / green AI-native). Conceptual, not a claim of a shipped feature.
-const CP_CHATBOT_SVG = `<svg class="cp-flow" viewBox="0 0 360 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur chatbot berbasis aturan">
-<defs><marker id="cpCb" markerWidth="14" markerHeight="14" refX="7" refY="7" orient="auto"><path d="M3 4 L7 9 L11 4" stroke="#C9C5D2" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-<path d="M180 118 V160" stroke="#D6D2DE" stroke-width="1.8" fill="none" marker-end="url(#cpCb)"/>
-<circle cx="180" cy="118" r="4" fill="#fff" stroke="#C9C5D2" stroke-width="2"/>
-<path d="M180 230 V272" stroke="#D6D2DE" stroke-width="1.8" fill="none" marker-end="url(#cpCb)"/>
-<path d="M180 364 V392" stroke="#D6D2DE" stroke-width="1.8" fill="none"/>
-<circle cx="180" cy="392" r="4" fill="#fff" stroke="#C9C5D2" stroke-width="2"/>
-<path d="M180 392 V414 Q180 432 158 432 H114 Q92 432 92 450 V450" stroke="#D6D2DE" stroke-width="1.8" fill="none" marker-end="url(#cpCb)"/>
-<path d="M180 392 V414 Q180 432 202 432 H246 Q268 432 268 450 V450" stroke="#D6D2DE" stroke-width="1.8" fill="none" marker-end="url(#cpCb)"/>
-<foreignObject x="200" y="20" width="146" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="cp-pill cp-red">Perlu disiapkan</span></div></foreignObject>
-<foreignObject x="14" y="36" width="332" height="82"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node"><div class="cp-nrow"><span class="cp-nicon cp-ic-red"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span class="cp-ntitle">Latih &amp; susun skrip</span><span class="cp-ntag">Manual</span></div></div></foreignObject>
-<foreignObject x="14" y="160" width="332" height="70"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node"><div class="cp-nrow"><span class="cp-nicon cp-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="cp-ntitle">Pesan masuk</span></div></div></foreignObject>
-<foreignObject x="14" y="272" width="332" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node"><div class="cp-nrow"><span class="cp-nicon cp-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span><span class="cp-ntitle">Cocokkan kata kunci</span><span class="cp-ntag">Aturan</span></div><div class="cp-nsub">Sesuai daftar skrip?</div></div></foreignObject>
-<foreignObject x="28" y="418" width="128" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center"><span class="cp-blabel">Cocok</span></div></foreignObject>
-<foreignObject x="196" y="418" width="144" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center"><span class="cp-blabel">Di luar skrip</span></div></foreignObject>
-<foreignObject x="10" y="450" width="164" height="78"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node"><div class="cp-nrow"><span class="cp-nicon cp-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9l-5 5-3-3"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></span><span class="cp-ntitle">Jawaban skrip</span></div></div></foreignObject>
-<foreignObject x="186" y="450" width="164" height="78"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node cp-dead"><div class="cp-nrow"><span class="cp-nicon cp-ic-red"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span class="cp-ntitle">"Tidak mengerti"</span></div></div></foreignObject>
+// How-it-works (LLM internals) flow SVGs — static illustrative graphics (viewBox
+// + width:100% so they scale on mobile). Injected as-is for foreignObject
+// fidelity; classes are hiw-* prefixed and styled scoped under .hiw. Conceptual,
+// not a claim of a shipped feature. (Unused marker defs from the source dropped.)
+const HIW_PIPELINE_SVG = `<svg class="hiw-flow" viewBox="0 0 440 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur pemrosesan model bahasa">
+<path d="M70 78 V 410" stroke="#E4E0EA" stroke-width="1.4" fill="none"/>
+<circle cx="70" cy="78" r="3" fill="#fff" stroke="#DCD8E4" stroke-width="2"/>
+<path d="M70 150 H 96 Q112 150 112 150" stroke="#CFD8F4" stroke-width="1.4" fill="none"/>
+<path d="M70 232 H 96 Q112 232 112 232" stroke="#E2D2F4" stroke-width="1.4" fill="none"/>
+<path d="M70 314 H 96 Q112 314 112 314" stroke="#CFD8F4" stroke-width="1.4" fill="none"/>
+<path d="M70 396 H 96 Q112 396 112 396" stroke="#AEDFC0" stroke-width="1.4" fill="none"/>
+<circle cx="70" cy="150" r="2.6" fill="#CFD8F4"/><circle cx="70" cy="232" r="2.6" fill="#E2D2F4"/><circle cx="70" cy="314" r="2.6" fill="#CFD8F4"/><circle cx="70" cy="396" r="2.6" fill="#AEDFC0"/>
+<foreignObject x="42" y="14" width="384" height="64"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-node hiw-bl"><div class="hiw-nrow"><span class="hiw-nicon hiw-ic-blue"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="hiw-ntitle">Pesan masuk di WhatsApp</span><span class="hiw-ntag">"es kopsu 2.."</span></div></div></foreignObject>
+<foreignObject x="114" y="118" width="312" height="64"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-node hiw-pu"><div class="hiw-nrow"><span class="hiw-nicon hiw-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span class="hiw-ntitle">Tokenisasi</span><span class="hiw-ntag">Token</span></div><div class="hiw-nsub"><span class="hiw-toks"><span class="hiw-tok">es</span><span class="hiw-tok">kop</span><span class="hiw-tok">su</span><span class="hiw-tok">2</span><span class="hiw-tok">less</span><span class="hiw-tok">sugar</span></span></div></div></foreignObject>
+<foreignObject x="114" y="200" width="312" height="64"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-node hiw-bl"><div class="hiw-nrow"><span class="hiw-nicon hiw-ic-blue"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></span><span class="hiw-ntitle">Deteksi maksud</span><span class="hiw-ntag">Intent</span></div><div class="hiw-nsub">Maksud: <b>Order makanan/minuman</b></div></div></foreignObject>
+<foreignObject x="114" y="282" width="312" height="64"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-node hiw-pu"><div class="hiw-nrow"><span class="hiw-nicon hiw-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/></svg></span><span class="hiw-ntitle">Ambil konteks</span><span class="hiw-ntag">Context window</span></div><div class="hiw-nsub">Menu, riwayat chat, jam buka</div></div></foreignObject>
+<foreignObject x="114" y="364" width="312" height="64"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-node hiw-gr"><div class="hiw-nrow"><span class="hiw-nicon hiw-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M7 7L5.5 5.5M18.5 18.5L17 17"/></svg></span><span class="hiw-ntitle">Menalar &amp; susun</span><span class="hiw-ntag">Reasoning</span></div><div class="hiw-nsub">2× Es Kopi Susu, less sugar <b>- konfirmasi</b></div></div></foreignObject>
 </svg>`;
 
-const CP_AI_SVG = `<svg class="cp-flow" viewBox="0 0 360 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alur Sosmed AI yang AI-Native">
-<defs><marker id="cpAi" markerWidth="14" markerHeight="14" refX="7" refY="7" orient="auto"><path d="M3 4 L7 9 L11 4" stroke="#5FC983" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
-<path d="M180 106 V148" stroke="#5FC983" stroke-width="1.8" fill="none" marker-end="url(#cpAi)"/>
-<circle cx="180" cy="106" r="4" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<path d="M180 240 V282" stroke="#5FC983" stroke-width="1.8" fill="none" marker-end="url(#cpAi)"/>
-<circle cx="180" cy="240" r="4" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<path d="M180 374 V416" stroke="#5FC983" stroke-width="1.8" fill="none" marker-end="url(#cpAi)"/>
-<circle cx="180" cy="374" r="4" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<path d="M180 486 V528" stroke="#5FC983" stroke-width="1.8" fill="none" marker-end="url(#cpAi)"/>
-<circle cx="180" cy="486" r="4" fill="#fff" stroke="#16A34A" stroke-width="2"/>
-<foreignObject x="200" y="20" width="146" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="cp-pill cp-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Tanpa dilatih</span></div></foreignObject>
-<foreignObject x="14" y="36" width="332" height="70"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node cp-ok"><div class="cp-nrow"><span class="cp-nicon cp-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="cp-ntitle">Pesan masuk</span></div></div></foreignObject>
-<foreignObject x="14" y="148" width="332" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node cp-ok"><div class="cp-nrow"><span class="cp-nicon cp-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5 10.1 10.9 5.5 9l4.6-1.4z"/></svg></span><span class="cp-ntitle">Pahami maksud</span></div><div class="cp-nsub">Paham slang &amp; singkatan, bukan kata kunci</div></div></foreignObject>
-<foreignObject x="14" y="282" width="332" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node cp-ok"><div class="cp-nrow"><span class="cp-nicon cp-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M7 7L5.5 5.5M18.5 18.5L17 17M17 7l1.5-1.5M5.5 18.5L7 17"/></svg></span><span class="cp-ntitle">Menalar konteks</span></div><div class="cp-nsub">Termasuk pertanyaan acak - tetap nyambung</div></div></foreignObject>
-<foreignObject x="14" y="416" width="332" height="70"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node cp-ok"><div class="cp-nrow"><span class="cp-nicon cp-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/><path d="M3 12h12"/></svg></span><span class="cp-ntitle">Tentukan tindakan</span><span class="cp-ntag">Order/menu/poin</span></div></div></foreignObject>
-<foreignObject x="200" y="510" width="146" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="cp-pill cp-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Selesai</span></div></foreignObject>
-<foreignObject x="14" y="528" width="332" height="70"><div xmlns="http://www.w3.org/1999/xhtml" class="cp-node cp-ok"><div class="cp-nrow"><span class="cp-nicon cp-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="cp-ntitle">Respons yang tepat</span></div></div></foreignObject>
+const HIW_CONTEXT_SVG = `<svg class="hiw-flow" viewBox="0 0 460 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Konteks yang dipakai model">
+<path d="M120 60 C 168 76, 198 140, 215 178" stroke="#CFD8F4" stroke-width="1.3" fill="none"/>
+<path d="M340 60 C 292 76, 262 140, 245 178" stroke="#E2D2F4" stroke-width="1.3" fill="none"/>
+<path d="M120 156 C 162 168, 196 184, 214 196" stroke="#AEDFC0" stroke-width="1.3" fill="none"/>
+<path d="M340 156 C 298 168, 264 184, 246 196" stroke="#CFD8F4" stroke-width="1.3" fill="none"/>
+<path d="M230 244 C 230 280, 150 270, 130 312" stroke="#E2D2F4" stroke-width="1.3" fill="none"/>
+<path d="M230 244 C 230 280, 310 270, 330 312" stroke="#AEDFC0" stroke-width="1.3" fill="none"/>
+<circle cx="215" cy="178" r="2.4" fill="#CFD8F4"/><circle cx="245" cy="178" r="2.4" fill="#E2D2F4"/>
+<circle cx="214" cy="196" r="2.4" fill="#AEDFC0"/><circle cx="246" cy="196" r="2.4" fill="#CFD8F4"/>
+<foreignObject x="20" y="44" width="190" height="30"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-hublab"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Isi percakapan</div></foreignObject>
+<foreignObject x="270" y="44" width="180" height="30"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-hublab"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3" y2="6.01"/><line x1="3" y1="12" x2="3" y2="12.01"/><line x1="3" y1="18" x2="3" y2="18.01"/></svg> Menu &amp; harga</div></foreignObject>
+<foreignObject x="20" y="140" width="190" height="30"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-hublab"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> Riwayat pesanan</div></foreignObject>
+<foreignObject x="270" y="140" width="180" height="30"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-hublab"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Jam buka &amp; promo</div></foreignObject>
+<foreignObject x="198" y="180" width="64" height="64"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-hubmark"><span class="hiw-mk"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5 10.1 10.9 5.5 9l4.6-1.4z" fill="#7018D8"/></svg></span></div></foreignObject>
+<foreignObject x="44" y="312" width="160" height="62"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-hubcard"><div class="hiw-t"><span class="hiw-ci hiw-ic-blue"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span> Percakapan</div><div class="hiw-s">Sesi chat berjalan</div></div></foreignObject>
+<foreignObject x="256" y="312" width="160" height="62"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-hubcard"><div class="hiw-t"><span class="hiw-ci hiw-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h2M4 17v2a2 2 0 0 0 2 2h2M16 3h2a2 2 0 0 1 2 2v2M16 21h2a2 2 0 0 0 2-2v-2"/></svg></span> Menu aktif</div><div class="hiw-s">Item &amp; harga terkini</div></div></foreignObject>
+</svg>`;
+
+const HIW_RESPONSE_SVG = `<svg class="hiw-flow" viewBox="0 0 460 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Memilih respons terbaik">
+<path d="M44 60 V 290" stroke="#E4E0EA" stroke-width="1.4" fill="none"/>
+<circle cx="44" cy="60" r="3" fill="#fff" stroke="#DCD8E4" stroke-width="2"/>
+<path d="M44 70 H 70 Q86 70 86 70" stroke="#AEDFC0" stroke-width="1.4" fill="none"/>
+<path d="M44 184 H 70 Q86 184 86 184" stroke="#DCD8E4" stroke-width="1.4" fill="none"/>
+<path d="M44 274 H 70 Q86 274 86 274" stroke="#DCD8E4" stroke-width="1.4" fill="none"/>
+<circle cx="44" cy="70" r="2.6" fill="#AEDFC0"/><circle cx="44" cy="184" r="2.6" fill="#DCD8E4"/><circle cx="44" cy="274" r="2.6" fill="#DCD8E4"/>
+<foreignObject x="88" y="20" width="356" height="100"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-crow hiw-win"><div class="hiw-ct"><span class="hiw-cl">Dipilih</span><span class="hiw-cw">paling tepat</span></div><div class="hiw-cq">"Siap kak! 2 Es Kopi Susu less sugar ya, total Rp 36.000. Diambil atau diantar?"</div><div class="hiw-bar"><i style="width:92%"></i></div></div></foreignObject>
+<foreignObject x="88" y="146" width="356" height="76"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-crow"><div class="hiw-ct"><span class="hiw-cl">Kandidat</span><span class="hiw-cw">kurang lengkap</span></div><div class="hiw-cq">"Oke, 2 es kopi susu ya."</div><div class="hiw-bar"><i style="width:56%"></i></div></div></foreignObject>
+<foreignObject x="88" y="236" width="356" height="76"><div xmlns="http://www.w3.org/1999/xhtml" class="hiw-crow"><div class="hiw-ct"><span class="hiw-cl">Kandidat</span><span class="hiw-cw">terlalu kaku</span></div><div class="hiw-cq">"Pesanan diterima. Mohon lakukan pembayaran."</div><div class="hiw-bar"><i style="width:34%"></i></div></div></foreignObject>
 </svg>`;
 
 /* Block 02 — owner manages the menu via chat (illustrative demo data) */
@@ -415,57 +421,111 @@ export default function ProductContent() {
         </div>
       </section>
 
-      {/* CHATBOT-VS-AI-NATIVE FLOW COMPARISON — illustrative concept (scoped .cmpprod) */}
-      <section className="cmpprod">
+      {/* HOW-IT-WORKS (LLM internals) — illustrative concept (scoped .hiw) */}
+      <section className="hiw">
         <div className="wrap">
-          <div className="cp-head">
-            <span className="cp-eyebrow">Cara kerjanya</span>
-            <h2>Chatbot automation vs AI-Native</h2>
+          <div className="hiw-intro">
+            <h2>
+              Ini bukan automation chatbot,
+              <br className="hiw-bp" />
+              tapi AI-Native di WhatsApp Anda.
+            </h2>
             <p>
-              Keduanya hidup di WhatsApp, tapi cara kerjanya beda jauh. Begini
-              bedanya, langkah demi langkah.
+              Paham bahasa sehari-hari pelanggan. Menalar sendiri. Tetap
+              nyambung walau pertanyaannya di luar dugaan.
             </p>
           </div>
 
-          <div className="cp-canvas">
-            <div className="cp-lanes">
-              <div className="cp-lane">
-                <div className="cp-lane-title">
-                  <span className="cp-chip">Chatbot automation</span>
-                  <span className="cp-tag cp-grey">Berbasis aturan</span>
-                </div>
-                <div dangerouslySetInnerHTML={{ __html: CP_CHATBOT_SVG }} />
-                <p className="cp-lane-note">
-                  Harus dilatih, dirawat terus, dan tetap mentok di luar skrip.
+          <div className="hiw-boxgroup">
+            <div className="hiw-sec">
+              <div className="hiw-pleft">
+                <h3>Yang terjadi sebelum membalas.</h3>
+                <p>
+                  Setiap pesan diproses model bahasa dalam beberapa langkah -
+                  tokenisasi, deteksi maksud, pengambilan konteks, lalu
+                  penalaran - sebelum jawaban dikirim ke WhatsApp.
                 </p>
               </div>
-
-              <div className="cp-lane">
-                <div className="cp-lane-title">
-                  <span className="cp-chip">Sosmed AI</span>
-                  <span className="cp-tag cp-green">AI-Native</span>
+              <div className="hiw-canvas">
+                <div className="hiw-c2">
+                  <div dangerouslySetInnerHTML={{ __html: HIW_PIPELINE_SVG }} />
+                  <div className="hiw-dcard">
+                    <div className="hiw-dh">
+                      <span className="hiw-dm">
+                        <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                      </span>{" "}
+                      Pesan dibaca
+                    </div>
+                    <div className="hiw-drow"><span className="hiw-k">Maksud</span><span className="hiw-v"><span className="hiw-vchip hiw-vp">Order</span></span></div>
+                    <div className="hiw-drow"><span className="hiw-k">Item</span><span className="hiw-v">Es Kopi Susu</span></div>
+                    <div className="hiw-drow"><span className="hiw-k">Jumlah</span><span className="hiw-v">2</span></div>
+                    <div className="hiw-drow"><span className="hiw-k">Catatan</span><span className="hiw-v">less sugar</span></div>
+                    <div className="hiw-drow"><span className="hiw-k">Keyakinan</span><span className="hiw-v"><span className="hiw-vchip">tinggi</span></span></div>
+                  </div>
                 </div>
-                <div dangerouslySetInnerHTML={{ __html: CP_AI_SVG }} />
-                <p className="cp-lane-note">
-                  Tanpa dilatih - paham, menalar, dan makin pintar seiring
-                  dipakai.
+                <HiwCube />
+              </div>
+            </div>
+
+            <div className="hiw-sec">
+              <div className="hiw-pleft">
+                <h3>Konteks yang dipakai model.</h3>
+                <p>
+                  Bukan menebak dari satu kata. Model mempertimbangkan isi
+                  percakapan, menu, dan riwayat pesanan - lalu memilih model
+                  terbaik untuk menjawab.
                 </p>
               </div>
+              <div className="hiw-canvas">
+                <div className="hiw-c2">
+                  <div dangerouslySetInnerHTML={{ __html: HIW_CONTEXT_SVG }} />
+                  <div>
+                    <div className="hiw-panel-h">Multi-model routing</div>
+                    <div className="hiw-models">
+                      <div className="hiw-mrow hiw-active"><span className="hiw-md">AI</span> Model terbaik dipilih</div>
+                      <div className="hiw-mrow hiw-faint"><span className="hiw-md">A</span> Penyedia model 1</div>
+                      <div className="hiw-mrow hiw-faint"><span className="hiw-md">B</span> Penyedia model 2</div>
+                      <div className="hiw-mrow hiw-faint"><span className="hiw-md">C</span> Penyedia model 3</div>
+                    </div>
+                  </div>
+                </div>
+                <HiwCube />
+              </div>
+            </div>
 
-              <div className="cp-ilist">
-                <div className="cp-ili cp-faint"><CmpProdDi /> Tanya jam buka</div>
-                <div className="cp-ili cp-faint2"><CmpProdDi /> Cek promo hari ini</div>
-                <div className="cp-ili cp-active"><CmpProdDi /> Order makanan &amp; minuman</div>
-                <div className="cp-ili"><CmpProdDi /> Tanya menu &amp; harga</div>
-                <div className="cp-ili cp-faint2"><CmpProdDi /> Konfirmasi pembayaran</div>
-                <div className="cp-ili cp-faint"><CmpProdDi /> Minta alamat &amp; ongkir</div>
+            <div className="hiw-sec">
+              <div className="hiw-pleft">
+                <h3>Memilih respons terbaik.</h3>
+                <p>
+                  Model menimbang beberapa kemungkinan jawaban berdasarkan
+                  maksud, konteks, dan kesopanan - lalu memilih yang paling tepat
+                  untuk dikirim.
+                </p>
+              </div>
+              <div className="hiw-canvas">
+                <div className="hiw-c2">
+                  <div dangerouslySetInnerHTML={{ __html: HIW_RESPONSE_SVG }} />
+                  <div>
+                    <div className="hiw-panel-h">Yang ditimbang</div>
+                    <div className="hiw-factors">
+                      <div className="hiw-frow hiw-hl"><span className="hiw-fi"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5 10.1 10.9 5.5 9l4.6-1.4z" /></svg></span> Maksud pelanggan</div>
+                      <div className="hiw-frow"><span className="hiw-fi"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h2M16 3h2a2 2 0 0 1 2 2v2M4 17v2a2 2 0 0 0 2 2h2M16 21h2a2 2 0 0 0 2-2v-2" /></svg></span> Konteks percakapan</div>
+                      <div className="hiw-frow"><span className="hiw-fi"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M8 10h8M8 14h5" /><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg></span> Nada &amp; kesopanan</div>
+                      <div className="hiw-frow"><span className="hiw-fi"><svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg></span> Akurasi info</div>
+                    </div>
+                  </div>
+                </div>
+                <HiwCube />
               </div>
             </div>
           </div>
 
-          <p className="cp-cap">
-            Ilustrasi konsep cara kerja AI-Native. Sosmed AI masih dalam
-            pengembangan; sebagian kemampuan masih kami kerjakan.
+          <p className="hiw-cap">
+            Ilustrasi konsep cara kerja model bahasa. Sosmed AI masih dalam
+            pengembangan; contoh, nilai, dan keyakinan di sini hanya sampel,
+            bukan data nyata.
           </p>
         </div>
       </section>
