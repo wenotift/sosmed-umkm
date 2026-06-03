@@ -1128,6 +1128,416 @@ export const ARTICLES: Record<string, Article> = {
       },
     ],
   },
+
+  "yang-sedang-kami-bangun": {
+    title: "Bukan Sekadar Chatbot: Apa Itu Sosmed AI",
+    category: "Produk",
+    readTime: "4 menit baca",
+    datePublished: "2026-06-02",
+    coverTitle: "Apa yang sedang kami bangun di Sosmed AI",
+    description:
+      "Apa bedanya chatbot biasa dengan AI-native? Penjelasan sederhana soal cara kerja Sosmed AI dan apa yang sedang kami bangun untuk usaha F&B kecil.",
+    lede: (
+      <>
+        Sosmed AI masih dalam tahap pengembangan dan belum diluncurkan. Halaman
+        ini menjelaskan apa yang sedang kami bangun dan bagaimana rencananya
+        bekerja, supaya Anda tahu persis apa yang akan Anda dapat.
+      </>
+    ),
+    tldr: [
+      "Sosmed AI sedang dalam pengembangan - belum tersedia untuk umum.",
+      "Semuanya dirancang berjalan langsung dari WhatsApp.",
+      "Fokus pertama: order tercatat otomatis, menu digital, poin, dan laporan.",
+      "Tujuannya: pemilik usaha fokus melayani, bukan sibuk mengurus administrasi.",
+      "Fitur akan dirilis bertahap, dan kami akan terbuka soal apa yang sudah siap.",
+    ],
+    sections: [
+      {
+        id: "whatsapp",
+        heading: "Kenapa lewat WhatsApp",
+        toc: "Kenapa WhatsApp",
+        body: (
+          <p>
+            Rencananya semua berjalan di tempat yang sudah dipakai pelanggan
+            Anda setiap hari: WhatsApp. Tidak ada aplikasi baru yang harus
+            diunduh siapa pun. Kami percaya alat terbaik adalah yang tidak
+            menambah beban belajar.
+          </p>
+        ),
+      },
+      {
+        id: "order",
+        heading: "Order yang tercatat otomatis",
+        toc: "Order otomatis",
+        body: (
+          <>
+            <p>
+              Salah satu hal pertama yang kami bangun adalah pencatatan order
+              otomatis dari chat, sehingga pesanan tidak lagi tercecer atau
+              salah hitung saat ramai.
+            </p>
+            <Figure cap="Ilustrasi rencana: order tercatat otomatis dari chat.">
+              <WaChat
+                head
+                msgs={[
+                  { side: "in", text: "2 es kopi susu, 1 croissant" },
+                  { side: "out", text: "Tercatat ya kak ✅ Total Rp 56.000." },
+                ]}
+              />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        id: "menu",
+        heading: "Menu digital dan pembayaran",
+        toc: "Menu & bayar",
+        body: (
+          <>
+            <p>
+              Kami juga merancang menu digital yang rapi dan alur pembayaran
+              lokal seperti QRIS, agar pelanggan mudah memesan dan membayar
+              tanpa keluar dari chat.
+            </p>
+            <Figure cap="Ilustrasi rencana: menu digital.">
+              <MenuMockup />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        id: "poin",
+        heading: "Poin dan pelanggan setia",
+        toc: "Poin",
+        body: (
+          <>
+            <p>
+              Sistem poin sederhana sedang kami siapkan untuk membantu usaha
+              membangun pelanggan setia, tanpa kartu fisik dan tanpa ribet.
+            </p>
+            <Figure cap="Ilustrasi rencana: sistem poin.">
+              <PointsMockup />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        id: "laporan",
+        heading: "Laporan sederhana",
+        toc: "Laporan",
+        body: (
+          <>
+            <p>
+              Kami ingin pemilik usaha bisa melihat ringkasan penjualan harian
+              dengan mudah, agar keputusan dibuat berdasarkan angka, bukan
+              tebakan.
+            </p>
+            <Figure cap="Contoh ilustrasi laporan - angka hanya sampel, bukan data nyata.">
+              <SummMockup />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        id: "ainative",
+        heading: "Bukan Chatbot tapi AI-Native",
+        toc: "Bukan Chatbot tapi AI-Native",
+        body: (
+          <>
+            <p>
+              <b>Apa itu chatbot biasa?</b> Chatbot umumnya bekerja dengan
+              aturan dan skrip. Anda atau tim Anda harus menyusun daftar
+              pertanyaan beserta jawabannya, atau pohon pilihan seperti
+              &quot;ketik 1 untuk menu, 2 untuk jam buka&quot;. Bot lalu
+              mencocokkan pesan pelanggan dengan skrip itu. Selama pertanyaan
+              sesuai skrip, ia menjawab. Begitu pelanggan menulis dengan cara
+              lain - salah ketik, singkatan, atau hal yang tak terduga - bot
+              bingung dan gagal. Karena itu chatbot perlu dilatih dan dirawat
+              terus-menerus, dan tetap terasa kaku.
+            </p>
+            <p>
+              <b>Apa itu AI-native?</b> AI-native berbeda sejak fondasinya.
+              Alih-alih daftar aturan, ia dibangun di atas model bahasa besar
+              (large language model) - model AI yang sudah belajar dari teks
+              dalam jumlah sangat besar, sehingga paham bahasa manusia secara
+              umum: maksud, konteks, bahkan gaya santai dan campuran bahasa.
+              Anda tidak perlu melatihnya dari nol. Ia dirancang bisa menangkap
+              pesan seperti &quot;es kopsu 2 ya bang, yg less sugar&quot; tanpa
+              Anda ajari, karena ia memahami maksud, bukan sekadar mencocokkan
+              kata kunci.
+            </p>
+            <p>
+              <b>Bagaimana ia belajar?</b> Lewat machine learning - cara kerja
+              AI yang menemukan pola dari banyak contoh, bukan dari aturan yang
+              ditulis manusia satu per satu. Mirip orang yang makin paham
+              setelah melihat banyak contoh: model menyesuaikan diri berdasarkan
+              data yang dilihatnya. Untuk Sosmed AI, rencananya ini berarti ia
+              mengenali pola pesanan dan kebiasaan pelanggan Anda dari waktu ke
+              waktu - misalnya menu yang sering dipesan atau jam paling ramai -
+              dan menjadi makin membantu seiring dipakai.
+            </p>
+            <p>
+              Hasil yang kami tuju sederhana: Anda tinggal pakai, bukan sibuk
+              mengajari.
+            </p>
+            <div className="cta-band">
+              <h3>Segera Hadir</h3>
+              <p>
+                Sosmed AI sedang kami siapkan untuk pemilik warung, kafe, dan
+                restoran kecil di Indonesia. Nantikan peluncurannya.
+              </p>
+            </div>
+          </>
+        ),
+      },
+    ],
+    related: [
+      {
+        slug: "menu-digital-mudah-dipesan",
+        g: "g2",
+        tag: "Tips Bisnis",
+        title: "Cara Atur Menu Digital yang Bikin Pelanggan Gampang Pesan",
+        excerpt: "Menyusun menu yang jelas agar pelanggan langsung pesan.",
+      },
+      {
+        slug: "sistem-poin-sederhana",
+        g: "g5",
+        tag: "Panduan",
+        title: "Sistem Poin Sederhana untuk Usaha F&B Kecil",
+        excerpt: "Program loyalitas yang ringan dijalankan.",
+      },
+      {
+        slug: "laporan-penjualan-harian",
+        g: "g3",
+        tag: "Panduan",
+        title: "Laporan Penjualan Harian: Apa yang Perlu Dipantau",
+        excerpt: "Angka penting yang sebaiknya dipantau setiap hari.",
+      },
+    ],
+  },
+
+  "masalah-umkm-fnb-indonesia": {
+    title: "Cerita di Balik Sosmed AI",
+    category: "Cerita",
+    readTime: "4 menit baca",
+    datePublished: "2026-06-02",
+    coverTitle: "Cerita di balik Sosmed AI",
+    description:
+      "Cerita di balik Sosmed AI: apa yang kami lihat di warung dan kafe kecil Indonesia, dan kenapa kami membangun alat yang bekerja langsung dari WhatsApp.",
+    lede: (
+      <>
+        Sebelum menulis satu baris kode pun, kami menghabiskan waktu
+        memperhatikan bagaimana warung dan kafe kecil di Indonesia menjalankan
+        usahanya sehari-hari. Inilah yang kami lihat.
+      </>
+    ),
+    tldr: [
+      "Banyak usaha F&B kecil mengelola order lewat WhatsApp secara manual.",
+      "Saat ramai, order mudah tercecer di antara banyak chat.",
+      "Waktu pemilik banyak habis untuk mencatat dan menghitung.",
+      "Solusi yang ada sering terlalu rumit atau mahal untuk usaha kecil.",
+      "Kami ingin alat yang sesederhana mengobrol di WhatsApp.",
+    ],
+    sections: [
+      {
+        id: "lihat",
+        heading: "Apa yang kami lihat",
+        toc: "Apa yang kami lihat",
+        body: (
+          <p>
+            Hampir setiap warung dan kafe kecil yang kami temui sudah menerima
+            order lewat WhatsApp. Tapi semuanya dikerjakan manual: membaca chat
+            satu per satu, menyalin pesanan ke buku atau kepala, lalu menghitung
+            total. Cara ini berhasil saat sepi, tapi mulai goyah saat ramai.
+          </p>
+        ),
+      },
+      {
+        id: "chat",
+        heading: "Indonesia hidup di chat, bukan dashboard",
+        toc: "Indonesia hidup di chat",
+        body: (
+          <>
+            <p>
+              Satu hal yang menonjol: di Indonesia, usaha kecil menjalankan
+              bisnisnya lewat chat WhatsApp - bukan halaman login, bukan
+              dashboard rumit seperti perusahaan besar. Mereka tim kecil, kadang
+              hanya pemilik dan satu dua orang, yang ingin lebih produktif tapi
+              tetap bisa tumbuh. Alat yang menuntut mereka pindah ke aplikasi
+              baru justru menambah beban, bukan mengurangi.
+            </p>
+            <p>
+              Angkanya memperkuat apa yang kami lihat. Indonesia adalah salah
+              satu pasar WhatsApp terbesar di dunia, dengan puluhan juta
+              pengguna aktif - termasuk di antara negara dengan unduhan WhatsApp
+              Business terbanyak setelah India. Bagi mayoritas warga yang
+              terhubung internet, WhatsApp sudah jadi bagian keseharian.
+            </p>
+            <p>
+              Perilaku belanja pun mengikuti. Di banyak pasar seperti Indonesia,
+              WhatsApp sudah menjadi cara yang disukai pelanggan untuk
+              berhubungan dengan usaha - entah karena praktis, gratis dibanding
+              SMS atau telepon, atau memang sudah jadi kebiasaan. Pelanggan
+              tidak ingin mengunduh aplikasi baru hanya untuk memesan kopi;
+              mereka ingin mengetik seperti biasa.
+            </p>
+            <p>
+              Ada satu lapisan lagi yang khas Indonesia: bahasa. Pelanggan
+              mengetik campur-campur - Bahasa Indonesia, bahasa daerah, sedikit
+              Inggris, penuh singkatan dan gaya santai. Cara mengobrol seperti
+              ini sulit ditangani sistem yang kaku, tapi justru di sinilah AI
+              yang paham bahasa sehari-hari bisa membantu.
+            </p>
+            <p className="src-note">
+              Catatan: angka di atas merujuk pada laporan publik tentang
+              penggunaan WhatsApp di Indonesia (mis. data industri 2025-2026).
+              Kami sengaja tidak mengutip angka pasti karena tiap sumber sedikit
+              berbeda - yang konsisten adalah polanya: WhatsApp sangat dominan
+              untuk komunikasi pelanggan di Indonesia.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "tercecer",
+        heading: "Order yang tercecer di chat",
+        toc: "Order tercecer",
+        body: (
+          <>
+            <p>
+              Saat jam ramai, pesan masuk bertubi-tubi. Mudah sekali ada order
+              yang terlewat, tertukar, atau lupa dibalas. Setiap order yang
+              hilang adalah uang yang hilang dan pelanggan yang kecewa.
+            </p>
+            <Figure cap="Ilustrasi: order yang mudah tercecer saat chat menumpuk.">
+              <WaChat
+                head
+                msgs={[
+                  { side: "in", text: "Mau pesan 2 kopi" },
+                  { side: "in", text: "Eh tambah 1 croissant ya" },
+                  { side: "in", text: "Halo kak? Jadi nggak?" },
+                ]}
+              />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        id: "waktu",
+        heading: "Waktu habis untuk administrasi",
+        toc: "Waktu administrasi",
+        body: (
+          <p>
+            Pemilik usaha yang seharusnya fokus pada rasa dan pelayanan malah
+            menghabiskan banyak waktu untuk mencatat, menghitung, dan merekap.
+            Pekerjaan administratif ini menumpuk dan melelahkan, padahal bukan
+            inti dari usaha mereka.
+          </p>
+        ),
+      },
+      {
+        id: "solusi",
+        heading: "Kenapa solusi yang ada belum pas",
+        toc: "Solusi yang ada",
+        body: (
+          <p>
+            Ada banyak aplikasi kasir dan sistem order di luar sana, tapi sering
+            terasa terlalu rumit, mahal, atau menuntut pelanggan mengunduh
+            aplikasi baru. Untuk usaha kecil yang sibuk, hambatan sekecil itu
+            sudah cukup membuat sebuah alat tidak terpakai.
+          </p>
+        ),
+      },
+      {
+        id: "ubah",
+        heading: "Apa yang ingin kami ubah",
+        toc: "Apa yang kami ubah",
+        body: (
+          <p>
+            Dari sinilah Sosmed AI berangkat: kami ingin alat yang sesederhana
+            mengobrol di WhatsApp, tapi diam-diam merapikan order, menu, poin,
+            dan laporan di belakang layar. Kami masih membangunnya, dan kami
+            ingin melakukannya bersama orang-orang yang usahanya kami coba bantu.
+          </p>
+        ),
+      },
+      {
+        id: "beda",
+        heading: "Apa yang membuat pendekatan kami berbeda",
+        toc: "Apa yang membuat kami berbeda",
+        body: (
+          <>
+            <p>
+              Banyak alat mencoba menyelesaikan masalah yang sama. Yang kami
+              yakini berbeda adalah cara kami mendekatinya:
+            </p>
+            <ul>
+              <li>
+                <b>AI-native, bukan chatbot skrip.</b> Chatbot biasa harus Anda
+                latih dengan daftar pertanyaan dan jawaban, lalu tetap kaku -
+                kalau pelanggan bertanya di luar skrip, ia gagal. Sosmed AI
+                dirancang memahami bahasa sehari-hari pelanggan sejak awal,
+                termasuk campuran Bahasa Indonesia, bahasa daerah, dan
+                singkatan, serta menalar maksud percakapan, bukan sekadar
+                mencocokkan kata kunci.
+              </li>
+              <li>
+                <b>Hidup di WhatsApp, bukan aplikasi terpisah.</b> Pelanggan
+                tidak perlu mengunduh apa pun, dan Anda tidak perlu pindah ke
+                dashboard. Pekerjaan administratif berjalan diam-diam di
+                belakang chat yang sudah Anda pakai setiap hari.
+              </li>
+              <li>
+                <b>Dibuat untuk usaha kecil Indonesia, bukan korporasi.</b> Ini
+                bukan sistem perusahaan besar yang dikecilkan. Kami memikirkan
+                tim kecil, bahasa lokal, dan pembayaran lokal seperti QRIS sejak
+                baris pertama.
+              </li>
+              <li>
+                <b>Satu alur, bukan tumpukan aplikasi.</b> Order, menu, poin,
+                dan laporan dirancang menyatu dalam satu alur - bukan empat alat
+                berbeda yang harus Anda sambungkan dan kelola sendiri.
+              </li>
+              <li>
+                <b>Sederhana itu disengaja.</b> Bagian yang rumit kami sembunyikan
+                di belakang layar, supaya yang Anda rasakan cuma satu: mengobrol
+                seperti biasa, sisanya beres.
+              </li>
+            </ul>
+            <p className="src-note">
+              Ini prinsip yang memandu kami membangun Sosmed AI. Produknya masih
+              dalam pengembangan, jadi sebagian sudah berbentuk dan sebagian
+              masih kami kerjakan - dan kami akan terus jujur soal mana yang
+              mana.
+            </p>
+          </>
+        ),
+      },
+    ],
+    related: [
+      {
+        slug: "order-whatsapp-lebih-cepat",
+        g: "g3",
+        tag: "Panduan",
+        title: "Kenapa Order via WhatsApp Lebih Cepat dari Aplikasi",
+        excerpt: "Kenapa pelanggan lebih nyaman pesan lewat chat.",
+      },
+      {
+        slug: "mengelola-pesanan-jam-ramai",
+        g: "g2",
+        tag: "Tips Bisnis",
+        title: "Mengelola Pesanan Saat Jam Ramai Tanpa Keteteran",
+        excerpt: "Tips menjaga pesanan tetap rapi saat sibuk.",
+      },
+      {
+        slug: "yang-sedang-kami-bangun",
+        g: "g5",
+        tag: "Produk",
+        title: "Yang Sedang Kami Bangun di Sosmed AI",
+        excerpt: "Apa yang sedang kami kerjakan dan rencananya bekerja.",
+      },
+    ],
+  },
 };
 
 export const ARTICLE_SLUGS = Object.keys(ARTICLES);
@@ -1146,6 +1556,8 @@ const BLOG_IMAGE_STEM: Record<string, string> = {
   "sistem-poin-sederhana": "sistem-poin",
   "mengelola-pesanan-jam-ramai": "jam-ramai",
   "laporan-penjualan-harian": "laporan-harian",
+  "yang-sedang-kami-bangun": "produk-sosmed-ai",
+  "masalah-umkm-fnb-indonesia": "cerita-sosmed-ai",
 };
 
 export function blogCover(slug: string): string {

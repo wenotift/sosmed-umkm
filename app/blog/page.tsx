@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { blogIndexJsonLd, blogBreadcrumbJsonLd } from "./schema";
 import { blogThumb } from "./articles";
+import BlogGrid from "./BlogGrid";
 
 export const metadata: Metadata = {
   // Indexable (live): inherits the site robots index:true, follow:true.
@@ -72,6 +73,22 @@ const POSTS = [
     title: "Laporan Penjualan Harian: Apa yang Perlu Dipantau",
     excerpt:
       "Angka-angka penting yang sebaiknya Anda pantau setiap hari untuk usaha yang lebih sehat.",
+  },
+  {
+    slug: "yang-sedang-kami-bangun",
+    g: "g3",
+    tag: "Produk",
+    title: "Bukan Sekadar Chatbot: Apa Itu Sosmed AI",
+    excerpt:
+      "Apa bedanya chatbot biasa dengan AI-native, dan apa yang sedang kami bangun untuk usaha F&B kecil.",
+  },
+  {
+    slug: "masalah-umkm-fnb-indonesia",
+    g: "g2",
+    tag: "Cerita",
+    title: "Cerita di Balik Sosmed AI",
+    excerpt:
+      "Apa yang kami lihat di warung dan kafe kecil Indonesia, dan kenapa kami membangunnya di WhatsApp.",
   },
 ];
 
@@ -141,46 +158,13 @@ export default function BlogPage() {
             </div>
           </Link>
 
-          {/* TABS (visual only) */}
-          <div className="tabs">
-            <div className="t active">Semua</div>
-            <div className="t">Tips Bisnis</div>
-            <div className="t">Panduan</div>
-            <div className="t">Produk</div>
-            <div className="t">Cerita</div>
-          </div>
-
-          {/* GRID */}
-          <div className="grid">
-            {POSTS.map((post) => (
-              <Link
-                className="card"
-                href={`/blog/${post.slug}`}
-                key={post.slug}
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                <div
-                  className="thumb"
-                  style={{
-                    backgroundImage: `url('${blogThumb(post.slug)}')`,
-                  }}
-                ></div>
-                <div className="cbody">
-                  <h3>{post.title}</h3>
-                  <p>{post.excerpt}</p>
-                  <div className="divider"></div>
-                  <div className="byline">
-                    <span className="av">S</span> <b>Tim Sosmed AI</b>
-                  </div>
-                  <div className="meta-row">
-                    <span>2 Juni 2026</span>
-                    <span className="sep"></span>
-                    <span className="tag">{post.tag}</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {/* TABS + GRID (client-side category filter) */}
+          <BlogGrid
+            posts={POSTS.map((post) => ({
+              ...post,
+              thumb: blogThumb(post.slug),
+            }))}
+          />
 
           {/* NEWSLETTER (visual only - no live endpoint) */}
           <div className="news">

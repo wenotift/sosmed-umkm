@@ -199,6 +199,15 @@
   .replay-btn:hover{background:#fff}
   .phone,.f-visual{position:relative}
   .f-visual.chat-anim{justify-content:flex-start;height:300px;min-height:300px}
+  /* Hero chat (1-col mobile): the phone has no definite height here, so its
+     flex:1 message area grows as pending bubbles reveal (CLS). Pin a fixed
+     height = the full conversation's longest state at that width so it never
+     grows/shrinks; flex:none makes height authoritative, overflow-y:auto (from
+     .wa-body) is a safety valve, and .phone's overflow:hidden clips
+     horizontally. On desktop the 2-col .hv-grid (align-items:stretch) already
+     gives a stable height, so it's left untouched (desktop layout unchanged). */
+  @media(max-width:760px){.wa-body.chat-anim{flex:none;height:490px}}
+  @media(max-width:414px){.wa-body.chat-anim{flex:none;height:550px}}
 
   .panel{
     background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
@@ -1191,8 +1200,10 @@
   .blog-page .byline .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-ink));display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:700;font-size:12px}
   .blog-page .byline b{font-family:var(--display);font-weight:600}
   .blog-page .tabs{display:flex;gap:26px;padding:36px 0 4px;font-family:var(--display);font-size:15.5px;font-weight:500;color:var(--ink-soft);flex-wrap:wrap}
-  .blog-page .tabs .t{padding-bottom:4px;border-bottom:2px solid transparent}
+  /* tabs are <button>s — reset UA chrome; keep them on one line per tab */
+  .blog-page .tabs .t{padding:0 0 4px;margin:0;border:0;border-bottom:2px solid transparent;background:none;color:inherit;font:inherit;cursor:pointer;white-space:nowrap;flex-shrink:0;line-height:1.4}
   .blog-page .tabs .t.active{color:var(--ink);font-weight:600;border-bottom-color:var(--accent)}
+  .blog-page .empty-cat{margin:28px 0 64px;padding:46px 24px;text-align:center;color:var(--ink-soft);background:#F4F0FB;border:1px solid var(--line);border-radius:18px;font-family:var(--display);font-size:15px}
   .blog-page .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:28px 0 64px}
   .blog-page .card{background:#F4F0FB;border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;transition:box-shadow .18s,transform .18s}
   .blog-page .card:hover{box-shadow:0 12px 30px rgba(80,40,150,.09);transform:translateY(-2px)}
@@ -1221,6 +1232,21 @@
     .blog-page .news{grid-template-columns:1fr;gap:28px;padding:32px}
   }
   @media(max-width:560px){.blog-page .grid{grid-template-columns:1fr}}
+  /* mobile: tab row becomes a single-line horizontal slider (swipe), no wrap,
+     hidden scrollbar; the strip scrolls, the page does not overflow */
+  @media(max-width:640px){
+    .blog-page .tabs{flex-wrap:nowrap;overflow-x:auto;gap:20px;padding-right:24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .blog-page .tabs::-webkit-scrollbar{display:none}
+  }
+  /* Newsletter form: stack input over button on mobile so the side-by-side row
+     can't run past the viewport. min-width:0 lets the input shrink (flex items
+     default to min-width:auto); width:100% makes each control fill the column.
+     box-sizing:border-box is already global. */
+  @media(max-width:640px){
+    .blog-page .news .form{flex-direction:column}
+    .blog-page .news input{width:100%;min-width:0}
+    .blog-page .news .btn{width:100%}
+  }
 
   /* ===== Blog article (/blog/[slug]) — placeholder content, scoped ===== */
   .article-page{background:#FBFAFE;color:var(--ink);line-height:1.7}
@@ -1239,9 +1265,9 @@
   .article-page .cover img{object-fit:cover}
   .article-page .layout{display:grid;grid-template-columns:minmax(0,1fr) 248px;gap:56px;max-width:980px;margin:48px auto 0;align-items:start}
   .article-page .prose{font-size:16.5px;color:#33303c;min-width:0}
-  .article-page .prose .lede{font-size:19px;line-height:1.6;color:var(--ink);margin-bottom:26px;font-weight:500}
-  .article-page .prose h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:24px;color:var(--ink);margin:42px 0 14px;scroll-margin-top:24px}
-  .article-page .prose p{margin:16px 0;line-height:1.75}
+  .article-page .prose .lede{font-size:19px;line-height:1.6;color:var(--ink);margin-bottom:22px;font-weight:500}
+  .article-page .prose h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:24px;color:var(--ink);margin:30px 0 12px;scroll-margin-top:24px}
+  .article-page .prose p{margin:13px 0;line-height:1.75}
   .article-page .prose ul{margin:16px 0;padding-left:4px;list-style:none}
   .article-page .prose li{position:relative;padding-left:24px;margin-bottom:10px;line-height:1.65}
   .article-page .prose li::before{content:"";position:absolute;left:4px;top:11px;width:7px;height:7px;border-radius:50%;background:#4A157E}
@@ -1249,13 +1275,19 @@
   .article-page .prose a{color:#4A157E;text-decoration:underline;text-underline-offset:2px}
   .article-page .callout{background:var(--accent-soft);border:1px solid #E4D5FB;border-radius:16px;padding:20px 24px;margin:26px 0;font-size:15.5px;color:#3a2a55}
   .article-page .callout b{color:#4A157E}
-  .article-page .tldr{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 26px;margin:26px 0}
+  /* CTA band (Produk "Segera Hadir") — bright purple confined to the background gradient */
+  .article-page .cta-band{background:linear-gradient(135deg,#1E1142,#5A1FB0);border-radius:20px;padding:38px 32px;text-align:center;margin:40px 0 8px}
+  .article-page .cta-band h3{font-family:var(--display);font-weight:800;font-size:24px;color:#fff;letter-spacing:-.01em;margin-bottom:10px}
+  .article-page .cta-band p{color:rgba(255,255,255,.85);font-size:15.5px;line-height:1.6;max-width:440px;margin:0 auto}
+  /* source-note (Cerita) — muted italic aside with a left rule */
+  .article-page .prose .src-note{font-size:13.5px;color:var(--ink-soft);font-style:italic;border-left:2px solid var(--line);padding-left:14px;margin-top:18px}
+  .article-page .tldr{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 26px;margin:20px 0}
   .article-page .tldr .h{font-family:var(--display);font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:#4A157E;margin-bottom:12px}
   .article-page .tldr ul{margin:0;padding-left:4px;list-style:none}
   .article-page .tldr li{position:relative;padding-left:24px;margin-bottom:9px;font-size:15.5px;color:#33303c;line-height:1.6}
   .article-page .tldr li::before{content:"";position:absolute;left:4px;top:10px;width:7px;height:7px;border-radius:50%;background:#4A157E}
-  .article-page .figure{margin:30px 0}
-  .article-page .figure .frame{background:#F4F0FB;border:1px solid var(--line);border-radius:18px;padding:30px;display:flex;align-items:center;justify-content:center}
+  .article-page .figure{margin:20px 0}
+  .article-page .figure .frame{background:#F4F0FB;border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;align-items:center;justify-content:center}
   .article-page .fig-cap{font-size:13px;color:var(--ink-soft);text-align:center;margin-top:10px;font-style:italic}
   .article-page .wa{width:100%;max-width:300px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 10px 30px rgba(90,40,160,.12)}
   .article-page .wa .wahead{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid #f0f0f0;margin-bottom:12px}
@@ -1302,4 +1334,12 @@
     .article-page .layout{grid-template-columns:1fr;gap:0}
     .article-page .toc{display:none}
     .article-page .rgrid{grid-template-columns:1fr}
+  }
+  /* tighter, compact rhythm on phones (smaller gaps, frames hug their mockups) */
+  @media(max-width:640px){
+    .article-page .prose h2{margin:24px 0 10px}
+    .article-page .prose p{margin:11px 0}
+    .article-page .figure{margin:16px 0}
+    .article-page .figure .frame{padding:14px}
+    .article-page .tldr{margin:16px 0}
   }
