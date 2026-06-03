@@ -306,6 +306,10 @@ export default function Home() {
     <>
       <Nav />
 
+      {/* `home` scopes the homepage-only glassmorphism test (globals.css) so it
+          can't leak to shared classes (.step, .price) used on other pages. */}
+      <main className="home">
+
       {/* HERO */}
       <section className="hero">
         <div className="wrap">
@@ -1817,6 +1821,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <Footer />
     </>

@@ -656,6 +656,58 @@
     .pkg-feat p{grid-column:2}
   }
 
+  /* ===== Homepage glassmorphism test — scoped to .home only (globals.css
+     rules elsewhere reuse .step/.price, so this MUST stay under .home) =====
+     Light frost on the white cards over the flat cream / light-gradient
+     sections (subtle by nature — little varied content behind to blur), and a
+     medium frost on the boxes over the DARK tech/problem sections where the
+     effect actually reads. Device/chat mockups (.phone, .sw-screen, .f-visual)
+     and tiny pills are left solid for content clarity + mobile performance.
+     -webkit- prefixed; @supports + mobile fallbacks keep cards near-opaque so
+     they never become unreadable see-through rectangles and mobile won't jank. */
+  .home .dpanels .dpanel,
+  .home .why-card,
+  .home .step,
+  .home .uc,
+  .home .price,
+  .home .wa-showcase .cmd-card,
+  .home .sw-mini{
+    background:rgba(255,255,255,.68);
+    -webkit-backdrop-filter:blur(10px) saturate(115%);
+    backdrop-filter:blur(10px) saturate(115%);
+    border-color:rgba(255,255,255,.55);
+    box-shadow:0 4px 22px rgba(26,20,16,.07),0 1px 2px rgba(26,20,16,.04);
+  }
+  /* medium frost where it shows best: boxes over the dark sections */
+  .home .tech-feat,
+  .home .prob{
+    background:rgba(255,255,255,.05);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+  }
+  /* fallback when backdrop-filter is unsupported -> near-opaque, still readable */
+  @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+    .home .dpanels .dpanel,
+    .home .why-card,
+    .home .step,
+    .home .uc,
+    .home .price,
+    .home .wa-showcase .cmd-card,
+    .home .sw-mini{background:rgba(255,255,255,.94)}
+    .home .tech-feat,.home .prob{background:rgba(255,255,255,.04)}
+  }
+  /* mobile: drop GPU-heavy blur (barely visible at phone size anyway) -> solid */
+  @media(max-width:640px){
+    .home .dpanels .dpanel,
+    .home .why-card,
+    .home .step,
+    .home .uc,
+    .home .price,
+    .home .wa-showcase .cmd-card,
+    .home .sw-mini{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(255,255,255,.92)}
+    .home .tech-feat,.home .prob{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(255,255,255,.04)}
+  }
+
   /* footer */
   footer{background:var(--bg);border-top:1px solid var(--line);padding:56px 0 34px}
   /* brand block sits full-width on top; link columns in a row below it */
