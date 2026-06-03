@@ -6,6 +6,42 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ShowcaseChat from "./ShowcaseChat";
 
+// AI-Native banner: F&B-intent list icon (repeated in the right side-list).
+function AiBannerDi() {
+  return (
+    <span className="aib-di">
+      <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="9" cy="9" r="2" />
+        <circle cx="15" cy="15" r="2" />
+        <path d="M9 11v2M11 9h2" />
+      </svg>
+    </span>
+  );
+}
+
+// AI-Native banner center flow — static illustrative SVG (viewBox + width:100%
+// so it scales on mobile). Injected as-is for foreignObject fidelity; classes
+// are aib-* prefixed and styled scoped under .ainat. Conceptual, not a claim.
+const AINATIVE_FLOW_SVG = `<svg class="aib-flow-svg" viewBox="0 0 380 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi alur AI-Native">
+<defs><marker id="aibAh" markerWidth="14" markerHeight="14" refX="7" refY="7" orient="auto"><path d="M3 4 L7 9 L11 4" stroke="#5FC983" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="aibAhg" markerWidth="14" markerHeight="14" refX="7" refY="7" orient="auto"><path d="M3 4 L7 9 L11 4" stroke="#C9C5D2" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<path d="M190 138 V 240" fill="none" stroke="#5FC983" stroke-width="2.4" marker-end="url(#aibAh)"/>
+<circle cx="190" cy="138" r="5.5" fill="#fff" stroke="#16A34A" stroke-width="2"/>
+<path d="M190 348 V 402" fill="none" stroke="#5FC983" stroke-width="2.4"/>
+<circle cx="190" cy="402" r="5.5" fill="#fff" stroke="#16A34A" stroke-width="2"/>
+<path d="M190 402 V 426 Q190 446 168 446 H 119 Q97 446 97 464 V 478" fill="none" stroke="#5FC983" stroke-width="2.4" marker-end="url(#aibAh)"/>
+<path d="M190 402 V 426 Q190 446 212 446 H 261 Q283 446 283 464 V 478" fill="none" stroke="#DAD7E0" stroke-width="2.4" marker-end="url(#aibAhg)"/>
+<foreignObject x="14" y="-2" width="120" height="26"><div xmlns="http://www.w3.org/1999/xhtml"><span class="aib-tabtag"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg> Pemicu</span></div></foreignObject>
+<foreignObject x="248" y="-2" width="120" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="aib-pill"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Masuk</span></div></foreignObject>
+<foreignObject x="14" y="32" width="352" height="106"><div xmlns="http://www.w3.org/1999/xhtml" class="aib-node aib-ok"><div class="aib-nrow"><span class="aib-nicon aib-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="aib-ntitle">Pesan masuk di WhatsApp</span><span class="aib-ntag">Input</span></div><div class="aib-nsub">"es kopsu 2 ya bang, less sugar 🙏"</div></div></foreignObject>
+<foreignObject x="234" y="222" width="132" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:right"><span class="aib-pill"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Dipahami</span></div></foreignObject>
+<foreignObject x="14" y="240" width="352" height="108"><div xmlns="http://www.w3.org/1999/xhtml" class="aib-node aib-ok"><div class="aib-nrow"><span class="aib-nicon aib-ic-purple"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5 10.1 10.9 5.5 9l4.6-1.4z"/></svg></span><span class="aib-ntitle">AI pahami &amp; tentukan maksud</span><span class="aib-ntag">AI-Native</span></div><div class="aib-nsub">Paham slang &amp; konteks, lalu arahkan - tanpa skrip</div></div></foreignObject>
+<foreignObject x="55" y="434" width="84" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center"><span class="aib-blabel">Order</span></div></foreignObject>
+<foreignObject x="231" y="434" width="104" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center"><span class="aib-blabel aib-mut">Tanya menu</span></div></foreignObject>
+<foreignObject x="8" y="478" width="178" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="aib-node aib-ok"><div class="aib-nrow"><span class="aib-nicon aib-ic-green"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9l-5 5-3-3"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></span><span class="aib-ntitle">Catat pesanan</span></div><div class="aib-nsub">Order tercatat otomatis</div></div></foreignObject>
+<foreignObject x="194" y="478" width="178" height="92"><div xmlns="http://www.w3.org/1999/xhtml" class="aib-node aib-mut"><div class="aib-nrow"><span class="aib-nicon aib-ic-grey"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><span class="aib-ntitle">Kirim menu</span></div><div class="aib-nsub">Cabang lain</div></div></foreignObject>
+</svg>`;
+
 const FLIP_PHRASES = [
   "Restoran",
   "Warung",
@@ -513,6 +549,60 @@ export default function Home() {
               <span className="e"><IconLock /></span> Aman &amp; Patuh UU PDP
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* AI-NATIVE BANNER — illustrative concept (scoped .ainat) */}
+      <section className="ainat">
+        <div className="wrap">
+          <div className="aib-top">
+            <h2>
+              Ini bukan automation chatbot,
+              <br className="aib-br" />
+              tapi AI-Native di WhatsApp Anda.
+            </h2>
+            <p>
+              Paham bahasa sehari-hari pelanggan. Menalar sendiri. Tetap
+              nyambung walau pertanyaannya di luar dugaan.
+            </p>
+          </div>
+
+          <div className="aib-panel">
+            <div className="aib-left">
+              <h3>AI yang paham maksud pelanggan.</h3>
+              <p>
+                Dari order sampai tanya menu, AI menangkap maksud dari chat
+                sehari-hari lalu mengarahkannya sendiri - tanpa skrip yang harus
+                Anda latih.
+              </p>
+              <Link className="aib-link" href="/produk">
+                Pelajari cara kerjanya{" "}
+                <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+
+            <div
+              className="aib-flow"
+              aria-hidden="true"
+              dangerouslySetInnerHTML={{ __html: AINATIVE_FLOW_SVG }}
+            />
+
+            <div className="aib-list">
+              <div className="aib-li aib-faint"><AiBannerDi /> Tanya jam buka</div>
+              <div className="aib-li aib-faint2"><AiBannerDi /> Cek promo hari ini</div>
+              <div className="aib-li aib-active"><AiBannerDi /> Order makanan &amp; minuman</div>
+              <div className="aib-li"><AiBannerDi /> Tanya menu &amp; harga</div>
+              <div className="aib-li aib-faint2"><AiBannerDi /> Konfirmasi pembayaran</div>
+              <div className="aib-li aib-faint"><AiBannerDi /> Minta alamat &amp; ongkir</div>
+            </div>
+          </div>
+
+          <p className="aib-cap">
+            Ilustrasi konsep cara kerja AI-Native. Sosmed AI masih dalam
+            pengembangan.
+          </p>
         </div>
       </section>
 

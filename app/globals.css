@@ -437,6 +437,22 @@
     .wa-showcase .dash-band{grid-template-columns:1fr;gap:28px;padding:28px 22px}
     .wa-showcase .db-float{display:none}
   }
+  /* Dashboard mockup on phones: the inner grids (.dbm-win 46px/1fr,
+     .dbm-stats 3x1fr) default to min-width:auto, giving the frame a ~325px
+     intrinsic floor that spills past narrow viewports. min-width:0 lets it
+     shrink (overflow:hidden on .dbm-win then clips), the rail is slimmed, and
+     the stats drop to 2-per-row with a smaller, no-wrap value so numbers like
+     "Rp 38,6 jt" stay on one line and nothing bleeds outside the rounded box. */
+  @media(max-width:640px){
+    .wa-showcase .db-mock{min-width:0}
+    .wa-showcase .dbm-win{grid-template-columns:26px 1fr;max-width:100%}
+    .wa-showcase .dbm-side{gap:12px;padding:14px 0}
+    .wa-showcase .dbm-side i{width:14px;height:14px}
+    .wa-showcase .dbm-main{padding:14px;min-width:0}
+    .wa-showcase .dbm-stats{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+    .wa-showcase .dbm-stat{min-width:0;padding:9px 10px}
+    .wa-showcase .dbm-stat .v{font-size:16px;white-space:nowrap}
+  }
 
   /* bare rounded WhatsApp card (no phone bezel) */
   .sw-screen{width:300px;max-width:100%;margin:0 auto;background:#E5DDD5;border:1px solid #F0E9FB;border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden;height:496px;display:flex;flex-direction:column}
@@ -707,6 +723,58 @@
     .home .sw-mini{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(255,255,255,.92)}
     .home .tech-feat,.home .prob{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(255,255,255,.04)}
   }
+
+  /* ===== AI-Native banner (homepage, after the trust 4-pills) =====
+     Scoped to .ainat; every inner class is aib-* prefixed because .panel/.pill/
+     .cap/.active exist globally. Conceptual/illustrative (caption + grey nodes).
+     Darker purple (#4A157E) for link text; bright purple only in node-icon bg. */
+  .ainat .aib-top{max-width:760px;margin-bottom:30px}
+  .ainat .aib-top h2{font-family:var(--display);font-weight:800;letter-spacing:-.025em;font-size:clamp(26px,3.4vw,38px);line-height:1.16;color:var(--ink)}
+  .ainat .aib-top p{font-family:var(--display);font-weight:500;font-size:clamp(20px,2.6vw,28px);line-height:1.28;color:#9A95A6;margin-top:6px;letter-spacing:-.01em}
+  .ainat .aib-panel{border:1px solid var(--line);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:300px 1fr 248px;background:#fff}
+  .ainat .aib-left{padding:38px 30px;display:flex;flex-direction:column;border-right:1px solid var(--line);min-width:0}
+  .ainat .aib-left h3{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px}
+  .ainat .aib-left p{font-size:15.5px;color:var(--ink-soft);line-height:1.6}
+  .ainat .aib-link{margin-top:auto;padding-top:28px;font-family:var(--display);font-weight:600;font-size:15px;color:#4A157E;text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+  .ainat .aib-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+  .ainat .aib-flow{background:#FCFBFE;background-image:radial-gradient(circle,rgba(74,21,126,.06) 1px,transparent 1px);background-size:18px 18px;padding:26px 14px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);min-width:0}
+  .ainat .aib-flow .aib-flow-svg{width:100%;max-width:380px;display:block}
+  .ainat .aib-list{background:#FCFBFE;background-image:radial-gradient(circle,rgba(74,21,126,.06) 1px,transparent 1px);background-size:18px 18px;padding:30px 18px;display:flex;flex-direction:column;justify-content:center;gap:11px;min-width:0}
+  .ainat .aib-li{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-family:var(--display);font-weight:500;font-size:13.5px;color:var(--ink-soft);box-shadow:0 4px 12px rgba(74,21,126,.04)}
+  .ainat .aib-di{width:24px;height:24px;border-radius:7px;background:#F1EFF7;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ainat .aib-di svg{width:13px;height:13px;stroke:#9A93A8;fill:none;stroke-width:2}
+  .ainat .aib-faint{opacity:.4}
+  .ainat .aib-faint2{opacity:.62}
+  .ainat .aib-li.aib-active{color:var(--ink);font-weight:700;border-color:#B7E6C7;box-shadow:0 10px 24px rgba(22,163,74,.1)}
+  .ainat .aib-li.aib-active .aib-di{background:#DCFCE7}
+  .ainat .aib-li.aib-active .aib-di svg{stroke:#16A34A}
+  /* node cards rendered inside the SVG foreignObjects */
+  .ainat .aib-node{height:100%;background:#fff;border:1.6px solid var(--line);border-radius:15px;padding:12px 14px;box-shadow:0 8px 20px rgba(74,21,126,.05);display:flex;flex-direction:column}
+  .ainat .aib-node.aib-ok{border-color:#B7E6C7}
+  .ainat .aib-node.aib-mut{opacity:.5;border-style:dashed;box-shadow:none}
+  .ainat .aib-nrow{display:flex;align-items:center;gap:10px}
+  .ainat .aib-nicon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ainat .aib-nicon svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
+  .ainat .aib-ic-purple{background:linear-gradient(135deg,#A050F8,#7018D8)}
+  .ainat .aib-ic-green{background:linear-gradient(135deg,#22C55E,#16A34A)}
+  .ainat .aib-ic-grey{background:#9A93A8}
+  .ainat .aib-ntitle{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);line-height:1.2}
+  .ainat .aib-ntag{margin-left:auto;font-family:var(--display);font-size:10px;font-weight:600;color:var(--ink-soft);background:#F3F1F8;padding:2px 8px;border-radius:7px;white-space:nowrap}
+  .ainat .aib-nsub{font-size:12px;color:var(--ink-soft);margin-top:8px;padding-top:8px;border-top:1px solid var(--line);line-height:1.35}
+  .ainat .aib-pill{font-family:var(--display);font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;background:#DCFCE7;color:#16A34A}
+  .ainat .aib-pill svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.6}
+  .ainat .aib-tabtag{font-family:var(--display);font-size:11px;font-weight:600;color:var(--ink-soft);background:#F3F1F8;padding:3px 9px;border-radius:8px;display:inline-flex;align-items:center;gap:4px}
+  .ainat .aib-tabtag svg{width:11px;height:11px;stroke:var(--ink-soft);fill:none;stroke-width:2}
+  .ainat .aib-blabel{font-family:var(--display);font-size:11px;font-weight:600;padding:3px 11px;border-radius:20px;background:#fff;white-space:nowrap;text-align:center;border:1.3px solid #B7E6C7;color:#16A34A}
+  .ainat .aib-blabel.aib-mut{border-color:#D5D2DD;color:var(--ink-soft);opacity:.6}
+  .ainat .aib-cap{text-align:center;font-size:12.5px;color:var(--ink-soft);font-style:italic;margin-top:22px}
+  @media(max-width:860px){
+    .ainat .aib-panel{grid-template-columns:1fr}
+    .ainat .aib-left{border-right:none;border-bottom:1px solid var(--line)}
+    .ainat .aib-flow{border-right:none;border-bottom:1px solid var(--line)}
+    .ainat .aib-left .aib-link{padding-top:18px}
+  }
+  @media(max-width:560px){.ainat .aib-br{display:none}}
 
   /* footer */
   footer{background:var(--bg);border-top:1px solid var(--line);padding:56px 0 34px}
