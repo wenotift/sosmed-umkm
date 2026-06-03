@@ -728,9 +728,9 @@
      Scoped to .ainat; every inner class is aib-* prefixed because .panel/.pill/
      .cap/.active exist globally. Conceptual/illustrative (caption + grey nodes).
      Darker purple (#4A157E) for link text; bright purple only in node-icon bg. */
-  .ainat .aib-top{max-width:760px;margin-bottom:30px}
+  .ainat .aib-top{max-width:760px;margin:0 auto 30px;text-align:center}
   .ainat .aib-top h2{font-family:var(--display);font-weight:800;letter-spacing:-.025em;font-size:clamp(26px,3.4vw,38px);line-height:1.16;color:var(--ink)}
-  .ainat .aib-top p{font-family:var(--display);font-weight:500;font-size:clamp(20px,2.6vw,28px);line-height:1.28;color:#9A95A6;margin-top:6px;letter-spacing:-.01em}
+  .ainat .aib-top p{font-family:var(--body);font-weight:400;font-size:16px;line-height:1.6;color:var(--ink-soft);margin:10px auto 0;max-width:54ch}
   .ainat .aib-panel{border:1px solid var(--line);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:300px 1fr 248px;background:#fff}
   .ainat .aib-left{padding:38px 30px;display:flex;flex-direction:column;border-right:1px solid var(--line);min-width:0}
   .ainat .aib-left h3{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px}
