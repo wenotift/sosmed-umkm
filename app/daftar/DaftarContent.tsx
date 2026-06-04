@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
 /* ---- validation helpers ---- */
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -80,40 +79,49 @@ export default function DaftarContent() {
 
     const payload = {
       name: fields.name.trim(),
-      email: fields.email.trim().toLowerCase(),
-      business_name: fields.business.trim(),
-      whatsapp: normalizeWa(fields.whatsapp) as string,
-      source: "daftar",
+      email: fields.email.trim(),
+      business: fields.business.trim(),
+      whatsapp: fields.whatsapp.trim(),
     };
 
     setStatus("loading");
 
-    // STUB / DEMO MODE: no Supabase keys yet -> log the payload and show success
-    // so the full flow is testable. When NEXT_PUBLIC_SUPABASE_* are set later,
-    // the real insert below runs instead — no code change needed.
-    if (!isSupabaseConfigured || !supabase) {
-      // eslint-disable-next-line no-console
-      console.log("[daftar] demo mode — would insert into waitlist:", payload);
-      await new Promise((r) => setTimeout(r, 700));
-      setStatus("success");
-      return;
-    }
+    // The server route handles the Supabase insert + Resend emails. It re-validates,
+    // normalizes the WhatsApp number and lowercases the email server-side.
+    try {
+      const res = await fetch("/api/daftar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    // Insert-only: do NOT chain .select() (no SELECT policy under insert-only RLS).
-    const { error } = await supabase.from("waitlist").insert(payload);
+      if (res.ok) {
+        setStatus("success");
+        return;
+      }
 
-    if (error) {
-      if (error.code === "23505") {
+      if (res.status === 409) {
         setStatus("idle");
         setErrors((prev) => ({ ...prev, email: "Email ini sudah terdaftar." }));
         return;
       }
+
+      // 400 validation (rare — client already validated) → map server field errors
+      if (res.status === 400) {
+        const data = await res.json().catch(() => null);
+        if (data?.fields) {
+          setStatus("idle");
+          setErrors((prev) => ({ ...prev, ...data.fields }));
+          return;
+        }
+      }
+
       setStatus("idle");
       setFormError("Gagal mengirim. Coba lagi sebentar lagi ya.");
-      return;
+    } catch {
+      setStatus("idle");
+      setFormError("Gagal terhubung. Cek koneksi kamu dan coba lagi.");
     }
-
-    setStatus("success");
   };
 
   return (
@@ -151,12 +159,6 @@ export default function DaftarContent() {
                 </div>
                 <h2>Kamu masuk waitlist!</h2>
                 <p>Kami hubungi via WhatsApp begitu early access dibuka. Sampai ketemu! 👋</p>
-                {!isSupabaseConfigured && (
-                  <p className="ds-demo">
-                    Mode demo — Supabase belum terhubung, jadi data ini belum
-                    tersimpan (cek console untuk payload-nya).
-                  </p>
-                )}
               </div>
             ) : (
               <>
