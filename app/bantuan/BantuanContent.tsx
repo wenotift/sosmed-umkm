@@ -8,6 +8,19 @@ import { FAQ_CATEGORIES, toPlainText } from "./faqs";
 // TODO: set the business WhatsApp number — replace with https://wa.me/<NUMBER>
 const WA_HREF = "#";
 
+// Pre-filled email draft for the "Email kami" button.
+const MAIL_SUBJECT = "Butuh bantuan Sosmed AI";
+const MAIL_BODY = `Halo tim Sosmed AI,
+
+Saya butuh bantuan soal:
+
+Nama bisnis:
+Jumlah outlet:
+Perkiraan order/hari:`;
+const MAIL_HREF = `mailto:halo@sosmed.io?subject=${encodeURIComponent(
+  MAIL_SUBJECT,
+)}&body=${encodeURIComponent(MAIL_BODY)}`;
+
 const ICONS: Record<string, React.ReactNode> = {
   search: (
     <>
@@ -264,7 +277,7 @@ export default function BantuanContent() {
               >
                 <Ic n="wa" /> Chat WhatsApp
               </a>
-              <a className="bn-btn bn-btn-mail" href="mailto:halo@sosmed.io">
+              <a className="bn-btn bn-btn-mail" href={MAIL_HREF}>
                 <Ic n="mail" /> Email kami
               </a>
             </div>

@@ -1850,7 +1850,7 @@
   /* category cards (blueprint style): bordered grid + faint blueprint-grid bg + thin dividers */
   .bantuan-page .bn-cats{display:grid;grid-template-columns:repeat(4,1fr);margin:8px 0 56px;
     background-image:linear-gradient(rgba(22,18,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(22,18,31,.05) 1px,transparent 1px);
-    background-size:30px 30px;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+    background-size:34px 34px;border:1px solid var(--line);border-radius:18px;overflow:hidden}
   @media(max-width:760px){.bantuan-page .bn-cats{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:440px){.bantuan-page .bn-cats{grid-template-columns:1fr}}
   .bantuan-page .bn-cat{display:block;text-decoration:none;color:var(--ink);padding:28px 24px;border-right:1px solid rgba(22,18,31,.07);background:rgba(255,255,255,.5);transition:background .18s}
