@@ -73,7 +73,6 @@ export default function Footer() {
             <div className="foot-col">
               <h4>Produk</h4>
               <Link href="/produk">Produk</Link>
-              <Link href="/solusi">Solusi</Link>
               <Link href="/harga">Harga</Link>
               <Link href="/partner">Partner</Link>
             </div>
