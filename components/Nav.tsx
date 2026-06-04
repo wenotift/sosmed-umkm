@@ -177,8 +177,7 @@ export default function Nav() {
               <a href="#" className="btn btn-ghost btn-sm">
                 Chat Kami
               </a>
-              {/* TODO: /daftar route not built yet — placeholder link */}
-              <Link href="#" className="btn btn-primary btn-sm">
+              <Link href="/daftar" className="btn btn-primary btn-sm">
                 Daftar
               </Link>
             </div>
@@ -243,8 +242,7 @@ export default function Nav() {
           <a href="#" className="btn btn-ghost" onClick={closeMenu}>
             Chat Kami
           </a>
-          {/* TODO: /daftar route not built yet — placeholder link */}
-          <Link href="#" className="btn btn-primary" onClick={closeMenu}>
+          <Link href="/daftar" className="btn btn-primary" onClick={closeMenu}>
             Daftar
           </Link>
         </div>
