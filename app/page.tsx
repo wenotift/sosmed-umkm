@@ -178,6 +178,78 @@ function IconLock() {
   );
 }
 
+// Homepage FAQ structured data (AEO/AIO) — mirrors the visible homepage FAQ.
+const faqPageLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Apa itu Sosmed AI?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Asisten WhatsApp berbasis AI khusus untuk bisnis F&B kecil seperti kafe, restoran, dan warung. Bot kami terima order otomatis, balas pelanggan 24 jam, dan kelola sistem poin member, semua lewat WhatsApp yang sudah Anda pakai.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Saya nggak ngerti teknologi, bisa pakai?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Bisa banget. Nggak perlu install aplikasi atau belajar sistem ribet. Tim kami bantu setting dalam 30 menit. Kalau bisa pakai WhatsApp, Anda bisa pakai Sosmed AI.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Apakah nomor WhatsApp bisnis saya aman?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sangat aman. Kami membangun di atas WhatsApp Business API, bukan tools bajakan yang minta scan QR. Jadi lebih stabil dan sesuai ketentuan WhatsApp, nomor Anda lebih terjaga, dan bisa kirim promo dengan lebih tenang.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Gimana sistem poinnya bekerja?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Setiap belanja Rp 1.000 dapat 1 poin. Kumpulin 100 poin, dapat voucher Rp 5.000. Pelanggan daftar member langsung lewat WhatsApp, cukup ketik nama. Poin dihitung otomatis, voucher dikirim otomatis.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Pelanggan saya kebanyakan bayar tunai, bisa dapat poin?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Untuk awal, poin otomatis untuk order via WhatsApp. Fitur QR di kasir untuk pelanggan walk-in sedang kami siapkan dan tersedia menyusul.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Berapa harganya?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Mulai Rp 249 ribu/bulan untuk paket Lite, semua fitur sudah termasuk. Pendaftar awal dapat harga founding user yang dikunci selamanya.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Kapan bisa mulai pakai?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Kami sedang finalisasi dan akan segera membuka akses untuk batch pertama. Pantau halaman ini dan media sosial kami untuk info peluncuran.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Bisa integrasi dengan GoFood/GrabFood/ShopeeFood?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sedang kami kembangkan sebagai add-on. Info rilisnya akan diumumkan menyusul.",
+      },
+    },
+  ],
+};
+
 export default function Home() {
   // ===== hero flipping word =====
   const [flipIdx, setFlipIdx] = useState(0);
@@ -344,6 +416,10 @@ export default function Home() {
   return (
     <>
       <Nav />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageLd) }}
+      />
 
       {/* `home` scopes the homepage-only glassmorphism test (globals.css) so it
           can't leak to shared classes (.step, .price) used on other pages. */}
@@ -633,9 +709,9 @@ export default function Home() {
                   src="/logo/sosmed-ai-logo-all-white-version.png"
                   alt="Sosmed AI"
                 />
-                <span className="pkg-tag">Satu Paket</span>
+                <span className="pkg-tag">4 Sistem Terintegrasi</span>
               </div>
-              <h2>Semua yang bisnis Anda butuhkan, dalam satu paket.</h2>
+              <h2>Semua yang bisnis Anda butuhkan, dalam satu langganan.</h2>
               <p className="pkg-sub">
                 Satu langganan, semua fitur. Tanpa add-on, tanpa biaya
                 tersembunyi — semuanya jalan dari WhatsApp.
@@ -1681,7 +1757,7 @@ export default function Home() {
             <div className="pb-left">
               <div className="pb-eyebrow">Harga</div>
               <h2>
-                Mulai Rp 8 ribu<span className="small">per hari.</span>
+                Mulai Rp 8.300<span className="small">per hari.</span>
               </h2>
               <p className="pb-body">
                 Lebih murah dari satu cup kopi. Satu order tambahan sehari aja

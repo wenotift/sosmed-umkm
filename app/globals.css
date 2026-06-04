@@ -1251,7 +1251,7 @@
   .xsell .xs-text b{font-weight:700}
   .xsell .btn{flex-shrink:0}
 
-  /* comparison table groups + purple checks + Growth highlight */
+  /* comparison table groups + purple checks + Pro column highlight */
   .price-table thead th{text-align:center}
   .price-table td:not(.feat-col){text-align:center}
   .price-table .group-row td{text-align:left;background:var(--bg);font-family:var(--display);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);padding-top:18px;padding-bottom:10px}

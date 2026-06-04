@@ -6,7 +6,7 @@
 
 - [Beranda](https://umkm.sosmed.io): Ringkasan produk — asisten WhatsApp AI-native untuk bisnis F&B.
 - [Produk](https://umkm.sosmed.io/produk): Cara kerja fitur — order otomatis, menu digital + QR, sistem poin & member, kelola order dari WhatsApp.
-- [Harga](https://umkm.sosmed.io/harga): Paket dan harga (satu paket, semua fitur).
+- [Harga](https://umkm.sosmed.io/harga): 4 sistem terintegrasi dalam 1 langganan. 4 paket mulai Rp 249K/bulan — Lite Rp 249K, Pro Rp 399K, Max Rp 799K, Ultra Rp 1.399K (plus opsi Enterprise untuk 4+ outlet, coming soon). Hemat 2 bulan untuk pembayaran tahunan.
 - [Tentang Kami](https://umkm.sosmed.io/tentang): Misi dan prinsip Sosmed AI.
 
 ## Blog
