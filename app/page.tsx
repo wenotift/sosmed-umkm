@@ -986,7 +986,7 @@ export default function Home() {
               <div className="ic"><IconGrowth /></div>
               <h3>Bayar Sendiri</h3>
               <p>
-                Mulai Rp 199 ribu/bulan, sekitar Rp 6.600/hari, kurang dari satu
+                Mulai Rp 249 ribu/bulan, sekitar Rp 8.300/hari, kurang dari satu
                 porsi menu. Satu order tambahan sehari aja sudah balik modal
                 berkali lipat.
               </p>
@@ -1549,7 +1549,7 @@ export default function Home() {
                   <tr>
                     <td className="feat-col">Harga untuk UMKM F&amp;B</td>
                     <td className="us">
-                      <span className="yes">✓ Rp 199rb</span>
+                      <span className="yes">✓ Rp 249rb</span>
                     </td>
                     <td>
                       <span className="partial">~ Variatif</span>
@@ -1681,7 +1681,7 @@ export default function Home() {
             <div className="pb-left">
               <div className="pb-eyebrow">Harga</div>
               <h2>
-                Mulai Rp 7 ribu<span className="small">per hari.</span>
+                Mulai Rp 8 ribu<span className="small">per hari.</span>
               </h2>
               <p className="pb-body">
                 Lebih murah dari satu cup kopi. Satu order tambahan sehari aja
@@ -1844,7 +1844,7 @@ export default function Home() {
               </button>
               <div className="faq-a">
                 <p>
-                  Mulai Rp 199 ribu/bulan untuk Starter, semua fitur sudah
+                  Mulai Rp 249 ribu/bulan untuk paket Lite, semua fitur sudah
                   termasuk. Pendaftar awal dapat harga founding user yang dikunci
                   selamanya.
                 </p>

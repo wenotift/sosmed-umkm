@@ -76,7 +76,7 @@ const softwareApplicationLd = {
   operatingSystem: "WhatsApp / Web",
   description:
     "Asisten WhatsApp AI untuk coffee shop dan restoran Indonesia: order otomatis, sistem poin, member, semua lewat WhatsApp.",
-  offers: { "@type": "Offer", price: "199000", priceCurrency: "IDR" },
+  offers: { "@type": "Offer", price: "249000", priceCurrency: "IDR" },
   publisher: {
     "@type": "Organization",
     name: "Sosmed AI",
@@ -148,7 +148,7 @@ const faqPageLd = {
       name: "Berapa harganya?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Mulai Rp 199 ribu/bulan untuk Starter, semua fitur sudah termasuk. Pendaftar awal dapat harga founding user yang dikunci selamanya.",
+        text: "Mulai Rp 249 ribu/bulan untuk paket Lite, semua fitur sudah termasuk. Pendaftar awal dapat harga founding user yang dikunci selamanya.",
       },
     },
     {
