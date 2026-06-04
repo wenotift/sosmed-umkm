@@ -1820,3 +1820,77 @@
   @media(max-width:560px){
     .daftar-page .daftar-card{padding:30px 22px;border-radius:20px}
   }
+
+  /* ===== /bantuan help center (ported from bantuan-prototype; site tokens + #6B4EFF) ===== */
+  .bantuan-page{--p-accent:#6B4EFF;--bn-faint:#9A93A8;
+    background:
+      radial-gradient(900px 600px at 12% -5%, rgba(123,92,255,.20), transparent 60%),
+      radial-gradient(800px 600px at 95% 8%, rgba(160,80,248,.16), transparent 55%),
+      radial-gradient(700px 700px at 50% 120%, rgba(86,56,224,.12), transparent 60%),
+      var(--bg);
+    background-attachment:fixed;
+  }
+  .bantuan-page .wrap{max-width:920px}
+  /* glass helper + graceful fallback where backdrop-filter is unsupported */
+  .bantuan-page .glass{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:1px solid rgba(255,255,255,.6);box-shadow:0 4px 24px rgba(22,18,31,.05),inset 0 1px 0 rgba(255,255,255,.5)}
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    .bantuan-page .glass{background:rgba(255,255,255,.92)}
+  }
+  /* hero */
+  .bantuan-page .bn-hero{text-align:center;padding:72px 0 44px}
+  .bantuan-page .bn-hero h1{font-family:var(--display);font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-.025em;color:var(--ink);margin-bottom:12px}
+  .bantuan-page .bn-hero p{font-size:16px;color:var(--ink-soft);margin-bottom:28px}
+  .bantuan-page .bn-search{position:relative;max-width:560px;margin:0 auto;border-radius:14px}
+  .bantuan-page .bn-search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--bn-faint);pointer-events:none}
+  .bantuan-page .bn-search input{width:100%;font-family:var(--body);font-size:16px;color:var(--ink);padding:16px 18px 16px 48px;border:none;border-radius:14px;background:transparent;outline:none}
+  .bantuan-page .bn-search:focus-within{border-color:var(--p-accent);box-shadow:0 0 0 3px rgba(107,78,255,.18),0 8px 30px rgba(22,18,31,.08)}
+  .bantuan-page .bn-popular{margin-top:16px;font-size:13.5px;color:var(--bn-faint)}
+  .bantuan-page .bn-popular button{border:none;background:none;cursor:pointer;font:inherit;color:var(--p-accent);font-weight:600;padding:0 2px}
+  .bantuan-page .bn-popular button:hover{text-decoration:underline}
+  /* category cards (blueprint style): bordered grid + faint blueprint-grid bg + thin dividers */
+  .bantuan-page .bn-cats{display:grid;grid-template-columns:repeat(4,1fr);margin:8px 0 56px;
+    background-image:linear-gradient(rgba(22,18,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(22,18,31,.05) 1px,transparent 1px);
+    background-size:30px 30px;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  @media(max-width:760px){.bantuan-page .bn-cats{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:440px){.bantuan-page .bn-cats{grid-template-columns:1fr}}
+  .bantuan-page .bn-cat{display:block;text-decoration:none;color:var(--ink);padding:28px 24px;border-right:1px solid rgba(22,18,31,.07);background:rgba(255,255,255,.5);transition:background .18s}
+  .bantuan-page .bn-cat:last-child{border-right:none}
+  .bantuan-page .bn-cat:hover{background:rgba(255,255,255,.8)}
+  @media(max-width:760px){.bantuan-page .bn-cat:nth-child(2n){border-right:none}.bantuan-page .bn-cat:nth-child(-n+2){border-bottom:1px solid rgba(22,18,31,.07)}}
+  @media(max-width:440px){.bantuan-page .bn-cat{border-right:none;border-bottom:1px solid rgba(22,18,31,.07)}.bantuan-page .bn-cat:last-child{border-bottom:none}}
+  .bantuan-page .bn-cat-art{width:64px;height:64px;position:relative;display:grid;place-items:center;margin-bottom:14px;color:var(--ink)}
+  .bantuan-page .bn-cat-art svg{width:64px;height:64px;overflow:visible}
+  .bantuan-page .bn-cat-art .bn-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:11px;color:var(--bn-faint)}
+  .bantuan-page .bn-cat h3{font-family:var(--display);font-size:15.5px;font-weight:700;margin-bottom:3px}
+  .bantuan-page .bn-cat p{font-size:13px;color:var(--ink-soft);line-height:1.45}
+  /* faq sections */
+  .bantuan-page .bn-section{margin-bottom:40px;scroll-margin-top:88px}
+  .bantuan-page .bn-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding-bottom:14px;border-bottom:1px solid rgba(22,18,31,.1)}
+  .bantuan-page .bn-head svg{width:18px;height:18px;color:var(--p-accent);flex:0 0 auto}
+  .bantuan-page .bn-head h2{font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .bantuan-page .bn-count{font-size:13px;color:var(--bn-faint);font-weight:500;margin-left:auto}
+  .bantuan-page .bn-qa{border-bottom:1px solid rgba(22,18,31,.08)}
+  .bantuan-page .bn-q{width:100%;border:none;background:none;cursor:pointer;font-family:var(--body);padding:16px 0;font-size:15px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:14px;text-align:left}
+  .bantuan-page .bn-chev{flex:0 0 auto;width:18px;height:18px;color:var(--bn-faint);transition:transform .2s}
+  .bantuan-page .bn-qa.open .bn-chev{transform:rotate(180deg)}
+  .bantuan-page .bn-ans{padding:0 0 18px;font-size:14.5px;line-height:1.65;color:var(--ink-soft)}
+  .bantuan-page .bn-ans strong{color:var(--ink)}
+  /* no results */
+  .bantuan-page .bn-noresults{text-align:center;padding:40px 0;color:var(--ink-soft);font-size:15px}
+  /* contact block — deep rich gradient */
+  .bantuan-page .bn-contact{position:relative;overflow:hidden;border-radius:26px;padding:48px 36px;text-align:center;margin:24px 0 72px;color:#fff;
+    background:
+      radial-gradient(600px 300px at 20% 0%, rgba(160,80,248,.55), transparent 60%),
+      radial-gradient(500px 320px at 90% 110%, rgba(86,56,224,.6), transparent 55%),
+      linear-gradient(135deg,#3A1D8A 0%,#5028C8 45%,#2A1670 100%);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 20px 60px rgba(56,28,160,.4),inset 0 1px 0 rgba(255,255,255,.18)}
+  .bantuan-page .bn-contact h2{font-family:var(--display);font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:#fff}
+  .bantuan-page .bn-contact p{font-size:15px;opacity:.85;margin:0 auto 26px;max-width:440px}
+  .bantuan-page .bn-contact-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+  .bantuan-page .bn-btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--body);font-weight:600;font-size:14.5px;padding:13px 26px;border-radius:12px;transition:transform .18s,background .18s}
+  .bantuan-page .bn-btn:hover{transform:translateY(-2px)}
+  .bantuan-page .bn-btn svg{width:17px;height:17px}
+  .bantuan-page .bn-btn-wa{background:#fff;color:#2A1670}
+  .bantuan-page .bn-btn-mail{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .bantuan-page .bn-btn-mail:hover{background:rgba(255,255,255,.2)}
