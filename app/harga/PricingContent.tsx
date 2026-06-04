@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 // TODO: set the business WhatsApp number — replace with
 // https://wa.me/<NUMBER>?text=... (same placeholder as the navbar "Chat Kami" link)
@@ -68,6 +68,7 @@ const ICONS: Record<string, React.ReactNode> = {
     </>
   ),
   check: <path d="M20 6 9 17l-5-5" />,
+  chevron: <path d="m6 9 6 6 6-6" />,
   x: (
     <>
       <path d="M18 6 6 18" />
@@ -144,217 +145,91 @@ const VS_TOOLS = {
   ],
 };
 
-/* ---- §4 Tiers ---- */
+/* ---- §4 Tiers (ported from harga-prototype-v3) ---- */
 type Pillar = { icon: string; name: string; items: string[] };
 type Plan = {
   name: string;
   price: number;
-  for: string;
   featured?: boolean;
-  cta: string;
+  tagline: string;
+  top: string[];
   pillars: Pillar[];
-  support?: string[];
-  footnote?: string;
+  support: string;
 };
 
 const PLANS: Plan[] = [
   {
     name: "Lite",
     price: 249000,
-    for: "Untuk kafe yang baru mulai digitalisasi.",
-    cta: "Mulai Trial Gratis 7 Hari",
-    pillars: [
-      {
-        icon: "bot",
-        name: "Order Bot AI",
-        items: [
-          "AI customer service via WhatsApp",
-          "Auto invoice & confirmation",
-          "Kapasitas: sampai 150 order/bulan*",
-        ],
-      },
-      {
-        icon: "phone",
-        name: "Menu Digital + QR Meja",
-        items: [
-          "1 menu set untuk 1 outlet",
-          "Update kapan aja via WhatsApp",
-          "Upload foto menu unlimited",
-        ],
-      },
-      {
-        icon: "star",
-        name: "Sistem Poin & Member",
-        items: [
-          "Member database tanpa batasan",
-          "Auto-tracking poin per transaksi",
-          "Segmentasi dasar (VIP / regular)",
-        ],
-      },
-      {
-        icon: "chart",
-        name: "Kelola via WhatsApp",
-        items: [
-          "Daily summary di WhatsApp",
-          "Top menu & top customer report",
-          "1 owner access",
-        ],
-      },
+    tagline: "Untuk kafe yang baru mulai digitalisasi.",
+    top: [
+      "AI customer service via WhatsApp",
+      "Menu digital + QR meja",
+      "Sistem poin & member",
+      "Sampai 150 order/bulan",
     ],
-    support: ["Email support (response <24 jam)"],
-    footnote: '*150 order/bulan ≈ 5 order/hari rata-rata. Lebih jelas tentang "1 order" di FAQ.'.replace(
-      "≈",
-      "~",
-    ),
+    pillars: [
+      { icon: "bot", name: "Order Bot AI", items: ["Auto invoice & confirmation", "Kapasitas 150 order/bulan"] },
+      { icon: "phone", name: "Menu Digital + QR", items: ["1 menu set / 1 outlet", "Update via WhatsApp", "Foto unlimited"] },
+      { icon: "star", name: "Poin & Member", items: ["Member database tanpa batas", "Auto-tracking poin", "Segmentasi dasar"] },
+      { icon: "chart", name: "Kelola via WA", items: ["Daily summary", "Top menu & customer", "1 owner access"] },
+    ],
+    support: "Email support (<24 jam)",
   },
   {
     name: "Pro",
     price: 399000,
-    for: "Untuk kafe yang sudah jalan dan mau scale.",
     featured: true,
-    cta: "Pilih Pro",
-    pillars: [
-      {
-        icon: "bot",
-        name: "Order Bot AI (Enhanced)",
-        items: [
-          "Semua fitur Lite, ditambah:",
-          "Auto-reply terjadwal (otomatis kirim promo jam tertentu)",
-          "Kapasitas: sampai 250 order/bulan",
-        ],
-      },
-      {
-        icon: "phone",
-        name: "Menu Digital + QR Meja",
-        items: [
-          "Multi-variant menu (size, topping, custom)",
-          "Stock management (out-of-stock auto-hide)",
-          "Schedule menu (breakfast / lunch / dinner)",
-        ],
-      },
-      {
-        icon: "star",
-        name: "Sistem Poin & Member (Advanced)",
-        items: [
-          "Semua fitur Lite, ditambah:",
-          "Segmentasi advanced (VIP, regular, dormant, baru)",
-          "Targeted broadcast per segment",
-          "Birthday reminder otomatis",
-        ],
-      },
-      {
-        icon: "chart",
-        name: "Kelola via WhatsApp (Pro)",
-        items: [
-          "Semua fitur Lite, ditambah:",
-          "Analytics lebih detail (peak hours, conversion rate)",
-          "2 owner/staff access",
-          "Custom alert (low inventory, no order in X hours)",
-        ],
-      },
+    tagline: "Untuk kafe yang sudah jalan dan mau scale.",
+    top: [
+      "Semua fitur Lite",
+      "Auto-reply terjadwal",
+      "Segmentasi advanced + broadcast",
+      "Sampai 250 order/bulan",
     ],
-    support: ["Priority support (response <2 jam)"],
+    pillars: [
+      { icon: "bot", name: "Order Bot AI", items: ["Auto-reply terjadwal", "Kapasitas 250 order/bulan"] },
+      { icon: "phone", name: "Menu Digital + QR", items: ["Multi-variant menu", "Stock management", "Schedule menu"] },
+      { icon: "star", name: "Poin & Member", items: ["Segmentasi advanced", "Targeted broadcast", "Birthday reminder"] },
+      { icon: "chart", name: "Kelola via WA", items: ["Analytics detail", "2 staff access", "Custom alert"] },
+    ],
+    support: "Priority support (<2 jam)",
   },
   {
     name: "Max",
     price: 799000,
-    for: "Untuk kafe ramai atau brand 2-outlet.",
-    cta: "Pilih Max",
+    tagline: "Untuk kafe ramai atau brand 2-outlet.",
+    top: [
+      "Semua fitur Pro",
+      "1 WhatsApp number untuk 2 outlet",
+      "Member shared antar outlet",
+      "Sampai 500 order/bulan",
+    ],
     pillars: [
-      {
-        icon: "bot",
-        name: "Order Bot AI (Multi-outlet)",
-        items: [
-          "Semua fitur Pro, ditambah:",
-          "1 WhatsApp number untuk 2 outlets (auto-route ke outlet terdekat)",
-          "Kapasitas: sampai 500 order/bulan total",
-        ],
-      },
-      {
-        icon: "phone",
-        name: "Menu Digital + QR Meja (Multi-outlet)",
-        items: [
-          "Menu beda per outlet (kalau perlu)",
-          "Stock per outlet",
-          "Cross-outlet menu sharing (kalau pakai resep sama)",
-        ],
-      },
-      {
-        icon: "star",
-        name: "Sistem Poin & Member (Cross-outlet)",
-        items: [
-          "Member shared antar 2 outlets",
-          "Poin earned di outlet A bisa redeem di outlet B",
-          "Cross-outlet performance comparison",
-        ],
-      },
-      {
-        icon: "chart",
-        name: "Kelola via WhatsApp (Multi-outlet Dashboard)",
-        items: [
-          "Lihat performa per outlet",
-          "Konsolidasi revenue 2 outlets",
-          "5 owner/staff access",
-          "Bandingkan top menu antar outlet",
-        ],
-      },
+      { icon: "bot", name: "Order Bot AI", items: ["Multi-outlet routing", "Kapasitas 500 order/bulan"] },
+      { icon: "phone", name: "Menu Digital + QR", items: ["Menu beda per outlet", "Stock per outlet"] },
+      { icon: "star", name: "Poin & Member", items: ["Member shared 2 outlet", "Cross-outlet redemption"] },
+      { icon: "chart", name: "Kelola via WA", items: ["Multi-outlet dashboard", "5 staff access"] },
     ],
-    support: [
-      "Dedicated support channel (WhatsApp group dengan tim Sosmed AI)",
-      "Onboarding khusus untuk tim kamu (1 sesi included)",
-    ],
+    support: "Dedicated support channel + onboarding",
   },
   {
     name: "Ultra",
     price: 1399000,
-    for: "Untuk chain F&B 2-3 outlets yang serius scale.",
-    cta: "Pilih Ultra",
+    tagline: "Untuk chain F&B 2-3 outlet yang serius scale.",
+    top: [
+      "Semua fitur Max",
+      "3 outlet, unified ordering",
+      "Centralized member database",
+      "Sampai 1.000 order/bulan",
+    ],
     pillars: [
-      {
-        icon: "bot",
-        name: "Order Bot AI (Chain-grade)",
-        items: [
-          "Semua fitur Max, ditambah:",
-          "3 outlets, unified ordering",
-          "Kapasitas: sampai 1.000 order/bulan total",
-          "Volume diskon: Rp 199 lebih hemat per order vs Max",
-        ],
-      },
-      {
-        icon: "phone",
-        name: "Menu Digital + QR Meja (Enterprise menu management)",
-        items: [
-          "Centralized menu control across 3 outlets",
-          "Version control (rollback menu kalau salah update)",
-          "Schedule menu by outlet (breakfast Jakarta, lunch Bandung)",
-        ],
-      },
-      {
-        icon: "star",
-        name: "Sistem Poin & Member (Chain CRM)",
-        items: [
-          "Centralized member database 3 outlets",
-          "Cross-outlet point redemption",
-          "Cohort analysis (which members buy across outlets)",
-          "Multi-outlet birthday & anniversary campaigns",
-        ],
-      },
-      {
-        icon: "chart",
-        name: "Kelola via WhatsApp (Executive level)",
-        items: [
-          "Executive dashboard: outlet-level + aggregated",
-          "Quarterly business review dengan tim Sosmed AI",
-          "10 owner/staff access",
-          "Custom KPI tracking",
-        ],
-      },
+      { icon: "bot", name: "Order Bot AI", items: ["3 outlet unified", "Volume diskon Rp 199/order", "Kapasitas 1.000 order/bulan"] },
+      { icon: "phone", name: "Menu Digital + QR", items: ["Centralized menu control", "Version control"] },
+      { icon: "star", name: "Poin & Member", items: ["Centralized CRM 3 outlet", "Cohort analysis"] },
+      { icon: "chart", name: "Kelola via WA", items: ["Executive dashboard", "Quarterly review", "10 staff access"] },
     ],
-    support: [
-      "Dedicated account manager",
-      "On-site training (sampai 3 sesi per tahun)",
-      "Quarterly business review",
-    ],
+    support: "Dedicated account manager + on-site training 3x/tahun",
   },
 ];
 
@@ -595,6 +470,8 @@ function AddonTable({
 export default function PricingContent() {
   const [annual, setAnnual] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  // Synced collapse/expand: one shared state expands all tier cards together.
+  const [expanded, setExpanded] = useState(false);
 
   // Sticky comparison header: toggle a shadow only while the bar is pinned
   // (top has reached its 68px offset and the table hasn't scrolled past yet).
@@ -624,7 +501,7 @@ export default function PricingContent() {
           </p>
           <div className="hero-cta">
             <button type="button" className="btn btn-soon" disabled>
-              <span className="dot"></span> Coba Gratis 7 Hari
+              <span className="dot"></span> Segera hadir
             </button>
             <a className="btn btn-ghost" href="#tiers">
               Lihat Harga
@@ -665,38 +542,36 @@ export default function PricingContent() {
         <div className="wrap">
           <div className="eyebrow">Hitung-hitungan</div>
           <h2 className="sec-title sec-title-1line">Berapa Hemat Pakai Sosmed AI?</h2>
+          <p className="vst-cap">Kalau kamu beli tools terpisah:</p>
           <div className="vstools">
-            <div className="vstools-tbl">
-              <p className="vst-cap">Kalau kamu beli tools terpisah:</p>
-              <div className="compare-wrap">
-                <table className="ctable">
-                  <thead>
-                    <tr>
-                      <th className="feat-col">Tool</th>
-                      <th>Yang biasanya kamu pakai</th>
-                      <th>Harga/bulan</th>
+            <div className="compare-wrap vstools-box">
+              <table className="ctable">
+                <thead>
+                  <tr>
+                    <th className="feat-col">Tool</th>
+                    <th>Yang biasanya kamu pakai</th>
+                    <th>Harga/bulan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {VS_TOOLS.rows.map((r) => (
+                    <tr key={r.tool}>
+                      <td className="feat-col">{r.tool}</td>
+                      <td>{r.usual}</td>
+                      <td>{r.price}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {VS_TOOLS.rows.map((r) => (
-                      <tr key={r.tool}>
-                        <td className="feat-col">{r.tool}</td>
-                        <td>{r.usual}</td>
-                        <td>{r.price}</td>
-                      </tr>
-                    ))}
-                    <tr className="vst-total">
-                      <td className="feat-col">
-                        <b>Total</b>
-                      </td>
-                      <td></td>
-                      <td>
-                        <b>{VS_TOOLS.total}</b>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                  <tr className="vst-total">
+                    <td className="feat-col">
+                      <b>Total</b>
+                    </td>
+                    <td></td>
+                    <td>
+                      <b>{VS_TOOLS.total}</b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div className="vstools-pro">
               <h3>Sosmed AI Pro:</h3>
@@ -744,49 +619,70 @@ export default function PricingContent() {
 
           <div className="price-grid four">
             {PLANS.map((plan) => (
-              <div key={plan.name} className={`price${plan.featured ? " feat" : ""}`}>
+              <div
+                key={plan.name}
+                className={`price${plan.featured ? " feat" : ""}${expanded ? " open" : ""}`}
+              >
                 {plan.featured && <div className="pop">Paling Populer</div>}
                 <h3>{plan.name}</h3>
-                <div className="for">{plan.for}</div>
                 <div className="amt">
-                  Rp {fmt(priceOf(plan.price, annual))}
-                  <span>{period(annual)}</span>
+                  <span className="num">Rp {fmt(priceOf(plan.price, annual))}</span>
+                  <span className="per">{period(annual)}</span>
                 </div>
-                {annual && (
-                  <div className="save-line">hemat Rp {fmt(plan.price * 2)}</div>
-                )}
+                <div className="save-line">
+                  {annual ? `hemat Rp ${fmt(plan.price * 2)}` : ""}
+                </div>
+                <p className="for">{plan.tagline}</p>
 
-                <button className="btn btn-soon cta" disabled>
-                  <span className="dot"></span> {plan.cta}
-                </button>
+                <ul className="feat">
+                  {plan.top.map((t) => (
+                    <li key={t}>
+                      <Ic n="check" />
+                      <span>{t}</span>
+                    </li>
+                  ))}
+                </ul>
 
-                {plan.pillars.map((pl) => (
-                  <div className="pillar" key={pl.name}>
-                    <div className="pil-h">
-                      <Ic n={pl.icon} className="pic" /> {pl.name}
-                    </div>
-                    <ul>
+                <ul className="feat-extra">
+                  {plan.pillars.map((pl) => (
+                    <Fragment key={pl.name}>
+                      <li className="pill-label">
+                        <Ic n={pl.icon} />
+                        <span>{pl.name}</span>
+                      </li>
                       {pl.items.map((it) => (
-                        <li key={it} className={it.endsWith(":") ? "li-sub" : undefined}>
-                          {it}
+                        <li key={it}>
+                          <Ic n="check" />
+                          <span>{it}</span>
                         </li>
                       ))}
-                    </ul>
-                  </div>
-                ))}
+                    </Fragment>
+                  ))}
+                  <li className="pill-label">
+                    <Ic n="check" />
+                    <span>Support</span>
+                  </li>
+                  <li>
+                    <Ic n="check" />
+                    <span>{plan.support}</span>
+                  </li>
+                </ul>
 
-                {plan.support && (
-                  <div className="pillar">
-                    <div className="pil-h">Support</div>
-                    <ul>
-                      {plan.support.map((s) => (
-                        <li key={s}>{s}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <button
+                  type="button"
+                  className="expand-btn"
+                  aria-expanded={expanded}
+                  onClick={() => setExpanded((v) => !v)}
+                >
+                  <span className="lbl">
+                    {expanded ? "Sembunyikan fitur" : "Lihat semua fitur"}
+                  </span>
+                  <Ic n="chevron" />
+                </button>
 
-                {plan.footnote && <p className="foot-note">{plan.footnote}</p>}
+                <button className="cta" disabled>
+                  Segera hadir
+                </button>
               </div>
             ))}
           </div>
@@ -803,7 +699,7 @@ export default function PricingContent() {
               </p>
             </div>
             <button type="button" className="btn btn-soon ent-btn" disabled>
-              <span className="dot"></span> Coming soon
+              <span className="dot"></span> Segera hadir
             </button>
           </div>
         </div>
@@ -869,7 +765,7 @@ export default function PricingContent() {
                         className={`th-cta${plan.featured ? " dark" : ""}`}
                         disabled
                       >
-                        <span className="dot"></span> Lanjut
+                        Segera hadir
                       </button>
                     </th>
                   ))}
@@ -968,7 +864,7 @@ export default function PricingContent() {
                 Booking Konsultasi
               </a>
               <button type="button" className="btn btn-soon" disabled>
-                <span className="dot"></span> Coba Trial Gratis
+                <span className="dot"></span> Segera hadir
               </button>
             </div>
           </div>
