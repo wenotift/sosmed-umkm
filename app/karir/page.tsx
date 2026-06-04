@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import SoonPage from "@/components/SoonPage";
+import KarierContent from "./KarierContent";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Karir",
-  description: "Halaman Karir Sosmed AI — segera hadir.",
+  title: "Karier",
+  description:
+    "Karier di Sosmed AI — bantu UMKM F&B Indonesia naik kelas. Tim AI-native, WhatsApp-first. Belum ada lowongan aktif; gabung talent pool kami.",
   path: "/karir",
-  noindex: true,
 });
 
 export default function Page() {
-  return <SoonPage title="Karir" />;
+  return <KarierContent />;
 }
