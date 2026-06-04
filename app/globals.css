@@ -594,11 +594,10 @@
   /* pricing */
   .pricing{background:linear-gradient(180deg,var(--bg),#fff)}
   .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:0 auto;align-items:stretch}
-  /* 5-up pricing grid (harga): tablet -> 2-up, mobile -> 1-up */
-  .price-grid.five{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;max-width:1280px;align-items:start}
-  /* 2-up: flex-wrap centered so the lone 5th (Custom) card centers, not orphaned left */
-  @media(max-width:1100px){.price-grid.five{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:16px;max-width:760px}.price-grid.five>.price{flex:1 1 330px;max-width:360px}}
-  @media(max-width:640px){.price-grid.five>.price{flex-basis:100%;max-width:420px}}
+  /* 4-up pricing grid (harga): tablet -> 2-up, mobile -> 1-up */
+  .price-grid.four{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:1180px;align-items:stretch}
+  @media(max-width:1100px){.price-grid.four{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:720px}}
+  @media(max-width:640px){.price-grid.four{grid-template-columns:1fr;max-width:420px}}
   @media(max-width:860px){.price-grid{grid-template-columns:1fr;max-width:420px}}
   .price{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 26px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
   .price:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
@@ -902,16 +901,19 @@
   @media(max-width:980px){.pricing-page .pillars{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.pricing-page .pillars{grid-template-columns:1fr}}
   .pricing-page .pillar-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;display:flex;flex-direction:column}
-  .pricing-page .pc-emoji{font-size:26px;margin-bottom:10px}
+  .pricing-page .pc-ic{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .pricing-page .pc-ic .ic-svg{width:22px;height:22px}
   .pricing-page .pillar-card h3{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.01em;margin-bottom:8px}
   .pricing-page .pc-tag{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.45;margin-bottom:10px}
   .pricing-page .pc-body{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin-bottom:14px}
   .pricing-page .pc-cocok{font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin-top:auto}
   .pricing-page .pc-cocok b{color:var(--ink)}
   /* §3 vs separate tools */
-  .pricing-page .vstools{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.9fr);gap:24px;align-items:start;max-width:var(--maxw);margin:0 auto}
+  .pricing-page .vstools{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.9fr);gap:24px;align-items:stretch;max-width:var(--maxw);margin:0 auto}
   .pricing-page .vstools>*{min-width:0}
   @media(max-width:860px){.pricing-page .vstools{grid-template-columns:1fr}}
+  .pricing-page .vstools-tbl{display:flex;flex-direction:column}
+  .pricing-page .vstools-tbl .compare-wrap{flex:1}
   .pricing-page .vst-cap{font-size:14px;color:var(--ink-soft);margin-bottom:10px}
   .pricing-page .vstools .ctable{min-width:0}
   .pricing-page .vst-total td{border-bottom:none;background:var(--bg)}
@@ -923,19 +925,20 @@
   .pricing-page .vst-price{font-size:15px;color:var(--ink);margin-bottom:16px}
   .pricing-page .vst-price b{font-family:var(--display);font-weight:800}
   .pricing-page .vst-save{font-weight:700;color:var(--green)}
-  /* §4 dense 5-up tier cards */
-  .pricing-page .price-grid.five .price{padding:24px 18px}
-  .pricing-page .price-grid.five .price.feat{padding-top:30px}
-  .pricing-page .price-grid.five .price h3{font-size:18px;margin-bottom:4px}
-  .pricing-page .price-grid.five .price .for{font-size:12.5px;margin-bottom:14px;min-height:34px}
-  .pricing-page .price-grid.five .price .amt{font-size:23px;letter-spacing:-.02em}
-  .pricing-page .price-grid.five .price .amt span{font-size:13px}
+  /* §4 dense 4-up tier cards */
+  .pricing-page .price-grid.four .price{padding:26px 20px}
+  .pricing-page .price-grid.four .price.feat{padding-top:32px}
+  .pricing-page .price-grid.four .price h3{font-size:19px;margin-bottom:4px}
+  .pricing-page .price-grid.four .price .for{font-size:12.5px;margin-bottom:14px;min-height:34px}
+  .pricing-page .price-grid.four .price .amt{font-size:24px;letter-spacing:-.02em}
+  .pricing-page .price-grid.four .price .amt span{font-size:13px}
   .pricing-page .amt-call{font-size:21px;color:var(--accent-ink)}
   .pricing-page .save-line{font-size:12px;font-weight:700;color:var(--green);background:var(--green-soft);display:inline-block;padding:2px 9px;border-radius:999px;margin:6px 0 2px}
   .pricing-page .cust-note{font-size:11.5px;color:var(--ink-soft);margin:6px 0 2px}
   .pricing-page .price .cta{width:100%;justify-content:center;margin:14px 0 4px}
   .pricing-page .price .pillar{border-top:1px solid var(--line);padding-top:13px;margin-top:13px}
-  .pricing-page .price .pil-h{font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--ink);margin-bottom:8px;line-height:1.25}
+  .pricing-page .price .pil-h{font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--ink);margin-bottom:8px;line-height:1.25;display:flex;align-items:center;gap:7px}
+  .pricing-page .price .pil-h .pic{width:15px;height:15px;flex-shrink:0;color:var(--accent-ink)}
   .pricing-page .price .pillar ul{list-style:none;margin:0;display:flex;flex-direction:column;gap:7px}
   .pricing-page .price .pillar li{font-size:12.3px;color:var(--ink-soft);line-height:1.4;display:flex;gap:7px;align-items:flex-start}
   .pricing-page .price .pillar li::before{content:"✓";color:var(--accent);font-weight:700;flex-shrink:0;font-size:11px;line-height:1.5}
@@ -944,15 +947,19 @@
   .pricing-page .price .foot-note{font-size:10.5px;color:var(--ink-soft);font-style:italic;line-height:1.4;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
   /* §5 grouped comparison table: trap horizontal scroll inside the wrap */
   .pricing-page .compare-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .pricing-page .ctable.cmp5{min-width:860px}
+  .pricing-page .ctable.cmp5{min-width:720px}
   .pricing-page .cmp5 .pill-row td{background:var(--bg);font-family:var(--display);font-weight:700;color:var(--ink)}
   .pricing-page .cmp5 .pill-row td.feat-col{letter-spacing:-.01em}
+  .pricing-page .cmp5 .cmp-head{display:inline-flex;align-items:center;gap:8px}
+  .pricing-page .cmp5 .cmp-head .pic{width:16px;height:16px;flex-shrink:0;color:var(--accent-ink)}
+  .pricing-page .cmp5 thead .th-star{width:13px;height:13px;color:var(--accent);vertical-align:-1px;margin-left:1px}
   /* §6 add-ons */
   .pricing-page .addons{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;max-width:var(--maxw);margin:0 auto}
   .pricing-page .addons>*{min-width:0}
   @media(max-width:760px){.pricing-page .addons{grid-template-columns:1fr}}
   .pricing-page .addon-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:24px 22px}
-  .pricing-page .addon-h{font-family:var(--display);font-weight:700;font-size:17px;margin-bottom:6px}
+  .pricing-page .addon-h{font-family:var(--display);font-weight:700;font-size:17px;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+  .pricing-page .addon-h .pic{width:19px;height:19px;flex-shrink:0;color:var(--accent-ink)}
   .pricing-page .addon-intro{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:14px}
   .pricing-page .addon-wrap{overflow-x:auto}
   .pricing-page .addon-table{min-width:0}
@@ -963,8 +970,26 @@
   .pricing-page .faq-a .faq-list{list-style:none;margin:8px 0;display:flex;flex-direction:column;gap:6px}
   .pricing-page .faq-a .faq-list li{font-size:14.5px;color:var(--ink-soft);line-height:1.5;padding-left:16px;position:relative}
   .pricing-page .faq-a .faq-list li::before{content:"·";position:absolute;left:4px;color:var(--accent);font-weight:700}
-  .pricing-page .faq-a .faq-sub{font-weight:600;color:var(--ink);margin-top:10px}
+  .pricing-page .faq-a .faq-sub{font-weight:600;color:var(--ink);margin-top:10px;display:flex;align-items:center;gap:7px}
+  .pricing-page .faq-a .faq-sub .pic{width:16px;height:16px;flex-shrink:0}
+  .pricing-page .faq-a .faq-sub .ic-yes{color:var(--green)}
+  .pricing-page .faq-a .faq-sub .ic-no{color:#C0392B}
+  .pricing-page .faq-a .faq-list li:has(.pic){padding-left:0;display:flex;align-items:center;gap:8px}
+  .pricing-page .faq-a .faq-list li:has(.pic)::before{display:none}
+  .pricing-page .faq-a .faq-list li .pic{width:16px;height:16px;flex-shrink:0;color:var(--accent-ink)}
   .pricing-page .faq-a p+p{margin-top:8px}
+  /* generic inline icon fallback */
+  .pricing-page .ic-svg{display:inline-block;vertical-align:middle}
+  .pricing-page .pic{width:1em;height:1em}
+  /* §4b Enterprise strip (below tier grid) */
+  .pricing-page .ent-strip{display:flex;align-items:center;gap:20px;max-width:1180px;margin:22px auto 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:22px 26px}
+  .pricing-page .ent-ic{width:48px;height:48px;flex-shrink:0;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center}
+  .pricing-page .ent-ic .ic-svg{width:24px;height:24px}
+  .pricing-page .ent-txt{flex:1;min-width:0}
+  .pricing-page .ent-txt h3{font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:-.01em;margin-bottom:3px}
+  .pricing-page .ent-txt p{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin:0}
+  .pricing-page .ent-btn{flex-shrink:0}
+  @media(max-width:640px){.pricing-page .ent-strip{flex-direction:column;align-items:flex-start;gap:14px}.pricing-page .ent-btn{width:100%;justify-content:center}}
   /* §8 cta footer */
   .pricing-page .price-cta{background:radial-gradient(130% 130% at 50% 0%,#3A1D6E 0%,#1E1330 45%,#100A1A 100%);border-radius:var(--radius-lg);padding:56px 40px;text-align:center;max-width:var(--maxw);margin:0 auto;color:#fff}
   .pricing-page .price-cta h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h2);color:#fff;margin-bottom:14px}
