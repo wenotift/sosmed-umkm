@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // TODO: set the business WhatsApp number — replace with
 // https://wa.me/<NUMBER>?text=... (same placeholder as the navbar "Chat Kami" link)
@@ -364,7 +364,6 @@ const C = "chk" as Cell;
 const D = "dash" as Cell;
 type Row = { label: string; head?: boolean; icon?: string; v: [Cell, Cell, Cell, Cell] };
 const COMPARE: Row[] = [
-  { label: "Harga/bulan", v: ["Rp 249K", "Rp 399K", "Rp 799K", "Rp 1.399K"] },
   { label: "Outlets", v: ["1", "1", "2", "3"] },
   { label: "Order capacity", v: ["150", "250", "500", "1.000"] },
   { label: "Order Bot", head: true, icon: "bot", v: [C, C, C, C] },
@@ -542,8 +541,13 @@ const period = (annual: boolean) => (annual ? "/tahun" : "/bulan");
 const priceOf = (monthly: number, annual: boolean) => (annual ? monthly * 10 : monthly);
 
 function ComparisonCell({ value }: { value: Cell }) {
-  if (value === "chk") return <span className="chk">✓</span>;
-  if (value === "dash") return <span className="dash">–</span>;
+  if (value === "chk")
+    return (
+      <span className="yes">
+        <Ic n="check" />
+      </span>
+    );
+  if (value === "dash") return <span className="no">—</span>;
   return <>{value}</>;
 }
 
@@ -591,6 +595,22 @@ function AddonTable({
 export default function PricingContent() {
   const [annual, setAnnual] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Sticky comparison header: toggle a shadow only while the bar is pinned
+  // (top has reached its 68px offset and the table hasn't scrolled past yet).
+  const cmpHeadRef = useRef<HTMLTableSectionElement>(null);
+  const [headPinned, setHeadPinned] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = cmpHeadRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      setHeadPinned(r.top <= 69 && r.top > -el.offsetHeight);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <main className="pricing-page">
@@ -794,17 +814,65 @@ export default function PricingContent() {
         <div className="wrap">
           <div className="eyebrow">Perbandingan Lengkap</div>
           <h2 className="sec-title sec-title-1line">Bandingkan semua fitur tiap paket.</h2>
-          <div className="compare-wrap">
+          <div className="cmp-scroll">
             <table className="ctable price-table cmp5">
-              <thead>
+              <thead ref={cmpHeadRef} className={headPinned ? "pinned" : undefined}>
                 <tr>
-                  <th className="feat-col"></th>
-                  <th>Lite</th>
-                  <th className="us">
-                    Pro <Ic n="star" className="th-star" />
+                  <th className="feat-col th-billing">
+                    <div className="th-billing-lbl">Pilih siklus pembayaran</div>
+                    <div
+                      className="bill-toggle cmp-toggle"
+                      role="group"
+                      aria-label="Siklus tagihan"
+                    >
+                      <button
+                        type="button"
+                        className={!annual ? "active" : undefined}
+                        aria-pressed={!annual}
+                        onClick={() => setAnnual(false)}
+                      >
+                        Bulanan
+                      </button>
+                      <button
+                        type="button"
+                        className={annual ? "active" : undefined}
+                        aria-pressed={annual}
+                        onClick={() => setAnnual(true)}
+                      >
+                        Tahunan
+                      </button>
+                    </div>
                   </th>
-                  <th>Max</th>
-                  <th>Ultra</th>
+                  {PLANS.map((plan) => (
+                    <th key={plan.name} className={plan.featured ? "us" : undefined}>
+                      <div className="th-top">
+                        <span className="th-name">{plan.name}</span>
+                        {plan.featured && <span className="th-pop">Populer</span>}
+                      </div>
+                      <div className="th-price">
+                        {annual ? (
+                          <>
+                            <b>Rp {fmt(plan.price * 10 / 1000)}K</b>/tahun
+                            <br />
+                            <span className="th-save">
+                              hemat Rp {fmt((plan.price * 2) / 1000)}K
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <b>Rp {fmt(plan.price / 1000)}K</b>/bulan
+                          </>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        className={`th-cta${plan.featured ? " dark" : ""}`}
+                        disabled
+                      >
+                        <span className="dot"></span> Lanjut
+                      </button>
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
@@ -819,11 +887,15 @@ export default function PricingContent() {
                         row.label
                       )}
                     </td>
-                    {row.v.map((cell, i) => (
-                      <td key={i} className={i === 1 ? "us" : undefined}>
-                        <ComparisonCell value={cell} />
-                      </td>
-                    ))}
+                    {row.head
+                      ? row.v.map((_, i) => (
+                          <td key={i} className={i === 1 ? "us" : undefined}></td>
+                        ))
+                      : row.v.map((cell, i) => (
+                          <td key={i} className={i === 1 ? "us" : undefined}>
+                            <ComparisonCell value={cell} />
+                          </td>
+                        ))}
                   </tr>
                 ))}
               </tbody>
