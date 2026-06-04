@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { blogIndexJsonLd, blogBreadcrumbJsonLd } from "./schema";
 import { blogThumb } from "./articles";
 import BlogGrid from "./BlogGrid";
+import NewsletterForm from "./NewsletterForm";
 
 export const metadata: Metadata = {
   // Indexable (live): inherits the site robots index:true, follow:true.
@@ -166,30 +167,8 @@ export default function BlogPage() {
             }))}
           />
 
-          {/* NEWSLETTER (visual only - no live endpoint) */}
-          <div className="news">
-            <div>
-              <span className="pill">
-                <span className="dot"></span> Newsletter
-              </span>
-              <h2>Tips usaha F&amp;B, langsung ke inbox</h2>
-              <p>
-                Dapatkan ide dan panduan praktis untuk mengelola dan menumbuhkan
-                usaha Anda. Tanpa spam.
-              </p>
-              <div className="form">
-                <input type="email" placeholder="Masukkan email Anda" />
-                <button type="button" className="btn">
-                  Langganan
-                </button>
-              </div>
-            </div>
-            <div className="side">
-              Sosmed AI membantu pemilik warung, kafe, dan restoran kecil
-              mengelola order, menu, poin, dan laporan - semua langsung dari
-              WhatsApp.
-            </div>
-          </div>
+          {/* NEWSLETTER — live (POST /api/newsletter) */}
+          <NewsletterForm />
         </div>
       </main>
       <Footer />
