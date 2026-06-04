@@ -280,6 +280,87 @@ export function newsletterEmail(emailAddr: string): string {
 </html>`;
 }
 
+/* ---- AFFILIATE: registration confirmation (to the applicant) ---- */
+export function affiliateEmail(s: { name: string; email: string }): string {
+  const name = esc(s.name);
+  const email = esc(s.email);
+  return `<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pendaftaran Afiliasi — Sosmed AI</title>
+</head>
+<body style="margin:0;padding:0;background:#F4F2F8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F2F8;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:500px;background:#FFFFFF;border-radius:20px;overflow:hidden;border:1px solid #ECEAF1;box-shadow:0 6px 28px rgba(22,18,31,.05);">
+
+          <!-- header: gradient block, white logo -->
+          <tr>
+            <td style="padding:26px 36px;background:#6B4EFF;background:linear-gradient(135deg,#7B5CFF 0%,#6B4EFF 50%,#5638E0 100%);">
+              <img src="https://umkm.sosmed.io/logo/sosmed-ai-logo-white-version.png" height="30" alt="Sosmed AI" style="display:block;border:0;height:30px;width:auto;max-width:160px;">
+            </td>
+          </tr>
+
+          <!-- body -->
+          <tr>
+            <td style="padding:40px 36px 8px;">
+              <div style="display:inline-block;background:#F1ECFB;color:#6B4EFF;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:6px 12px;border-radius:999px;margin-bottom:20px;">Program Afiliasi</div>
+              <h1 style="margin:0 0 16px;font-size:25px;line-height:1.25;font-weight:800;color:#16121F;letter-spacing:-.02em;">
+                Pendaftaran kamu diterima &#10022;
+              </h1>
+              <p style="margin:0 0 14px;font-size:15px;line-height:1.65;color:#4A4458;">
+                Halo <strong>${name}</strong> — makasih udah daftar jadi affiliate Sosmed AI.
+              </p>
+              <p style="margin:0 0 26px;font-size:15px;line-height:1.65;color:#4A4458;">
+                Tim kami lagi review pendaftaran kamu. Begitu disetujui, kami kirim <strong>detail program (skema komisi)</strong> dan <strong>link referral unik</strong> kamu ke email ini.
+              </p>
+
+              <!-- what's next -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F8F6FF;border:1px solid #E9E3FB;border-radius:12px;margin:0 0 28px;">
+                <tr>
+                  <td style="padding:16px 20px;">
+                    <p style="margin:0 0 4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#6B4EFF;">Apa selanjutnya?</p>
+                    <p style="margin:0;font-size:14px;line-height:1.6;color:#4A4458;">
+                      Gak perlu lakukan apa-apa dulu. Kami hubungi kamu via email/WhatsApp begitu pendaftaran disetujui.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- CTA -->
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 28px;">
+                <tr>
+                  <td style="border-radius:12px;background:#16121F;">
+                    <a href="https://umkm.sosmed.io/produk" style="display:inline-block;padding:13px 28px;font-size:14px;font-weight:600;color:#FFFFFF;text-decoration:none;">Pelajari Sosmed AI &#8594;</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- footer -->
+          <tr>
+            <td style="padding:22px 36px 30px;border-top:1px solid #F2F0F7;background:#FCFBFE;">
+              <p style="margin:0 0 4px;font-size:12px;line-height:1.5;color:#9A93A8;">
+                Email ini dikirim ke ${email} karena kamu mendaftar program afiliasi di umkm.sosmed.io/afiliasi.
+              </p>
+              <p style="margin:0;font-size:12px;line-height:1.5;color:#9A93A8;">
+                Sosmed AI · Platform WhatsApp untuk bisnis F&amp;B Indonesia
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
 /* ---- EMAIL 2: owner notification (to hi@sosmed.io, Reply-To = signup) ---- */
 export function ownerNotificationEmail(s: Signup): string {
   const name = esc(s.name);

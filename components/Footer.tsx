@@ -83,6 +83,7 @@ export default function Footer() {
               <Link href="/forum">Forum</Link>
               <Link href="/komunitas">Komunitas</Link>
               <Link href="/karir">Karir</Link>
+              <Link href="/afiliasi">Afiliasi</Link>
             </div>
             <div className="foot-col">
               <h4>Perusahaan</h4>

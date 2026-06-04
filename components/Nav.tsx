@@ -16,6 +16,7 @@ const RESOURCES = [
   { label: "Forum", href: "/forum" },
   { label: "Komunitas", href: "/komunitas" },
   { label: "Karir", href: "/karir" },
+  { label: "Afiliasi", href: "/afiliasi" },
 ];
 
 function Chevron({ className }: { className?: string }) {
