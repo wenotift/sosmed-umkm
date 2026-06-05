@@ -205,6 +205,93 @@ const MEMBER_STEPS: ChatStep[] = [
   { type: "reset" },
 ];
 
+/* ---- Animated "intelligence" cards (replaces the static 3-card mockups) ---- */
+function Ic2Check({ sw = 3.5 }: { sw?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+function Ic2Arrow() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 5v14M5 12l7 7 7-7" />
+    </svg>
+  );
+}
+
+// Prompt typed by all 3 cards — keeps the page's existing es-kopi-susu example.
+const IC2_PROMPT = "2 es kopi susu yg gede less sugar";
+
+const IC2_CARDS: {
+  n: number;
+  eyebrow: React.ReactNode;
+  h3: string;
+  p: string;
+  pill: string;
+  outClass: string;
+  result: React.ReactNode;
+}[] = [
+  {
+    n: 1,
+    eyebrow: (
+      <>
+        01 · <b>Memahami</b>
+      </>
+    ),
+    h3: "Menangkap maksud",
+    p: "Membaca niat di balik pesan — typo, singkatan, bahasa campur — bukan sekadar mencocokkan kata kunci.",
+    pill: "Maksud terdeteksi",
+    outClass: "ic2-out ic2-fields",
+    result: (
+      <>
+        <div className="ic2-field"><span className="ic2-k">Item</span><span className="ic2-v">Es Kopi Susu</span></div>
+        <div className="ic2-field"><span className="ic2-k">Qty</span><span className="ic2-v">2</span></div>
+        <div className="ic2-field"><span className="ic2-k">Size</span><span className="ic2-v">L</span></div>
+        <div className="ic2-field"><span className="ic2-k">Sugar</span><span className="ic2-v">less</span></div>
+      </>
+    ),
+  },
+  {
+    n: 2,
+    eyebrow: (
+      <>
+        02 · <b>Memutuskan</b>
+      </>
+    ),
+    h3: "Memvalidasi dari data",
+    p: "Setiap harga, stok, dan ketersediaan diambil dari sistem Anda. AI menafsirkan; data yang menentukan.",
+    pill: "Tervalidasi dari data",
+    outClass: "ic2-out",
+    result: (
+      <>
+        <div className="ic2-vrow"><span className="ic2-tick"><Ic2Check /></span><span className="ic2-vt">Es Kopi Susu (L)</span><span className="ic2-vp">Rp 18.000</span></div>
+        <div className="ic2-vrow"><span className="ic2-tick"><Ic2Check /></span><span className="ic2-vt">Stok tersedia</span><span className="ic2-vp">Ready</span></div>
+        <div className="ic2-vtotal"><span className="ic2-vl">Total (×2)</span><span className="ic2-vv">Rp 36.000</span></div>
+      </>
+    ),
+  },
+  {
+    n: 3,
+    eyebrow: (
+      <>
+        03 · <b>Merespons</b>
+      </>
+    ),
+    h3: "Membalas selayaknya manusia",
+    p: "Bahasa Indonesia yang luwes dengan tone yang menyesuaikan konteks — terasa seperti staf, bukan mesin.",
+    pill: "Siap dikirim",
+    outClass: "ic2-out",
+    result: (
+      <>
+        <div className="ic2-reply">Siap kak! 2 Es Kopi Susu (L, less sugar) dicatat ya 😊 Total Rp 36.000</div>
+        <div className="ic2-meta"><Ic2Check sw={2} /> Dibalas dalam 2 detik</div>
+      </>
+    ),
+  },
+];
+
 export default function ProductContent() {
   useEffect(() => {
     const timers: number[] = [];
@@ -318,6 +405,49 @@ export default function ProductContent() {
     };
   }, []);
 
+  // Animated intelligence cards: type the prompt -> reveal pill + result -> hold -> loop.
+  useEffect(() => {
+    const reduce =
+      typeof window !== "undefined" &&
+      !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const cards = Array.from(
+      document.querySelectorAll<HTMLElement>(".product-page .ic2-inner")
+    );
+    const timers: number[] = [];
+    cards.forEach((card) => {
+      const id = Number(card.getAttribute("data-card")) || 1;
+      const typedEl = card.querySelector<HTMLElement>(".ic2-typed");
+      const caret = card.querySelector<HTMLElement>(".ic2-caret");
+      const out = card.querySelector<HTMLElement>(".ic2-out");
+      if (!typedEl || !caret || !out) return;
+      if (reduce) {
+        typedEl.textContent = IC2_PROMPT;
+        out.classList.add("ic2-reveal");
+        return;
+      }
+      const cycle = () => {
+        typedEl.textContent = "";
+        out.classList.remove("ic2-reveal");
+        caret.classList.remove("ic2-hide");
+        let i = 0;
+        const type = () => {
+          if (i <= IC2_PROMPT.length) {
+            typedEl.textContent = IC2_PROMPT.slice(0, i);
+            i++;
+            timers.push(window.setTimeout(type, 55));
+          } else {
+            caret.classList.add("ic2-hide");
+            out.classList.add("ic2-reveal");
+            timers.push(window.setTimeout(cycle, 3600));
+          }
+        };
+        type();
+      };
+      timers.push(window.setTimeout(cycle, 500 + (id - 1) * 400));
+    });
+    return () => timers.forEach((t) => clearTimeout(t));
+  }, []);
+
   return (
     <main className="product-page">
       {/* HERO */}
@@ -344,79 +474,34 @@ export default function ProductContent() {
         </div>
       </section>
 
-      {/* INTELLIGENCE */}
+      {/* INTELLIGENCE — animated gradient-border AI cards in one blueprint container */}
       <section className="intel">
         <div className="wrap">
-          <div className="intel-grid">
-            <div className="intel-card pv pd1">
-              <div className="step">01 · Memahami</div>
-              <h3>Menangkap maksud</h3>
-              <p>
-                Membaca niat di balik pesan — typo, singkatan, bahasa campur —
-                bukan sekadar mencocokkan kata kunci.
-              </p>
-              <div className="ic-visual">
-                <div className="parse-in">
-                  &quot;2 es kopi susu yg gede less sugar&quot;
-                </div>
-                <div className="parse-arrow">↓</div>
-                <div className="parse-tags">
-                  <span className="ptag">
-                    Item: <b>Es Kopi Susu</b>
-                  </span>
-                  <span className="ptag">
-                    Qty: <b>2</b>
-                  </span>
-                  <span className="ptag">
-                    Size: <b>L</b>
-                  </span>
-                  <span className="ptag">
-                    Sugar: <b>less</b>
-                  </span>
+          <div className="ic2-cards">
+            {IC2_CARDS.map((c) => (
+              <div className="ic2-pc" key={c.n}>
+                <div className="ic2-eyebrow">{c.eyebrow}</div>
+                <h3>{c.h3}</h3>
+                <p>{c.p}</p>
+                <div className="ic2-card">
+                  <div className="ic2-inner" data-card={c.n}>
+                    <div className="ic2-msg">
+                      <span className="ic2-typed"></span>
+                      <span className="ic2-caret"></span>
+                    </div>
+                    <div className="ic2-arrow">
+                      <Ic2Arrow />
+                    </div>
+                    <div className={c.outClass}>
+                      <span className="ic2-pill">
+                        <Ic2Check /> {c.pill}
+                      </span>
+                      {c.result}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="intel-card pv pd2">
-              <div className="step">02 · Memutuskan</div>
-              <h3>Memvalidasi dari data</h3>
-              <p>
-                Setiap harga, stok, dan ketersediaan diambil dari sistem Anda.
-                AI menafsirkan; data yang menentukan.
-              </p>
-              <div className="ic-visual">
-                <div className="dcheck">
-                  <span className="dc-ic">✓</span>
-                  <span>Es Kopi Susu (L)</span>
-                  <span className="dc-val">Rp 18.000</span>
-                </div>
-                <div className="dcheck">
-                  <span className="dc-ic">✓</span>
-                  <span>Stok tersedia</span>
-                  <span className="dc-val">Ready</span>
-                </div>
-                <div className="dtotal">
-                  <span>Total (×2)</span>
-                  <b>Rp 36.000</b>
-                </div>
-              </div>
-            </div>
-            <div className="intel-card pv pd3">
-              <div className="step">03 · Merespons</div>
-              <h3>Membalas selayaknya manusia</h3>
-              <p>
-                Bahasa Indonesia yang luwes dengan tone yang menyesuaikan konteks
-                — terasa seperti staf, bukan mesin.
-              </p>
-              <div className="ic-visual ic-chat">
-                <div className="mini-bubble">
-                  Siap kak! 2 Es Kopi Susu (L, less sugar) dicatat ya 😊 Total Rp
-                  36.000
-                </div>
-                <div className="mini-meta">
-                  <span className="md"></span> Dibalas dalam 2 detik
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

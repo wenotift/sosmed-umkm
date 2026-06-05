@@ -1284,32 +1284,78 @@
   .product-page .psub{font-size:16px;color:var(--ink-soft);max-width:52ch;margin:0 auto 32px}
   .product-page .phero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-  /* intelligence — Cursor-style cards: label + heading + desc, then a static UI mockup panel */
+  /* intelligence — animated gradient-border AI cards in one blueprint container.
+     ALL classes prefixed .ic2-* + custom prop --ic2-angle to avoid colliding with the
+     global .reveal/.step rules and the .price-banner/.model-chip reuse of .dc-ic/.dc-val/.md. */
   .product-page .intel{padding:40px 0 30px}
-  .product-page .intel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:var(--maxw);margin:0 auto}
-  @media(max-width:880px){.product-page .intel-grid{grid-template-columns:1fr;max-width:460px}}
-  .product-page .intel-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column}
-  .product-page .intel-card .step{font-family:var(--display);font-weight:800;font-size:11.5px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:11px}
-  .product-page .intel-card h3{font-size:18px;margin-bottom:7px;letter-spacing:-.02em}
-  .product-page .intel-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:20px}
-  .product-page .ic-visual{margin-top:auto;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:15px;min-height:158px;display:flex;flex-direction:column;justify-content:center;gap:9px}
-  /* card 1 — parsing */
-  .product-page .parse-in{background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:12px;color:var(--ink);box-shadow:0 1px 2px rgba(22,18,31,.04)}
-  .product-page .parse-arrow{text-align:center;color:var(--accent);font-size:13px;font-weight:700;line-height:1}
-  .product-page .parse-tags{display:flex;flex-wrap:wrap;gap:6px}
-  .product-page .ptag{font-size:10.5px;font-weight:600;background:var(--accent-soft);color:var(--accent-ink);border:1px solid #E9DCFB;border-radius:7px;padding:4px 8px}
-  .product-page .ptag b{font-weight:800}
-  /* card 2 — data check */
-  .product-page .dcheck{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:12px;color:var(--ink)}
-  .product-page .dc-ic{flex-shrink:0;width:17px;height:17px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;display:grid;place-items:center;font-weight:700}
-  .product-page .dcheck .dc-val{margin-left:auto;font-weight:700;color:var(--accent-ink);font-size:11.5px}
-  .product-page .dtotal{display:flex;justify-content:space-between;align-items:center;padding:9px 11px;border-top:1px dashed #e3ddee;margin-top:2px;font-size:12.5px;font-weight:700;color:var(--ink)}
-  .product-page .dtotal b{color:var(--accent-ink)}
-  /* card 3 — response */
-  .product-page .ic-chat{justify-content:center}
-  .product-page .mini-bubble{background:#DCF8C6;border-radius:11px;border-top-left-radius:3px;padding:10px 12px;font-size:12px;color:#1f2d1f;line-height:1.45;align-self:flex-start;max-width:95%;box-shadow:0 1px 1px rgba(0,0,0,.08)}
-  .product-page .mini-meta{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--ink-soft);margin-top:4px}
-  .product-page .mini-meta .md{width:6px;height:6px;border-radius:50%;background:var(--green)}
+  .product-page .ic2-cards{display:grid;grid-template-columns:repeat(3,1fr);max-width:var(--maxw);margin:0 auto;
+    background-image:linear-gradient(rgba(22,18,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(22,18,31,.05) 1px,transparent 1px);
+    background-size:34px 34px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(max-width:880px){.product-page .ic2-cards{grid-template-columns:1fr;max-width:460px}}
+  .product-page .ic2-pc{display:flex;flex-direction:column;padding:32px 28px;border-right:1px solid rgba(22,18,31,.07);background:rgba(255,255,255,.45)}
+  .product-page .ic2-pc:last-child{border-right:none}
+  @media(max-width:880px){.product-page .ic2-pc{border-right:none;border-bottom:1px solid rgba(22,18,31,.07)}.product-page .ic2-pc:last-child{border-bottom:none}}
+  .product-page .ic2-eyebrow{font-family:var(--display);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin-bottom:10px}
+  .product-page .ic2-eyebrow b{font-weight:800}
+  .product-page .ic2-pc h3{font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+  .product-page .ic2-pc > p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin-bottom:20px}
+  /* gradient-border animated card (Partner hero style) */
+  .product-page .ic2-card{position:relative;border-radius:16px;background:#fff;padding:2px;box-shadow:0 4px 16px rgba(22,18,31,.06);margin-top:auto}
+  .product-page .ic2-card::before{content:"";position:absolute;inset:0;border-radius:16px;padding:1.5px;
+    background:conic-gradient(from var(--ic2-angle,0deg), #F5B945,#EC6F6F,#A78BFA,#6B4EFF,#5BC8A8,#F5B945);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+    animation:ic2spin 6s linear infinite}
+  .product-page .ic2-inner{position:relative;background:#fff;border-radius:14px;padding:18px;min-height:148px}
+  /* incoming user line + caret */
+  .product-page .ic2-msg{font-size:13.5px;color:var(--ink);background:var(--line-soft);border-radius:10px 10px 10px 3px;padding:9px 12px;display:inline-block;max-width:92%;min-height:18px}
+  .product-page .ic2-arrow{display:flex;justify-content:center;color:var(--ink-faint);margin:10px 0}
+  .product-page .ic2-arrow svg{width:16px;height:16px}
+  .product-page .ic2-caret{display:inline-block;width:2px;height:1em;background:var(--accent);margin-left:1px;vertical-align:-2px;animation:ic2blink 1s step-end infinite}
+  .product-page .ic2-caret.ic2-hide{display:none}
+  /* green status pill before the result */
+  .product-page .ic2-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#1A8A5A;background:#E6F7EF;border:1px solid #BCEBD5;padding:4px 10px;border-radius:999px;margin:12px 0 4px;opacity:0;transform:translateY(4px) scale(.96)}
+  .product-page .ic2-pill svg{width:11px;height:11px}
+  .product-page .ic2-reveal .ic2-pill{animation:ic2pillIn .4s cubic-bezier(.2,.8,.2,1) forwards}
+  /* card 1 — parsed fields */
+  .product-page .ic2-fields{display:flex;flex-direction:column;gap:6px}
+  .product-page .ic2-field{display:flex;justify-content:space-between;font-size:12.5px;opacity:0;transform:translateY(4px)}
+  .product-page .ic2-field .ic2-k{color:var(--ink-soft)}
+  .product-page .ic2-field .ic2-v{font-weight:700;color:var(--ink)}
+  .product-page .ic2-reveal .ic2-field{animation:ic2fadeUp .4s ease forwards}
+  .product-page .ic2-reveal .ic2-field:nth-of-type(1){animation-delay:.45s}
+  .product-page .ic2-reveal .ic2-field:nth-of-type(2){animation-delay:.57s}
+  .product-page .ic2-reveal .ic2-field:nth-of-type(3){animation-delay:.69s}
+  .product-page .ic2-reveal .ic2-field:nth-of-type(4){animation-delay:.81s}
+  /* card 2 — validation rows + total */
+  .product-page .ic2-vrow{display:flex;align-items:center;gap:9px;font-size:12.5px;margin-bottom:7px;opacity:0;transform:translateY(4px)}
+  .product-page .ic2-tick{width:18px;height:18px;border-radius:6px;background:var(--accent-soft);display:grid;place-items:center;flex:0 0 18px}
+  .product-page .ic2-tick svg{width:11px;height:11px;color:var(--accent)}
+  .product-page .ic2-vt{color:var(--ink)}
+  .product-page .ic2-vp{margin-left:auto;font-weight:700;color:var(--ink)}
+  .product-page .ic2-vtotal{display:flex;justify-content:space-between;font-size:13px;border-top:1px solid var(--line);margin-top:9px;padding-top:9px;opacity:0;transform:translateY(4px)}
+  .product-page .ic2-vtotal .ic2-vl{color:var(--ink-soft)}
+  .product-page .ic2-vtotal .ic2-vv{font-weight:800;color:var(--accent)}
+  .product-page .ic2-reveal .ic2-vrow,.product-page .ic2-reveal .ic2-vtotal{animation:ic2fadeUp .4s ease forwards}
+  .product-page .ic2-reveal .ic2-vrow:nth-of-type(1){animation-delay:.45s}
+  .product-page .ic2-reveal .ic2-vrow:nth-of-type(2){animation-delay:.59s}
+  .product-page .ic2-reveal .ic2-vtotal{animation-delay:.75s}
+  /* card 3 — reply bubble + meta */
+  .product-page .ic2-reply{font-size:13px;color:#fff;background:var(--accent);border-radius:10px 10px 3px 10px;padding:10px 13px;line-height:1.45;opacity:0;transform:translateY(4px)}
+  .product-page .ic2-meta{font-size:11px;color:var(--ink-faint);margin-top:8px;display:flex;align-items:center;gap:5px;opacity:0}
+  .product-page .ic2-meta svg{width:11px;height:11px}
+  .product-page .ic2-reveal .ic2-reply{animation:ic2fadeUp .45s ease forwards .45s}
+  .product-page .ic2-reveal .ic2-meta{animation:ic2fadeIn .4s ease forwards .9s}
+  @property --ic2-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+  @keyframes ic2spin{to{--ic2-angle:360deg}}
+  @keyframes ic2fadeUp{to{opacity:1;transform:translateY(0)}}
+  @keyframes ic2fadeIn{to{opacity:1}}
+  @keyframes ic2blink{50%{opacity:0}}
+  @keyframes ic2pillIn{to{opacity:1;transform:translateY(0) scale(1)}}
+  @media(prefers-reduced-motion:reduce){
+    .product-page .ic2-card::before{animation:none}
+    .product-page .ic2-field,.product-page .ic2-vrow,.product-page .ic2-vtotal,.product-page .ic2-reply,.product-page .ic2-meta,.product-page .ic2-pill{opacity:1;transform:none;animation:none}
+    .product-page .ic2-caret{display:none}
+  }
 
   /* feature rows */
   .product-page section.feat{padding:70px 0;border-top:1px solid var(--line)}
