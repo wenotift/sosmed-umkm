@@ -80,7 +80,6 @@ export default function Footer() {
               <h4>Resources</h4>
               <Link href="/blog">Blog</Link>
               <Link href="/bantuan">Bantuan</Link>
-              <Link href="/forum">Forum</Link>
               <Link href="/komunitas">Komunitas</Link>
               <Link href="/karir">Karir</Link>
               <Link href="/afiliasi">Afiliasi</Link>

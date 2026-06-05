@@ -13,7 +13,6 @@ const MAIN = [
 const RESOURCES = [
   { label: "Blog", href: "/blog" },
   { label: "Bantuan", href: "/bantuan" },
-  { label: "Forum", href: "/forum" },
   { label: "Komunitas", href: "/komunitas" },
   { label: "Karir", href: "/karir" },
   { label: "Afiliasi", href: "/afiliasi" },
