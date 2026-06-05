@@ -44,13 +44,6 @@ export default function BlogGrid({ posts }: { posts: BlogCard[] }) {
             </button>
           ))}
         </div>
-        <button
-          type="button"
-          className="btn btn-ghost btn-sm see-all"
-          onClick={() => setActive("Semua")}
-        >
-          Lihat Semua
-        </button>
       </div>
 
       {filtered.length > 0 ? (

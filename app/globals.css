@@ -1611,7 +1611,6 @@
   .blog-page .byline b{font-family:var(--display);font-weight:600}
   /* tab row + top-right "Lihat Semua" action, aligned on one baseline */
   .blog-page .tabbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:36px 0 0}
-  .blog-page .see-all{flex-shrink:0}
   .blog-page .tabs{display:flex;gap:26px;padding:0 0 4px;font-family:var(--display);font-size:15.5px;font-weight:500;color:var(--ink-soft);flex-wrap:wrap}
   /* tabs are <button>s — reset UA chrome; keep them on one line per tab */
   .blog-page .tabs .t{padding:0 0 4px;margin:0;border:0;border-bottom:2px solid transparent;background:none;color:inherit;font:inherit;cursor:pointer;white-space:nowrap;flex-shrink:0;line-height:1.4}
@@ -1749,7 +1748,10 @@
   .article-page .toc a:hover{color:var(--ink)}
   .article-page .toc a.active{color:#4A157E;border-left-color:#4A157E;font-weight:600}
   .article-page .related{max-width:1080px;margin:72px auto 80px;border-top:1px solid var(--line);padding-top:40px}
-  .article-page .related h3{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.02em;margin-bottom:24px}
+  .article-page .related-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+  .article-page .related h3{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.02em}
+  .article-page .related-seeall{flex-shrink:0;white-space:nowrap;font-family:var(--display);font-weight:600;font-size:14px;color:var(--accent);text-decoration:none;transition:color .15s}
+  .article-page .related-seeall:hover{color:var(--accent-ink)}
   .article-page .rgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
   .article-page .rcard{background:#F4F0FB;border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;transition:box-shadow .18s,transform .18s;text-decoration:none;color:inherit}
   .article-page .rcard:hover{box-shadow:0 12px 30px rgba(80,40,150,.09);transform:translateY(-2px)}

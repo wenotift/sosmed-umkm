@@ -128,7 +128,12 @@ export default async function ArticlePage({
 
           {/* RELATED */}
           <div className="related">
-            <h3>Artikel terkait</h3>
+            <div className="related-head">
+              <h3>Artikel terkait</h3>
+              <Link className="related-seeall" href="/blog">
+                Lihat semua →
+              </Link>
+            </div>
             <div className="rgrid">
               {article.related.map((r) => (
                 <Link className="rcard" href={`/blog/${r.slug}`} key={r.slug}>
