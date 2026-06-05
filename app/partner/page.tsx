@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
-import SoonPage from "@/components/SoonPage";
+import PartnerContent from "./PartnerContent";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Partner",
-  description: "Jadi partner Sosmed AI — bantu UMKM F&B Indonesia naik kelas dengan asisten bisnis WhatsApp yang AI-native, bukan sekadar chatbot. Segera hadir.",
+  title: "Program Partner",
+  description:
+    "Jadi partner Sosmed AI — untuk agency, reseller, asosiasi, dan jaringan yang mau bawa AI WhatsApp ke banyak bisnis F&B Indonesia sekaligus. Margin kompetitif, dukungan khusus, co-marketing. Ajukan kemitraan.",
   path: "/partner",
-  noindex: true,
 });
 
 export default function Page() {
-  return <SoonPage title="Partner" />;
+  return <PartnerContent />;
 }
