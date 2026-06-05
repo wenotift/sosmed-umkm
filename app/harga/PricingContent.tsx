@@ -128,6 +128,36 @@ const PILLARS = [
   },
 ];
 
+/* §2 line-art blueprint icons, keyed by PILLARS[].icon (ported from prototype) */
+const SYS_ART: Record<string, React.ReactNode> = {
+  bot: (
+    <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" strokeWidth={1.3} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="26" cy="26" r="16" stroke="#CBC3BA" strokeDasharray="3 3" />
+      <rect x="19" y="21" width="14" height="11" rx="3" />
+      <path d="M26 21v-3h-3M16 26h-1.5M37.5 26H36M30 24.5v2M22 24.5v2" />
+    </svg>
+  ),
+  phone: (
+    <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" strokeWidth={1.3} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="12" y="12" width="28" height="28" rx="7" stroke="#CBC3BA" strokeDasharray="3 3" />
+      <rect x="22" y="19" width="8" height="14" rx="2" />
+      <path d="M25 36h2" />
+    </svg>
+  ),
+  star: (
+    <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" strokeWidth={1.3} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="26" cy="26" r="16" stroke="#CBC3BA" strokeDasharray="3 3" />
+      <path d="m26 17 2.6 5.3 5.9.9-4.2 4.2 1 5.8L26 35.3 20.7 38l1-5.8-4.2-4.2 5.9-.9Z" />
+    </svg>
+  ),
+  chart: (
+    <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" strokeWidth={1.3} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="12" y="12" width="28" height="28" transform="rotate(12 26 26)" stroke="#CBC3BA" strokeDasharray="3 3" />
+      <path d="M18 34 25 27l4 4 8-9M31 22h6v6" />
+    </svg>
+  ),
+};
+
 /* ---- §3 Vs separate tools ---- */
 const VS_TOOLS = {
   rows: [
@@ -519,20 +549,25 @@ export default function PricingContent() {
             Kalau biasanya kamu pakai 4 tools terpisah, Sosmed AI gabungin semuanya
             jadi satu - running lewat WhatsApp yang udah kamu pakai tiap hari.
           </p>
-          <div className="pillars">
+          <div className="hs4-grid">
+            <div className="hs4-hatch l" aria-hidden="true"></div>
             {PILLARS.map((p) => (
-              <div className="pillar-card" key={p.name}>
-                <div className="pc-ic">
-                  <Ic n={p.icon} />
+              <div className="hs4-cell" key={p.name}>
+                <span className="hs4-art">
+                  {SYS_ART[p.icon]}
+                  <span className="hs4-plus">+</span>
+                </span>
+                <div className="hs4-text">
+                  <h3>{p.name}</h3>
+                  <p className="hs4-lead">{p.tagline}</p>
+                  <p className="hs4-body">{p.body}</p>
+                  <p className="hs4-fit">
+                    <b>Cocok untuk:</b> {p.cocok}
+                  </p>
                 </div>
-                <h3>{p.name}</h3>
-                <p className="pc-tag">{p.tagline}</p>
-                <p className="pc-body">{p.body}</p>
-                <p className="pc-cocok">
-                  <b>Cocok untuk:</b> {p.cocok}
-                </p>
               </div>
             ))}
+            <div className="hs4-hatch r" aria-hidden="true"></div>
           </div>
         </div>
       </section>
