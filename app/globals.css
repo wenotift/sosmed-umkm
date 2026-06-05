@@ -2177,3 +2177,51 @@
   .komunitas-page .km-join-btn{display:inline-flex;align-items:center;gap:9px;background:#fff;color:#2A1670;font-family:var(--display);font-weight:700;font-size:15px;padding:15px 30px;border-radius:13px;text-decoration:none;transition:transform .18s}
   .komunitas-page .km-join-btn:hover{transform:translateY(-2px)}
   .komunitas-page .km-join-btn svg{width:19px;height:19px}
+
+  /* ===== /kontak (ported from kontak-prototype; site tokens + #6B4EFF) ===== */
+  .kontak-page{--p-accent:#6B4EFF;--k-faint:#9A93A8}
+  .kontak-page .wrap{max-width:880px}
+  /* hero */
+  .kontak-page .k-hero{text-align:center;padding:84px 24px 16px;background:#fff;border-bottom:1px solid var(--line)}
+  .kontak-page .k-eyebrow{display:inline-block;background:#fff;border:1px solid var(--line);color:var(--ink-soft);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:7px 14px;border-radius:999px;margin-bottom:22px;box-shadow:var(--shadow)}
+  .kontak-page .k-hero h1{font-family:var(--display);font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:0 auto 16px;max-width:16ch;color:var(--ink)}
+  .kontak-page .k-hero p{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:50ch;margin:0 auto 44px}
+  /* contact-method cards (blueprint container, pulled up over the hero) */
+  .kontak-page .k-methods{display:grid;grid-template-columns:repeat(3,1fr);margin:-32px 0 8px;position:relative;z-index:2;
+    background-image:linear-gradient(rgba(22,18,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(22,18,31,.05) 1px,transparent 1px);background-size:34px 34px;
+    border:1px solid var(--line);border-radius:18px;overflow:hidden;background-color:#fff;box-shadow:var(--shadow-lg)}
+  @media(max-width:720px){.kontak-page .k-methods{grid-template-columns:1fr}}
+  .kontak-page .k-method{display:block;padding:30px 26px;border-right:1px solid rgba(22,18,31,.07);background:rgba(255,255,255,.5);color:var(--ink);transition:background .18s}
+  .kontak-page .k-method:last-child{border-right:none}
+  @media(max-width:720px){.kontak-page .k-method{border-right:none;border-bottom:1px solid rgba(22,18,31,.07)}.kontak-page .k-method:last-child{border-bottom:none}}
+  .kontak-page .k-method.live:hover{background:rgba(255,255,255,.85)}
+  .kontak-page .k-method.soon{opacity:.72;cursor:default}
+  .kontak-page .k-method-art{width:60px;height:60px;position:relative;display:grid;place-items:center;margin-bottom:14px;color:var(--ink)}
+  .kontak-page .k-method-art svg{width:60px;height:60px;overflow:visible}
+  .kontak-page .k-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:10px;color:var(--k-faint)}
+  .kontak-page .k-method h3{font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .kontak-page .k-method p{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:12px}
+  .kontak-page .k-val{font-size:14px;font-weight:600;color:var(--p-accent)}
+  .kontak-page .k-method.soon .k-val{color:var(--k-faint)}
+  .kontak-page .k-soon-tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--k-faint);background:var(--line-soft);padding:3px 9px;border-radius:999px}
+  /* sections */
+  .kontak-page .k-section{padding:64px 0}
+  .kontak-page .k-section-head{text-align:center;margin-bottom:32px}
+  .kontak-page .k-section-head h2{font-family:var(--display);font-size:clamp(22px,3vw,28px);font-weight:800;letter-spacing:-.02em}
+  .kontak-page .k-section-head p{font-size:15px;color:var(--ink-soft);margin-top:8px}
+  /* socials */
+  .kontak-page .k-socials{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .kontak-page .k-social{width:54px;height:54px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s,border-color .18s,background .18s}
+  .kontak-page .k-social:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);background:var(--ink);border-color:var(--ink)}
+  .kontak-page .k-social svg{width:22px;height:22px;color:var(--ink);transition:color .18s}
+  .kontak-page .k-social:hover svg{color:#fff}
+  /* quick links (dark gradient) */
+  .kontak-page .k-quick{position:relative;overflow:hidden;border-radius:26px;padding:48px 36px;text-align:center;margin:24px 0 72px;color:#fff;
+    background:radial-gradient(560px 300px at 20% 0%, rgba(160,80,248,.5), transparent 60%),radial-gradient(480px 320px at 90% 110%, rgba(86,56,224,.6), transparent 55%),linear-gradient(135deg,#3A1D8A 0%,#5028C8 46%,#2A1670 100%);
+    border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 60px rgba(56,28,160,.4),inset 0 1px 0 rgba(255,255,255,.18)}
+  .kontak-page .k-quick h2{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:#fff}
+  .kontak-page .k-quick p{font-size:15px;opacity:.85;margin-bottom:26px}
+  .kontak-page .k-quick-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .kontak-page .k-ql{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);font-family:var(--body);font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:12px;text-decoration:none;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .18s}
+  .kontak-page .k-ql:hover{transform:translateY(-2px)}
+  .kontak-page .k-ql.primary{background:#fff;color:#2A1670;border-color:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}

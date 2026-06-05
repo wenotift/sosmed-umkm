@@ -88,7 +88,7 @@ export default function Footer() {
             <div className="foot-col">
               <h4>Perusahaan</h4>
               <Link href="/tentang">Tentang Kami</Link>
-              <a href="mailto:hello@sosmed.io">Kontak</a>
+              <Link href="/kontak">Kontak</Link>
               <Link href="/privasi">Privasi</Link>
               <Link href="/syarat">Syarat &amp; Ketentuan</Link>
             </div>
