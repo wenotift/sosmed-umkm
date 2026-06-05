@@ -50,7 +50,7 @@ const RESOURCES: ResourceItem[] = [
   },
   {
     label: "Karir",
-    href: "/karir",
+    href: "https://www.sosmed.io/careers",
     desc: "Bantu kami bangun Sosmed AI",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
