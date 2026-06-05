@@ -17,9 +17,9 @@ function waValid(raw: string): boolean {
 const STEPS: { art: React.ReactNode; h: string; p: string }[] = [
   {
     art: (
-      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth={1.3}>
-        <rect x="14" y="14" width="36" height="36" rx="8" stroke="#C9C3D6" strokeDasharray="3 3" />
-        <path d="M32 24v16M24 32h16" />
+      <svg viewBox="0 0 64 64" fill="none">
+        <path d="M32 20c-3-5-11-4-11 3 0 5 8 10 11 13 3-3 11-8 11-13 0-7-8-8-11-3Z" stroke="#C9C3D6" strokeWidth={1.2} strokeDasharray="3 3" />
+        <rect x="24" y="24" width="16" height="16" transform="rotate(45 32 32)" fill="#fff" stroke="#16121F" strokeWidth={1.4} />
       </svg>
     ),
     h: "Daftar gratis",
@@ -27,9 +27,9 @@ const STEPS: { art: React.ReactNode; h: string; p: string }[] = [
   },
   {
     art: (
-      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth={1.3}>
-        <circle cx="32" cy="32" r="20" stroke="#C9C3D6" strokeDasharray="3 3" />
-        <path d="M26 38c4-2 8-6 10-12M24 30l-4 4 4 4M40 30l4 4-4 4" />
+      <svg viewBox="0 0 64 64" fill="none">
+        <path d="M32 30 44 48H20Z" stroke="#C9C3D6" strokeWidth={1.2} strokeDasharray="3 3" />
+        <circle cx="32" cy="28" r="12" fill="#fff" stroke="#16121F" strokeWidth={1.4} />
       </svg>
     ),
     h: "Bagikan link",
@@ -37,9 +37,10 @@ const STEPS: { art: React.ReactNode; h: string; p: string }[] = [
   },
   {
     art: (
-      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth={1.3}>
-        <rect x="14" y="14" width="36" height="36" transform="rotate(12 32 32)" stroke="#C9C3D6" strokeDasharray="3 3" />
-        <path d="M32 22v20M26 26h9a4 4 0 0 1 0 8h-6a4 4 0 0 0 0 8h9" />
+      <svg viewBox="0 0 64 64" fill="none">
+        <rect x="20" y="20" width="24" height="24" transform="rotate(20 32 32)" stroke="#C9C3D6" strokeWidth={1.2} strokeDasharray="3 3" />
+        <rect x="20" y="20" width="24" height="24" transform="rotate(-15 32 32)" stroke="#C9C3D6" strokeWidth={1.2} strokeDasharray="3 3" />
+        <rect x="23" y="23" width="18" height="18" fill="#fff" stroke="#16121F" strokeWidth={1.4} />
       </svg>
     ),
     h: "Dapat komisi",
@@ -50,9 +51,10 @@ const STEPS: { art: React.ReactNode; h: string; p: string }[] = [
 const PERKS: { art: React.ReactNode; h: string; p: string }[] = [
   {
     art: (
-      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth={1.3}>
-        <circle cx="30" cy="30" r="18" stroke="#C9C3D6" strokeDasharray="3 3" />
-        <path d="M30 20v20M25 24h7a3 3 0 0 1 0 6h-4a3 3 0 0 0 0 6h7" />
+      <svg viewBox="0 0 60 60" fill="none">
+        <circle cx="34" cy="26" r="15" stroke="#C9C3D6" strokeWidth={1.2} strokeDasharray="3 3" />
+        <circle cx="26" cy="32" r="13" fill="#fff" stroke="#16121F" strokeWidth={1.4} />
+        <path d="M26 25v14M22 28h6a2.5 2.5 0 0 1 0 5h-4a2.5 2.5 0 0 0 0 5h6" stroke="#16121F" strokeWidth={1.4} strokeLinecap="round" />
       </svg>
     ),
     h: "Komisi menarik",
@@ -60,10 +62,11 @@ const PERKS: { art: React.ReactNode; h: string; p: string }[] = [
   },
   {
     art: (
-      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth={1.3}>
-        <rect x="13" y="13" width="34" height="34" rx="9" stroke="#C9C3D6" strokeDasharray="3 3" />
-        <circle cx="30" cy="26" r="6" />
-        <path d="M19 44a11 11 0 0 1 22 0" />
+      <svg viewBox="0 0 60 60" fill="none">
+        <rect x="22" y="16" width="26" height="26" rx="7" stroke="#C9C3D6" strokeWidth={1.2} strokeDasharray="3 3" />
+        <circle cx="26" cy="26" r="13" fill="#fff" stroke="#16121F" strokeWidth={1.4} />
+        <circle cx="26" cy="23" r="3.5" stroke="#16121F" strokeWidth={1.4} />
+        <path d="M19 34a7 7 0 0 1 14 0" stroke="#16121F" strokeWidth={1.4} />
       </svg>
     ),
     h: "Terbuka untuk semua",
@@ -71,10 +74,10 @@ const PERKS: { art: React.ReactNode; h: string; p: string }[] = [
   },
   {
     art: (
-      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth={1.3}>
-        <circle cx="30" cy="30" r="18" stroke="#C9C3D6" strokeDasharray="3 3" />
-        <path d="M22 30h16M30 22v16" strokeLinecap="round" />
-        <rect x="24" y="24" width="12" height="12" rx="2" />
+      <svg viewBox="0 0 60 60" fill="none">
+        <circle cx="34" cy="26" r="15" stroke="#C9C3D6" strokeWidth={1.2} strokeDasharray="3 3" />
+        <rect x="14" y="22" width="22" height="16" rx="2.5" fill="#fff" stroke="#16121F" strokeWidth={1.4} />
+        <path d="M19 28h12M19 32h8" stroke="#16121F" strokeWidth={1.4} strokeLinecap="round" />
       </svg>
     ),
     h: "Materi promosi siap pakai",
@@ -82,9 +85,10 @@ const PERKS: { art: React.ReactNode; h: string; p: string }[] = [
   },
   {
     art: (
-      <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth={1.3}>
-        <rect x="13" y="13" width="34" height="34" transform="rotate(15 30 30)" stroke="#C9C3D6" strokeDasharray="3 3" />
-        <path d="M20 36 28 28l5 5 8-9M37 24h5v5" />
+      <svg viewBox="0 0 60 60" fill="none">
+        <rect x="20" y="16" width="24" height="24" transform="rotate(18 32 28)" stroke="#C9C3D6" strokeWidth={1.2} strokeDasharray="3 3" />
+        <rect x="15" y="20" width="22" height="20" rx="2.5" fill="#fff" stroke="#16121F" strokeWidth={1.4} />
+        <path d="M20 35l4-5 4 3 5-7" stroke="#16121F" strokeWidth={1.4} strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     h: "Lacak performa",
@@ -92,13 +96,70 @@ const PERKS: { art: React.ReactNode; h: string; p: string }[] = [
   },
 ];
 
-const WHO = [
-  "📱 Content creator",
-  "🎓 Mahasiswa",
-  "💼 Freelancer",
-  "🤝 Sales & reseller",
-  "☕ Pemilik F&B",
-  "🌍 Siapa pun, di mana pun",
+const WHO: { ic: React.ReactNode; lead: string; p: string }[] = [
+  {
+    ic: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+        <rect x="6" y="2" width="12" height="20" rx="3" />
+        <path d="M11 18h2" />
+        <path d="m16 6 1 1.5L18.5 8 17 9l-1 1.5L15 9l-1.5-1L15 7Z" />
+      </svg>
+    ),
+    lead: "Content creator.",
+    p: "Punya audiens di IG, TikTok, atau YouTube.",
+  },
+  {
+    ic: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+        <path d="m22 9-10-4L2 9l10 4 10-4Z" />
+        <path d="M6 11v5c0 1 2.5 3 6 3s6-2 6-3v-5" />
+      </svg>
+    ),
+    lead: "Mahasiswa.",
+    p: "Cari penghasilan tambahan dari waktu luang.",
+  },
+  {
+    ic: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" />
+        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+      </svg>
+    ),
+    lead: "Freelancer.",
+    p: "Tambah aliran income di sela proyek.",
+  },
+  {
+    ic: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11" />
+      </svg>
+    ),
+    lead: "Sales & reseller.",
+    p: "Punya jaringan pelaku usaha yang luas.",
+  },
+  {
+    ic: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z" />
+        <path d="M6 1v3M10 1v3M14 1v3" />
+      </svg>
+    ),
+    lead: "Pemilik F&B.",
+    p: "Udah ngerti dunia warung & kafe dari dalam.",
+  },
+  {
+    ic: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z" />
+      </svg>
+    ),
+    lead: "Siapa pun, di mana pun.",
+    p: "Yang penting mau merekomendasikan.",
+  },
 ];
 
 type Fields = { name: string; email: string; whatsapp: string; promote: string };
@@ -266,12 +327,18 @@ export default function AfiliasiContent() {
                 kamu mau merekomendasikan.
               </p>
             </div>
-            <div className="af-who-tags">
-              {WHO.map((t) => (
-                <span className="af-who-tag" key={t}>
-                  {t}
-                </span>
-              ))}
+            <div className="af-who-wrap">
+              <div className="af-who-frame" aria-hidden="true"></div>
+              <div className="af-who-grid">
+                {WHO.map((w) => (
+                  <div className="af-who-cell" key={w.lead}>
+                    <span className="af-who-ic">{w.ic}</span>
+                    <div className="af-who-txt">
+                      <b>{w.lead}</b> {w.p}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>

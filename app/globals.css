@@ -2050,9 +2050,18 @@
   /* hero (light, Attio-style) */
   .afiliasi-page .af-hero{position:relative;overflow:hidden;padding:88px 24px 80px;background:#fff;border-bottom:1px solid var(--line)}
   .afiliasi-page .af-hero-inner{position:relative;max-width:960px;margin:0 auto;z-index:2}
-  .afiliasi-page .af-hero-chart{position:absolute;right:0;bottom:0;top:0;width:55%;z-index:1;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 45%);mask-image:linear-gradient(90deg,transparent 0%,#000 45%)}
+  @media(min-width:1025px){.afiliasi-page .af-hero-inner h1,.afiliasi-page .af-hero-inner p,.afiliasi-page .af-hero-inner .af-hero-pills{max-width:52%}}
+  .afiliasi-page .af-hero-chart{position:absolute;right:0;bottom:0;top:0;width:50%;z-index:1;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 50%);mask-image:linear-gradient(90deg,transparent 0%,#000 50%)}
   .afiliasi-page .af-hero-chart svg{position:absolute;right:-2%;bottom:-2%;width:104%;height:104%}
-  @media(max-width:760px){.afiliasi-page .af-hero-chart{opacity:.4;width:70%}}
+  /* stack at 1024px and below (mobile + landscape tablet) */
+  @media(max-width:1024px){
+    .afiliasi-page .af-hero{display:flex;flex-direction:column;padding-bottom:48px}
+    .afiliasi-page .af-hero-inner{order:1;text-align:center}
+    .afiliasi-page .af-hero-inner h1{margin-left:auto;margin-right:auto}
+    .afiliasi-page .af-hero-inner .af-hero-pills{justify-content:center}
+    .afiliasi-page .af-hero-chart{order:2;position:relative;width:100%;height:200px;margin-top:36px;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 60%);mask-image:linear-gradient(180deg,transparent 0%,#000 60%)}
+    .afiliasi-page .af-hero-chart svg{position:absolute;right:0;bottom:0;width:100%;height:auto;max-width:640px;left:50%;transform:translateX(-50%)}
+  }
   .afiliasi-page .af-eyebrow{display:inline-block;background:#fff;border:1px solid var(--line);color:var(--ink-soft);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:7px 14px;border-radius:999px;margin-bottom:24px;box-shadow:var(--shadow)}
   .afiliasi-page .af-hero h1{font-family:var(--display);font-size:clamp(34px,6vw,58px);font-weight:800;letter-spacing:-.035em;line-height:1.08;max-width:16ch;margin:0 0 22px;color:var(--ink)}
   .afiliasi-page .af-hero p{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:50ch;margin:0 0 30px}
@@ -2071,27 +2080,23 @@
   .afiliasi-page .af-head h2{font-family:var(--display);font-size:clamp(26px,4vw,34px);font-weight:800;letter-spacing:-.02em}
   .afiliasi-page .af-head p{font-size:16px;color:var(--ink-soft);max-width:54ch;margin:10px auto 0}
   /* how it works (3 steps, blueprint) */
-  .afiliasi-page .af-steps{display:grid;grid-template-columns:repeat(3,1fr);
-    background-image:linear-gradient(rgba(22,18,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(22,18,31,.05) 1px,transparent 1px);
-    background-size:34px 34px;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .afiliasi-page .af-steps{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
   @media(max-width:720px){.afiliasi-page .af-steps{grid-template-columns:1fr}}
-  .afiliasi-page .af-step{padding:36px 30px;border-right:1px solid rgba(22,18,31,.07);background:rgba(255,255,255,.45);text-align:center}
+  .afiliasi-page .af-step{padding:36px 30px;border-right:1px solid var(--line);text-align:center;background-color:#fff;background-image:linear-gradient(rgba(22,18,31,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(22,18,31,.016) 1px,transparent 1px);background-size:34px 34px}
   .afiliasi-page .af-step:last-child{border-right:none}
-  @media(max-width:720px){.afiliasi-page .af-step{border-right:none;border-bottom:1px solid rgba(22,18,31,.07)}.afiliasi-page .af-step:last-child{border-bottom:none}}
+  @media(max-width:720px){.afiliasi-page .af-step{border-right:none;border-bottom:1px solid var(--line)}.afiliasi-page .af-step:last-child{border-bottom:none}}
   .afiliasi-page .af-step-num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--p-accent);color:#fff;font-family:var(--display);font-weight:800;font-size:15px;margin-bottom:16px}
   .afiliasi-page .af-step-art{width:64px;height:64px;margin:0 auto 14px;position:relative;display:grid;place-items:center;color:var(--ink)}
   .afiliasi-page .af-step-art svg{width:64px;height:64px;overflow:visible}
   .afiliasi-page .af-step h3{font-family:var(--display);font-size:17px;font-weight:700;margin-bottom:6px}
   .afiliasi-page .af-step p{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
   /* perks (blueprint 2x2) */
-  .afiliasi-page .af-perks{display:grid;grid-template-columns:1fr 1fr;
-    background-image:linear-gradient(rgba(22,18,31,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(22,18,31,.05) 1px,transparent 1px);
-    background-size:34px 34px;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .afiliasi-page .af-perks{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
   @media(max-width:640px){.afiliasi-page .af-perks{grid-template-columns:1fr}}
-  .afiliasi-page .af-perk{display:flex;align-items:flex-start;gap:20px;padding:34px 30px;border-right:1px solid rgba(22,18,31,.07);border-bottom:1px solid rgba(22,18,31,.07);background:rgba(255,255,255,.45)}
+  .afiliasi-page .af-perk{display:flex;align-items:flex-start;gap:20px;padding:34px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background-color:#fff;background-image:linear-gradient(rgba(22,18,31,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(22,18,31,.016) 1px,transparent 1px);background-size:34px 34px}
   .afiliasi-page .af-perk:nth-child(2n){border-right:none}
   .afiliasi-page .af-perk:nth-child(n+3){border-bottom:none}
-  @media(max-width:640px){.afiliasi-page .af-perk{border-right:none}.afiliasi-page .af-perk:nth-child(3){border-bottom:1px solid rgba(22,18,31,.07)}}
+  @media(max-width:640px){.afiliasi-page .af-perk{border-right:none}.afiliasi-page .af-perk:nth-child(3){border-bottom:1px solid var(--line)}}
   .afiliasi-page .af-perk-art{flex:0 0 60px;width:60px;height:60px;position:relative;display:grid;place-items:center;color:var(--ink)}
   .afiliasi-page .af-perk-art svg{width:60px;height:60px;overflow:visible}
   .afiliasi-page .af-perk-body h3{font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:6px}
@@ -2100,8 +2105,26 @@
   .afiliasi-page .af-plus{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:11px;color:var(--af-faint)}
   /* who can join */
   .afiliasi-page .af-who{background:var(--bg);text-align:center}
-  .afiliasi-page .af-who-tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:640px;margin:0 auto}
-  .afiliasi-page .af-who-tag{font-size:13.5px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);padding:9px 18px;border-radius:999px;box-shadow:var(--shadow)}
+  .afiliasi-page .af-who-wrap{position:relative;max-width:1180px;margin:0 auto}
+  .afiliasi-page .af-who-frame{position:absolute;inset:-10px;border:1px dashed #D8D3E2;border-radius:6px;pointer-events:none}
+  .afiliasi-page .af-who-frame::before,.afiliasi-page .af-who-frame::after,.afiliasi-page .af-who-wrap::before,.afiliasi-page .af-who-wrap::after{content:"";position:absolute;width:7px;height:7px;background:#C9C3D6;z-index:2}
+  .afiliasi-page .af-who-frame::before{top:-4px;left:-4px}
+  .afiliasi-page .af-who-frame::after{top:-4px;right:-4px}
+  .afiliasi-page .af-who-wrap::before{bottom:-14px;left:-14px}
+  .afiliasi-page .af-who-wrap::after{bottom:-14px;right:-14px}
+  .afiliasi-page .af-who-grid{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;position:relative;z-index:1;text-align:left}
+  @media(max-width:1080px){.afiliasi-page .af-who-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:680px){.afiliasi-page .af-who-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:420px){.afiliasi-page .af-who-grid{grid-template-columns:1fr}}
+  .afiliasi-page .af-who-cell{padding:26px 22px 24px;border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:230px}
+  .afiliasi-page .af-who-cell:last-child{border-right:none}
+  @media(max-width:1080px){.afiliasi-page .af-who-cell:nth-child(3n){border-right:none}.afiliasi-page .af-who-cell:nth-child(-n+3){border-bottom:1px solid var(--line)}.afiliasi-page .af-who-cell{min-height:200px}}
+  @media(max-width:680px){.afiliasi-page .af-who-cell{min-height:0;border-bottom:1px solid var(--line)}.afiliasi-page .af-who-cell:nth-child(2n){border-right:none}.afiliasi-page .af-who-cell:nth-child(odd){border-right:1px solid var(--line)}}
+  @media(max-width:420px){.afiliasi-page .af-who-cell{border-right:none !important}.afiliasi-page .af-who-cell:last-child{border-bottom:none}}
+  .afiliasi-page .af-who-ic{color:#B9B2C6;margin-bottom:auto}
+  .afiliasi-page .af-who-ic svg{width:26px;height:26px}
+  .afiliasi-page .af-who-txt{font-size:14.5px;line-height:1.5;color:var(--ink-soft);margin-top:54px}
+  .afiliasi-page .af-who-txt b{color:var(--ink);font-weight:700}
   /* register form (dark gradient card) */
   .afiliasi-page .af-register{padding:24px 0 80px}
   .afiliasi-page .af-form-card{position:relative;overflow:hidden;border-radius:26px;padding:44px 40px;color:#fff;
@@ -2115,7 +2138,7 @@
   .afiliasi-page .af-field input::placeholder,.afiliasi-page .af-field textarea::placeholder{color:rgba(255,255,255,.55)}
   .afiliasi-page .af-field input:focus,.afiliasi-page .af-field textarea:focus{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.18)}
   .afiliasi-page .af-field input.af-invalid{border-color:#FF9B8F}
-  .afiliasi-page .af-field textarea{resize:vertical;min-height:80px}
+  .afiliasi-page .af-field textarea{resize:vertical;min-height:140px;line-height:1.5}
   .afiliasi-page .af-err{display:block;margin-top:6px;font-size:12.5px;font-weight:600;color:#FFD7D2}
   .afiliasi-page .af-formerr{font-size:13.5px;font-weight:600;color:#fff;background:rgba(192,57,43,.35);border:1px solid rgba(255,155,143,.5);border-radius:10px;padding:10px 13px;margin-bottom:14px}
   .afiliasi-page .af-submit{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;background:#fff;color:#2A1670;font-family:var(--display);font-weight:700;font-size:15px;padding:15px;border-radius:12px;border:none;cursor:pointer;margin-top:8px;transition:transform .18s}
