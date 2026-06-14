@@ -7,23 +7,13 @@ import { useEffect, useRef, useState } from "react";
 const MAIN = [
   { label: "Produk", href: "/produk" },
   { label: "Harga", href: "/harga" },
+  { label: "Blog", href: "/blog" },
   { label: "Partner", href: "/partner" },
 ];
 
 type ResourceItem = { label: string; href: string; desc: string; icon: React.ReactNode };
 
 const RESOURCES: ResourceItem[] = [
-  {
-    label: "Blog",
-    href: "/blog",
-    desc: "Tips & cerita untuk usaha F&B",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
-        <path d="M14 3v6h6M9 13h6M9 17h4" />
-      </svg>
-    ),
-  },
   {
     label: "Bantuan",
     href: "/bantuan",

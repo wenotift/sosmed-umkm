@@ -2004,6 +2004,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Dari Blog — surface recent posts from the homepage so blog articles are
+          linked from the highest-authority page (lifts crawl priority; these were
+          GSC "Discovered – not indexed"). Lightweight curated list, kept in sync
+          with app/blog data, to avoid bundling full article bodies into the client. */}
+      <section className="recent-blog" style={{ maxWidth: 1080, margin: "0 auto", padding: "72px 24px" }}>
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, marginBottom: 28, flexWrap: "wrap" }}>
+          <h2 style={{ fontSize: "clamp(1.5rem,3vw,2rem)", fontWeight: 800, letterSpacing: "-0.02em", margin: 0 }}>Dari Blog</h2>
+          <Link href="/blog" style={{ fontWeight: 600, fontSize: "0.95rem", color: "#0a0a0a" }}>Lihat semua →</Link>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
+          {[
+            { slug: "order-whatsapp-lebih-cepat", tag: "Panduan", title: "Kenapa Order via WhatsApp Lebih Cepat dari Aplikasi", excerpt: "Kenapa pelanggan lebih nyaman pesan lewat chat, dan bagaimana itu menguntungkan usaha Anda." },
+            { slug: "masalah-umkm-fnb-indonesia", tag: "Cerita", title: "Cerita di Balik Sosmed AI", excerpt: "Apa yang kami lihat di warung dan kafe kecil Indonesia, dan kenapa kami membangunnya di WhatsApp." },
+            { slug: "yang-sedang-kami-bangun", tag: "Produk", title: "Bukan Sekadar Chatbot: Apa Itu Sosmed AI", excerpt: "Apa bedanya chatbot biasa dengan AI-native, dan apa yang sedang kami bangun untuk usaha F&B kecil." },
+          ].map((p) => (
+            <Link key={p.slug} href={`/blog/${p.slug}`} style={{ display: "block", textDecoration: "none", color: "#0a0a0a", border: "1px solid #ececec", borderRadius: 14, padding: 20 }}>
+              <span style={{ display: "inline-block", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.04em", textTransform: "uppercase", color: "#6b7280", marginBottom: 10 }}>{p.tag}</span>
+              <span style={{ display: "block", fontWeight: 700, fontSize: "1.02rem", lineHeight: 1.3, marginBottom: 8 }}>{p.title}</span>
+              <span style={{ display: "block", color: "#666", fontSize: "0.88rem", lineHeight: 1.55 }}>{p.excerpt}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       </main>
 
       <Footer />
