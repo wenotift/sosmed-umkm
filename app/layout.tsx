@@ -6,7 +6,7 @@ const SITE_URL = "https://umkm.sosmed.io";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Sosmed AI | Asisten WhatsApp AI untuk Bisnis F&B Indonesia",
+    default: "Sosmed AI Chat | Order WhatsApp Otomatis untuk Restoran & Warung",
     template: "%s | Sosmed AI",
   },
   description:
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     locale: "id_ID",
     url: SITE_URL,
     siteName: "Sosmed AI",
-    title: "Sosmed AI | WhatsApp Anda, AI Assistant Bisnis Anda",
+    title: "Sosmed AI Chat | Order WhatsApp Otomatis untuk Restoran & Warung",
     description:
       "Sosmed AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
     images: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sosmed AI | WhatsApp Anda, AI Assistant Bisnis Anda",
+    title: "Sosmed AI Chat | Order WhatsApp Otomatis untuk Restoran & Warung",
     description:
       "Sosmed AI: asisten bisnis AI-native di WhatsApp untuk UMKM F&B Indonesia — bukan sekadar chatbot. Order otomatis, sistem poin, menu digital, kelola dari chat.",
     images: ["/images/og-image-umkm-sosmed-ai.jpg"],
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
 const softwareApplicationLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Sosmed AI",
+  name: "Sosmed AI Chat",
   applicationCategory: "BusinessApplication",
   operatingSystem: "WhatsApp / Web",
   description:
