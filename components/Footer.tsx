@@ -1,4 +1,8 @@
 import Link from "next/link";
+import { crossSiteProps } from "@/lib/crossSiteLink";
+
+// This footer renders on the umkm surface (umkm.sosmed.io).
+const OWN_HOST = "umkm.sosmed.io";
 
 // Brand-mark SVG paths (simple-icons style, 24x24 viewBox, fill=currentColor)
 const SOCIALS = [
@@ -82,7 +86,7 @@ export default function Footer() {
               <Link href="/blog">Blog</Link>
               <Link href="/bantuan">Bantuan</Link>
               <Link href="/komunitas">Komunitas</Link>
-              <Link href="https://www.sosmed.io/careers">Karir</Link>
+              <Link href="https://www.sosmed.io/careers" {...crossSiteProps("https://www.sosmed.io/careers", OWN_HOST)}>Karir</Link>
               <Link href="/afiliasi">Afiliasi</Link>
             </div>
             <div className="foot-col">

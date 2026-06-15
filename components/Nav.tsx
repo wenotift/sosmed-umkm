@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { crossSiteProps } from "@/lib/crossSiteLink";
+
+// This nav renders on the umkm surface (umkm.sosmed.io).
+const OWN_HOST = "umkm.sosmed.io";
 
 const MAIN = [
   { label: "Produk", href: "/produk" },
@@ -221,6 +225,7 @@ export default function Nav() {
                   <Link
                     key={r.href}
                     href={r.href}
+                    {...crossSiteProps(r.href, OWN_HOST)}
                     role="menuitem"
                     className={`nav-dd-item${pathname === r.href ? " active" : ""}`}
                     aria-current={pathname === r.href ? "page" : undefined}
@@ -294,6 +299,7 @@ export default function Nav() {
                 <Link
                   key={r.href}
                   href={r.href}
+                  {...crossSiteProps(r.href, OWN_HOST)}
                   className={`drawer-sub${pathname === r.href ? " active" : ""}`}
                   onClick={closeMenu}
                   aria-current={pathname === r.href ? "page" : undefined}
