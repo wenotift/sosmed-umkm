@@ -172,13 +172,14 @@ export default function Nav() {
       {/* NAV — fixed/sticky on top; logo + burger always visible */}
       <header className="nav">
         <div className="wrap nav-inner">
-          <Link href="/" className="logo" aria-label="Sosmed AI - Beranda">
+          <Link href="/" className="logo" aria-label="Sosmed AI Chat - Beranda">
             <img
               src="/logo/sosmed-ai-logo-black-version.png"
               alt="Sosmed AI"
               width={1167}
               height={379}
             />
+            <span className="sub">Chat</span>
           </Link>
           <nav className="nav-links">
             {MAIN.map((m) => (

@@ -35,13 +35,14 @@ export default function Footer() {
       <div className="wrap">
         <div className="foot-main">
           <div className="foot-brand">
-            <Link href="/" className="logo" aria-label="Sosmed AI - Beranda">
+            <Link href="/" className="logo" aria-label="Sosmed AI Chat - Beranda">
               <img
                 src="/logo/sosmed-ai-logo-black-version.png"
                 alt="Sosmed AI"
                 width={1167}
                 height={379}
               />
+              <span className="sub">Chat</span>
             </Link>
             <p>
               <strong>WA Anda, AI Assistant Bisnis Anda.</strong>
