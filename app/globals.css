@@ -84,8 +84,10 @@
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
   .logo{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.03em}
   .logo img{height:28px;width:auto;display:block}
-  /* "[logo] Sosmed AI | Chat" lockup — mirrors studio's .sub (divider via border-left + label), umkm-native palette */
-  .logo .sub{font-weight:600;font-size:13px;color:var(--ink-soft);border-left:1px solid var(--line);padding-left:9px}
+  /* "[logo] Sosmed AI | Chat" lockup — mirrors studio's .sub (divider via border-left + label), umkm-native palette.
+     Divider uses a dedicated warm gray (one step darker than --line) so the 1px rule stays legible on the
+     light bg — --line itself is a global hairline token and is intentionally left unchanged. */
+  .logo .sub{font-weight:600;font-size:13px;color:var(--ink-soft);border-left:1px solid #D6CBB9;padding-left:9px}
   .foot-brand .logo img{height:26px}
   .foot-brand .logo .sub{font-size:12.5px}
   .nav-links{display:flex;gap:30px;align-items:center}
