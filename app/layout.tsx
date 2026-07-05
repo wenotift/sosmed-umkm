@@ -28,6 +28,11 @@ export const metadata: Metadata = {
   publisher: "Sosmed AI",
   applicationName: "Sosmed AI",
   category: "technology",
+  verification: {
+    other: {
+      "facebook-domain-verification": "n0f9ov5x3peroq2oray8b4n5xzhay8",
+    },
+  },
   alternates: {
     canonical: SITE_URL,
   },
