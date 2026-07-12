@@ -23,6 +23,13 @@ export type RelatedCard = {
   excerpt: string;
 };
 
+/** A question + its plain-text answer, mirrored on-page (short-answer/section
+ *  text). Emitted as FAQPage JSON-LD for AEO/GEO answer engines. */
+export type FaqItem = {
+  q: string;
+  a: string;
+};
+
 export type Article = {
   title: string;
   category: string;
@@ -34,6 +41,10 @@ export type Article = {
   tldr: string[];
   sections: ArticleSection[];
   related: RelatedCard[];
+  /** Topical keywords for BlogPosting.keywords (SEO/GEO). Optional. */
+  keywords?: string[];
+  /** Q&A pairs (grounded in on-page text) → FAQPage schema (AEO). Optional. */
+  faq?: FaqItem[];
 };
 
 /* ----- shared illustrative mockups (styled HTML/CSS, not images) ----- */
@@ -148,9 +159,661 @@ function SummMockup() {
   );
 }
 
-/* ----- the 7 articles ----- */
+function ComingSoonBand() {
+  return (
+    <div className="cta-band">
+      <h3>Segera Hadir</h3>
+      <p>
+        Sosmed AI sedang kami siapkan untuk pemilik warung, kafe, dan restoran
+        kecil di Indonesia. Nantikan peluncurannya.
+      </p>
+    </div>
+  );
+}
+
+function AiNativeNote() {
+  return (
+    <div className="callout">
+      <b>Catatan penting:</b> Sosmed AI bukan chatbot skrip yang kaku. Sosmed AI
+      dirancang AI-native di WhatsApp, sehingga pelanggan tetap mengobrol seperti
+      biasa, sementara order, pelanggan, poin, dan laporan dirapikan di belakang
+      layar.
+    </div>
+  );
+}
+
+/* ----- the articles ----- */
 
 export const ARTICLES: Record<string, Article> = {
+  "mengubah-chat-whatsapp-menjadi-pelanggan-setia": {
+    title: "Cara Mengubah Chat WhatsApp Menjadi Pelanggan Setia untuk Bisnis F&B",
+    category: "Tips Bisnis",
+    readTime: "7 menit baca",
+    datePublished: "2026-07-11",
+    coverTitle: "Ubah Chat WhatsApp Menjadi Pelanggan Setia",
+    keywords: [
+      "chat WhatsApp jadi pelanggan setia",
+      "retensi pelanggan F&B",
+      "loyalitas pelanggan WhatsApp",
+      "repeat order UMKM",
+      "memori pelanggan",
+    ],
+    faq: [
+      {
+        q: "Bagaimana chat WhatsApp bisa menghasilkan pelanggan setia?",
+        a: "Ubah setiap chat menjadi konteks yang bisa dipakai kembali—mengenali pesanan favorit, catatan rasa, dan waktu pembelian—sehingga pelanggan tidak perlu mengulang dan lebih mudah kembali.",
+      },
+      {
+        q: "Data pelanggan apa saja yang perlu dicatat dari WhatsApp?",
+        a: "Empat lapisan: identitas (nama, nomor, kanal order), preferensi (menu favorit, level gula/pedas, alergi), perilaku (frekuensi, jam, nilai order), dan riwayat layanan (komplain serta cara penyelesaiannya).",
+      },
+      {
+        q: "Bagaimana follow-up agar tidak menjadi spam?",
+        a: "Gunakan pemicu yang punya alasan jelas—hampir mencapai reward, menu favorit tersedia lagi, atau sudah melewati pola jarak order—batasi frekuensi, dan sediakan cara mudah untuk berhenti.",
+      },
+    ],
+    description:
+      "Cara mengubah percakapan WhatsApp menjadi hubungan pelanggan yang berkelanjutan melalui data preferensi, follow-up relevan, dan pengalaman yang konsisten.",
+    lede: (
+      <>
+        Pelanggan setia jarang terbentuk karena satu promo besar. Mereka kembali
+        karena merasa dikenali, pesanannya mudah, dan pengalaman berikutnya sama
+        baiknya. Chat WhatsApp sebenarnya menyimpan sinyal itu, tetapi nilainya
+        hilang jika percakapan selesai tanpa menjadi ingatan bisnis.
+      </>
+    ),
+    tldr: [
+      "Chat perlu diubah menjadi memori pelanggan: identitas, preferensi, riwayat order, dan waktu kunjungan.",
+      "Follow-up terbaik dipicu oleh konteks, bukan dikirim massal ke semua kontak.",
+      "Kecepatan order ulang dan konsistensi layanan lebih penting daripada sering memberi diskon.",
+      "Ukur repeat order, jarak antar-order, dan nilai pelanggan—bukan hanya jumlah chat.",
+      "Pendekatan AI-native memahami konteks percakapan; chatbot skrip hanya mengikuti alur yang sudah ditentukan.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Bagaimana chat WhatsApp bisa menghasilkan pelanggan setia?",
+        toc: "Jawaban singkat",
+        body: (
+          <p>
+            Caranya adalah mengubah setiap chat menjadi konteks yang bisa dipakai
+            kembali. Ketika usaha mengenali pesanan favorit, catatan rasa, waktu
+            pembelian, dan masalah sebelumnya, pelanggan tidak perlu mengulang
+            semuanya. Kemudahan inilah yang perlahan membentuk kebiasaan kembali.
+          </p>
+        ),
+      },
+      {
+        id: "empat-lapisan",
+        heading: "Empat lapisan memori pelanggan yang perlu dibangun",
+        toc: "Memori pelanggan",
+        body: (
+          <>
+            <p>Jangan mulai dari broadcast. Mulailah dari data yang membuat layanan berikutnya lebih baik:</p>
+            <ul>
+              <li><b>Identitas:</b> nama, nomor, dan kanal order.</li>
+              <li><b>Preferensi:</b> menu favorit, level pedas, gula, alergi, serta metode pengambilan.</li>
+              <li><b>Perilaku:</b> frekuensi order, jam pembelian, nilai transaksi, dan respons terhadap penawaran.</li>
+              <li><b>Riwayat layanan:</b> komplain, penggantian order, dan cara masalah diselesaikan.</li>
+            </ul>
+            <p>Data secukupnya lebih berguna daripada profil panjang yang tidak pernah dipakai.</p>
+          </>
+        ),
+      },
+      {
+        id: "follow-up",
+        heading: "Follow-up relevan tanpa berubah menjadi spam",
+        toc: "Follow-up relevan",
+        body: (
+          <>
+            <p>
+              Gunakan pemicu yang punya alasan jelas: pelanggan hampir mencapai
+              reward, menu favorit tersedia lagi, atau sudah melewati pola jarak
+              order biasanya. Batasi frekuensi dan berikan jalan mudah untuk berhenti.
+            </p>
+            <p>
+              Pesan “kopi susu less sugar favorit Kak Rina tersedia lagi” jauh
+              lebih bernilai daripada promo umum yang dikirim setiap hari.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "metrik",
+        heading: "Metrik yang menunjukkan hubungan pelanggan benar-benar tumbuh",
+        toc: "Metrik retensi",
+        body: (
+          <ul>
+            <li><b>Repeat-order rate:</b> proporsi pelanggan yang kembali dalam periode tertentu.</li>
+            <li><b>Jarak antar-order:</b> apakah pelanggan kembali lebih cepat atau makin menjauh.</li>
+            <li><b>Nilai pelanggan:</b> total kontribusi selama beberapa bulan, bukan satu struk.</li>
+            <li><b>Recovery rate:</b> berapa pelanggan yang kembali setelah komplain diselesaikan.</li>
+          </ul>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Peran Sosmed AI dalam menjaga konteks pelanggan",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI dirancang agar percakapan, order, preferensi, dan loyalitas
+              dapat tersambung langsung di WhatsApp. Pemilik usaha mendapat konteks
+              yang berguna tanpa menyalin chat ke catatan lain setiap hari.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "program-loyalti-whatsapp-untuk-umkm", g: "g5", tag: "Panduan", title: "Program Loyalti WhatsApp untuk UMKM", excerpt: "Poin, reward, dan repeat order tanpa kartu member." },
+      { slug: "cara-menjaga-pelanggan-lama-lewat-whatsapp", g: "g5", tag: "Tips Bisnis", title: "Menjaga Pelanggan Lama Lewat WhatsApp", excerpt: "Retensi yang personal dan relevan tanpa spam." },
+      { slug: "ai-native-whatsapp-vs-chatbot", g: "g3", tag: "Produk", title: "AI-Native di WhatsApp vs Chatbot", excerpt: "Memahami perbedaan pengalaman dan kemampuan keduanya." },
+    ],
+  },
+
+  "order-ramai-profit-tidak-naik": {
+    title: "Order Ramai tapi Profit Tidak Naik? Ini 7 Kebocoran di Warung dan Kafe",
+    category: "Tips Bisnis",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-11",
+    coverTitle: "Order Ramai, Kenapa Profit Tidak Naik?",
+    keywords: [
+      "order ramai profit tidak naik",
+      "kebocoran profit warung",
+      "margin F&B",
+      "profit kafe",
+      "hitung untung per menu",
+    ],
+    faq: [
+      {
+        q: "Mengapa order ramai belum tentu membuat profit naik?",
+        a: "Karena setiap order membawa pendapatan sekaligus biaya. Profit tidak naik ketika tambahan pendapatan habis untuk bahan, promo, komisi, pemborosan, remake, dan pelanggan yang hanya membeli sekali.",
+      },
+      {
+        q: "Apa saja kebocoran profit yang paling sering terjadi?",
+        a: "Tujuh kebocoran utama: diskon tanpa batas, order batal, waste, salah order, biaya kanal, menu ramai bermargin tipis, dan pelanggan yang tidak kembali.",
+      },
+      {
+        q: "Kebocoran mana yang harus diperbaiki lebih dulu?",
+        a: "Kalikan kerugian per kejadian dengan frekuensinya; masalah yang sering dan mahal menjadi prioritas pertama, bukan sekadar insiden terbesar.",
+      },
+    ],
+    description:
+      "Kenali tujuh kebocoran yang membuat order ramai tidak berubah menjadi profit: diskon, pembatalan, waste, salah order, komisi, menu margin rendah, dan pelanggan yang tidak kembali.",
+    lede: (
+      <>
+        Antrean panjang dan notifikasi order bisa terlihat seperti pertumbuhan.
+        Namun omzet bukan uang yang benar-benar tersisa. Jika biaya, kesalahan,
+        dan diskon naik bersama volume, usaha bisa makin sibuk tanpa makin sehat.
+      </>
+    ),
+    tldr: [
+      "Profit perlu dilihat per order dan per menu, bukan hanya dari omzet harian.",
+      "Tujuh kebocoran utama adalah diskon, pembatalan, waste, salah order, biaya kanal, menu margin rendah, dan retensi buruk.",
+      "Catat penyebab kebocoran agar tindakan perbaikannya tepat.",
+      "Prioritaskan kebocoran berdasarkan nilai rupiah dan frekuensi.",
+      "Data chat dan order yang rapi membantu menemukan pola tanpa rekap manual.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Mengapa order ramai belum tentu membuat profit naik?",
+        toc: "Jawaban singkat",
+        body: (
+          <p>
+            Karena setiap order membawa pendapatan sekaligus biaya. Profit tidak
+            naik ketika tambahan pendapatan habis untuk bahan, promo, komisi,
+            pemborosan, remake, dan pelanggan yang hanya membeli sekali.
+          </p>
+        ),
+      },
+      {
+        id: "tujuh-kebocoran",
+        heading: "Tujuh kebocoran yang paling sering tidak terlihat",
+        toc: "7 kebocoran profit",
+        body: (
+          <ol>
+            <li><b>Diskon tanpa batas:</b> penjualan naik, tetapi margin hilang.</li>
+            <li><b>Order batal:</b> waktu dan bahan sudah disiapkan tanpa pendapatan.</li>
+            <li><b>Waste:</b> bahan kedaluwarsa, porsi berlebih, dan produk tidak terjual.</li>
+            <li><b>Salah order:</b> remake, refund, dan kepercayaan pelanggan turun.</li>
+            <li><b>Biaya kanal:</b> komisi dan promo platform tidak masuk perhitungan harga.</li>
+            <li><b>Menu ramai bermargin tipis:</b> dapur sibuk untuk kontribusi kecil.</li>
+            <li><b>Pelanggan tidak kembali:</b> biaya mendapatkan order terus berulang dari nol.</li>
+          </ol>
+        ),
+      },
+      {
+        id: "prioritas",
+        heading: "Cara menentukan kebocoran mana yang diperbaiki lebih dulu",
+        toc: "Menentukan prioritas",
+        body: (
+          <>
+            <p>
+              Nilai setiap masalah dengan dua angka: kerugian per kejadian dan
+              frekuensi kejadian. Kalikan keduanya untuk mendapat estimasi dampak.
+              Masalah yang sering dan mahal menjadi prioritas pertama.
+            </p>
+            <p>
+              Contoh: remake Rp25.000 sebanyak 20 kali lebih mendesak daripada
+              satu pembatalan Rp100.000. Perbaiki pola, bukan hanya insiden terbesar.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "ritme-review",
+        heading: "Ritme review sederhana agar profit tidak bocor lagi",
+        toc: "Ritme review",
+        body: (
+          <ul>
+            <li>Harian: order batal, remake, diskon, dan waste.</li>
+            <li>Mingguan: margin per menu, biaya kanal, dan jam paling produktif.</li>
+            <li>Bulanan: repeat order, perubahan harga bahan, dan kontribusi tiap kanal.</li>
+          </ul>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Dari chat menjadi sinyal kebocoran bisnis",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Ketika order dari WhatsApp tercatat secara konsisten, pola pembatalan,
+              diskon, menu, dan pelanggan bisa dibaca tanpa rekap manual. Sosmed AI
+              dirancang untuk merapikan konteks tersebut menjadi ringkasan yang berguna.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "mengetahui-menu-paling-laku-dan-menguntungkan", g: "g7", tag: "Panduan", title: "Menu Paling Laku dan Paling Menguntungkan", excerpt: "Bedakan popularitas, margin, dan kontribusi menu." },
+      { slug: "meningkatkan-penjualan-profit-fnb-kecil", g: "g7", tag: "Panduan", title: "Meningkatkan Penjualan & Profit F&B", excerpt: "Gunakan data order harian untuk keputusan yang lebih sehat." },
+      { slug: "laporan-penjualan-harian", g: "g7", tag: "Panduan", title: "Laporan Penjualan Harian", excerpt: "Angka penting yang perlu dipantau setiap hari." },
+    ],
+  },
+
+  "program-loyalti-whatsapp-untuk-umkm": {
+    title: "Program Loyalti WhatsApp untuk UMKM: Poin, Reward, dan Repeat Order",
+    category: "Panduan",
+    readTime: "7 menit baca",
+    datePublished: "2026-07-11",
+    coverTitle: "Program Loyalti Langsung di WhatsApp",
+    keywords: [
+      "program loyalti WhatsApp",
+      "poin pelanggan UMKM",
+      "reward F&B",
+      "repeat order",
+      "loyalitas tanpa kartu member",
+    ],
+    faq: [
+      {
+        q: "Seperti apa program loyalti WhatsApp yang efektif?",
+        a: "Aturannya singkat, progres terlihat, reward dapat dicapai, dan pencatatan otomatis. Pelanggan cukup memakai nomor WhatsApp—tanpa kartu member atau aplikasi tambahan.",
+      },
+      {
+        q: "Bagaimana menghitung biaya reward agar tetap sehat?",
+        a: "Gunakan biaya produksi reward, bukan harga jualnya, dan pastikan tambahan margin dari pembelian yang dibutuhkan untuk mencapai reward lebih besar daripada biaya reward serta biaya operasional program.",
+      },
+      {
+        q: "Kapan poin sebaiknya diberikan?",
+        a: "Poin masuk setelah order selesai dan pembayaran terkonfirmasi, dan refund mengembalikan poin yang sudah diberikan.",
+      },
+    ],
+    description:
+      "Panduan merancang program loyalti WhatsApp untuk UMKM dengan poin dan reward yang mudah dipahami, sehat untuk margin, dan mendorong repeat order.",
+    lede: (
+      <>
+        Program loyalti gagal bukan karena pelanggan tidak suka hadiah. Biasanya
+        sistemnya terlalu rumit, reward terasa terlalu jauh, atau pencatatannya
+        menambah kerja kasir. Program terbaik terasa sederhana bagi pelanggan dan pemilik.
+      </>
+    ),
+    tldr: [
+      "Tetapkan satu perilaku utama: membuat pelanggan kembali lebih cepat atau lebih sering.",
+      "Reward harus terasa bernilai bagi pelanggan tetapi biayanya tetap terkendali.",
+      "Progres perlu terlihat dan mudah dicek langsung di WhatsApp.",
+      "Jangan memberi poin untuk transaksi yang dibatalkan atau direfund.",
+      "Ukur redemption, repeat rate, jarak antar-order, dan biaya reward.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Seperti apa program loyalti WhatsApp yang efektif?",
+        toc: "Jawaban singkat",
+        body: (
+          <p>
+            Program yang efektif memiliki aturan singkat, progres yang terlihat,
+            reward yang dapat dicapai, dan pencatatan otomatis. Pelanggan cukup
+            memakai nomor WhatsApp—tanpa kartu member atau aplikasi tambahan.
+          </p>
+        ),
+      },
+      {
+        id: "desain-program",
+        heading: "Rancang dari perilaku yang ingin diubah",
+        toc: "Desain program",
+        body: (
+          <>
+            <p>
+              Tentukan tujuan sebelum menentukan poin. Jika pelanggan biasanya
+              kembali setiap 20 hari, program dapat dirancang untuk mendekatkan
+              kunjungan berikutnya. Jika nilai transaksi kecil, reward dapat mendorong bundling.
+            </p>
+            <ul>
+              <li><b>Stempel:</b> cocok untuk menu dan harga yang relatif seragam.</li>
+              <li><b>Poin berbasis nilai:</b> cocok untuk variasi nilai transaksi.</li>
+              <li><b>Tier:</b> cocok setelah basis pelanggan aktif sudah cukup besar.</li>
+            </ul>
+          </>
+        ),
+      },
+      {
+        id: "ekonomi-reward",
+        heading: "Hitung biaya reward sebelum program diluncurkan",
+        toc: "Ekonomi reward",
+        body: (
+          <p>
+            Gunakan biaya produksi reward, bukan harga jualnya. Pastikan tambahan
+            margin dari pembelian yang dibutuhkan untuk mencapai reward lebih besar
+            daripada biaya reward dan biaya operasional program. Hindari reward
+            yang mendorong kunjungan tetapi membuat setiap kunjungan merugi.
+          </p>
+        ),
+      },
+      {
+        id: "anti-ribet",
+        heading: "Aturan minimum agar pelanggan dan staf tidak bingung",
+        toc: "Aturan minimum",
+        body: (
+          <ul>
+            <li>Satu nomor WhatsApp mewakili satu akun pelanggan.</li>
+            <li>Poin masuk setelah order selesai dan pembayaran terkonfirmasi.</li>
+            <li>Refund mengembalikan poin yang sudah diberikan.</li>
+            <li>Masa berlaku dan pengecualian disampaikan dengan bahasa sederhana.</li>
+            <li>Pelanggan dapat mengecek progres kapan saja melalui chat.</li>
+          </ul>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Loyalti yang berjalan di percakapan pelanggan",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI dirancang menghubungkan order, identitas pelanggan, poin,
+              dan reward di WhatsApp. Tujuannya agar loyalti tidak menjadi spreadsheet
+              baru yang harus dijaga manual setiap selesai transaksi.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "mengubah-chat-whatsapp-menjadi-pelanggan-setia", g: "g5", tag: "Tips Bisnis", title: "Mengubah Chat Menjadi Pelanggan Setia", excerpt: "Bangun memori pelanggan dari percakapan sehari-hari." },
+      { slug: "sistem-poin-sederhana", g: "g5", tag: "Panduan", title: "Sistem Poin Sederhana untuk F&B", excerpt: "Dasar program poin yang ringan dijalankan." },
+      { slug: "cara-menjaga-pelanggan-lama-lewat-whatsapp", g: "g5", tag: "Tips Bisnis", title: "Menjaga Pelanggan Lama Tanpa Spam", excerpt: "Follow-up yang personal, relevan, dan terukur." },
+    ],
+  },
+
+  "mengetahui-menu-paling-laku-dan-menguntungkan": {
+    title: "Cara Mengetahui Menu Paling Laku dan Paling Menguntungkan dari WhatsApp",
+    category: "Panduan",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-11",
+    coverTitle: "Menu Laku Belum Tentu Paling Untung",
+    keywords: [
+      "menu paling laku",
+      "menu paling menguntungkan",
+      "margin menu F&B",
+      "analisis menu WhatsApp",
+      "menu engineering UMKM",
+    ],
+    faq: [
+      {
+        q: "Bagaimana menentukan menu yang benar-benar menguntungkan?",
+        a: "Hitung margin kontribusi per item—harga jual dikurangi biaya bahan, kemasan, dan biaya transaksi—lalu kalikan dengan jumlah terjual, dan bandingkan dengan popularitas serta beban operasional menu.",
+      },
+      {
+        q: "Apa bedanya menu populer dan menu menguntungkan?",
+        a: "Menu paling sering dipesan belum tentu paling menguntungkan; bisa jadi penjualannya tinggi tetapi bahannya mahal, pengerjaannya lama, atau sering terkena diskon.",
+      },
+      {
+        q: "Bagaimana cara mengelompokkan menu?",
+        a: "Menjadi empat kelompok: bintang (laku & margin tinggi), kuda kerja (laku tetapi margin tipis), teka-teki (margin tinggi tetapi jarang dipesan), dan beban (tidak laku & margin rendah).",
+      },
+    ],
+    description:
+      "Cara membaca data order WhatsApp untuk membedakan menu populer, menu bermargin tinggi, dan menu dengan kontribusi profit terbesar.",
+    lede: (
+      <>
+        Menu paling sering dipesan belum tentu paling menguntungkan. Bisa jadi
+        penjualannya tinggi tetapi bahan mahal, pengerjaannya lama, atau sering
+        terkena diskon. Keputusan menu yang sehat membutuhkan lebih dari angka terjual.
+      </>
+    ),
+    tldr: [
+      "Pisahkan popularitas, margin per item, dan total kontribusi profit.",
+      "Hitung biaya bahan dan kemasan secara konsisten untuk setiap porsi.",
+      "Kelompokkan menu menjadi bintang, kuda kerja, teka-teki, dan beban.",
+      "Gunakan bundling untuk memasangkan menu populer dengan menu bermargin sehat.",
+      "Masukkan waktu produksi dan tingkat kesalahan sebagai biaya operasional tersembunyi.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Bagaimana menentukan menu yang benar-benar menguntungkan?",
+        toc: "Jawaban singkat",
+        body: (
+          <p>
+            Hitung margin kontribusi per item—harga jual dikurangi biaya bahan,
+            kemasan, dan biaya transaksi—lalu kalikan dengan jumlah terjual.
+            Bandingkan hasilnya dengan popularitas serta beban operasional menu.
+          </p>
+        ),
+      },
+      {
+        id: "empat-kelompok",
+        heading: "Kelompokkan menu berdasarkan popularitas dan margin",
+        toc: "4 kelompok menu",
+        body: (
+          <ul>
+            <li><b>Bintang:</b> laku dan margin tinggi—jaga kualitas serta ketersediaannya.</li>
+            <li><b>Kuda kerja:</b> laku tetapi margin tipis—perbaiki porsi, harga, atau bundling.</li>
+            <li><b>Teka-teki:</b> margin tinggi tetapi jarang dipesan—perbaiki nama, foto, dan posisi.</li>
+            <li><b>Beban:</b> tidak laku dan margin rendah—evaluasi untuk diubah atau dihentikan.</li>
+          </ul>
+        ),
+      },
+      {
+        id: "biaya-tersembunyi",
+        heading: "Jangan abaikan biaya yang tidak terlihat di resep",
+        toc: "Biaya tersembunyi",
+        body: (
+          <p>
+            Menu dengan bahan murah dapat tetap membebani usaha jika membutuhkan
+            waktu lama, alat khusus, banyak langkah, atau sering dibuat ulang.
+            Tambahkan waktu produksi, waste, komisi kanal, dan tingkat komplain
+            ketika membandingkan profitabilitas nyata.
+          </p>
+        ),
+      },
+      {
+        id: "tindakan",
+        heading: "Tindakan berbeda untuk setiap kelompok menu",
+        toc: "Tindakan menu",
+        body: (
+          <>
+            <p>
+              Dorong menu bintang di urutan awal menu digital. Pasangkan kuda kerja
+              dengan add-on bermargin tinggi. Uji ulang nama dan presentasi menu
+              teka-teki. Untuk menu beban, lakukan eksperimen terbatas sebelum menghapusnya.
+            </p>
+            <p>Ubah satu variabel dalam satu waktu agar hasil pengujian dapat dibaca.</p>
+          </>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Mengubah order WhatsApp menjadi keputusan menu",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI dirancang membantu mengubah percakapan order menjadi data
+              item, jumlah, pelanggan, dan tren. Pemilik dapat melihat pola menu
+              tanpa menghitung ulang setiap chat secara manual.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "order-ramai-profit-tidak-naik", g: "g7", tag: "Tips Bisnis", title: "Order Ramai tapi Profit Tidak Naik?", excerpt: "Temukan tujuh kebocoran profit yang sering tersembunyi." },
+      { slug: "meningkatkan-penjualan-profit-fnb-kecil", g: "g7", tag: "Panduan", title: "Meningkatkan Penjualan & Profit F&B", excerpt: "Gunakan data harian untuk keputusan bisnis." },
+      { slug: "menu-digital-mudah-dipesan", g: "g4", tag: "Tips Bisnis", title: "Menu Digital yang Mudah Dipesan", excerpt: "Susun menu agar pelanggan cepat menentukan pilihan." },
+    ],
+  },
+
+  "ai-native-whatsapp-vs-chatbot": {
+    title: "AI-Native di WhatsApp vs Chatbot: Mana yang Cocok untuk UMKM F&B?",
+    category: "Produk",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-11",
+    coverTitle: "AI-Native di WhatsApp vs Chatbot",
+    keywords: [
+      "AI-native WhatsApp",
+      "chatbot vs AI",
+      "otomatisasi WhatsApp UMKM",
+      "AI F&B Indonesia",
+      "chatbot skrip",
+    ],
+    faq: [
+      {
+        q: "Apa perbedaan AI-native di WhatsApp dan chatbot?",
+        a: "Chatbot berbasis skrip mencocokkan input dengan menu, keyword, atau pohon keputusan; sistem AI-native menafsirkan maksud, mempertahankan konteks percakapan, dan memakainya untuk membantu order, pelanggan, loyalitas, serta laporan.",
+      },
+      {
+        q: "Kapan bisnis membutuhkan pendekatan AI-native?",
+        a: "Ketika variasi bahasa pelanggan tinggi, order memiliki banyak modifikasi, pelanggan sering kembali, dan data chat perlu menggerakkan proses lain. Jika kebutuhan hanya beberapa pertanyaan statis, solusi lebih sederhana bisa cukup.",
+      },
+      {
+        q: "Apakah AI-native berarti AI bertindak tanpa batas?",
+        a: "Tidak. Harga, stok, dan promo harus berasal dari data usaha yang disetujui, perubahan order perlu dikonfirmasi, kasus berat dapat dialihkan ke manusia, dan riwayat tindakan dapat diperiksa pemilik.",
+      },
+    ],
+    description:
+      "Perbedaan chatbot berbasis skrip dan sistem AI-native di WhatsApp untuk order, konteks pelanggan, loyalitas, serta insight bisnis UMKM F&B.",
+    lede: (
+      <>
+        Tidak semua otomatisasi percakapan bekerja dengan cara yang sama. Chatbot
+        mengikuti jalur yang sudah ditentukan. Sistem AI-native dirancang memahami
+        maksud percakapan, menjaga konteks, dan menghubungkannya dengan pekerjaan bisnis.
+      </>
+    ),
+    tldr: [
+      "Chatbot cocok untuk pertanyaan sempit dengan pilihan yang stabil dan terstruktur.",
+      "AI-native lebih cocok ketika pelanggan menggunakan bahasa bebas dan sering mengubah detail order.",
+      "Perbedaan utamanya terletak pada konteks, fleksibilitas, dan koneksi ke proses bisnis.",
+      "AI tetap membutuhkan aturan, batas tindakan, validasi, dan jalur eskalasi ke manusia.",
+      "Sosmed AI bukan chatbot; produk dirancang AI-native langsung di WhatsApp.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Apa perbedaan AI-native di WhatsApp dan chatbot?",
+        toc: "Jawaban singkat",
+        body: (
+          <p>
+            Chatbot berbasis skrip mencocokkan input dengan menu, keyword, atau
+            pohon keputusan. Sistem AI-native menafsirkan maksud, mempertahankan
+            konteks percakapan, dan memakai konteks tersebut untuk membantu order,
+            pelanggan, loyalitas, serta laporan.
+          </p>
+        ),
+      },
+      {
+        id: "perbandingan",
+        heading: "Perbandingan dalam situasi nyata warung dan kafe",
+        toc: "Perbandingan nyata",
+        body: (
+          <>
+            <p>
+              Pelanggan jarang berbicara seperti formulir. Mereka bisa menulis:
+              “yang kemarin tapi less sugar, ambil jam setengah satu.” Chatbot
+              membutuhkan opsi dan kata kunci yang tepat. AI-native dapat memakai
+              riwayat serta konteks untuk memahami menu, modifikasi, dan waktu pengambilan.
+            </p>
+            <p>
+              Namun untuk pertanyaan tetap seperti jam buka atau alamat, chatbot
+              sederhana bisa memadai. Teknologi harus dipilih berdasarkan kompleksitas pekerjaan.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "bukan-bebas",
+        heading: "AI-native bukan berarti AI boleh bertindak tanpa batas",
+        toc: "Batas dan kontrol",
+        body: (
+          <ul>
+            <li>Harga, stok, promo, dan kebijakan harus berasal dari data usaha yang disetujui.</li>
+            <li>Perubahan order perlu dikonfirmasi sebelum diteruskan.</li>
+            <li>Kasus ambigu, komplain berat, dan refund harus dapat dialihkan ke manusia.</li>
+            <li>Riwayat tindakan perlu dapat diperiksa oleh pemilik usaha.</li>
+          </ul>
+        ),
+      },
+      {
+        id: "cara-memilih",
+        heading: "Kapan bisnis membutuhkan pendekatan AI-native?",
+        toc: "Kapan memilih AI-native",
+        body: (
+          <p>
+            Pertimbangkan AI-native jika variasi bahasa pelanggan tinggi, order
+            memiliki banyak modifikasi, pelanggan sering kembali, dan data chat
+            perlu menggerakkan proses lain. Jika kebutuhan hanya tiga pertanyaan
+            statis, solusi yang lebih sederhana mungkin sudah cukup.
+          </p>
+        ),
+      },
+      {
+        id: "sosmed-ai",
+        heading: "Mengapa Sosmed AI dibangun AI-native di WhatsApp",
+        toc: "Mengapa AI-native",
+        body: (
+          <>
+            <p>
+              Usaha F&amp;B kecil membutuhkan percakapan yang fleksibel tanpa
+              menambah beban administrasi. Karena itu Sosmed AI dirancang dari awal
+              agar chat natural dapat terhubung ke order, pelanggan, poin, dan insight.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "otomatisasi-whatsapp-untuk-umkm-fnb", g: "g3", tag: "Panduan", title: "Otomatisasi WhatsApp untuk UMKM F&B", excerpt: "Kurangi kerja manual dan rapikan order." },
+      { slug: "mengubah-chat-whatsapp-menjadi-pelanggan-setia", g: "g5", tag: "Tips Bisnis", title: "Mengubah Chat Menjadi Pelanggan Setia", excerpt: "Gunakan konteks percakapan untuk membangun retensi." },
+      { slug: "yang-sedang-kami-bangun", g: "g3", tag: "Produk", title: "Bukan Sekadar Chatbot: Sosmed AI", excerpt: "Apa yang sedang kami bangun untuk UMKM F&B." },
+    ],
+  },
+
   "mulai-jualan-online-warung-kafe": {
     title: "Mulai Jualan Online untuk Warung & Kafe: Panduan Lengkap",
     category: "Panduan",
@@ -409,6 +1072,724 @@ export const ARTICLES: Record<string, Article> = {
         title: "Sistem Poin Sederhana untuk Usaha F&B Kecil",
         excerpt:
           "Program loyalitas yang ringan dijalankan dan disukai pelanggan.",
+      },
+    ],
+  },
+
+  "otomatisasi-whatsapp-untuk-umkm-fnb": {
+    title: "Otomatisasi WhatsApp untuk UMKM F&B: Kerja Manual Berkurang, Order Tetap Rapi",
+    category: "Panduan",
+    readTime: "6 menit baca",
+    datePublished: "2026-07-11",
+    coverTitle: "Otomatisasi WhatsApp untuk UMKM F&B",
+    keywords: [
+      "otomatisasi WhatsApp UMKM",
+      "otomasi F&B",
+      "order WhatsApp otomatis",
+      "WhatsApp bisnis F&B",
+      "kurangi kerja manual",
+    ],
+    faq: [
+      {
+        q: "Apa itu otomatisasi WhatsApp untuk UMKM F&B?",
+        a: "Cara membuat chat pelanggan tidak berhenti sebagai percakapan: order, permintaan menu, status pembayaran, poin, dan ringkasan penjualan dibantu dicatat serta ditata otomatis, sehingga pemilik tidak perlu menyalin semuanya satu per satu.",
+      },
+      {
+        q: "Apa yang sebaiknya diotomatisasi lebih dulu?",
+        a: "Pekerjaan yang sering terjadi dan jelas polanya: pencatatan order, menu digital, poin dan pelanggan setia, serta laporan harian.",
+      },
+      {
+        q: "Apakah otomatisasi menghilangkan sentuhan manusia?",
+        a: "Tidak. Otomasi yang baik bekerja di belakang layar—memastikan order tercatat dan pelanggan tetap dibalas—sementara pelayanan tetap terasa manusiawi.",
+      },
+    ],
+    description:
+      "Panduan otomasi WhatsApp untuk warung, kafe, dan restoran kecil: kurangi pencatatan manual, rapikan order, jaga pelanggan, dan baca penjualan harian dari satu alur.",
+    lede: (
+      <>
+        Banyak pemilik warung, kafe, dan restoran kecil tidak kekurangan kerja
+        keras. Yang sering kurang adalah sistem yang membuat kerja keras itu
+        tidak bocor ke mana-mana. Otomatisasi WhatsApp bukan berarti usaha Anda
+        jadi dingin dan robotik. Justru sebaliknya: pekerjaan manual berulang
+        dirapikan, supaya Anda punya lebih banyak waktu melayani pelanggan.
+      </>
+    ),
+    tldr: [
+      "Otomatisasi WhatsApp paling berguna ketika menghapus kerja berulang: mencatat order, menghitung total, mengingatkan poin, dan membuat laporan.",
+      "Untuk UMKM F&B, WhatsApp cocok karena pelanggan sudah terbiasa memesan lewat chat.",
+      "Kunci otomasi bukan mengganti manusia, tapi membuat alur order lebih konsisten.",
+      "Sosmed AI bukan chatbot skrip; pendekatannya AI-native di WhatsApp.",
+      "Data dari chat bisa berubah menjadi insight: menu terlaris, jam ramai, pelanggan yang sering kembali, dan potensi promo.",
+      "Sosmed AI sedang disiapkan untuk membantu alur ini langsung dari WhatsApp.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Jawaban singkat: apa itu otomatisasi WhatsApp untuk UMKM F&B?",
+        toc: "Jawaban singkat",
+        body: (
+          <p>
+            Otomatisasi WhatsApp untuk UMKM F&amp;B adalah cara membuat chat
+            pelanggan tidak berhenti sebagai percakapan saja. Pesan order,
+            permintaan menu, status pembayaran, poin pelanggan, dan ringkasan
+            penjualan dapat dibantu dicatat dan ditata secara otomatis, sehingga
+            pemilik usaha tidak perlu menyalin semuanya satu per satu.
+          </p>
+        ),
+      },
+      {
+        id: "masalah-manual",
+        heading: "Masalah sebenarnya bukan chat, tapi kerja manual setelah chat",
+        toc: "Masalah kerja manual",
+        body: (
+          <>
+            <p>
+              WhatsApp sudah terasa natural: pelanggan bertanya, pesan, mengubah
+              pesanan, lalu konfirmasi. Masalahnya muncul setelah itu. Order
+              harus dicatat, total harus dihitung, stok harus diingat, pelanggan
+              tetap harus dikenali, dan laporan harian tetap harus dibuat.
+            </p>
+            <p>
+              Selama order masih sedikit, semua bisa diingat. Saat order mulai
+              naik, cara manual berubah jadi risiko: pesanan tercecer, balasan
+              lambat, pelanggan menunggu, dan pemilik sulit tahu menu mana yang
+              benar-benar menghasilkan.
+            </p>
+            <Figure cap="Ilustrasi: order dari WhatsApp berubah menjadi alur yang lebih rapi.">
+              <WaChat
+                head
+                msgs={[
+                  { side: "in", text: "Kak, pesan 2 kopi susu aren ya" },
+                  {
+                    side: "out",
+                    text: "Siap kak. Tercatat: 2 kopi susu aren. Total Rp 36.000 ✅",
+                  },
+                ]}
+              />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        id: "yang-bisa-diotomatisasi",
+        heading: "Apa saja yang sebaiknya diotomatisasi lebih dulu?",
+        toc: "Yang diotomatisasi",
+        body: (
+          <>
+            <p>
+              Mulai dari pekerjaan yang sering terjadi, jelas polanya, dan
+              mudah bikin capek jika dikerjakan manual:
+            </p>
+            <ul>
+              <li>
+                <b>Pencatatan order:</b> item, jumlah, catatan khusus, total,
+                dan status pesanan.
+              </li>
+              <li>
+                <b>Menu digital:</b> pelanggan bisa melihat pilihan yang rapi,
+                bukan bertanya harga satu per satu.
+              </li>
+              <li>
+                <b>Poin dan pelanggan setia:</b> pelanggan lama dikenali dan
+                diingatkan secara relevan.
+              </li>
+              <li>
+                <b>Laporan harian:</b> order, pendapatan, menu terlaris, dan jam
+                ramai diringkas tanpa rekap manual.
+              </li>
+            </ul>
+          </>
+        ),
+      },
+      {
+        id: "tetap-manusiawi",
+        heading: "Otomatis bukan berarti kehilangan sentuhan manusia",
+        toc: "Tetap manusiawi",
+        body: (
+          <p>
+            Pelanggan tetap ingin merasa dilayani manusia. Karena itu otomasi
+            yang baik tidak perlu terdengar kaku. Tugasnya membantu hal-hal di
+            belakang layar: memastikan order tercatat, pelanggan tidak lupa
+            dibalas, dan informasi penting tidak hilang di tengah chat.
+          </p>
+        ),
+      },
+      {
+        id: "dampak-ke-penjualan",
+        heading: "Bagaimana otomatisasi membantu penjualan dan profit?",
+        toc: "Dampak ke profit",
+        body: (
+          <>
+            <p>
+              Penjualan naik bukan hanya karena lebih banyak promosi. Sering
+              kali kenaikan datang dari kebocoran kecil yang ditutup: order yang
+              dulu terlewat jadi tercatat, pelanggan lama diingatkan dengan
+              tepat, dan menu yang margin-nya bagus lebih mudah didorong.
+            </p>
+            <p>
+              Profit juga terbantu karena data harian memberi sinyal: kapan stok
+              perlu ditambah, menu mana yang sebaiknya dipaketkan, dan jam sepi
+              mana yang cocok diberi penawaran.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "sosmed-ai",
+        heading: "Di mana peran Sosmed AI?",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI dirancang untuk membantu pemilik usaha F&amp;B kecil
+              menjalankan alur ini langsung dari WhatsApp: order, menu digital,
+              pelanggan setia, dan laporan sederhana. Tujuannya bukan menambah
+              dashboard baru yang harus dijaga, tetapi mengurangi pekerjaan
+              manual yang selama ini membuat pemilik cepat lelah.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      {
+        slug: "cara-mengurangi-chaos-operasional-warung-kafe",
+        g: "g6",
+        tag: "Tips Bisnis",
+        title: "Cara Mengurangi Chaos Operasional Warung & Kafe Saat Order Mulai Ramai",
+        excerpt: "Framework sederhana agar pesanan tidak tercecer saat ramai.",
+      },
+      {
+        slug: "cara-menjaga-pelanggan-lama-lewat-whatsapp",
+        g: "g5",
+        tag: "Tips Bisnis",
+        title: "Cara Menjaga Pelanggan Lama Lewat WhatsApp Tanpa Spam",
+        excerpt: "Retensi pelanggan yang personal, relevan, dan terukur.",
+      },
+      {
+        slug: "meningkatkan-penjualan-profit-fnb-kecil",
+        g: "g7",
+        tag: "Panduan",
+        title: "Meningkatkan Penjualan & Profit F&B Kecil dengan Data Order Harian",
+        excerpt: "Gunakan data sederhana untuk menu, bundling, stok, dan margin.",
+      },
+    ],
+  },
+
+  "cara-mengurangi-chaos-operasional-warung-kafe": {
+    title: "Cara Mengurangi Chaos Operasional Warung & Kafe Saat Order Mulai Ramai",
+    category: "Tips Bisnis",
+    readTime: "6 menit baca",
+    datePublished: "2026-07-11",
+    coverTitle: "Kurangi chaos saat order mulai ramai",
+    keywords: [
+      "chaos operasional warung",
+      "kelola order jam ramai",
+      "status pesanan F&B",
+      "operasional kafe",
+      "stok kritis",
+    ],
+    faq: [
+      {
+        q: "Kenapa jam ramai sering berubah menjadi chaos?",
+        a: "Karena order, status, stok, dan tugas tim tidak berada di satu alur yang jelas, sehingga banyak keputusan kecil yang berulang harus diambil justru saat paling sibuk.",
+      },
+      {
+        q: "Status order apa saja yang perlu dibuat?",
+        a: "Lima status sederhana: baru, diproses, siap, selesai, dan batal—agar tim tahu prioritas berikutnya tanpa menebak.",
+      },
+      {
+        q: "Apakah WhatsApp tetap bisa dipakai menerima order saat ramai?",
+        a: "Bisa, asalkan chat bukan satu-satunya tempat pencatatan. WhatsApp menjadi pintu masuk, tetapi order perlu berubah menjadi daftar yang bisa dilihat dan dipercaya tim.",
+      },
+    ],
+    description:
+      "Cara mengurangi chaos operasional warung dan kafe kecil: rapikan order, status pesanan, stok, dan pembagian kerja agar jam ramai tidak berubah jadi kekacauan.",
+    lede: (
+      <>
+        Jam ramai seharusnya menjadi waktu terbaik untuk menghasilkan uang.
+        Tetapi bagi banyak usaha kecil, jam ramai justru jadi sumber chaos:
+        order masuk dari banyak arah, stok menipis tanpa terasa, pelanggan
+        bertanya status, dan tim mulai saling menebak. Kuncinya bukan bekerja
+        lebih cepat saja, tetapi membuat sistem yang mengurangi keputusan kecil
+        yang berulang.
+      </>
+    ),
+    tldr: [
+      "Chaos biasanya muncul karena order, status, stok, dan tugas tim tidak berada di satu alur yang jelas.",
+      "Setiap order perlu punya status: baru, diproses, siap, selesai, atau dibatalkan.",
+      "Jam ramai harus disiapkan sebelum ramai: menu prioritas, stok kritis, dan peran tim.",
+      "WhatsApp bisa tetap menjadi pintu order, asalkan chat tidak menjadi satu-satunya tempat pencatatan.",
+      "Pendekatan yang dibutuhkan bukan chatbot skrip, tetapi AI-native di WhatsApp yang paham konteks chat.",
+      "Sosmed AI disiapkan untuk membantu order dari chat menjadi lebih terstruktur.",
+    ],
+    sections: [
+      {
+        id: "akar-chaos",
+        heading: "Akar chaos: terlalu banyak hal hidup di kepala pemilik",
+        toc: "Akar chaos",
+        body: (
+          <p>
+            Banyak usaha kecil berjalan karena pemiliknya sangat hafal semuanya:
+            menu, harga, pelanggan langganan, stok, dan urutan order. Ini kuat
+            saat usaha masih kecil, tetapi rapuh saat volume naik. Begitu
+            pemilik sedang melayani pelanggan, chat baru masuk, stok habis, dan
+            karyawan bertanya, sistem yang hanya hidup di kepala mulai kewalahan.
+          </p>
+        ),
+      },
+      {
+        id: "status-order",
+        heading: "Buat status order yang sederhana",
+        toc: "Status order",
+        body: (
+          <>
+            <p>
+              Setiap pesanan sebaiknya tidak hanya “ada di chat”. Beri status
+              yang mudah dimengerti:
+            </p>
+            <ul>
+              <li><b>Baru:</b> pesanan masuk dan perlu dikonfirmasi.</li>
+              <li><b>Diproses:</b> pesanan sedang dibuat.</li>
+              <li><b>Siap:</b> pesanan siap diambil atau dikirim.</li>
+              <li><b>Selesai:</b> pesanan sudah diterima pelanggan.</li>
+              <li><b>Batal:</b> pesanan tidak jadi diproses.</li>
+            </ul>
+            <Figure cap="Ilustrasi: status order membantu tim tahu prioritas berikutnya.">
+              <WaChat
+                head
+                msgs={[
+                  { side: "in", text: "Order saya sudah siap belum kak?" },
+                  {
+                    side: "out",
+                    text: "Sudah masuk proses ya kak. Estimasi siap 8 menit lagi.",
+                  },
+                ]}
+              />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        id: "satu-sumber",
+        heading: "Satu sumber kebenaran untuk order",
+        toc: "Satu sumber order",
+        body: (
+          <p>
+            Kesalahan sering terjadi ketika satu order ada di chat, satu di
+            kertas, satu di ingatan kasir, dan satu lagi di grup internal. Pilih
+            satu sumber kebenaran. WhatsApp boleh menjadi pintu masuk, tetapi
+            order perlu berubah menjadi daftar yang bisa dilihat dan dipercaya
+            oleh tim.
+          </p>
+        ),
+      },
+      {
+        id: "stok-kritis",
+        heading: "Tentukan stok kritis sebelum jam ramai",
+        toc: "Stok kritis",
+        body: (
+          <p>
+            Chaos sering bukan karena order terlalu banyak, tetapi karena bahan
+            kunci habis tanpa peringatan. Tandai bahan yang paling menentukan:
+            kopi, ayam, telur, nasi, cup, kemasan, atau topping tertentu. Jika
+            stok mendekati batas kritis, tim harus tahu sebelum pelanggan sudah
+            terlanjur pesan.
+          </p>
+        ),
+      },
+      {
+        id: "peran-tim",
+        heading: "Bagi peran tim berdasarkan alur, bukan orang yang paling panik",
+        toc: "Peran tim",
+        body: (
+          <p>
+            Saat ramai, semua orang cenderung membantu apa pun yang terlihat
+            paling mendesak. Ini terasa aktif, tetapi bisa membuat pekerjaan
+            tumpang tindih. Lebih baik tentukan peran: siapa konfirmasi order,
+            siapa menyiapkan minuman, siapa packing, siapa menyerahkan pesanan,
+            dan siapa memantau stok.
+          </p>
+        ),
+      },
+      {
+        id: "otomasi",
+        heading: "Otomatiskan bagian yang paling sering mengulang",
+        toc: "Otomasi",
+        body: (
+          <>
+            <p>
+              Kalau tim terus mengetik balasan yang sama, menghitung total yang
+              sama, dan menyalin order yang sama, tenaga habis untuk pekerjaan
+              yang tidak menambah rasa makanan atau kualitas layanan. Di sinilah
+              otomasi membantu menjaga energi tim untuk hal yang lebih penting.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      {
+        slug: "otomatisasi-whatsapp-untuk-umkm-fnb",
+        g: "g3",
+        tag: "Panduan",
+        title: "Otomatisasi WhatsApp untuk UMKM F&B",
+        excerpt: "Kurangi pencatatan manual dan rapikan order dari chat.",
+      },
+      {
+        slug: "mengelola-pesanan-jam-ramai",
+        g: "g6",
+        tag: "Tips Bisnis",
+        title: "Mengelola Pesanan Saat Jam Ramai Tanpa Keteteran",
+        excerpt: "Tips menjaga pesanan tetap rapi saat sedang sibuk.",
+      },
+      {
+        slug: "laporan-penjualan-harian",
+        g: "g7",
+        tag: "Panduan",
+        title: "Laporan Penjualan Harian: Apa yang Perlu Dipantau",
+        excerpt: "Angka penting yang sebaiknya dipantau setiap hari.",
+      },
+    ],
+  },
+
+  "cara-menjaga-pelanggan-lama-lewat-whatsapp": {
+    title: "Cara Menjaga Pelanggan Lama Lewat WhatsApp Tanpa Spam",
+    category: "Tips Bisnis",
+    readTime: "6 menit baca",
+    datePublished: "2026-07-11",
+    coverTitle: "Jaga pelanggan lama tanpa spam",
+    keywords: [
+      "menjaga pelanggan lama",
+      "retensi pelanggan WhatsApp",
+      "follow-up tanpa spam",
+      "loyalitas F&B",
+      "personalisasi WhatsApp",
+    ],
+    faq: [
+      {
+        q: "Apa itu retensi pelanggan untuk usaha F&B kecil?",
+        a: "Kemampuan usaha membuat pelanggan yang sudah pernah membeli agar kembali membeli lagi—bisa sesederhana mengingat pesanan favorit, memberi poin, atau mengirim pengingat yang relevan.",
+      },
+      {
+        q: "Apa beda follow-up yang membantu dan spam?",
+        a: "Follow-up yang baik punya konteks dan relevan bagi pelanggan tertentu; spam hanya mengirim pesan yang sama ke semua kontak tanpa melihat kebiasaan mereka.",
+      },
+      {
+        q: "Kapan waktu terbaik mengirim follow-up?",
+        a: "Sesuaikan dengan konteks: pengingat makan siang menjelang siang, kopi di sore hari, dan pesan 'kami kangen' setelah pelanggan benar-benar lama tidak kembali.",
+      },
+    ],
+    description:
+      "Strategi menjaga pelanggan lama untuk warung, kafe, dan restoran kecil lewat WhatsApp: personalisasi, poin, pengingat relevan, dan follow-up yang tidak terasa spam.",
+    lede: (
+      <>
+        Banyak usaha kecil terlalu fokus mencari pelanggan baru, padahal
+        pelanggan lama sering menjadi sumber profit yang lebih sehat. Mereka
+        sudah percaya, sudah tahu rasa, dan lebih mudah kembali jika diingatkan
+        dengan cara yang tepat. Tantangannya: jangan sampai WhatsApp berubah
+        menjadi spam.
+      </>
+    ),
+    tldr: [
+      "Menjaga pelanggan lama biasanya lebih murah daripada terus mencari pelanggan baru.",
+      "WhatsApp cocok untuk retensi karena terasa personal, tetapi harus relevan dan tidak terlalu sering.",
+      "Data order membantu tahu siapa pelanggan yang layak di-follow up, bukan menebak-nebak.",
+      "Program poin sederhana memberi alasan konkret untuk kembali.",
+      "Sosmed AI bukan chatbot massal; ia dirancang AI-native di WhatsApp agar follow-up tetap kontekstual.",
+      "Sosmed AI disiapkan untuk membantu pelanggan dikenali dan dirawat langsung dari WhatsApp.",
+    ],
+    sections: [
+      {
+        id: "retensi",
+        heading: "Apa itu retensi pelanggan untuk usaha F&B kecil?",
+        toc: "Apa itu retensi",
+        body: (
+          <p>
+            Retensi pelanggan adalah kemampuan usaha membuat pelanggan yang
+            sudah pernah membeli agar kembali membeli lagi. Untuk warung dan
+            kafe, retensi bisa sesederhana mengingat pesanan favorit, memberi
+            poin, mengirim pengingat yang relevan, atau menawarkan menu baru
+            kepada orang yang kemungkinan besar tertarik.
+          </p>
+        ),
+      },
+      {
+        id: "bukan-spam",
+        heading: "Bedakan follow-up yang membantu dan spam",
+        toc: "Bukan spam",
+        body: (
+          <>
+            <p>
+              Follow-up yang baik punya konteks. Spam hanya mengirim pesan yang
+              sama ke semua orang. Contohnya:
+            </p>
+            <ul>
+              <li>
+                <b>Membantu:</b> “Kak, poin kakak tinggal 12 lagi menuju voucher.
+                Mau pakai untuk order berikutnya?”
+              </li>
+              <li>
+                <b>Mengganggu:</b> mengirim promo harian ke semua kontak tanpa
+                melihat kebiasaan mereka.
+              </li>
+            </ul>
+          </>
+        ),
+      },
+      {
+        id: "data-order",
+        heading: "Gunakan data order untuk personalisasi sederhana",
+        toc: "Data order",
+        body: (
+          <>
+            <p>
+              Personalisasi tidak harus rumit. Mulai dari tiga hal: nama
+              pelanggan, pesanan terakhir, dan frekuensi beli. Dari sana Anda
+              bisa tahu siapa yang sering kembali, siapa yang mulai jarang
+              muncul, dan menu apa yang paling cocok ditawarkan.
+            </p>
+            <Figure cap="Ilustrasi: pelanggan dikenali dari riwayat order dan poin.">
+              <PointsMockup />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        id: "poin",
+        heading: "Beri alasan untuk kembali lewat poin",
+        toc: "Sistem poin",
+        body: (
+          <p>
+            Sistem poin bekerja karena membuat manfaat kembali menjadi konkret.
+            Pelanggan tidak hanya “ingat” usaha Anda, tetapi punya alasan kecil
+            untuk memilih Anda lagi. Yang penting, aturan harus sederhana dan
+            saldo poin mudah dicek.
+          </p>
+        ),
+      },
+      {
+        id: "waktu",
+        heading: "Pilih waktu yang masuk akal",
+        toc: "Waktu follow-up",
+        body: (
+          <p>
+            Pesan yang sama bisa terasa membantu atau mengganggu tergantung
+            waktunya. Pengingat makan siang cocok menjelang siang, kopi cocok di
+            sore hari, dan pesan “kami kangen” sebaiknya dikirim setelah
+            pelanggan benar-benar lama tidak kembali.
+          </p>
+        ),
+      },
+      {
+        id: "otomasi-retensi",
+        heading: "Bagaimana otomasi membantu tanpa membuat pelanggan merasa dibotkan?",
+        toc: "Otomasi retensi",
+        body: (
+          <>
+            <p>
+              Otomasi yang baik membantu memilih siapa yang perlu dihubungi,
+              kapan waktunya, dan konteks apa yang relevan. Nada bicara tetap
+              harus ramah dan manusiawi. Tujuannya bukan membanjiri pelanggan,
+              tetapi memastikan pelanggan baik tidak terlupakan.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      {
+        slug: "5-cara-pelanggan-jadi-langganan",
+        g: "g2",
+        tag: "Tips Bisnis",
+        title: "5 Cara Bikin Pelanggan Warung Kopi Jadi Langganan",
+        excerpt: "Ide sederhana membangun pelanggan setia tanpa modal besar.",
+      },
+      {
+        slug: "sistem-poin-sederhana",
+        g: "g5",
+        tag: "Panduan",
+        title: "Sistem Poin Sederhana untuk Usaha F&B Kecil",
+        excerpt: "Program loyalitas yang ringan dijalankan.",
+      },
+      {
+        slug: "otomatisasi-whatsapp-untuk-umkm-fnb",
+        g: "g3",
+        tag: "Panduan",
+        title: "Otomatisasi WhatsApp untuk UMKM F&B",
+        excerpt: "Kurangi pencatatan manual dan rapikan order dari chat.",
+      },
+    ],
+  },
+
+  "meningkatkan-penjualan-profit-fnb-kecil": {
+    title: "Meningkatkan Penjualan & Profit F&B Kecil dengan Data Order Harian",
+    category: "Panduan",
+    readTime: "7 menit baca",
+    datePublished: "2026-07-11",
+    coverTitle: "Penjualan naik, profit lebih sehat",
+    keywords: [
+      "meningkatkan penjualan F&B",
+      "profit warung kafe",
+      "data order harian",
+      "bundling menu",
+      "promo sehat",
+    ],
+    faq: [
+      {
+        q: "Apakah penjualan naik selalu berarti profit naik?",
+        a: "Tidak. Jika menu yang laku margin-nya tipis, stok sering terbuang, atau promo terlalu boros, omzet bisa terlihat ramai tetapi profit tetap tipis.",
+      },
+      {
+        q: "Angka harian apa yang paling penting dipantau?",
+        a: "Lima angka: total order, pendapatan, menu terlaris, jam ramai, dan pelanggan yang kembali membeli lebih dari sekali.",
+      },
+      {
+        q: "Bagaimana bundling bisa menaikkan profit?",
+        a: "Bundling yang baik menggabungkan menu populer yang menarik perhatian dengan item bermargin lebih sehat, bukan sekadar membuat paket murah.",
+      },
+    ],
+    description:
+      "Cara meningkatkan penjualan dan profit usaha F&B kecil menggunakan data order harian: menu terlaris, margin, bundling, jam ramai, stok, dan pelanggan lama.",
+    lede: (
+      <>
+        Penjualan yang naik belum tentu membuat usaha lebih sehat. Jika menu
+        yang laku margin-nya tipis, stok sering terbuang, atau promo terlalu
+        boros, omzet bisa terlihat ramai tapi profit tetap tipis. Data order
+        harian membantu pemilik usaha melihat bukan hanya “berapa banyak yang
+        terjual”, tetapi “apa yang benar-benar membuat usaha tumbuh”.
+      </>
+    ),
+    tldr: [
+      "Naikkan profit dengan memahami menu terlaris, margin, jam ramai, stok, dan pelanggan yang sering kembali.",
+      "Data harian sederhana lebih berguna daripada laporan rumit yang jarang dibuka.",
+      "Bundling efektif jika menggabungkan menu populer dengan item margin sehat.",
+      "Promo sebaiknya diarahkan ke jam sepi atau pelanggan yang tepat, bukan dibakar ke semua orang.",
+      "Sosmed AI bukan chatbot; ia AI-native di WhatsApp agar data chat bisa berubah menjadi keputusan bisnis.",
+      "Sosmed AI disiapkan agar data dari order WhatsApp bisa menjadi ringkasan bisnis yang mudah dipakai.",
+    ],
+    sections: [
+      {
+        id: "penjualan-vs-profit",
+        heading: "Penjualan naik tidak selalu berarti profit naik",
+        toc: "Sales vs profit",
+        body: (
+          <p>
+            Banyak pemilik usaha bangga ketika order naik, dan itu wajar. Tapi
+            angka order hanya satu bagian cerita. Anda juga perlu tahu menu mana
+            yang paling menguntungkan, bahan mana yang sering terbuang, dan promo
+            mana yang membuat ramai tetapi tidak sehat secara margin.
+          </p>
+        ),
+      },
+      {
+        id: "angka-penting",
+        heading: "Lima angka harian yang paling penting",
+        toc: "Angka penting",
+        body: (
+          <>
+            <p>
+              Untuk usaha kecil, tidak perlu mulai dari dashboard rumit. Mulai
+              dari lima angka:
+            </p>
+            <ul>
+              <li><b>Total order:</b> berapa transaksi yang terjadi hari ini.</li>
+              <li><b>Pendapatan:</b> total uang masuk dari order.</li>
+              <li><b>Menu terlaris:</b> item yang paling sering dibeli.</li>
+              <li><b>Jam ramai:</b> kapan permintaan paling tinggi.</li>
+              <li><b>Pelanggan kembali:</b> siapa yang membeli lebih dari sekali.</li>
+            </ul>
+            <Figure cap="Contoh ilustrasi laporan - angka hanya sampel, bukan data nyata.">
+              <SummMockup />
+            </Figure>
+          </>
+        ),
+      },
+      {
+        id: "bundling",
+        heading: "Gunakan bundling untuk menaikkan nilai order",
+        toc: "Bundling",
+        body: (
+          <p>
+            Bundling bukan sekadar “paket murah”. Paket yang baik menggabungkan
+            menu yang mudah menarik perhatian dengan item yang margin-nya lebih
+            sehat. Misalnya menu kopi populer dipasangkan dengan snack yang
+            mudah disiapkan dan memberi tambahan profit.
+          </p>
+        ),
+      },
+      {
+        id: "promo",
+        heading: "Promo harus punya tujuan yang jelas",
+        toc: "Promo sehat",
+        body: (
+          <p>
+            Promo terbaik bukan selalu diskon terbesar. Kadang promo kecil di
+            jam sepi lebih berguna daripada diskon besar saat jam ramai yang
+            sebenarnya sudah penuh order. Data membantu memilih kapan promo
+            dibutuhkan dan siapa yang paling relevan menerimanya.
+          </p>
+        ),
+      },
+      {
+        id: "stok",
+        heading: "Data order membantu stok lebih presisi",
+        toc: "Stok",
+        body: (
+          <p>
+            Stok terlalu sedikit membuat penjualan hilang. Stok terlalu banyak
+            membuat bahan terbuang. Dengan melihat pola order harian, pemilik
+            bisa memperkirakan bahan yang perlu ditambah, dikurangi, atau
+            dipromosikan sebelum mendekati masa habis.
+          </p>
+        ),
+      },
+      {
+        id: "dari-whatsapp",
+        heading: "Ubah chat order menjadi insight bisnis",
+        toc: "Insight dari chat",
+        body: (
+          <>
+            <p>
+              Jika sebagian besar order masuk lewat WhatsApp, maka insight
+              bisnis juga sebaiknya lahir dari sana. Ketika order tercatat
+              otomatis, Anda tidak perlu menunggu rekap manual untuk tahu menu
+              apa yang naik, pelanggan mana yang kembali, dan keputusan apa yang
+              perlu dibuat besok.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      {
+        slug: "laporan-penjualan-harian",
+        g: "g7",
+        tag: "Panduan",
+        title: "Laporan Penjualan Harian: Apa yang Perlu Dipantau",
+        excerpt: "Angka penting yang sebaiknya dipantau setiap hari.",
+      },
+      {
+        slug: "menu-digital-mudah-dipesan",
+        g: "g4",
+        tag: "Tips Bisnis",
+        title: "Cara Atur Menu Digital yang Bikin Pelanggan Gampang Pesan",
+        excerpt: "Menyusun menu yang jelas agar pelanggan langsung pesan.",
+      },
+      {
+        slug: "otomatisasi-whatsapp-untuk-umkm-fnb",
+        g: "g3",
+        tag: "Panduan",
+        title: "Otomatisasi WhatsApp untuk UMKM F&B",
+        excerpt: "Kurangi pencatatan manual dan rapikan order dari chat.",
       },
     ],
   },
@@ -1542,6 +2923,15 @@ export const ARTICLES: Record<string, Article> = {
 
 export const ARTICLE_SLUGS = Object.keys(ARTICLES);
 
+export function formatArticleDate(datePublished: string): string {
+  return new Intl.DateTimeFormat("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${datePublished}T00:00:00.000Z`));
+}
+
 /**
  * Blog photos live in /public/blog as blog-{stem}-cover.jpg (16:9 article
  * banners) and blog-{stem}-cover-thumb.jpg (4:3 card thumbnails). The file
@@ -1550,6 +2940,15 @@ export const ARTICLE_SLUGS = Object.keys(ARTICLES);
  */
 const BLOG_IMAGE_STEM: Record<string, string> = {
   "mulai-jualan-online-warung-kafe": "mulai-jualan-online",
+  "otomatisasi-whatsapp-untuk-umkm-fnb": "otomatisasi-whatsapp",
+  "cara-mengurangi-chaos-operasional-warung-kafe": "chaos-operasional",
+  "cara-menjaga-pelanggan-lama-lewat-whatsapp": "retensi-pelanggan",
+  "meningkatkan-penjualan-profit-fnb-kecil": "penjualan-profit",
+  "mengubah-chat-whatsapp-menjadi-pelanggan-setia": "pelanggan-setia-whatsapp",
+  "order-ramai-profit-tidak-naik": "kebocoran-profit-fnb",
+  "program-loyalti-whatsapp-untuk-umkm": "loyalti-whatsapp",
+  "mengetahui-menu-paling-laku-dan-menguntungkan": "menu-laku-menguntungkan",
+  "ai-native-whatsapp-vs-chatbot": "ai-native-vs-chatbot",
   "5-cara-pelanggan-jadi-langganan": "5-cara-langganan",
   "order-whatsapp-lebih-cepat": "order-whatsapp",
   "menu-digital-mudah-dipesan": "menu-digital",

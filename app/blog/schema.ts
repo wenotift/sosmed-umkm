@@ -29,9 +29,16 @@ const PUBLISHER = {
 // Author - matches the visible "Tim Sosmed AI" byline (a team, not a person).
 const AUTHOR = { "@type": "Organization", name: "Tim Sosmed AI" };
 
+/** "7 menit baca" → ISO 8601 duration "PT7M" (schema.org timeRequired). */
+function readTimeToDuration(readTime: string): string | undefined {
+  const m = readTime.match(/\d+/);
+  return m ? `PT${m[0]}M` : undefined;
+}
+
 /** BlogPosting for a single article. */
 export function articleJsonLd(slug: string, article: Article) {
   const url = `${SITE_URL}/blog/${slug}`;
+  const timeRequired = readTimeToDuration(article.readTime);
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -44,8 +51,32 @@ export function articleJsonLd(slug: string, article: Article) {
     articleSection: article.category,
     datePublished: article.datePublished,
     dateModified: article.datePublished,
+    ...(timeRequired ? { timeRequired } : {}),
+    ...(article.keywords?.length ? { keywords: article.keywords.join(", ") } : {}),
+    isAccessibleForFree: true,
+    // Voice/answer-engine hint: read the lede + TL;DR summary aloud.
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".lede", ".tldr"],
+    },
     author: AUTHOR,
     publisher: PUBLISHER,
+  };
+}
+
+/** FAQPage built from an article's `faq` pairs (answers mirror on-page text).
+ *  Returns null when the article has no FAQ so callers can skip the script. */
+export function articleFaqJsonLd(article: Article) {
+  if (!article.faq?.length) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: "id-ID",
+    mainEntity: article.faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 }
 

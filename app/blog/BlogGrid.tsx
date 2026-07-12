@@ -17,6 +17,7 @@ export type BlogCard = {
   title: string;
   excerpt: string;
   thumb: string;
+  date: string;
 };
 
 // All tabs are always shown, even categories with zero posts.
@@ -67,7 +68,7 @@ export default function BlogGrid({ posts }: { posts: BlogCard[] }) {
                   <span className="av">S</span> <b>Tim Sosmed AI</b>
                 </div>
                 <div className="meta-row">
-                  <span>2 Juni 2026</span>
+                  <span>{post.date}</span>
                   <span className="sep"></span>
                   <span className="tag">{post.tag}</span>
                 </div>

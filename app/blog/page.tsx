@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { blogIndexJsonLd, blogBreadcrumbJsonLd } from "./schema";
-import { blogThumb } from "./articles";
+import { ARTICLES, blogThumb, formatArticleDate } from "./articles";
 import BlogGrid from "./BlogGrid";
 import NewsletterForm from "./NewsletterForm";
 
@@ -27,6 +27,73 @@ export const metadata: Metadata = {
 // WhatsApp-chat watermark used on each card thumbnail.
 // Sample/illustrative posts (no CMS yet). Publish date "2 Juni 2026", byline "Tim Sosmed AI".
 const POSTS = [
+  {
+    slug: "mengubah-chat-whatsapp-menjadi-pelanggan-setia",
+    g: "g5",
+    tag: "Tips Bisnis",
+    title: "Cara Mengubah Chat WhatsApp Menjadi Pelanggan Setia untuk Bisnis F&B",
+    excerpt: "Bangun memori pelanggan, follow-up relevan, dan repeat order melalui pendekatan AI-native di WhatsApp.",
+  },
+  {
+    slug: "order-ramai-profit-tidak-naik",
+    g: "g7",
+    tag: "Tips Bisnis",
+    title: "Order Ramai tapi Profit Tidak Naik? Ini 7 Kebocoran di Warung dan Kafe",
+    excerpt: "Temukan diskon, waste, salah order, dan kebocoran lain yang membuat omzet tidak menjadi profit.",
+  },
+  {
+    slug: "program-loyalti-whatsapp-untuk-umkm",
+    g: "g5",
+    tag: "Panduan",
+    title: "Program Loyalti WhatsApp untuk UMKM: Poin, Reward, dan Repeat Order",
+    excerpt: "Bangun loyalti tanpa kartu member dan tanpa pencatatan poin secara manual.",
+  },
+  {
+    slug: "mengetahui-menu-paling-laku-dan-menguntungkan",
+    g: "g7",
+    tag: "Panduan",
+    title: "Cara Mengetahui Menu Paling Laku dan Paling Menguntungkan dari WhatsApp",
+    excerpt: "Bedakan menu populer, margin tinggi, dan menu yang memberi kontribusi profit terbesar.",
+  },
+  {
+    slug: "ai-native-whatsapp-vs-chatbot",
+    g: "g3",
+    tag: "Produk",
+    title: "AI-Native di WhatsApp vs Chatbot: Mana yang Cocok untuk UMKM F&B?",
+    excerpt: "Pahami mengapa Sosmed AI bukan chatbot skrip dan bagaimana konteks percakapan membantu bisnis.",
+  },
+  {
+    slug: "otomatisasi-whatsapp-untuk-umkm-fnb",
+    g: "g3",
+    tag: "Panduan",
+    title: "Otomatisasi WhatsApp untuk UMKM F&B: Kerja Manual Berkurang, Order Tetap Rapi",
+    excerpt:
+      "Cara memakai WhatsApp sebagai pusat order dengan pendekatan AI-native, bukan chatbot skrip yang kaku.",
+  },
+  {
+    slug: "cara-mengurangi-chaos-operasional-warung-kafe",
+    g: "g6",
+    tag: "Tips Bisnis",
+    title: "Cara Mengurangi Chaos Operasional Warung & Kafe Saat Order Mulai Ramai",
+    excerpt:
+      "Framework sederhana agar pesanan tidak tercecer dengan bantuan AI-native di WhatsApp, bukan bot kaku.",
+  },
+  {
+    slug: "cara-menjaga-pelanggan-lama-lewat-whatsapp",
+    g: "g5",
+    tag: "Tips Bisnis",
+    title: "Cara Menjaga Pelanggan Lama Lewat WhatsApp Tanpa Spam",
+    excerpt:
+      "Retensi pelanggan yang personal dan relevan lewat AI-native di WhatsApp, bukan chatbot massal.",
+  },
+  {
+    slug: "meningkatkan-penjualan-profit-fnb-kecil",
+    g: "g7",
+    tag: "Panduan",
+    title: "Meningkatkan Penjualan & Profit F&B Kecil dengan Data Order Harian",
+    excerpt:
+      "Bukan chatbot laporan biasa: ubah chat WhatsApp menjadi insight bisnis dengan pendekatan AI-native.",
+  },
   {
     slug: "5-cara-pelanggan-jadi-langganan",
     g: "g2",
@@ -145,7 +212,8 @@ export default function BlogPage() {
             ></div>
             <div>
               <div className="fmeta">
-                <span className="cat">Panduan</span> · 2 Juni 2026
+                <span className="cat">Panduan</span> ·{" "}
+                {formatArticleDate(ARTICLES["mulai-jualan-online-warung-kafe"].datePublished)}
               </div>
               <h2>Mulai Jualan Online untuk Warung &amp; Kafe: Panduan Lengkap</h2>
               <p className="ex">
@@ -164,6 +232,7 @@ export default function BlogPage() {
             posts={POSTS.map((post) => ({
               ...post,
               thumb: blogThumb(post.slug),
+              date: formatArticleDate(ARTICLES[post.slug].datePublished),
             }))}
           />
 

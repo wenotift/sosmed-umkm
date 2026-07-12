@@ -6,8 +6,18 @@ import { pageMetadata } from "@/lib/seo";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollSpy from "./ScrollSpy";
-import { ARTICLES, ARTICLE_SLUGS, blogCover, blogThumb } from "../articles";
-import { articleJsonLd, articleBreadcrumbJsonLd } from "../schema";
+import {
+  ARTICLES,
+  ARTICLE_SLUGS,
+  blogCover,
+  blogThumb,
+  formatArticleDate,
+} from "../articles";
+import {
+  articleJsonLd,
+  articleBreadcrumbJsonLd,
+  articleFaqJsonLd,
+} from "../schema";
 
 export function generateStaticParams() {
   return ARTICLE_SLUGS.map((slug) => ({ slug }));
@@ -45,6 +55,8 @@ export default async function ArticlePage({
   const article = ARTICLES[slug];
   if (!article) notFound();
 
+  const faqLd = articleFaqJsonLd(article);
+
   return (
     <>
       <script
@@ -59,6 +71,12 @@ export default async function ArticlePage({
           __html: JSON.stringify(articleBreadcrumbJsonLd(slug, article)),
         }}
       />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
       <Nav />
       <main className="article-page">
         <div className="wrap">
@@ -77,7 +95,9 @@ export default async function ArticlePage({
               <span className="av">S</span>
               <span style={{ textAlign: "left" }}>
                 <b>Tim Sosmed AI</b>
-                <span className="date">2 Juni 2026 · {article.readTime}</span>
+                <span className="date">
+                  {formatArticleDate(article.datePublished)} · {article.readTime}
+                </span>
               </span>
             </div>
           </div>
@@ -144,8 +164,8 @@ export default async function ArticlePage({
                   <h4>{r.title}</h4>
                   <p>{r.excerpt}</p>
                   <div className="rmeta">
-                    <span className="r-cat">{r.tag}</span> Tim Sosmed AI · 2
-                    Juni 2026
+                    <span className="r-cat">{r.tag}</span> Tim Sosmed AI ·{" "}
+                    {formatArticleDate(ARTICLES[r.slug].datePublished)}
                   </div>
                 </Link>
               ))}
