@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { blogIndexJsonLd, blogBreadcrumbJsonLd } from "./schema";
-import { ARTICLES, blogThumb, formatArticleDate } from "./articles";
+import { ARTICLES, ARTICLE_SLUGS, blogThumb, formatArticleDate } from "./articles";
 import BlogGrid from "./BlogGrid";
 import NewsletterForm from "./NewsletterForm";
 
@@ -95,6 +95,14 @@ const POSTS = [
       "Bukan chatbot laporan biasa: ubah chat WhatsApp menjadi insight bisnis dengan pendekatan AI-native.",
   },
   {
+    slug: "mulai-jualan-online-warung-kafe",
+    g: "g4",
+    tag: "Panduan",
+    title: "Mulai Jualan Online untuk Warung & Kafe: Panduan Lengkap",
+    excerpt:
+      "Langkah demi langkah memindahkan order, menu, pembayaran, dan pelanggan setia ke WhatsApp - tanpa aplikasi rumit dan tanpa biaya besar di awal.",
+  },
+  {
     slug: "5-cara-pelanggan-jadi-langganan",
     g: "g2",
     tag: "Tips Bisnis",
@@ -160,6 +168,13 @@ const POSTS = [
   },
 ];
 
+// Hero/featured = newest article by publish date (ties → definition order),
+// so the hero auto-updates when a newer-dated post is added.
+const FEATURED_SLUG = ARTICLE_SLUGS.reduce((latest, slug) =>
+  ARTICLES[slug].datePublished > ARTICLES[latest].datePublished ? slug : latest,
+);
+const FEATURED = ARTICLES[FEATURED_SLUG];
+
 export default function BlogPage() {
   return (
     <>
@@ -201,26 +216,22 @@ export default function BlogPage() {
           {/* FEATURED */}
           <Link
             className="featured"
-            href="/blog/mulai-jualan-online-warung-kafe"
+            href={`/blog/${FEATURED_SLUG}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <div
               className="thumb big"
               style={{
-                backgroundImage: `url('${blogThumb("mulai-jualan-online-warung-kafe")}')`,
+                backgroundImage: `url('${blogThumb(FEATURED_SLUG)}')`,
               }}
             ></div>
             <div>
               <div className="fmeta">
-                <span className="cat">Panduan</span> ·{" "}
-                {formatArticleDate(ARTICLES["mulai-jualan-online-warung-kafe"].datePublished)}
+                <span className="cat">{FEATURED.category}</span> ·{" "}
+                {formatArticleDate(FEATURED.datePublished)}
               </div>
-              <h2>Mulai Jualan Online untuk Warung &amp; Kafe: Panduan Lengkap</h2>
-              <p className="ex">
-                Langkah demi langkah memindahkan order, menu, dan pelanggan
-                setia Anda ke WhatsApp - tanpa aplikasi rumit dan tanpa biaya
-                besar di awal.
-              </p>
+              <h2>{FEATURED.title}</h2>
+              <p className="ex">{FEATURED.description}</p>
               <div className="byline">
                 <span className="av">S</span> <b>Tim Sosmed AI</b>
               </div>
@@ -229,11 +240,13 @@ export default function BlogPage() {
 
           {/* TABS + GRID (client-side category filter) */}
           <BlogGrid
-            posts={POSTS.map((post) => ({
-              ...post,
-              thumb: blogThumb(post.slug),
-              date: formatArticleDate(ARTICLES[post.slug].datePublished),
-            }))}
+            posts={POSTS.filter((post) => post.slug !== FEATURED_SLUG).map(
+              (post) => ({
+                ...post,
+                thumb: blogThumb(post.slug),
+                date: formatArticleDate(ARTICLES[post.slug].datePublished),
+              }),
+            )}
           />
 
           {/* NEWSLETTER — live (POST /api/newsletter) */}
