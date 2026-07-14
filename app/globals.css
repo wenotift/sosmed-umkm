@@ -1814,6 +1814,13 @@
   .article-page .prose ul{margin:16px 0;padding-left:4px;list-style:none}
   .article-page .prose li{position:relative;padding-left:24px;margin-bottom:10px;line-height:1.65}
   .article-page .prose li::before{content:"";position:absolute;left:4px;top:11px;width:7px;height:7px;border-radius:50%;background:#4A157E}
+  /* Ordered lists are steps, not the purple-dot pattern used for unordered
+     lists. Without this reset, each item rendered both its native number and
+     the shared custom bullet. */
+  .article-page .prose ol{margin:16px 0;padding-left:26px;list-style:decimal}
+  .article-page .prose ol li{padding-left:4px}
+  .article-page .prose ol li::before{content:none}
+  .article-page .prose ol li::marker{color:#4A157E;font-weight:700}
   .article-page .prose b,.article-page .prose strong{color:var(--ink);font-weight:600}
   .article-page .prose a{color:#4A157E;text-decoration:underline;text-underline-offset:2px}
   .article-page .callout{background:var(--accent-soft);border:1px solid #E4D5FB;border-radius:16px;padding:20px 24px;margin:26px 0;font-size:15.5px;color:#3a2a55}

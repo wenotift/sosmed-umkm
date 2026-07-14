@@ -24,9 +24,80 @@ export const metadata: Metadata = {
   title: { absolute: "Blog - Sosmed AI" },
 };
 
-// WhatsApp-chat watermark used on each card thumbnail.
-// Sample/illustrative posts (no CMS yet). Publish date "2 Juni 2026", byline "Tim Sosmed AI".
+// WhatsApp-chat watermark used on each card thumbnail. Sample/illustrative
+// posts (no CMS yet); each card's publish date is derived per-slug from
+// ARTICLES[...].datePublished. Byline is always "Tim Sosmed AI".
 const POSTS = [
+  {
+    slug: "warung-ramai-belum-tentu-untung",
+    g: "g7",
+    tag: "Tips Bisnis",
+    title: "Warung Ramai Itu Belum Tentu Untung: 5 Tanda Anda Cuma Sibuk, Bukan Bertumbuh",
+    excerpt: "Kenali lima sinyal ketika order naik tetapi margin, pelanggan, dan sistem bisnis tidak ikut bertumbuh.",
+  },
+  {
+    slug: "pemilik-warung-capek-bukan-karena-masak",
+    g: "g6",
+    tag: "Cerita",
+    title: "Pemilik Warung Paling Capek Bukan Karena Masak, Tapi Karena Mengingat Semua Hal Ini",
+    excerpt: "Kurangi beban mental dari order, stok, pelanggan, dan kas yang selama ini hanya tersimpan di kepala.",
+  },
+  {
+    slug: "warung-tetap-jalan-saat-pemilik-libur",
+    g: "g6",
+    tag: "Tips Bisnis",
+    title: "Kalau Pemilik Libur Sehari, Apakah Warung Tetap Jalan?",
+    excerpt: "Uji apakah tim dan sistem usaha bisa tetap melayani pelanggan saat pemilik tidak hadir.",
+  },
+  {
+    slug: "pelanggan-bilang-nanti-order-lagi",
+    g: "g5",
+    tag: "Tips Bisnis",
+    title: "Pelanggan Bilang ‘Nanti Order Lagi Ya’—Tapi Kok Tidak Pernah Kembali?",
+    excerpt: "Pahami alasan pelanggan tidak repeat order dan cara membuat pengalaman berikutnya terasa lebih mudah.",
+  },
+  {
+    slug: "bongkar-chat-whatsapp-warung",
+    g: "g3",
+    tag: "Panduan",
+    title: "Bongkar Chat WhatsApp Warung: Berapa Banyak Order yang Hilang Karena Telat Balas?",
+    excerpt: "Temukan chat yang berpotensi menjadi order hilang dan rapikan waktu respons saat pelanggan membutuhkan jawaban.",
+  },
+  {
+    slug: "promo-terus-bukan-solusi",
+    g: "g5",
+    tag: "Tips Bisnis",
+    title: "Promo Terus Bukan Solusi: Cara Membuat Pelanggan Kembali Tanpa Diskon Tiap Minggu",
+    excerpt: "Bangun repeat order lewat pengalaman dan follow-up relevan, bukan diskon massal yang menggerus margin.",
+  },
+  {
+    slug: "jam-ramai-adalah-ujian-sebenarnya",
+    g: "g6",
+    tag: "Tips Bisnis",
+    title: "Jam Ramai Adalah Ujian Sebenarnya: Ketika Satu Chat Terlewat Bisa Menghilangkan Pelanggan",
+    excerpt: "Tata antrean chat, dapur, dan pickup agar pelanggan tidak menunggu tanpa kepastian.",
+  },
+  {
+    slug: "menu-paling-laku-bisa-profit-tipis",
+    g: "g7",
+    tag: "Panduan",
+    title: "Jangan Bangga Dulu Kalau Menu Anda Paling Laku—Bisa Jadi Itu yang Membuat Profit Tipis",
+    excerpt: "Bedakan menu populer dari menu yang benar-benar memberi kontribusi profit.",
+  },
+  {
+    slug: "kebiasaan-pelanggan-pindah",
+    g: "g5",
+    tag: "Tips Bisnis",
+    title: "Bukan Kekurangan Pelanggan: 7 Kebiasaan Kecil yang Diam-Diam Membuat Pelanggan Pindah",
+    excerpt: "Tangani masalah kecil yang berulang sebelum pelanggan memilih tempat lain.",
+  },
+  {
+    slug: "bot-kaku-vs-ai-whatsapp",
+    g: "g3",
+    tag: "Produk",
+    title: "Chatbot Bikin Pelanggan Kesal? Ini Bedanya Bot Kaku dan AI yang Paham Cara Orang Indonesia Chat",
+    excerpt: "Kenapa Sosmed AI bukan chatbot skrip dan bagaimana konteks percakapan bisa membantu order serta pelanggan.",
+  },
   {
     slug: "mengubah-chat-whatsapp-menjadi-pelanggan-setia",
     g: "g5",
