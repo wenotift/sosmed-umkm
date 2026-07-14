@@ -213,7 +213,7 @@ function createTodayArticle(input: TodayArticleInput): Article {
     lede: <>{input.problem}</>,
     keywords: input.keywords,
     faq: [
-      { q: `Apa inti masalah dalam ${input.title}?`, a: input.answer },
+      { q: `Apa inti masalah "${input.coverTitle.replace(/[?.!]+$/, "")}"?`, a: input.answer },
       { q: "Apa langkah pertama yang sebaiknya dilakukan?", a: input.actions[0] },
       { q: "Bagaimana cara mengukur perbaikannya?", a: input.measure },
     ],
