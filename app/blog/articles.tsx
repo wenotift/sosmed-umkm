@@ -184,6 +184,9 @@ function AiNativeNote() {
 
 type TodayArticleInput = {
   slug: string;
+  /** ISO publish date, e.g. "2026-07-18". Required so each daily batch carries
+   *  its real date - the hero and BlogPosting schema both derive from it. */
+  datePublished: string;
   title: string;
   category: string;
   coverTitle: string;
@@ -207,7 +210,7 @@ function createTodayArticle(input: TodayArticleInput): Article {
     title: input.title,
     category: input.category,
     readTime: "7 menit baca",
-    datePublished: "2026-07-14",
+    datePublished: input.datePublished,
     coverTitle: input.coverTitle,
     description: input.description,
     lede: <>{input.problem}</>,
@@ -295,6 +298,7 @@ function createTodayArticle(input: TodayArticleInput): Article {
 
 const TODAY_ARTICLES: Record<string, Article> = {
   "warung-ramai-belum-tentu-untung": createTodayArticle({
+    datePublished: "2026-07-14",
     slug: "warung-ramai-belum-tentu-untung", category: "Tips Bisnis", coverTitle: "Ramai Belum Tentu Untung",
     title: "Warung Ramai Itu Belum Tentu Untung: 5 Tanda Anda Cuma Sibuk, Bukan Bertumbuh",
     description: "Lima tanda warung atau kafe ramai tetapi profit tidak bertumbuh, serta cara membaca kebocoran order, diskon, biaya, dan pelanggan.",
@@ -307,6 +311,7 @@ const TODAY_ARTICLES: Record<string, Article> = {
     related: [{slug:"order-ramai-profit-tidak-naik",g:"g7",tag:"Tips Bisnis",title:"Order Ramai tapi Profit Tidak Naik?",excerpt:"Tujuh kebocoran yang paling sering tersembunyi."},{slug:"mengetahui-menu-paling-laku-dan-menguntungkan",g:"g7",tag:"Panduan",title:"Menu Paling Laku dan Menguntungkan",excerpt:"Baca kontribusi profit tiap menu."},{slug:"laporan-penjualan-harian",g:"g7",tag:"Panduan",title:"Laporan Penjualan Harian",excerpt:"Angka yang perlu dipantau setiap hari."}],
   }),
   "pemilik-warung-capek-bukan-karena-masak": createTodayArticle({
+    datePublished: "2026-07-14",
     slug:"pemilik-warung-capek-bukan-karena-masak",category:"Cerita",coverTitle:"Capek karena Mengingat Semua Hal",
     title:"Pemilik Warung Paling Capek Bukan Karena Masak, Tapi Karena Mengingat Semua Hal Ini",
     description:"Mengapa beban mental pemilik warung datang dari mengingat order, stok, chat, pelanggan, dan kas—serta cara membangun sistem yang lebih ringan.",
@@ -319,6 +324,7 @@ const TODAY_ARTICLES: Record<string, Article> = {
     related:[{slug:"cara-mengurangi-chaos-operasional-warung-kafe",g:"g6",tag:"Tips Bisnis",title:"Mengurangi Chaos Operasional",excerpt:"Framework agar order tidak tercecer."},{slug:"otomatisasi-whatsapp-untuk-umkm-fnb",g:"g3",tag:"Panduan",title:"Otomatisasi WhatsApp untuk UMKM",excerpt:"Kurangi kerja manual tanpa menghilangkan layanan personal."},{slug:"warung-tetap-jalan-saat-pemilik-libur",g:"g6",tag:"Tips Bisnis",title:"Warung Tetap Jalan Saat Pemilik Libur",excerpt:"Uji apakah sistem Anda benar-benar bekerja."}],
   }),
   "warung-tetap-jalan-saat-pemilik-libur": createTodayArticle({
+    datePublished: "2026-07-14",
     slug:"warung-tetap-jalan-saat-pemilik-libur",category:"Tips Bisnis",coverTitle:"Apakah Warung Tetap Jalan?",
     title:"Kalau Pemilik Libur Sehari, Apakah Warung Tetap Jalan?",
     description:"Cara menguji apakah warung, kafe, atau restoran kecil memiliki sistem yang cukup kuat untuk tetap berjalan saat pemilik tidak hadir.",
@@ -331,6 +337,7 @@ const TODAY_ARTICLES: Record<string, Article> = {
     related:[{slug:"pemilik-warung-capek-bukan-karena-masak",g:"g6",tag:"Cerita",title:"Kenapa Pemilik Warung Sangat Capek",excerpt:"Kurangi beban mental dari hal yang harus diingat."},{slug:"cara-mengurangi-chaos-operasional-warung-kafe",g:"g6",tag:"Tips Bisnis",title:"Mengurangi Chaos Operasional",excerpt:"Rapikan alur sebelum order makin ramai."},{slug:"jam-ramai-adalah-ujian-sebenarnya",g:"g6",tag:"Tips Bisnis",title:"Jam Ramai Adalah Ujian",excerpt:"Uji sistem ketika tekanan sedang tinggi."}],
   }),
   "pelanggan-bilang-nanti-order-lagi": createTodayArticle({
+    datePublished: "2026-07-14",
     slug:"pelanggan-bilang-nanti-order-lagi",category:"Tips Bisnis",coverTitle:"Pelanggan Tidak Kembali",
     title:"Pelanggan Bilang ‘Nanti Order Lagi Ya’—Tapi Kok Tidak Pernah Kembali?",
     description:"Cara memahami alasan pelanggan tidak repeat order dan membangun pengalaman yang membuat mereka kembali tanpa spam atau diskon terus-menerus.",
@@ -343,6 +350,7 @@ const TODAY_ARTICLES: Record<string, Article> = {
     related:[{slug:"mengubah-chat-whatsapp-menjadi-pelanggan-setia",g:"g5",tag:"Tips Bisnis",title:"Mengubah Chat Menjadi Pelanggan Setia",excerpt:"Gunakan konteks chat untuk hubungan jangka panjang."},{slug:"program-loyalti-whatsapp-untuk-umkm",g:"g5",tag:"Panduan",title:"Program Loyalti WhatsApp",excerpt:"Poin dan reward tanpa kartu member."},{slug:"promo-terus-bukan-solusi",g:"g5",tag:"Tips Bisnis",title:"Promo Terus Bukan Solusi",excerpt:"Dorong pelanggan kembali tanpa diskon massal."}],
   }),
   "bongkar-chat-whatsapp-warung": createTodayArticle({
+    datePublished: "2026-07-14",
     slug:"bongkar-chat-whatsapp-warung",category:"Panduan",coverTitle:"Order Hilang karena Telat Balas",
     title:"Bongkar Chat WhatsApp Warung: Berapa Banyak Order yang Hilang Karena Telat Balas?",
     description:"Cara menemukan chat WhatsApp yang berpotensi menjadi order hilang, mengukur response time, dan merapikan antrean percakapan warung atau kafe.",
@@ -355,6 +363,7 @@ const TODAY_ARTICLES: Record<string, Article> = {
     related:[{slug:"jam-ramai-adalah-ujian-sebenarnya",g:"g6",tag:"Tips Bisnis",title:"Jam Ramai Adalah Ujian",excerpt:"Pastikan order tidak tercecer saat tekanan naik."},{slug:"otomatisasi-whatsapp-untuk-umkm-fnb",g:"g3",tag:"Panduan",title:"Otomatisasi WhatsApp",excerpt:"Rapikan chat, order, pelanggan, dan laporan."},{slug:"cara-mengurangi-chaos-operasional-warung-kafe",g:"g6",tag:"Tips Bisnis",title:"Mengurangi Chaos Operasional",excerpt:"Kurangi risiko dari kerja manual berulang."}],
   }),
   "promo-terus-bukan-solusi": createTodayArticle({
+    datePublished: "2026-07-14",
     slug:"promo-terus-bukan-solusi",category:"Tips Bisnis",coverTitle:"Pelanggan Kembali Tanpa Diskon",
     title:"Promo Terus Bukan Solusi: Cara Membuat Pelanggan Kembali Tanpa Diskon Tiap Minggu",
     description:"Strategi retensi pelanggan F&B tanpa bergantung pada diskon massal: segmentasi sederhana, follow-up relevan, loyalti, dan pengalaman order yang lebih mudah.",
@@ -367,6 +376,7 @@ const TODAY_ARTICLES: Record<string, Article> = {
     related:[{slug:"pelanggan-bilang-nanti-order-lagi",g:"g5",tag:"Tips Bisnis",title:"Pelanggan Bilang Nanti Order Lagi",excerpt:"Pahami mengapa mereka tidak kembali."},{slug:"program-loyalti-whatsapp-untuk-umkm",g:"g5",tag:"Panduan",title:"Program Loyalti WhatsApp",excerpt:"Reward yang sehat untuk margin."},{slug:"mengubah-chat-whatsapp-menjadi-pelanggan-setia",g:"g5",tag:"Tips Bisnis",title:"Mengubah Chat Menjadi Pelanggan Setia",excerpt:"Bangun retensi dari percakapan sehari-hari."}],
   }),
   "jam-ramai-adalah-ujian-sebenarnya": createTodayArticle({
+    datePublished: "2026-07-14",
     slug:"jam-ramai-adalah-ujian-sebenarnya",category:"Tips Bisnis",coverTitle:"Jam Ramai Menguji Sistem",
     title:"Jam Ramai Adalah Ujian Sebenarnya: Ketika Satu Chat Terlewat Bisa Menghilangkan Pelanggan",
     description:"Cara menata antrean chat, order, dapur, dan pickup saat jam ramai agar satu pesan terlewat tidak berubah menjadi pelanggan hilang.",
@@ -379,6 +389,7 @@ const TODAY_ARTICLES: Record<string, Article> = {
     related:[{slug:"bongkar-chat-whatsapp-warung",g:"g3",tag:"Panduan",title:"Bongkar Chat WhatsApp Warung",excerpt:"Temukan order yang hilang karena telat balas."},{slug:"mengelola-pesanan-jam-ramai",g:"g6",tag:"Tips Bisnis",title:"Mengelola Pesanan Jam Ramai",excerpt:"Tips menjaga order tetap rapi."},{slug:"warung-tetap-jalan-saat-pemilik-libur",g:"g6",tag:"Tips Bisnis",title:"Warung Tetap Jalan",excerpt:"Sistem yang jelas membantu tim bertindak."}],
   }),
   "menu-paling-laku-bisa-profit-tipis": createTodayArticle({
+    datePublished: "2026-07-14",
     slug:"menu-paling-laku-bisa-profit-tipis",category:"Panduan",coverTitle:"Menu Laku Bisa Profit Tipis",
     title:"Jangan Bangga Dulu Kalau Menu Anda Paling Laku—Bisa Jadi Itu yang Membuat Profit Tipis",
     description:"Mengapa menu paling laku belum tentu paling menguntungkan dan cara membaca food cost, margin kontribusi, bundling, serta profit per menu F&B.",
@@ -391,6 +402,7 @@ const TODAY_ARTICLES: Record<string, Article> = {
     related:[{slug:"mengetahui-menu-paling-laku-dan-menguntungkan",g:"g7",tag:"Panduan",title:"Menu Paling Laku dan Menguntungkan",excerpt:"Bedakan popularitas dan kontribusi profit."},{slug:"warung-ramai-belum-tentu-untung",g:"g7",tag:"Tips Bisnis",title:"Warung Ramai Belum Tentu Untung",excerpt:"Kenali sinyal usaha yang cuma sibuk."},{slug:"order-ramai-profit-tidak-naik",g:"g7",tag:"Tips Bisnis",title:"Order Ramai Tapi Profit Tidak Naik",excerpt:"Temukan kebocoran yang perlu ditutup."}],
   }),
   "kebiasaan-pelanggan-pindah": createTodayArticle({
+    datePublished: "2026-07-14",
     slug:"kebiasaan-pelanggan-pindah",category:"Tips Bisnis",coverTitle:"Kenapa Pelanggan Pindah?",
     title:"Bukan Kekurangan Pelanggan: 7 Kebiasaan Kecil yang Diam-Diam Membuat Pelanggan Pindah",
     description:"Tujuh kebiasaan layanan yang membuat pelanggan F&B tidak kembali: respons lambat, status tidak jelas, order salah, komplain defensif, dan follow-up yang tidak relevan.",
@@ -403,6 +415,7 @@ const TODAY_ARTICLES: Record<string, Article> = {
     related:[{slug:"pelanggan-bilang-nanti-order-lagi",g:"g5",tag:"Tips Bisnis",title:"Pelanggan Tidak Pernah Kembali",excerpt:"Baca sinyal retensi dari pengalaman pelanggan."},{slug:"jam-ramai-adalah-ujian-sebenarnya",g:"g6",tag:"Tips Bisnis",title:"Jam Ramai Adalah Ujian",excerpt:"Kurangi kesalahan ketika tekanan tinggi."},{slug:"cara-menjaga-pelanggan-lama-lewat-whatsapp",g:"g5",tag:"Tips Bisnis",title:"Menjaga Pelanggan Lama",excerpt:"Follow-up personal tanpa spam."}],
   }),
   "bot-kaku-vs-ai-whatsapp": createTodayArticle({
+    datePublished: "2026-07-14",
     slug:"bot-kaku-vs-ai-whatsapp",category:"Produk",coverTitle:"Bot Kaku vs AI yang Paham Chat",
     title:"Chatbot Bikin Pelanggan Kesal? Ini Bedanya Bot Kaku dan AI yang Paham Cara Orang Indonesia Chat",
     description:"Perbedaan chatbot skrip dan AI-native di WhatsApp untuk warung dan kafe: bahasa natural, konteks order, preferensi pelanggan, loyalti, serta insight bisnis.",
@@ -413,6 +426,58 @@ const TODAY_ARTICLES: Record<string, Article> = {
     measure:"Pantau chat yang selesai tanpa bantuan manusia, waktu sampai order jelas, koreksi order, kepuasan pelanggan, dan jumlah konteks yang perlu diulang pelanggan.",
     keywords:["chatbot WhatsApp vs AI", "AI native WhatsApp", "chatbot kaku", "AI WhatsApp untuk UMKM"],
     related:[{slug:"ai-native-whatsapp-vs-chatbot",g:"g3",tag:"Produk",title:"AI-Native di WhatsApp vs Chatbot",excerpt:"Perbandingan kemampuan dan batasannya."},{slug:"bongkar-chat-whatsapp-warung",g:"g3",tag:"Panduan",title:"Bongkar Chat WhatsApp Warung",excerpt:"Chat yang rapi membantu order tidak hilang."},{slug:"otomatisasi-whatsapp-untuk-umkm-fnb",g:"g3",tag:"Panduan",title:"Otomatisasi WhatsApp",excerpt:"Kurangi kerja manual dari percakapan pelanggan."}],
+  }),
+  "naikkan-harga-menu-tanpa-kehilangan-pelanggan": createTodayArticle({
+    datePublished: "2026-07-18",
+    slug:"naikkan-harga-menu-tanpa-kehilangan-pelanggan", category:"Panduan", coverTitle:"Naikkan Harga Menu dengan Tepat",
+    title:"Cara Naikkan Harga Menu Tanpa Membuat Pelanggan Langsung Pergi",
+    description:"Panduan menaikkan harga menu warung dan kafe dengan menghitung biaya, margin, komunikasi pelanggan, serta pengujian harga secara bertahap.",
+    problem:"Saat harga bahan naik, banyak pemilik F&B menunda menaikkan harga karena takut pelanggan pergi. Akibatnya margin terus menipis. Menahan harga terlalu lama sering lebih berisiko daripada melakukan penyesuaian yang jelas dan terukur.",
+    answer:"Naikkan harga menu berdasarkan biaya dan margin yang dihitung, lalu lakukan secara bertahap sambil menjaga kualitas, pilihan menu, dan komunikasi yang jujur kepada pelanggan.",
+    diagnosis:"Bandingkan harga jual dengan biaya bahan, kemasan, komisi kanal, dan waktu produksi. Tandai menu yang margin kontribusinya paling tipis atau yang biaya bahannya paling cepat berubah.",
+    actions:["Hitung ulang biaya per porsi untuk menu utama sebelum menentukan kenaikan harga.","Uji perubahan pada satu atau dua menu, bukan seluruh menu sekaligus.","Tawarkan ukuran, bundling, atau add-on yang memberi pilihan tanpa menurunkan kualitas utama."],
+    measure:"Pantau margin kontribusi, jumlah item terjual, komplain harga, nilai rata-rata order, dan repeat-order rate sebelum serta sesudah perubahan.",
+    keywords:["naikkan harga menu", "harga menu warung", "margin kafe", "biaya bahan F&B", "strategi harga UMKM"],
+    related:[{slug:"menu-paling-laku-bisa-profit-tipis",g:"g7",tag:"Panduan",title:"Menu Laku Bisa Profit Tipis",excerpt:"Baca margin setiap menu sebelum mengambil keputusan."},{slug:"mengetahui-menu-paling-laku-dan-menguntungkan",g:"g7",tag:"Panduan",title:"Menu Paling Laku dan Menguntungkan",excerpt:"Bedakan popularitas dan kontribusi profit."},{slug:"warung-ramai-belum-tentu-untung",g:"g7",tag:"Tips Bisnis",title:"Warung Ramai Belum Tentu Untung",excerpt:"Tutup kebocoran agar kesibukan menjadi pertumbuhan."}],
+  }),
+  "stok-habis-saat-order-ramai": createTodayArticle({
+    datePublished: "2026-07-18",
+    slug:"stok-habis-saat-order-ramai", category:"Tips Bisnis", coverTitle:"Stok Tidak Habis Saat Ramai",
+    title:"Stok Habis Saat Order Ramai? Cara Menjaga Menu Tetap Siap Tanpa Belanja Berlebihan",
+    description:"Cara mengelola stok bahan UMKM F&B agar menu tidak habis saat ramai tanpa membuat modal tertahan terlalu besar di gudang.",
+    problem:"Stok habis pada jam ramai membuat pelanggan kecewa dan staf panik. Sebaliknya, belanja berlebihan membuat modal tertahan dan bahan berisiko terbuang. Yang dibutuhkan bukan stok sebanyak mungkin, melainkan sinyal kapan harus membeli lagi.",
+    answer:"Stok lebih aman ketika usaha mengetahui pemakaian rata-rata, stok minimum, waktu belanja ulang, dan menu mana yang harus diprioritaskan saat bahan menipis.",
+    diagnosis:"Catat bahan yang paling sering habis, jam saat habis terjadi, menu penyebabnya, dan berapa order yang tidak bisa dilayani akibat stok kosong.",
+    actions:["Tentukan stok minimum untuk lima bahan yang paling menentukan menu terlaris.","Hubungkan daftar bahan kritis dengan prediksi pemakaian dari order harian.","Siapkan alternatif menu atau substitusi yang sudah disetujui sebelum stok benar-benar habis."],
+    measure:"Pantau kejadian stok kosong, order yang ditolak, waste bahan, nilai belanja mendadak, dan perputaran stok per minggu.",
+    keywords:["stok habis saat ramai", "manajemen stok warung", "stok bahan kafe", "forecasting stok F&B", "menu habis"],
+    related:[{slug:"jam-ramai-adalah-ujian-sebenarnya",g:"g6",tag:"Tips Bisnis",title:"Jam Ramai Adalah Ujian",excerpt:"Atur status dan antrean saat tekanan tinggi."},{slug:"laporan-penjualan-harian",g:"g7",tag:"Panduan",title:"Laporan Penjualan Harian",excerpt:"Gunakan angka harian untuk keputusan yang lebih tepat."},{slug:"menu-paling-laku-bisa-profit-tipis",g:"g7",tag:"Panduan",title:"Menu Laku Bisa Profit Tipis",excerpt:"Hubungkan permintaan menu dengan biaya dan stok."}],
+  }),
+  "menangani-komplain-pelanggan-lewat-whatsapp": createTodayArticle({
+    datePublished: "2026-07-18",
+    slug:"menangani-komplain-pelanggan-lewat-whatsapp", category:"Panduan", coverTitle:"Komplain Bisa Menjadi Kepercayaan",
+    title:"Cara Menangani Komplain Pelanggan Lewat WhatsApp Tanpa Memperbesar Masalah",
+    description:"Framework menangani komplain WhatsApp untuk warung dan kafe: dengarkan, verifikasi, selesaikan, dan follow-up agar pelanggan tidak hilang.",
+    problem:"Komplain lewat WhatsApp terasa lebih menegangkan karena pelanggan dapat menulis kapan saja dan pesan mudah disalahartikan. Respons defensif atau terlalu lambat sering membuat masalah kecil berubah menjadi alasan pelanggan tidak kembali.",
+    answer:"Tangani komplain dengan cepat, akui pengalaman pelanggan, verifikasi detail order, tawarkan solusi yang proporsional, lalu follow-up setelah masalah selesai.",
+    diagnosis:"Kelompokkan komplain selama satu minggu: salah order, kualitas, keterlambatan, pembayaran, atau komunikasi. Cari penyebab proses yang sama, bukan hanya menyelesaikan satu chat.",
+    actions:["Balas dengan pengakuan yang jelas sebelum menjelaskan atau menyalahkan proses.","Cek riwayat order dan bukti yang relevan agar solusi sesuai masalahnya.","Tutup percakapan dengan tindakan, waktu penyelesaian, dan follow-up singkat setelah pelanggan menerima solusi."],
+    measure:"Pantau waktu respons komplain, waktu penyelesaian, remake atau refund, pelanggan yang kembali setelah komplain, dan jenis masalah yang berulang.",
+    keywords:["menangani komplain WhatsApp", "komplain pelanggan kafe", "customer recovery F&B", "layanan pelanggan warung", "pelanggan kembali setelah komplain"],
+    related:[{slug:"kebiasaan-pelanggan-pindah",g:"g5",tag:"Tips Bisnis",title:"Kebiasaan yang Membuat Pelanggan Pindah",excerpt:"Cegah masalah kecil berulang sebelum pelanggan pergi."},{slug:"pelanggan-bilang-nanti-order-lagi",g:"g5",tag:"Tips Bisnis",title:"Pelanggan Tidak Kembali",excerpt:"Bangun pengalaman yang membuat pelanggan ingin kembali."},{slug:"cara-menjaga-pelanggan-lama-lewat-whatsapp",g:"g5",tag:"Tips Bisnis",title:"Menjaga Pelanggan Lama",excerpt:"Follow-up yang relevan tanpa spam."}],
+  }),
+  "meningkatkan-nilai-order-tanpa-memaksa": createTodayArticle({
+    datePublished: "2026-07-18",
+    slug:"meningkatkan-nilai-order-tanpa-memaksa", category:"Panduan", coverTitle:"Naikkan Nilai Order dengan Relevan",
+    title:"Cara Meningkatkan Nilai Order Pelanggan Tanpa Terasa Memaksa",
+    description:"Cara meningkatkan average order value warung dan kafe melalui bundling, add-on relevan, dan rekomendasi yang membantu pelanggan, bukan hard selling.",
+    problem:"Menawarkan tambahan sering terasa canggung bagi staf dan pelanggan. Namun jika rekomendasi benar-benar cocok dengan pesanan, pelanggan justru terbantu. Kuncinya bukan menjual lebih banyak pada semua orang, tetapi menawarkan pilihan yang relevan.",
+    answer:"Nilai order naik secara sehat ketika bundling dan add-on relevan dengan pesanan utama, mudah dipahami, dan tetap memberi nilai bagi pelanggan.",
+    diagnosis:"Lihat kombinasi menu yang sering dibeli bersama, item dengan margin sehat, serta titik pesanan ketika pelanggan paling terbuka menerima rekomendasi.",
+    actions:["Pilih tiga pasangan menu yang memang sering dibeli bersama.","Tampilkan satu rekomendasi relevan setelah pesanan utama jelas, bukan daftar panjang pilihan.","Uji bundling dengan nilai yang mudah dimengerti dan bandingkan dengan pembelian satuan."],
+    measure:"Pantau average order value, attach rate add-on, kontribusi margin bundle, tingkat penerimaan rekomendasi, dan kepuasan pelanggan.",
+    keywords:["meningkatkan nilai order", "average order value F&B", "bundling menu warung", "upselling kafe", "add on menu"],
+    related:[{slug:"menu-paling-laku-bisa-profit-tipis",g:"g7",tag:"Panduan",title:"Menu Laku Bisa Profit Tipis",excerpt:"Gunakan margin untuk memilih bundle yang sehat."},{slug:"meningkatkan-penjualan-profit-fnb-kecil",g:"g7",tag:"Panduan",title:"Meningkatkan Penjualan & Profit",excerpt:"Ubah data order menjadi keputusan bisnis."},{slug:"promo-terus-bukan-solusi",g:"g5",tag:"Tips Bisnis",title:"Promo Terus Bukan Solusi",excerpt:"Naikkan nilai tanpa membiasakan diskon massal."}],
   }),
 };
 
@@ -3174,6 +3239,10 @@ export function formatArticleDate(datePublished: string): string {
  * source of truth). Titles are always real HTML text over the photo.
  */
 const BLOG_IMAGE_STEM: Record<string, string> = {
+  "naikkan-harga-menu-tanpa-kehilangan-pelanggan": "naikkan-harga-menu",
+  "stok-habis-saat-order-ramai": "stok-habis-order-ramai",
+  "menangani-komplain-pelanggan-lewat-whatsapp": "komplain-whatsapp-pelanggan",
+  "meningkatkan-nilai-order-tanpa-memaksa": "naikkan-nilai-order",
   "warung-ramai-belum-tentu-untung": "ramai-bukan-untung",
   "pemilik-warung-capek-bukan-karena-masak": "pemilik-warung-capek",
   "warung-tetap-jalan-saat-pemilik-libur": "warung-tetap-jalan",

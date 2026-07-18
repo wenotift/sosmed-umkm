@@ -75,6 +75,17 @@ Gunakan gambar berikut sebagai referensi utama untuk semua cover blog baru:
 
 - `public/blog/blog-produk-sosmed-ai-cover.jpg`
 - `public/blog/blog-otomatisasi-whatsapp-cover.jpg`
+- `public/blog/blog-retensi-pelanggan-cover.jpg`
+- `public/blog/blog-mulai-jualan-online-cover.jpg`
+- `public/blog/blog-sistem-poin-cover.jpg`
+- `public/blog/blog-laporan-harian-cover.jpg`
+
+Gaya yang disetujui untuk seri blog adalah foto F&B Indonesia yang hangat dengan
+mockup **produk WhatsApp AI-native SaaS yang nyata** di atasnya. Visual harus
+terasa seperti satu pengalaman produk yang hidup: percakapan WhatsApp memicu
+order, data pelanggan, rekomendasi, persiapan, dan tindakan operasional yang
+saling terhubung. Gunakan keenam gambar di atas serta referensi visual terbaru
+sebagai acuan; jangan kembali ke grafik abstrak atau artefak placeholder.
 
 ### Ciri visual
 
@@ -84,23 +95,24 @@ Gunakan gambar berikut sebagai referensi utama untuk semua cover blog baru:
 - Nuansa hangat, optimistis, terpercaya, dan praktis.
 - Palet utama: amber, kayu, krem, cokelat gelap, dengan aksen hijau WhatsApp yang tertahan.
 - Cahaya alami atau sinematik lembut.
-- Gunakan 4–6 popup UI berbentuk **dark smoked glass** yang jelas dan menonjol untuk chat, order, pelanggan, poin, atau insight bisnis.
-- Setiap popup memakai kaca charcoal semi-transparan, background blur yang terlihat, sudut membulat besar, garis tepi putih tipis bercahaya, inner glow hijau lembut, refleksi, bayangan, dan kedalaman fisik.
-- Popup harus tampil sebagai beberapa panel terpisah dengan ukuran bervariasi, bukan satu dashboard besar atau kartu datar berwarna hijau/putih.
-- Kepadatan, skala, dan susunan popup harus mendekati `blog-produk-sosmed-ai-cover.jpg` dan `blog-otomatisasi-whatsapp-cover.jpg`.
+- Tampilkan satu pengalaman **WhatsApp AI-native SaaS web** yang terhubung: satu panel chat WhatsApp sebagai titik masuk, lalu panel konteks yang relevan seperti antrean order, status persiapan, profil pelanggan, riwayat pesanan, loyalty, rekomendasi, promo, atau stok.
+- Panel menggunakan dark smoked glass: charcoal semi-transparan, background blur yang terlihat, sudut membulat besar, garis tepi putih tipis, refleksi, bayangan, dan kedalaman fisik. Bentuknya boleh bertumpuk dan menyatu sebagai satu aplikasi, bukan kartu metrik yang mengambang tanpa hubungan.
+- Masukkan UI produk yang nyata dan dapat dipahami: avatar, thumbnail menu, chip status, divider, tombol aksi, progress bar bila relevan, serta contoh teks Bahasa Indonesia singkat yang selaras dengan topik artikel.
+- WhatsApp chat harus terasa sebagai percakapan natural, bukan menu chatbot kaku. Tampilkan bagaimana AI membantu di belakang layar tanpa menggantikan percakapan manusia.
+- Kepadatan, skala, dan susunan UI harus mendekati mockup web pada referensi: ada hubungan yang jelas antara chat, data, dan aksi bisnis.
 - UI menjadi elemen pendukung; manusia dan aktivitas bisnis tetap menjadi cerita utama.
 - Komposisi landscape 16:9 dan aman dipotong menjadi thumbnail 4:3.
 
 ### Yang harus dihindari
 
-- Teks terbaca di dalam gambar.
-- Logo atau watermark.
+- Teks panjang, placeholder, atau teks yang tidak terkait dengan use case. Contoh teks UI singkat dan terbaca dalam Bahasa Indonesia justru dianjurkan.
+- Watermark.
 - Robot, otak AI, neon futuristik, hologram berlebihan, atau suasana sci-fi.
 - Chatbot bubble yang kaku atau flowchart menu bot.
 - Setting bisnis Barat yang tidak terasa Indonesia.
 - Pose stock-photo yang kaku.
 - Wajah, tangan, makanan, dan perangkat yang tidak realistis.
-- Dashboard yang menutupi wajah atau subjek utama.
+- Dashboard generik berisi kartu metrik terpisah yang tidak menjelaskan alur kerja WhatsApp ke bisnis.
 - Kartu UI putih terang, flat, opaque, atau panel hijau polos tanpa efek kaca.
 
 ## Template prompt cover
@@ -110,15 +122,15 @@ Gunakan template ini dan ganti bagian dalam kurung siku sesuai topik artikel:
 ```text
 Use case: photorealistic-natural
 Asset type: 16:9 editorial blog cover for Sosmed AI, matching the established Indonesian UMKM F&B article series
-Primary request: Show [adegan bisnis yang menjelaskan topik artikel], surrounded by 4–6 prominent floating glass popup panels suggesting [chat/order/customer/loyalty/sales/profit insight yang relevan].
+Primary request: Show [adegan bisnis yang menjelaskan topik artikel] with an integrated WhatsApp AI-native SaaS web product experience that shows [alur chat → konteks pelanggan/order → aksi bisnis yang relevan].
 Scene/backdrop: A warm, authentic small Indonesian warung, cafe, or restaurant with genuine local details.
 Subject: Indonesian owner, staff, and/or customers naturally performing [aktivitas utama].
 Style/medium: Premium realistic editorial photography, warm cinematic but natural, consistent with a technology-for-small-business blog.
-Popup UI style: Premium dark smoked-glass panels matching the reference covers exactly: semi-transparent charcoal glass, visible background blur, thin luminous white borders, large rounded corners, soft green inner glow, realistic reflections, shadows, and physical depth. Use multiple separate panels of varied size; never use pale flat cards or solid green/white UI.
-Composition/framing: Wide landscape, human business activity as the main focus, 4–6 glass panels distributed around the people without covering faces; match the reference density and scale; safe for a centered 4:3 crop.
+Product UI style: A cohesive WhatsApp AI-native SaaS web interface, not isolated metric cards. Include one natural WhatsApp conversation plus connected contextual panels such as customer profile, order queue, prep status, loyalty, recommendation, stock, or promotion. Premium dark smoked-glass panels: semi-transparent charcoal glass, visible background blur, thin luminous white borders, large rounded corners, realistic reflections, shadows, and physical depth. Include readable, short Indonesian sample UI text, real menu thumbnails, avatars, status chips, and action buttons that match the article topic.
+Composition/framing: Wide landscape, human business activity as the main focus, with connected SaaS panels clustered around the people without covering faces; safe for a centered 4:3 crop.
 Lighting/mood: Warm natural light, trustworthy, optimistic, practical.
 Color palette: Warm amber, wood, cream, dark brown, with restrained WhatsApp-green accents.
-Constraints: No readable text, no logos, no watermark, no robots, no sci-fi interface, no rigid chatbot flow, realistic Indonesian people, hands, faces, food, and devices.
+Constraints: No watermark, no robots, no sci-fi interface, no rigid chatbot flow, no generic dashboard artifacts. UI text must be short, readable, natural Bahasa Indonesia, and directly relevant to the business moment. Keep Indonesian people, hands, faces, food, and devices realistic.
 ```
 
 ## Format file gambar
@@ -142,12 +154,13 @@ Semua artikel berasal dari satu sumber: objek `ARTICLES` di `app/blog/articles.t
 ### Langkah menambah artikel baru
 
 1. **Tambah entri di `ARTICLES`** (`app/blog/articles.tsx`), key = slug. Field wajib: `title`, `category`, `readTime` (mis. `"7 menit baca"`), `datePublished` (ISO `YYYY-MM-DD`), `coverTitle`, `description`, `lede`, `tldr[]`, `sections[]`, `related[]`.
-2. **Isi field AEO/GEO (wajib untuk artikel baru):**
+2. **Set `datePublished` ke tanggal terbit sebenarnya** (ISO `YYYY-MM-DD`). Untuk artikel yang dibuat lewat `createTodayArticle`, field ini **wajib** dan tidak punya nilai default — setiap batch harian harus mengisinya sendiri. Tanggal ini menentukan tanggal yang tampil di blog, `datePublished`/`dateModified` di schema, dan artikel mana yang menjadi hero.
+3. **Isi field AEO/GEO (wajib untuk artikel baru):**
    - `keywords`: 4–6 kata kunci Bahasa Indonesia yang relevan dengan intent.
    - `faq`: 3 pasang `{ q, a }`. **Jawaban harus mencerminkan teks yang benar-benar tampil di halaman** (biasanya diambil dari bagian "jawaban singkat" dan isi section). Ini yang dipakai answer engine (Google AI Overviews, ChatGPT, Perplexity, Gemini).
-3. **Petakan gambar** di `BLOG_IMAGE_STEM` (bawah `articles.tsx`): `slug → stem`, agar `blogCover()`/`blogThumb()` menemukan `public/blog/blog-{stem}-cover.jpg` dan `-cover-thumb.jpg`.
-4. **Tambah kartu grid** di array `POSTS` (`app/blog/page.tsx`): `slug`, `g`, `tag`, `title`, `excerpt`. Cukup ini — jangan menyentuh blok hero secara manual.
-5. **Simpan dua gambar** sesuai format di atas.
+4. **Petakan gambar** di `BLOG_IMAGE_STEM` (bawah `articles.tsx`): `slug → stem`, agar `blogCover()`/`blogThumb()` menemukan `public/blog/blog-{stem}-cover.jpg` dan `-cover-thumb.jpg`.
+5. **Tambah kartu grid** di array `POSTS` (`app/blog/page.tsx`): `slug`, `g`, `tag`, `title`, `excerpt`. Cukup ini — jangan menyentuh blok hero secara manual.
+6. **Simpan dua gambar** sesuai format di atas.
 
 ### Yang otomatis (jangan diedit manual)
 

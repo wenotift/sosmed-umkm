@@ -29,6 +29,34 @@ export const metadata: Metadata = {
 // ARTICLES[...].datePublished. Byline is always "Tim Sosmed AI".
 const POSTS = [
   {
+    slug: "naikkan-harga-menu-tanpa-kehilangan-pelanggan",
+    g: "g7",
+    tag: "Panduan",
+    title: "Cara Naikkan Harga Menu Tanpa Membuat Pelanggan Langsung Pergi",
+    excerpt: "Hitung biaya, margin, dan pilihan pelanggan sebelum menyesuaikan harga menu.",
+  },
+  {
+    slug: "stok-habis-saat-order-ramai",
+    g: "g6",
+    tag: "Tips Bisnis",
+    title: "Stok Habis Saat Order Ramai? Cara Menjaga Menu Tetap Siap Tanpa Belanja Berlebihan",
+    excerpt: "Gunakan stok minimum dan pola order agar menu tidak habis saat pelanggan sedang ramai.",
+  },
+  {
+    slug: "menangani-komplain-pelanggan-lewat-whatsapp",
+    g: "g5",
+    tag: "Panduan",
+    title: "Cara Menangani Komplain Pelanggan Lewat WhatsApp Tanpa Memperbesar Masalah",
+    excerpt: "Pulihkan kepercayaan pelanggan dengan respons, solusi, dan follow-up yang tepat.",
+  },
+  {
+    slug: "meningkatkan-nilai-order-tanpa-memaksa",
+    g: "g7",
+    tag: "Panduan",
+    title: "Cara Meningkatkan Nilai Order Pelanggan Tanpa Terasa Memaksa",
+    excerpt: "Gunakan bundle dan add-on relevan untuk menaikkan nilai order tanpa hard selling.",
+  },
+  {
     slug: "warung-ramai-belum-tentu-untung",
     g: "g7",
     tag: "Tips Bisnis",
