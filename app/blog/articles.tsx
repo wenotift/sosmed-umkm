@@ -297,6 +297,407 @@ function createTodayArticle(input: TodayArticleInput): Article {
 }
 
 const TODAY_ARTICLES: Record<string, Article> = {
+  "mencocokkan-pembayaran-qris-dengan-order-whatsapp": {
+    title: "Cara Mencocokkan Pembayaran QRIS dengan Order WhatsApp agar Tidak Salah Konfirmasi",
+    category: "Panduan",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-19",
+    coverTitle: "Cocokkan QRIS dengan Order WhatsApp",
+    description:
+      "Panduan mencocokkan pembayaran QRIS dengan order WhatsApp memakai kode pesanan, nominal, waktu, dan status merchant agar konfirmasi tidak tertukar.",
+    lede: (
+      <>
+        Pelanggan mengirim screenshot “sudah bayar”, dua order punya nominal sama,
+        dan dapur menunggu kepastian. Agar tidak salah konfirmasi, setiap pembayaran
+        QRIS perlu dicocokkan ke satu order WhatsApp melalui kode pesanan, nominal,
+        waktu transaksi, dan status masuk di aplikasi merchant—bukan berdasarkan
+        screenshot saja.
+      </>
+    ),
+    keywords: [
+      "mencocokkan pembayaran QRIS",
+      "order WhatsApp dan QRIS",
+      "rekonsiliasi pembayaran warung",
+      "konfirmasi pembayaran pelanggan",
+      "pencatatan transaksi F&B",
+    ],
+    faq: [
+      {
+        q: "Bagaimana cara mencocokkan pembayaran QRIS dengan order WhatsApp?",
+        a: "Cocokkan empat penanda: kode pesanan, nominal yang diharapkan, waktu transaksi, dan status berhasil di aplikasi merchant. Screenshot pelanggan membantu penelusuran, tetapi bukan sumber verifikasi utama.",
+      },
+      {
+        q: "Apakah screenshot QRIS cukup sebagai bukti pembayaran?",
+        a: "Tidak. Jadikan notifikasi atau riwayat transaksi pada aplikasi merchant sebagai sumber verifikasi utama karena screenshot dapat terlambat, tertukar, atau berasal dari transaksi lain.",
+      },
+      {
+        q: "Apa yang harus dilakukan jika nominal QRIS tidak cocok dengan order?",
+        a: "Tahan status order sebagai menunggu verifikasi, cek kembali rincian pesanan dan riwayat merchant, lalu hubungi pelanggan dengan menyebut selisihnya secara jelas sebelum dapur memproses atau staf mengembalikan dana.",
+      },
+    ],
+    tldr: [
+      "Satu pembayaran harus terhubung ke satu kode pesanan, bukan hanya ke nama pelanggan.",
+      "Verifikasi nominal, waktu, dan status berhasil dari sisi merchant sebelum mengubah order menjadi lunas.",
+      "Screenshot pelanggan berguna untuk penelusuran, tetapi tidak menggantikan riwayat transaksi merchant.",
+      "Pisahkan status menunggu pembayaran, perlu verifikasi, lunas, dan dikembalikan agar tim tidak menebak.",
+      "Ukur pembayaran yang perlu dicari manual dan waktu dari pelanggan membayar sampai order terkonfirmasi.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Bagaimana cara mencocokkan pembayaran QRIS dengan order WhatsApp?",
+        toc: "Jawaban singkat",
+        body: (
+          <>
+            <p>
+              Cocokkan empat penanda: kode pesanan, nominal yang diharapkan, waktu
+              transaksi, dan status berhasil di aplikasi merchant. Screenshot
+              pelanggan membantu penelusuran, tetapi bukan sumber verifikasi utama.
+            </p>
+            <p>
+              Tujuannya bukan membuat administrasi baru. Tujuannya memberi tim satu
+              jawaban yang sama: pembayaran mana milik order mana, apakah dananya
+              benar-benar masuk, dan apakah dapur sudah boleh mulai bekerja.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "mengapa-tertukar",
+        heading: "Mengapa pembayaran QRIS mudah tertukar saat order masuk lewat chat?",
+        toc: "Mengapa bisa tertukar",
+        body: (
+          <>
+            <p>
+              WhatsApp menyimpan percakapan, sedangkan aplikasi merchant menyimpan
+              transaksi. Kekacauan muncul ketika tim mencoba menyambungkan dua daftar
+              itu hanya dari ingatan. Nama pengirim dapat berbeda dari nama pemesan,
+              beberapa pelanggan bisa membayar nominal yang sama, dan chat konfirmasi
+              dapat masuk ketika staf sedang melayani antrean lain.
+            </p>
+            <p>
+              Bank Indonesia menjelaskan bahwa pelanggan dan merchant menerima
+              notifikasi transaksi QRIS. Karena itu, sisi merchant tetap perlu dicek
+              sebelum order dinyatakan lunas. Lihat penjelasan resmi pada halaman
+              <a href="https://www.bi.go.id/id/fungsi-utama/sistem-pembayaran/ritel/kanal-layanan/qris/default.aspx">
+                {" "}QRIS Bank Indonesia
+              </a>.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "empat-penanda",
+        heading: "Empat penanda apa yang harus selalu dicocokkan?",
+        toc: "Empat penanda",
+        body: (
+          <>
+            <ol>
+              <li>
+                <b>Kode pesanan.</b> Beri setiap order identitas singkat, misalnya
+                W-1042, lalu gunakan kode yang sama di chat dan catatan operasional.
+              </li>
+              <li>
+                <b>Nominal yang diharapkan.</b> Catat total setelah ongkir, diskon,
+                atau tambahan menu selesai disepakati—bukan total sementara.
+              </li>
+              <li>
+                <b>Waktu transaksi.</b> Gunakan waktu sebagai penyaring ketika ada
+                dua pembayaran bernominal sama, bukan sebagai satu-satunya bukti.
+              </li>
+              <li>
+                <b>Status di aplikasi merchant.</b> Pastikan transaksi terlihat
+                berhasil dari sisi penerima sebelum order diberi status lunas.
+              </li>
+            </ol>
+            <p>
+              Jika pencatatan order masih sering terlewat, rapikan dulu alurnya lewat
+              panduan <a href="/blog/otomatisasi-whatsapp-untuk-umkm-fnb">otomatisasi WhatsApp untuk UMKM F&amp;B</a>.
+              Untuk rekap akhir hari, lanjutkan dengan daftar angka pada artikel
+              <a href="/blog/laporan-penjualan-harian"> laporan penjualan harian</a>.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "alur-enam-langkah",
+        heading: "Bagaimana alur konfirmasi yang aman tetapi tetap cepat?",
+        toc: "Alur konfirmasi",
+        body: (
+          <ol>
+            <li>Ringkas order dan minta pelanggan menyetujui item, jumlah, alamat atau waktu ambil.</li>
+            <li>Buat kode pesanan dan simpan total akhir yang harus dibayar.</li>
+            <li>Kirim instruksi pembayaran tanpa mengubah status order menjadi lunas.</li>
+            <li>Saat pelanggan mengabari sudah bayar, cari transaksi dari nominal dan rentang waktunya.</li>
+            <li>Pastikan status berhasil di aplikasi merchant, lalu hubungkan transaksi ke kode pesanan.</li>
+            <li>Baru setelah itu ubah status menjadi lunas dan teruskan order ke antrean dapur.</li>
+          </ol>
+        ),
+      },
+      {
+        id: "jika-tidak-cocok",
+        heading: "Apa yang dilakukan jika bukti, nominal, atau status tidak cocok?",
+        toc: "Jika tidak cocok",
+        body: (
+          <>
+            <p>
+              Tahan status order sebagai menunggu verifikasi, cek kembali rincian
+              pesanan dan riwayat merchant, lalu hubungi pelanggan dengan menyebut
+              selisihnya secara jelas sebelum dapur memproses atau staf mengembalikan dana.
+            </p>
+            <p>
+              Jika nominal kurang, jelaskan total dan kekurangannya. Jika nominal
+              lebih, sepakati apakah selisih dikembalikan atau dipakai untuk tambahan
+              pesanan. Jika transaksi belum terlihat, jangan menuduh pelanggan;
+              sampaikan bahwa tim masih memeriksa dan beri waktu pembaruan yang jelas.
+            </p>
+            <div className="callout">
+              <b>Prinsip aman:</b> satu staf boleh menyelidiki, tetapi semua staf harus
+              melihat status yang sama. Hindari order diproses diam-diam sementara
+              catatan pembayaran masih “belum masuk”.
+            </div>
+          </>
+        ),
+      },
+      {
+        id: "screenshot-dan-metrik",
+        heading: "Apakah screenshot cukup, dan metrik apa yang perlu dipantau?",
+        toc: "Bukti dan metrik",
+        body: (
+          <>
+            <p>
+              Tidak. Jadikan notifikasi atau riwayat transaksi pada aplikasi merchant
+              sebagai sumber verifikasi utama karena screenshot dapat terlambat,
+              tertukar, atau berasal dari transaksi lain.
+            </p>
+            <p>
+              Pantau jumlah pembayaran yang perlu dicari manual, waktu dari pelanggan
+              membayar sampai order terkonfirmasi, order yang diproses sebelum lunas,
+              selisih nominal, dan refund karena salah pencocokan. Metrik ini lebih
+              berguna daripada sekadar menghitung berapa transaksi QRIS yang masuk.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Bagaimana Sosmed AI dapat membantu merapikan alurnya?",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI sedang dirancang agar konteks percakapan, ringkasan order,
+              status pembayaran, dan tindakan operasional dapat terlihat sebagai satu
+              alur. Pelanggan tetap mengobrol natural di WhatsApp, sementara tim tidak
+              perlu mencari-cari konteks di antara chat lama sebelum mengambil tindakan.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "otomatisasi-whatsapp-untuk-umkm-fnb", g: "g3", tag: "Panduan", title: "Otomatisasi WhatsApp untuk UMKM F&B", excerpt: "Hubungkan chat, order, pelanggan, dan laporan tanpa bot kaku." },
+      { slug: "laporan-penjualan-harian", g: "g7", tag: "Panduan", title: "Laporan Penjualan Harian", excerpt: "Pantau angka yang membantu menjaga transaksi tetap sehat." },
+      { slug: "cara-mengurangi-chaos-operasional-warung-kafe", g: "g6", tag: "Tips Bisnis", title: "Cara Mengurangi Chaos Operasional", excerpt: "Bangun satu alur kerja yang dapat dilihat seluruh tim." },
+    ],
+  },
+  "pelanggan-sering-ubah-pesanan-di-whatsapp": {
+    title: "Pelanggan Sering Ubah Pesanan di WhatsApp? Cegah Dapur Memasak Versi yang Salah",
+    category: "Tips Bisnis",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-19",
+    coverTitle: "Jangan Masak Versi Pesanan yang Salah",
+    description:
+      "Cara menangani perubahan pesanan pelanggan lewat WhatsApp dengan satu versi order aktif, konfirmasi ulang, dan batas edit yang jelas untuk dapur.",
+    lede: (
+      <>
+        “Ayamnya jangan pedas.” Lalu dua menit kemudian, “Tambah es teh dua, ya.”
+        Perubahannya tampak kecil di chat, tetapi dapur bisa tetap memasak versi lama.
+        Solusinya adalah menjaga satu versi pesanan aktif, mengonfirmasi setiap perubahan,
+        dan memberi batas edit sesuai status dapur.
+      </>
+    ),
+    keywords: [
+      "pelanggan ubah pesanan WhatsApp",
+      "cara revisi order pelanggan",
+      "pesanan salah di dapur",
+      "mengelola order lewat chat",
+      "SOP perubahan pesanan F&B",
+    ],
+    faq: [
+      {
+        q: "Bagaimana menangani pelanggan yang mengubah pesanan lewat WhatsApp?",
+        a: "Catat perubahan pada satu versi order aktif, bacakan ulang hanya bagian yang berubah beserta total dan waktu siap terbaru, lalu minta konfirmasi pelanggan sebelum perubahan diteruskan ke dapur.",
+      },
+      {
+        q: "Kapan perubahan pesanan masih boleh diterima?",
+        a: "Perubahan dapat langsung diterima sebelum dapur memproses; setelah diproses, staf perlu mengecek kelayakan, biaya, dan waktu tambahan; setelah siap, perlakukan permintaan baru sebagai tambahan order.",
+      },
+      {
+        q: "Bagaimana mengukur apakah kesalahan versi pesanan berkurang?",
+        a: "Pantau jumlah revisi per order, remake karena versi lama, selisih total setelah perubahan, waktu konfirmasi revisi, dan komplain akibat pesanan yang tidak sesuai.",
+      },
+    ],
+    tldr: [
+      "Chat adalah jejak percakapan, tetapi dapur membutuhkan satu versi order yang berlaku saat ini.",
+      "Setiap revisi harus memperbarui item, total, estimasi, dan status dalam satu catatan aktif.",
+      "Konfirmasi ulang bagian yang berubah—bukan menyalin seluruh percakapan panjang.",
+      "Batas perubahan mengikuti status order: belum diproses, sedang diproses, atau sudah siap.",
+      "Ukur remake dan komplain akibat versi lama agar masalah tidak dianggap sekadar kelalaian staf.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Bagaimana menangani pelanggan yang mengubah pesanan lewat WhatsApp?",
+        toc: "Jawaban singkat",
+        body: (
+          <>
+            <p>
+              Catat perubahan pada satu versi order aktif, bacakan ulang hanya bagian
+              yang berubah beserta total dan waktu siap terbaru, lalu minta konfirmasi
+              pelanggan sebelum perubahan diteruskan ke dapur.
+            </p>
+            <p>
+              Intinya, chat boleh panjang tetapi instruksi dapur tidak boleh memiliki
+              dua kebenaran. Versi lama harus ditandai sudah diganti, bukan dibiarkan
+              berdampingan dengan revisi terbaru.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "mengapa-versi-lama",
+        heading: "Mengapa dapur masih memasak versi lama meski pelanggan sudah mengubahnya?",
+        toc: "Mengapa versi lama dipakai",
+        body: (
+          <>
+            <p>
+              Perubahan sering berhenti di ponsel orang yang membalas chat. Kertas order
+              pertama sudah masuk dapur, total pembayaran belum diperbarui, atau staf
+              lain hanya membaca pesan awal. Jadi masalahnya bukan semata-mata kurang
+              teliti; sumber informasi order memang terpecah.
+            </p>
+            <p>
+              Risiko membesar saat jam ramai. Artikel
+              <a href="/blog/jam-ramai-adalah-ujian-sebenarnya"> jam ramai adalah ujian sebenarnya</a>
+              menjelaskan mengapa satu informasi yang tidak berpindah dapat berubah
+              menjadi pelanggan yang menunggu tanpa kepastian.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "satu-versi-aktif",
+        heading: "Apa yang dimaksud dengan satu versi pesanan aktif?",
+        toc: "Satu versi aktif",
+        body: (
+          <>
+            <p>
+              Satu versi pesanan aktif adalah satu ringkasan terbaru yang menjadi acuan
+              chat, kasir, dan dapur. Setiap revisi memperbarui ringkasan itu sekaligus
+              menyimpan jejak apa yang berubah, siapa yang mengubah, dan kapan perubahan
+              dikonfirmasi.
+            </p>
+            <ol>
+              <li>Tandai item lama sebagai diganti atau dibatalkan; jangan hanya menambahkan catatan baru di bawahnya.</li>
+              <li>Perbarui jumlah, catatan rasa, alamat, total, pembayaran, dan estimasi bila terdampak.</li>
+              <li>Kirim ringkasan revisi kepada pelanggan dan orang yang mengendalikan antrean dapur.</li>
+              <li>Gunakan status “menunggu konfirmasi” sampai pelanggan menyetujui perubahan penting.</li>
+            </ol>
+          </>
+        ),
+      },
+      {
+        id: "batas-perubahan",
+        heading: "Kapan perubahan pesanan masih boleh diterima?",
+        toc: "Batas perubahan",
+        body: (
+          <>
+            <p>
+              Perubahan dapat langsung diterima sebelum dapur memproses; setelah
+              diproses, staf perlu mengecek kelayakan, biaya, dan waktu tambahan;
+              setelah siap, perlakukan permintaan baru sebagai tambahan order.
+            </p>
+            <ul>
+              <li><b>Belum diproses:</b> revisi order, hitung ulang total, lalu kirim versi terbaru ke antrean.</li>
+              <li><b>Sedang diproses:</b> tanyakan dapur lebih dulu; jelaskan konsekuensi tanpa menyalahkan pelanggan.</li>
+              <li><b>Sudah siap:</b> jangan menghapus biaya yang sudah terjadi secara otomatis; tawarkan tambahan atau solusi yang wajar.</li>
+            </ul>
+            <p>
+              Batas ini perlu terlihat oleh tim seperti halnya status order “baru”,
+              “diproses”, dan “siap”. Dasarnya dapat dibangun dari panduan
+              <a href="/blog/cara-mengurangi-chaos-operasional-warung-kafe"> mengurangi chaos operasional warung dan kafe</a>.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "contoh-konfirmasi",
+        heading: "Seperti apa chat konfirmasi revisi yang jelas dan tidak kaku?",
+        toc: "Contoh konfirmasi",
+        body: (
+          <>
+            <p>
+              Gunakan bahasa natural dan sebutkan dampaknya. Contoh: “Siap, Kak Rani.
+              Pesanan W-1048 diubah menjadi 2 ayam geprek tidak pedas dan tambah 2 es
+              teh. Total terbaru Rp72.000, estimasi siap 12.35. Sudah sesuai, ya?”
+            </p>
+            <p>
+              Jika dapur sudah mulai: “Ayam pertama sudah diproses, Kak. Kami cek dulu
+              apakah level pedas masih bisa diubah. Saya kabari paling lambat dua menit.”
+              Kalimat seperti ini memberi kepastian tanpa membuat percakapan terasa
+              seperti menu chatbot.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "ukur-perbaikan",
+        heading: "Bagaimana mengukur apakah kesalahan versi pesanan berkurang?",
+        toc: "Ukur perbaikan",
+        body: (
+          <>
+            <p>
+              Pantau jumlah revisi per order, remake karena versi lama, selisih total
+              setelah perubahan, waktu konfirmasi revisi, dan komplain akibat pesanan
+              yang tidak sesuai.
+            </p>
+            <p>
+              Review lima order yang paling banyak direvisi setiap minggu. Jika pola
+              datang dari pertanyaan menu yang sama, perjelas menu digital. Jika pola
+              muncul karena handoff tim, perbaiki titik serah—bukan meminta semua orang
+              “lebih fokus” tanpa mengubah sistem.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Bagaimana Sosmed AI dapat membantu menjaga konteks perubahan?",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI sedang dirancang untuk memahami konteks percakapan dan membantu
+              merapikan perubahan menjadi order aktif yang dapat ditindaklanjuti. Arah
+              produknya bukan membuat pelanggan mengikuti tombol-tombol kaku, melainkan
+              menjaga agar bahasa chat yang natural tetap menghasilkan instruksi bisnis
+              yang jelas di belakang layar.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "jam-ramai-adalah-ujian-sebenarnya", g: "g6", tag: "Tips Bisnis", title: "Jam Ramai Adalah Ujian Sebenarnya", excerpt: "Pastikan satu perubahan tidak hilang saat antrean memanjang." },
+      { slug: "cara-mengurangi-chaos-operasional-warung-kafe", g: "g6", tag: "Tips Bisnis", title: "Cara Mengurangi Chaos Operasional", excerpt: "Rapikan sumber informasi dan handoff antartim." },
+      { slug: "menangani-komplain-pelanggan-lewat-whatsapp", g: "g5", tag: "Panduan", title: "Menangani Komplain Lewat WhatsApp", excerpt: "Pulihkan kepercayaan jika pesanan telanjur tidak sesuai." },
+    ],
+  },
   "warung-ramai-belum-tentu-untung": createTodayArticle({
     datePublished: "2026-07-14",
     slug: "warung-ramai-belum-tentu-untung", category: "Tips Bisnis", coverTitle: "Ramai Belum Tentu Untung",
@@ -3239,6 +3640,8 @@ export function formatArticleDate(datePublished: string): string {
  * source of truth). Titles are always real HTML text over the photo.
  */
 const BLOG_IMAGE_STEM: Record<string, string> = {
+  "mencocokkan-pembayaran-qris-dengan-order-whatsapp": "qris-order-whatsapp",
+  "pelanggan-sering-ubah-pesanan-di-whatsapp": "revisi-order-whatsapp",
   "naikkan-harga-menu-tanpa-kehilangan-pelanggan": "naikkan-harga-menu",
   "stok-habis-saat-order-ramai": "stok-habis-order-ramai",
   "menangani-komplain-pelanggan-lewat-whatsapp": "komplain-whatsapp-pelanggan",

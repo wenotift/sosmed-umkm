@@ -29,6 +29,20 @@ export const metadata: Metadata = {
 // ARTICLES[...].datePublished. Byline is always "Tim Sosmed AI".
 const POSTS = [
   {
+    slug: "mencocokkan-pembayaran-qris-dengan-order-whatsapp",
+    g: "g4",
+    tag: "Panduan",
+    title: "Cara Mencocokkan Pembayaran QRIS dengan Order WhatsApp agar Tidak Salah Konfirmasi",
+    excerpt: "Hubungkan kode pesanan, nominal, waktu, dan status merchant sebelum order dinyatakan lunas.",
+  },
+  {
+    slug: "pelanggan-sering-ubah-pesanan-di-whatsapp",
+    g: "g6",
+    tag: "Tips Bisnis",
+    title: "Pelanggan Sering Ubah Pesanan di WhatsApp? Cegah Dapur Memasak Versi yang Salah",
+    excerpt: "Jaga satu versi order aktif agar revisi pelanggan sampai ke kasir dan dapur.",
+  },
+  {
     slug: "naikkan-harga-menu-tanpa-kehilangan-pelanggan",
     g: "g7",
     tag: "Panduan",
