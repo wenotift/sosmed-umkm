@@ -20,7 +20,6 @@ import {
   activeMemberCount,
 } from "./lib/derive";
 import { DAY_MS, NOW, rupiah, rupiahShort, timeAgo, startOfDay } from "./lib/format";
-import type { Order } from "./lib/types";
 
 type Period = "today" | "7d" | "month";
 
@@ -61,7 +60,11 @@ function periodRanges(p: Period) {
 export default function RingkasanContent() {
   const { state } = useStore();
   const [period, setPeriod] = useState<Period>("today");
-  const [selected, setSelected] = useState<Order | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  // resolve against live state so the detail modal reflects status changes
+  const selected = selectedId
+    ? state.orders.find((o) => o.id === selectedId) ?? null
+    : null;
 
   const r = periodRanges(period);
   const cur = kpiForRange(state, r.start, r.end);
@@ -215,7 +218,7 @@ export default function RingkasanContent() {
                 key={o.id}
                 className="dash-orow"
                 style={{ width: "100%", textAlign: "left", background: "none", border: "none", borderBottom: "1px solid var(--line)", cursor: "pointer" }}
-                onClick={() => setSelected(o)}
+                onClick={() => setSelectedId(o.id)}
               >
                 <div className="dash-orow-main">
                   <div className="dash-orow-id">#{o.id}</div>
@@ -275,7 +278,7 @@ export default function RingkasanContent() {
         </div>
       </div>
 
-      <OrderDetailModal order={selected} onClose={() => setSelected(null)} />
+      <OrderDetailModal order={selected} onClose={() => setSelectedId(null)} />
     </>
   );
 }

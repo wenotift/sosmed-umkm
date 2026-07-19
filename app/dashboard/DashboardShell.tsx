@@ -7,8 +7,6 @@ import { Icon, Icons } from "./components/icons";
 import { useStore } from "./lib/store";
 import { monthlyCapacity, pipelineCounts } from "./lib/derive";
 import { longDate, NOW } from "./lib/format";
-import { PLAN_PRICE } from "./lib/types";
-import { rupiah } from "./lib/format";
 
 interface NavDef {
   href: string;
@@ -95,8 +93,7 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
               />
             </div>
             <div className="dash-plan-cap">
-              <b>{cap.used}</b> / {cap.limit} order bulan ini ·{" "}
-              {rupiah(PLAN_PRICE[state.business.plan])}/bln
+              <b>{cap.used}</b> / {cap.limit} order bulan ini
             </div>
           </div>
         </div>
