@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const SITE_URL = "https://umkm.sosmed.io";
@@ -138,6 +139,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
