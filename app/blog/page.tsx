@@ -29,6 +29,20 @@ export const metadata: Metadata = {
 // ARTICLES[...].datePublished. Byline is always "Tim Sosmed AI".
 const POSTS = [
   {
+    slug: "sop-serah-terima-shift-warung-kafe",
+    g: "g6",
+    tag: "Panduan",
+    title: "Cara Membuat SOP Serah Terima Shift Warung dan Kafe agar Tidak Ada Tugas Terlewat",
+    excerpt: "Pindahkan pesanan, pembayaran, stok, pelanggan, dan tindak lanjut ke shift berikutnya tanpa mengandalkan ingatan.",
+  },
+  {
+    slug: "cara-mengurangi-food-waste-warung-kafe",
+    g: "g7",
+    tag: "Tips Bisnis",
+    title: "Bahan Sudah Dibeli, tapi Tidak Terjual? Cara Mengurangi Food Waste Warung dan Kafe",
+    excerpt: "Gunakan jurnal sisa pangan dan pola order untuk memperbaiki pembelian, prep, porsi, serta produksi.",
+  },
+  {
     slug: "mencocokkan-pembayaran-qris-dengan-order-whatsapp",
     g: "g4",
     tag: "Panduan",

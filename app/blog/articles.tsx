@@ -297,6 +297,358 @@ function createTodayArticle(input: TodayArticleInput): Article {
 }
 
 const TODAY_ARTICLES: Record<string, Article> = {
+  "sop-serah-terima-shift-warung-kafe": {
+    title: "Cara Membuat SOP Serah Terima Shift Warung dan Kafe agar Tidak Ada Tugas Terlewat",
+    category: "Panduan",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-21",
+    coverTitle: "Serah Terima Shift Tanpa Informasi Hilang",
+    description:
+      "Panduan membuat SOP serah terima shift warung dan kafe dengan checklist pesanan, pembayaran, stok, pelanggan, dan tindak lanjut yang jelas.",
+    lede: (
+      <>
+        SOP serah terima shift yang efektif bukan laporan panjang. Tim cukup
+        memindahkan lima konteks yang masih aktif—pesanan, pembayaran, persediaan,
+        pelanggan, dan pekerjaan lanjutan—ke satu catatan yang dibaca ulang oleh
+        shift berikutnya sebelum staf lama pulang.
+      </>
+    ),
+    keywords: [
+      "SOP serah terima shift",
+      "checklist shift restoran",
+      "pergantian shift kasir",
+      "operasional warung dan kafe",
+      "handover karyawan F&B",
+    ],
+    faq: [
+      {
+        q: "Apa saja yang harus masuk dalam serah terima shift warung atau kafe?",
+        a: "Catat lima hal yang masih membutuhkan konteks atau tindakan: pesanan aktif, pembayaran yang belum tuntas, persediaan kritis, pelanggan yang perlu ditindaklanjuti, dan pekerjaan lanjutan beserta penanggung jawabnya.",
+      },
+      {
+        q: "Bagaimana membuat serah terima shift yang singkat tetapi lengkap?",
+        a: "Gunakan satu template tetap, tulis hanya pengecualian dan pekerjaan aktif, tetapkan batas waktu pencatatan, lalu minta staf shift berikutnya membaca ulang prioritas sebelum menerima tanggung jawab.",
+      },
+      {
+        q: "Bagaimana mengukur apakah SOP pergantian shift bekerja?",
+        a: "Pantau tugas yang terlewat setelah pergantian shift, pertanyaan ulang ke staf lama, selisih pembayaran, stok kosong yang tidak diinformasikan, dan waktu yang dibutuhkan untuk menyelesaikan handover.",
+      },
+    ],
+    tldr: [
+      "Serahkan lima konteks aktif: pesanan, pembayaran, persediaan, pelanggan, dan pekerjaan lanjutan.",
+      "Gunakan satu catatan aktif; jangan menyebarkan handover di chat pribadi, kertas, dan ingatan staf.",
+      "Setiap pengecualian harus memiliki status, tindakan berikutnya, penanggung jawab, dan batas waktu.",
+      "Shift penerima perlu membaca ulang prioritas agar tanggung jawab benar-benar berpindah.",
+      "Ukur tugas terlewat dan pertanyaan ulang, bukan hanya apakah formulir sudah diisi.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Bagaimana membuat SOP serah terima shift warung dan kafe?",
+        toc: "Jawaban singkat",
+        body: (
+          <>
+            <p>
+              Gunakan satu template tetap untuk mencatat lima konteks yang masih
+              aktif: pesanan, pembayaran, persediaan, pelanggan, dan pekerjaan
+              lanjutan. Tulis hanya hal yang berbeda dari kondisi normal dan perlu
+              diketahui shift berikutnya.
+            </p>
+            <p>
+              Handover selesai setelah staf penerima membaca ulang prioritas,
+              memahami tindakan berikutnya, dan menerima tanggung jawab. Mengirim
+              pesan ke grup saja belum berarti informasi sudah diterima.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "lima-konteks",
+        heading: "Apa saja yang harus masuk dalam checklist pergantian shift?",
+        toc: "Lima konteks wajib",
+        body: (
+          <ol>
+            <li><b>Pesanan aktif:</b> kode order, janji waktu, perubahan terakhir, dan status dapur atau pickup.</li>
+            <li><b>Pembayaran:</b> transaksi yang belum cocok, refund, void, kas bon, atau selisih yang masih diperiksa.</li>
+            <li><b>Persediaan:</b> bahan kritis, menu yang harus disembunyikan, barang datang, dan penyimpanan yang perlu dicek.</li>
+            <li><b>Pelanggan:</b> komplain terbuka, permintaan khusus, atau janji follow-up yang belum selesai.</li>
+            <li><b>Pekerjaan lanjutan:</b> satu tindakan berikutnya, satu penanggung jawab, dan batas waktu yang jelas.</li>
+          </ol>
+        ),
+      },
+      {
+        id: "format-ringkas",
+        heading: "Bagaimana membuat serah terima shift yang singkat tetapi lengkap?",
+        toc: "Format handover ringkas",
+        body: (
+          <>
+            <p>
+              Gunakan satu template tetap, tulis hanya pengecualian dan pekerjaan
+              aktif, tetapkan batas waktu pencatatan, lalu minta staf shift berikutnya
+              membaca ulang prioritas sebelum menerima tanggung jawab.
+            </p>
+            <div className="callout">
+              <b>Format satu baris:</b> W-1127 · pickup 18.30 · 2 ayam geprek
+              tidak pedas · QRIS terverifikasi · sedang dimasak · Rani memberi
+              kabar jika lewat 18.20.
+            </div>
+            <p>
+              Satu baris itu menjawab empat pertanyaan: apa yang terjadi, statusnya
+              sekarang, apa tindakan berikutnya, dan siapa yang bertanggung jawab.
+              Riwayat lengkap tetap dapat dibuka jika dibutuhkan, tetapi handover
+              tidak perlu menyalin seluruh percakapan.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "alur-empat-langkah",
+        heading: "Seperti apa alur pergantian shift yang tidak bergantung pada ingatan?",
+        toc: "Alur empat langkah",
+        body: (
+          <ol>
+            <li>Tetapkan waktu cut-off agar staf lama memperbarui semua status sebelum pergantian.</li>
+            <li>Catat pengecualian di satu sumber yang dapat dilihat kasir, dapur, dan penanggung jawab shift.</li>
+            <li>Staf penerima membaca ulang pesanan prioritas, masalah pembayaran, stok kritis, dan janji pelanggan.</li>
+            <li>Setelah tanggung jawab diterima, semua pembaruan berikutnya masuk ke catatan yang sama.</li>
+          </ol>
+        ),
+      },
+      {
+        id: "kesalahan-umum",
+        heading: "Kesalahan apa yang membuat informasi tetap hilang?",
+        toc: "Kesalahan umum",
+        body: (
+          <>
+            <p>
+              Masalah paling umum adalah mencatat tanpa menentukan pemilik tugas,
+              memakai tiga tempat sekaligus, dan menganggap status “sudah dikabari”
+              sebagai status operasional. Kalimat seperti “tolong dicek nanti” tidak
+              menjelaskan apa yang perlu dicek, siapa yang mengecek, atau kapan selesai.
+            </p>
+            <p>
+              Jika order dan pekerjaan sering tercecer sebelum pergantian shift,
+              rapikan dulu sumber informasinya melalui panduan
+              <a href="/blog/cara-mengurangi-chaos-operasional-warung-kafe"> mengurangi chaos operasional warung dan kafe</a>.
+              Untuk transaksi yang belum jelas, gunakan alur
+              <a href="/blog/mencocokkan-pembayaran-qris-dengan-order-whatsapp"> pencocokan QRIS dengan order WhatsApp</a>.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "ukur-handover",
+        heading: "Bagaimana mengukur apakah SOP pergantian shift bekerja?",
+        toc: "Ukur hasil handover",
+        body: (
+          <p>
+            Pantau tugas yang terlewat setelah pergantian shift, pertanyaan ulang
+            ke staf lama, selisih pembayaran, stok kosong yang tidak diinformasikan,
+            dan waktu yang dibutuhkan untuk menyelesaikan handover. Formulir yang
+            selalu terisi belum tentu berguna jika masalah yang sama tetap berulang.
+          </p>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Bagaimana Sosmed AI membantu menjaga konteks antarshift?",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI sedang dirancang agar chat pelanggan, versi order aktif,
+              status pembayaran, catatan pelanggan, dan tindakan lanjutan terlihat
+              dalam satu konteks. Shift berikutnya dapat memahami apa yang masih
+              terbuka tanpa menyisir percakapan panjang atau menghubungi staf yang pulang.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "cara-mengurangi-chaos-operasional-warung-kafe", g: "g6", tag: "Tips Bisnis", title: "Cara Mengurangi Chaos Operasional", excerpt: "Bangun satu alur kerja yang dapat dilihat seluruh tim." },
+      { slug: "warung-tetap-jalan-saat-pemilik-libur", g: "g6", tag: "Tips Bisnis", title: "Warung Tetap Jalan Saat Pemilik Libur", excerpt: "Uji apakah sistem tetap bekerja tanpa pemilik." },
+      { slug: "mencocokkan-pembayaran-qris-dengan-order-whatsapp", g: "g4", tag: "Panduan", title: "Mencocokkan QRIS dengan Order WhatsApp", excerpt: "Pastikan pembayaran dan order tidak tertukar antarshift." },
+    ],
+  },
+  "cara-mengurangi-food-waste-warung-kafe": {
+    title: "Bahan Sudah Dibeli, tapi Tidak Terjual? Cara Mengurangi Food Waste Warung dan Kafe",
+    category: "Tips Bisnis",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-21",
+    coverTitle: "Kurangi Food Waste dari Pola Order",
+    description:
+      "Cara mengurangi food waste warung dan kafe dengan jurnal sisa bahan, klasifikasi penyebab, keputusan produksi, dan pengukuran biaya yang praktis.",
+    lede: (
+      <>
+        Food waste tidak cukup diatasi dengan pesan “jangan membuang makanan”.
+        Warung dan kafe perlu mencatat bahan apa yang terbuang, pada tahap mana,
+        karena alasan apa, dan keputusan apa yang harus berubah pada pembelian,
+        persiapan, porsi, atau penjualan berikutnya.
+      </>
+    ),
+    keywords: [
+      "cara mengurangi food waste",
+      "food waste restoran",
+      "bahan makanan terbuang",
+      "jurnal waste dapur",
+      "mengurangi pemborosan warung",
+    ],
+    faq: [
+      {
+        q: "Bagaimana cara mengurangi food waste di warung atau kafe?",
+        a: "Mulai dengan jurnal sisa pangan selama tujuh hari: catat bahan atau menu, jumlah atau nilai perkiraan, tahap terbuang, penyebab, dan tindakan berikutnya; lalu perbaiki satu penyebab terbesar terlebih dahulu.",
+      },
+      {
+        q: "Apa saja jenis food waste yang perlu dipisahkan?",
+        a: "Pisahkan waste saat penyimpanan, persiapan, produksi berlebih, kesalahan order atau remake, dan sisa pelanggan karena setiap jenis membutuhkan keputusan perbaikan yang berbeda.",
+      },
+      {
+        q: "Metrik food waste apa yang berguna untuk usaha F&B kecil?",
+        a: "Pantau nilai bahan terbuang, waste per bahan atau menu, alasan waste, remake, dan jumlah produksi tidak terjual; bandingkan dengan jumlah porsi terjual agar perubahan volume usaha tidak menyesatkan.",
+      },
+    ],
+    tldr: [
+      "Catat sisa pangan berdasarkan bahan atau menu, tahap terbuang, penyebab, dan nilai perkiraannya.",
+      "Pisahkan waste penyimpanan, persiapan, produksi berlebih, remake, dan sisa pelanggan.",
+      "Hubungkan catatan waste dengan pola order; jangan menebak kebutuhan hanya dari hari terakhir.",
+      "Perbaiki satu penyebab terbesar sebelum mengubah pembelian, porsi, dan menu sekaligus.",
+      "Ukur nilai bahan terbuang per porsi terjual agar dampaknya terlihat pada profit.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Bagaimana cara mengurangi food waste di warung atau kafe?",
+        toc: "Jawaban singkat",
+        body: (
+          <>
+            <p>
+              Mulai dengan jurnal sisa pangan selama tujuh hari: catat bahan atau
+              menu, jumlah atau nilai perkiraan, tahap terbuang, penyebab, dan
+              tindakan berikutnya. Setelah itu, perbaiki satu penyebab dengan dampak
+              terbesar terlebih dahulu.
+            </p>
+            <p>
+              Pendekatan ini membedakan sisa yang memang tidak dapat dimakan dari
+              bahan layak yang rusak, produksi yang tidak terjual, remake, dan porsi
+              yang kembali dari pelanggan. Setiap penyebab membutuhkan keputusan berbeda.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "mengapa-terlambat",
+        heading: "Mengapa bahan terbuang sering baru terlihat saat profit menipis?",
+        toc: "Waste yang tidak terlihat",
+        body: (
+          <>
+            <p>
+              Pembelian tercatat sebagai satu pengeluaran besar, sedangkan bahan
+              terbuang muncul sedikit demi sedikit: sayur layu, saus berlebih,
+              minuman salah racik, atau produk jadi yang tersisa. Tanpa alasan dan
+              nilai perkiraan, semua kejadian itu hanya terlihat sebagai tempat sampah penuh.
+            </p>
+            <p>
+              Badan Pangan Nasional menempatkan pencegahan dan pengurangan sisa
+              pangan sebagai proses yang sistematis. Konteks dan materi resminya
+              dapat dibaca melalui <a href="https://sbp.badanpangan.go.id/">Gerakan Stop Boros Pangan</a>.
+              Untuk usaha kecil, bentuk paling praktis dari prinsip itu adalah
+              mencatat pola sebelum memutuskan tindakan.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "lima-jenis",
+        heading: "Apa saja jenis food waste yang perlu dipisahkan?",
+        toc: "Lima jenis waste",
+        body: (
+          <ol>
+            <li><b>Penyimpanan:</b> bahan rusak, layu, bocor, atau melewati batas aman sebelum dipakai.</li>
+            <li><b>Persiapan:</b> trimming berlebih, salah takaran, tumpah, atau bahan salah olah.</li>
+            <li><b>Produksi berlebih:</b> makanan atau minuman sudah dibuat tetapi tidak terjual.</li>
+            <li><b>Kesalahan order:</b> remake karena item, ukuran, topping, atau catatan pelanggan keliru.</li>
+            <li><b>Sisa pelanggan:</b> porsi tidak habis dan kembali dari meja atau pesanan.</li>
+          </ol>
+        ),
+      },
+      {
+        id: "jurnal-tujuh-hari",
+        heading: "Bagaimana membuat jurnal waste yang benar-benar dipakai tim?",
+        toc: "Jurnal tujuh hari",
+        body: (
+          <>
+            <p>
+              Gunakan lima kolom: bahan atau menu, jumlah atau nilai perkiraan,
+              tahap terbuang, kode penyebab, dan tindakan berikutnya. Hindari kolom
+              komentar bebas yang panjang; tim perlu mencatat kejadian dalam beberapa detik.
+            </p>
+            <div className="callout">
+              <b>Contoh:</b> susu segar · kira-kira Rp28.000 · penyimpanan · kedaluwarsa
+              · kurangi pembelian hari Selasa dan cek stok sebelum menerima order pemasok.
+            </div>
+            <p>
+              Di akhir tujuh hari, jumlahkan nilai per penyebab—bukan hanya per bahan.
+              Sepuluh bahan berbeda yang terbuang karena produksi berlebih mungkin
+              menunjukkan satu masalah yang sama: keputusan prep tidak mengikuti pola order.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "keputusan-per-penyebab",
+        heading: "Keputusan apa yang tepat untuk setiap penyebab waste?",
+        toc: "Keputusan per penyebab",
+        body: (
+          <ul>
+            <li><b>Rusak di penyimpanan:</b> perbaiki rotasi, label tanggal, jumlah beli, atau frekuensi pemasok.</li>
+            <li><b>Produksi berlebih:</b> kecilkan batch awal dan gunakan order aktual sebagai sinyal batch berikutnya.</li>
+            <li><b>Remake:</b> pastikan satu versi order aktif sampai ke dapur; gunakan panduan <a href="/blog/pelanggan-sering-ubah-pesanan-di-whatsapp">menangani revisi pesanan WhatsApp</a>.</li>
+            <li><b>Menu jarang terjual:</b> evaluasi posisinya, bahan yang dipakai bersama menu lain, dan kontribusi profit melalui <a href="/blog/mengetahui-menu-paling-laku-dan-menguntungkan">analisis menu laku dan menguntungkan</a>.</li>
+            <li><b>Sisa pelanggan:</b> tinjau konsistensi porsi dan tanyakan secara netral bila pola yang sama berulang.</li>
+          </ul>
+        ),
+      },
+      {
+        id: "ukur-waste",
+        heading: "Metrik food waste apa yang berguna untuk usaha F&B kecil?",
+        toc: "Metrik yang berguna",
+        body: (
+          <p>
+            Pantau nilai bahan terbuang, waste per bahan atau menu, alasan waste,
+            remake, dan jumlah produksi tidak terjual. Bandingkan dengan jumlah
+            porsi terjual agar perubahan volume usaha tidak menyesatkan. Tujuannya
+            bukan membuat tim takut mencatat, tetapi membuat penyebab yang berulang
+            cukup jelas untuk diperbaiki.
+          </p>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Bagaimana Sosmed AI menghubungkan pola order dengan keputusan waste?",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI sedang dirancang untuk menghubungkan percakapan WhatsApp,
+              menu yang dipesan, perubahan order, status penyelesaian, dan ringkasan
+              bisnis. Konteks itu dapat membantu pemilik melihat bahan atau menu mana
+              yang perlu disiapkan lebih hati-hati tanpa menambah rekap chat manual.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "stok-habis-saat-order-ramai", g: "g6", tag: "Tips Bisnis", title: "Stok Habis Saat Order Ramai", excerpt: "Seimbangkan kesiapan stok dan risiko belanja berlebihan." },
+      { slug: "mengetahui-menu-paling-laku-dan-menguntungkan", g: "g7", tag: "Panduan", title: "Menu Paling Laku dan Menguntungkan", excerpt: "Hubungkan popularitas menu dengan margin dan beban operasional." },
+      { slug: "pelanggan-sering-ubah-pesanan-di-whatsapp", g: "g6", tag: "Tips Bisnis", title: "Pelanggan Sering Ubah Pesanan", excerpt: "Kurangi remake karena dapur memakai versi order yang salah." },
+    ],
+  },
   "mencocokkan-pembayaran-qris-dengan-order-whatsapp": {
     title: "Cara Mencocokkan Pembayaran QRIS dengan Order WhatsApp agar Tidak Salah Konfirmasi",
     category: "Panduan",
@@ -3640,6 +3992,8 @@ export function formatArticleDate(datePublished: string): string {
  * source of truth). Titles are always real HTML text over the photo.
  */
 const BLOG_IMAGE_STEM: Record<string, string> = {
+  "sop-serah-terima-shift-warung-kafe": "sop-serah-terima-shift",
+  "cara-mengurangi-food-waste-warung-kafe": "kurangi-food-waste",
   "mencocokkan-pembayaran-qris-dengan-order-whatsapp": "qris-order-whatsapp",
   "pelanggan-sering-ubah-pesanan-di-whatsapp": "revisi-order-whatsapp",
   "naikkan-harga-menu-tanpa-kehilangan-pelanggan": "naikkan-harga-menu",
