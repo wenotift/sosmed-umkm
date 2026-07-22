@@ -143,7 +143,7 @@ export default function OnboardingContent() {
             height={37}
             priority
           />
-          <div className="onb-brand-sub">AI-Native WhatsApp Automation Agent</div>
+          <div className="onb-brand-sub">AI-Native Automation Agent</div>
         </div>
 
         <div className="onb-steps">

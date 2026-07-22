@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
 import { AuthAside, Ic, PasswordChecklist } from "../shared";
+import { LangToggle, useT } from "../i18n";
 import {
   emailForResetToken,
   completeReset,
@@ -17,6 +18,7 @@ const noopSubscribe = () => () => {};
 
 export default function ResetContent() {
   const router = useRouter();
+  const t = useT();
   const params = useSearchParams();
   const token = params.get("token") ?? "";
 
@@ -51,9 +53,9 @@ export default function ResetContent() {
     ev.preventDefault();
     const e: typeof errors = {};
     const p = passwordProblem(pw);
-    if (!pw) e.pw = "Create a new password.";
+    if (!pw) e.pw = t.errCreateNewPw;
     else if (p) e.pw = p;
-    if (confirm !== pw) e.confirm = "Passwords don't match.";
+    if (confirm !== pw) e.confirm = t.errPwNoMatch;
     setErrors(e);
     if (Object.keys(e).length) return;
     setLoading(true);
@@ -78,40 +80,36 @@ export default function ResetContent() {
           ) : done ? (
             <div className="auth-success">
               <span className="auth-success-ic">{Ic.check}</span>
-              <h2>Password updated</h2>
-              <p className="auth-card-sub">
-                Your password has been changed. You can now log in with your new password.
-              </p>
+              <h2>{t.pwUpdatedTitle}</h2>
+              <p className="auth-card-sub">{t.pwUpdatedBody}</p>
               <button
                 className="auth-submit"
                 style={{ marginTop: 18 }}
                 onClick={() => router.push("/login")}
               >
-                Go to login
+                {t.goToLogin}
               </button>
             </div>
           ) : invalid ? (
             <>
               <Link href="/forgot-password" className="auth-back">
-                {Ic.arrowLeft} Back
+                {Ic.arrowLeft} {t.back}
               </Link>
-              <h2>Link expired</h2>
-              <p className="auth-card-sub">
-                This reset link is invalid or has expired. Request a new one to continue.
-              </p>
+              <h2>{t.linkExpiredTitle}</h2>
+              <p className="auth-card-sub">{t.linkExpiredBody}</p>
               <Link href="/forgot-password" className="auth-submit" style={{ marginTop: 20 }}>
-                Request a new link
+                {t.requestNew}
               </Link>
             </>
           ) : (
             <form onSubmit={onSubmit} noValidate>
-              <h2>Set a new password</h2>
+              <h2>{t.setNewTitle}</h2>
               <p className="auth-card-sub">
-                Choose a new password for <b>{email}</b>.
+                {t.setNewSubPre}<b>{email}</b>{t.setNewSubPost}
               </p>
 
               <div className="auth-field" style={{ marginTop: 24 }}>
-                <label htmlFor="rp-pass">New password</label>
+                <label htmlFor="rp-pass">{t.newPassword}</label>
                 <div className={"auth-input" + (errors.pw ? " invalid" : "")}>
                   <span className="lead">{Ic.lock}</span>
                   <input
@@ -124,7 +122,7 @@ export default function ResetContent() {
                     }}
                     onFocus={() => setPwFocus(true)}
                     onBlur={() => setPwFocus(false)}
-                    placeholder="Create a new password"
+                    placeholder={t.newPasswordPh}
                     autoComplete="new-password"
                   />
                   <button
@@ -141,12 +139,12 @@ export default function ResetContent() {
                 ) : errors.pw ? (
                   <div className="auth-err">{errors.pw}</div>
                 ) : (
-                  <div className="auth-hint">Use 8+ characters with upper &amp; lower case, a number &amp; a symbol.</div>
+                  <div className="auth-hint">{t.pwHint}</div>
                 )}
               </div>
 
               <div className="auth-field">
-                <label htmlFor="rp-confirm">Confirm password</label>
+                <label htmlFor="rp-confirm">{t.confirmPassword}</label>
                 <div className={"auth-input" + (errors.confirm ? " invalid" : "")}>
                   <span className="lead">{Ic.lock}</span>
                   <input
@@ -157,7 +155,7 @@ export default function ResetContent() {
                       setConfirm(e.target.value);
                       if (errors.confirm) setErrors((x) => ({ ...x, confirm: undefined }));
                     }}
-                    placeholder="Re-enter your new password"
+                    placeholder={t.confirmPasswordPh}
                     autoComplete="new-password"
                   />
                 </div>
@@ -166,11 +164,12 @@ export default function ResetContent() {
 
               <button className="auth-submit" type="submit" disabled={loading}>
                 {loading ? <span className="spin" /> : null}
-                {loading ? "Updating…" : "Update password"}
+                {loading ? t.updating : t.updateBtn}
               </button>
             </form>
           )}
         </div>
+        <LangToggle />
       </div>
     </>
   );
