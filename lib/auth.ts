@@ -299,6 +299,9 @@ export async function register(input: {
       throw new AuthError("unknown");
     }
     // No session means email confirmation is required before first login.
+    // When a session IS returned (confirmation disabled), cache it now so the
+    // immediate redirect doesn't race the async onAuthStateChange event.
+    if (data!.session) setCached(mapSupabaseSession(data!.session));
     return { needsConfirmation: !data!.session };
   }
   const s = await localRegister(input.name, email, input.password);
@@ -309,9 +312,9 @@ export async function register(input: {
 export async function login(input: { email: string; password: string }): Promise<void> {
   const email = norm(input.email);
   if (supabase) {
-    let error;
+    let data, error;
     try {
-      ({ error } = await supabase.auth.signInWithPassword({ email, password: input.password }));
+      ({ data, error } = await supabase.auth.signInWithPassword({ email, password: input.password }));
     } catch {
       throw new AuthError("network");
     }
@@ -320,6 +323,10 @@ export async function login(input: { email: string; password: string }): Promise
       if (/fetch|network/i.test(error.message)) throw new AuthError("network");
       throw new AuthError("invalid_credentials");
     }
+    // Cache the session synchronously so the redirect to /dashboard doesn't
+    // race the async onAuthStateChange event (which would otherwise leave the
+    // guard reading a stale null session and bounce back to /login).
+    if (data?.session) setCached(mapSupabaseSession(data.session));
     return;
   }
   const s = await localLogin(email, input.password);
