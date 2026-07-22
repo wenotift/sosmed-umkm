@@ -629,7 +629,8 @@
   text-align: right;
   margin: -6px 0 18px;
 }
-.auth-forgot button {
+.auth-forgot button,
+.auth-forgot a {
   background: none;
   border: none;
   color: var(--v);
@@ -638,7 +639,48 @@
   font-size: 13px;
   cursor: pointer;
 }
-.auth-forgot button:hover { text-decoration: underline; }
+.auth-forgot button:hover,
+.auth-forgot a:hover { text-decoration: underline; }
+
+/* back link on secondary auth pages */
+.auth-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.auth-back:hover { color: var(--ink); }
+.auth-back svg { width: 16px; height: 16px; }
+.auth-success {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 8px 0 4px;
+}
+.auth-success-ic {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #E3F9EC;
+  color: #16A34A;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+}
+.auth-success-ic svg { width: 28px; height: 28px; }
+.auth-loading {
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--line);
+  border-top-color: var(--v);
+  border-radius: 50%;
+  animation: authSpin 0.7s linear infinite;
+  margin: 24px auto;
+}
 
 .auth-swap {
   text-align: center;

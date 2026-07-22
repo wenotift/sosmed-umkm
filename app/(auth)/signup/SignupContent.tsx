@@ -4,11 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AuthAside, SsoButtons, Ic } from "../shared";
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { register, AuthError, EMAIL_RE, passwordProblem } from "@/lib/auth";
 
 type Fields = { name: string; email: string; password: string };
-type Errors = Partial<Record<keyof Fields | "agree", string>>;
+type Errors = Partial<Record<keyof Fields | "agree" | "form", string>>;
 
 function validate(f: Fields, agree: boolean): Errors {
   const e: Errors = {};
@@ -16,9 +15,10 @@ function validate(f: Fields, agree: boolean): Errors {
   if (!f.email.trim()) e.email = "Work email is required.";
   else if (!EMAIL_RE.test(f.email.trim())) e.email = "Enter a valid email address.";
   if (!f.password) e.password = "Create a password.";
-  else if (f.password.length < 8) e.password = "Use at least 8 characters.";
-  else if (!/[a-zA-Z]/.test(f.password) || !/\d/.test(f.password))
-    e.password = "Mix letters and numbers.";
+  else {
+    const p = passwordProblem(f.password);
+    if (p) e.password = p;
+  }
   if (!agree) e.agree = "Please accept the Terms to continue.";
   return e;
 }
@@ -36,14 +36,23 @@ export default function SignupContent() {
     if (errors[k]) setErrors((e) => ({ ...e, [k]: undefined }));
   };
 
-  const onSubmit = (ev: React.FormEvent) => {
+  const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     const e = validate(fields, agree);
     setErrors(e);
     if (Object.keys(e).length) return;
     setLoading(true);
-    // No auth backend yet — proceed to the dashboard for the proto.
-    setTimeout(() => router.push("/dashboard"), 550);
+    try {
+      await register(fields);
+      router.push("/dashboard");
+    } catch (err) {
+      setLoading(false);
+      if (err instanceof AuthError && err.code === "email_taken") {
+        setErrors({ email: "This email is already registered. Try logging in." });
+      } else {
+        setErrors({ form: "Something went wrong. Please try again." });
+      }
+    }
   };
 
   return (
@@ -133,6 +142,7 @@ export default function SignupContent() {
             </span>
           </label>
           {errors.agree && <div className="auth-err" style={{ marginTop: -12, marginBottom: 14 }}>{errors.agree}</div>}
+          {errors.form && <div className="auth-err" style={{ marginBottom: 14 }}>{errors.form}</div>}
 
           <button className="auth-submit" type="submit" disabled={loading}>
             {loading ? <span className="spin" /> : null}

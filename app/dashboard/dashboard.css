@@ -173,6 +173,56 @@
 .dash-plan-cap b {
   color: #E9E2F5;
 }
+.dash-account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dash-account .dash-avatar-sm {
+  background: linear-gradient(145deg, var(--accent-2), var(--accent));
+  color: #fff;
+}
+.dash-account-info {
+  flex: 1;
+  min-width: 0;
+}
+.dash-account-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dash-account-email {
+  font-size: 11px;
+  color: #9C8FB8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dash-account-logout {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: #B7ACCB;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: 0.16s;
+}
+.dash-account-logout:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
 
 /* ---- topbar & main --------------------------------------------------------*/
 .dash-main {

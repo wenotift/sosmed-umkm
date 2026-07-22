@@ -1,6 +1,9 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
+import { loginWithGoogleDemo } from "@/lib/auth";
 
 /* ---- brand + UI icons -----------------------------------------------------*/
 export const GoogleIcon = (
@@ -39,6 +42,7 @@ export const Ic = {
   headset: <Line><path d="M4 14v-2a8 8 0 0 1 16 0v2" /><rect x="2" y="14" width="4" height="6" rx="1.5" /><rect x="18" y="14" width="4" height="6" rx="1.5" /><path d="M20 20a4 4 0 0 1-4 3h-2" /></Line>,
   people: <Line><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11" /></Line>,
   arrow: <Line><path d="M5 12h14M13 6l6 6-6 6" /></Line>,
+  arrowLeft: <Line><path d="M19 12H5M11 18l-6-6 6-6" /></Line>,
   robot: (
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <rect x="4" y="8" width="16" height="12" rx="4" />
@@ -206,12 +210,17 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
 
 /* ---- shared bits used by the cards ---------------------------------------*/
 export function SsoButtons({ verb }: { verb: string }) {
-  // Placeholder OAuth entry point — wired to the dashboard for the proto.
+  const router = useRouter();
+  // Demo OAuth: provisions/signs in a Google demo account, then enters the app.
+  const onGoogle = () => {
+    loginWithGoogleDemo();
+    router.push("/dashboard");
+  };
   return (
     <div className="auth-sso-row">
-      <Link href="/dashboard" className="auth-sso">
+      <button type="button" className="auth-sso" onClick={onGoogle}>
         {GoogleIcon} {verb} with Google
-      </Link>
+      </button>
     </div>
   );
 }

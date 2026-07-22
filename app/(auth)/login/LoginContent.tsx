@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AuthAside, SsoButtons, Ic } from "../shared";
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { login, AuthError, EMAIL_RE } from "@/lib/auth";
 
 type Errors = { email?: string; password?: string };
 
@@ -16,22 +15,8 @@ export default function LoginContent() {
   const [errors, setErrors] = useState<Errors>({});
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [forgot, setForgot] = useState<{ ok: boolean; msg: string } | null>(null);
 
-  const onForgot = () => {
-    const e = email.trim();
-    if (!e || !EMAIL_RE.test(e)) {
-      setErrors((x) => ({
-        ...x,
-        email: !e ? "Work email is required." : "Enter a valid email address.",
-      }));
-      setForgot({ ok: false, msg: "Isi email yang valid di atas dulu, lalu klik lagi." });
-      return;
-    }
-    setForgot({ ok: true, msg: `Tautan reset password dikirim ke ${e}. Cek inbox kamu ya.` });
-  };
-
-  const onSubmit = (ev: React.FormEvent) => {
+  const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     const e: Errors = {};
     if (!email.trim()) e.email = "Work email is required.";
@@ -40,8 +25,19 @@ export default function LoginContent() {
     setErrors(e);
     if (Object.keys(e).length) return;
     setLoading(true);
-    // No auth backend yet — proceed to the dashboard for the proto.
-    setTimeout(() => router.push("/dashboard"), 550);
+    try {
+      await login({ email, password });
+      router.push("/dashboard");
+    } catch (err) {
+      setLoading(false);
+      if (err instanceof AuthError && err.code === "not_found") {
+        setErrors({ email: "No account found with this email. Sign up first." });
+      } else if (err instanceof AuthError && err.code === "wrong_password") {
+        setErrors({ password: "Incorrect password. Try again." });
+      } else {
+        setErrors({ password: "Something went wrong. Please try again." });
+      }
+    }
   };
 
   return (
@@ -102,14 +98,8 @@ export default function LoginContent() {
           </div>
 
           <div className="auth-forgot">
-            <button type="button" onClick={onForgot}>
-              Forgot password?
-            </button>
+            <Link href="/forgot-password">Forgot password?</Link>
           </div>
-
-          {forgot && (
-            <div className={"auth-note" + (forgot.ok ? "" : " warn")}>{forgot.msg}</div>
-          )}
 
           <button className="auth-submit" type="submit" disabled={loading}>
             {loading ? <span className="spin" /> : null}

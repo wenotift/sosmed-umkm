@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState, type ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState, useSyncExternalStore, type ReactNode } from "react";
 import { Icon, Icons } from "./components/icons";
 import { useStore } from "./lib/store";
 import { monthlyCapacity, pipelineCounts } from "./lib/derive";
 import { longDate, NOW } from "./lib/format";
+import { logout, sessionSnapshot, subscribeSession, type Session } from "@/lib/auth";
 
 interface NavDef {
   href: string;
@@ -32,9 +33,40 @@ function initials(name: string): string {
 
 export default function DashboardShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
   const { state } = useStore();
   const [drawer, setDrawer] = useState(false);
   const closeDrawer = () => setDrawer(false);
+
+  // Route protection: read the session without a hydration mismatch. The server
+  // snapshot is `undefined` (unknown) so we never wrongly redirect during
+  // hydration; after hydration it resolves to a Session or null.
+  const session = useSyncExternalStore<Session | null | undefined>(
+    subscribeSession,
+    sessionSnapshot,
+    () => undefined,
+  );
+  useEffect(() => {
+    if (session === null) router.replace("/login");
+  }, [session, router]);
+
+  const onLogout = () => {
+    logout();
+    router.replace("/login");
+  };
+
+  // Until the session is resolved (and while redirecting an unauthenticated
+  // visitor), show a lightweight loading state instead of the dashboard.
+  if (session === undefined || session === null) {
+    return (
+      <div className="dash-skeleton">
+        <div>
+          <div className="dash-spinner" />
+          Memuat…
+        </div>
+      </div>
+    );
+  }
 
   const current =
     [...NAV].sort((a, b) => b.href.length - a.href.length).find((n) =>
@@ -96,6 +128,22 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
               <b>{cap.used}</b> / {cap.limit} order bulan ini
             </div>
           </div>
+
+          <div className="dash-account">
+            <div className="dash-avatar-sm">{initials(session.name)}</div>
+            <div className="dash-account-info">
+              <div className="dash-account-name">{session.name}</div>
+              <div className="dash-account-email">{session.email}</div>
+            </div>
+            <button
+              className="dash-account-logout"
+              onClick={onLogout}
+              aria-label="Keluar"
+              title="Keluar"
+            >
+              <Icon paths={Icons.logout} size={16} />
+            </button>
+          </div>
         </div>
       </aside>
 
@@ -122,8 +170,8 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
             <button className="dash-icon-btn" aria-label="Notifikasi">
               <Icon paths={Icons.bell} size={17} />
             </button>
-            <div className="dash-avatar" title={state.business.name}>
-              {initials(state.business.name)}
+            <div className="dash-avatar" title={session.name}>
+              {initials(session.name)}
             </div>
           </div>
         </header>
