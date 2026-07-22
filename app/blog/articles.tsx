@@ -1232,6 +1232,36 @@ const TODAY_ARTICLES: Record<string, Article> = {
     keywords:["meningkatkan nilai order", "average order value F&B", "bundling menu warung", "upselling kafe", "add on menu"],
     related:[{slug:"menu-paling-laku-bisa-profit-tipis",g:"g7",tag:"Panduan",title:"Menu Laku Bisa Profit Tipis",excerpt:"Gunakan margin untuk memilih bundle yang sehat."},{slug:"meningkatkan-penjualan-profit-fnb-kecil",g:"g7",tag:"Panduan",title:"Meningkatkan Penjualan & Profit",excerpt:"Ubah data order menjadi keputusan bisnis."},{slug:"promo-terus-bukan-solusi",g:"g5",tag:"Tips Bisnis",title:"Promo Terus Bukan Solusi",excerpt:"Naikkan nilai tanpa membiasakan diskon massal."}],
   }),
+  "daftar-belanja-bahan-warung-dari-penjualan": createTodayArticle({
+    datePublished: "2026-07-22",
+    slug: "daftar-belanja-bahan-warung-dari-penjualan",
+    category: "Panduan",
+    coverTitle: "Daftar Belanja dari Penjualan",
+    title: "Cara Membuat Daftar Belanja Bahan Warung dari Penjualan Harian",
+    description: "Cara membuat daftar belanja bahan warung dari penjualan harian agar stok lebih siap, belanja lebih terarah, dan bahan tidak menumpuk.",
+    problem: "Belanja bahan sering dilakukan sambil mengingat-ingat apa yang kemarin habis. Akibatnya, cabai atau ayam habis saat pelanggan ramai, sementara bahan lain justru terlalu banyak dan berisiko tidak terpakai. Daftar belanja yang baik dimulai dari pola penjualan, bukan tebakan saat akan berangkat ke pasar.",
+    answer: "Buat daftar belanja dari menu yang benar-benar terjual, stok bahan yang tersisa, dan pesanan yang sudah masuk; lalu tentukan jumlah belanja hanya untuk menutup kebutuhan sampai jadwal belanja berikutnya.",
+    diagnosis: "Selama tujuh hari, catat menu yang terjual, bahan yang mendadak habis, sisa bahan yang tidak terpakai, serta pesanan WhatsApp untuk hari berikutnya. Dari sini terlihat bahan mana yang perlu diprioritaskan dan mana yang tidak perlu ditambah.",
+    actions: ["Tulis lima menu yang paling sering terjual beserta bahan kuncinya, misalnya ayam, beras, cabai, minyak, dan es.", "Sebelum belanja, hitung stok fisik yang masih layak pakai lalu kurangi dari kebutuhan menu dan pesanan yang sudah dikonfirmasi.", "Pisahkan daftar menjadi wajib dibeli, cukup dipantau, dan bisa ditunda agar modal tidak habis pada bahan yang belum dibutuhkan."],
+    measure: "Pantau kejadian stok kosong, belanja mendadak, nilai bahan terbuang, order yang tidak bisa dilayani, dan selisih antara bahan yang dibeli dengan pemakaian mingguannya.",
+    keywords: ["daftar belanja bahan warung", "belanja bahan dari penjualan harian", "stok bahan warung", "perencanaan belanja kafe", "mengurangi bahan terbuang"],
+    related: [{slug:"stok-habis-saat-order-ramai",g:"g6",tag:"Tips Bisnis",title:"Stok Habis Saat Order Ramai",excerpt:"Tentukan sinyal stok minimum sebelum menu kehabisan."},{slug:"cara-mengurangi-food-waste-warung-kafe",g:"g7",tag:"Tips Bisnis",title:"Cara Mengurangi Food Waste",excerpt:"Hubungkan pembelian dan prep dengan bahan yang benar-benar terpakai."},{slug:"laporan-penjualan-harian",g:"g7",tag:"Panduan",title:"Laporan Penjualan Harian",excerpt:"Gunakan catatan penjualan sebagai dasar keputusan besok."}],
+  }),
+  "mencegah-overbooking-preorder-makanan": createTodayArticle({
+    datePublished: "2026-07-22",
+    slug: "mencegah-overbooking-preorder-makanan",
+    category: "Tips Bisnis",
+    coverTitle: "Pre-order Tanpa Overbooking",
+    title: "Pesanan Pre-Order Menumpuk? Cara Mencegah Overbooking di Katering dan Warung",
+    description: "Cara mencegah overbooking pesanan pre-order makanan dengan batas kapasitas, slot waktu, konfirmasi chat, dan catatan dapur yang jelas.",
+    problem: "Pesanan pre-order terlihat seperti kabar baik sampai dua pelanggan meminta jam pickup yang sama dan dapur tidak punya waktu cukup. Jika kapasitas hanya disimpan di kepala atau tersebar di chat WhatsApp, usaha mudah menerima lebih banyak daripada yang dapat disiapkan dengan rapi.",
+    answer: "Cegah overbooking dengan menetapkan kapasitas per slot waktu, mencatat pesanan yang sudah dikonfirmasi pada satu daftar, dan menawarkan waktu alternatif sebelum pelanggan diberi janji pickup.",
+    diagnosis: "Lihat tiga pre-order terakhir yang terlambat atau membuat dapur panik. Catat jumlah box, waktu minta selesai, waktu prep, staf yang tersedia, dan perubahan pesanan setelah konfirmasi. Biasanya masalah muncul karena semua order dianggap bisa selesai pada jam yang sama.",
+    actions: ["Buat slot pickup yang realistis, misalnya 10.00, 11.00, dan 12.00, lalu tetapkan jumlah box maksimum untuk setiap slot.", "Sebelum menjawab chat pelanggan, cek jumlah order yang sudah masuk dan kapasitas yang tersisa pada slot tersebut.", "Jika slot hampir penuh, tawarkan jam berikutnya atau batasi pilihan menu; jangan menjanjikan waktu yang belum bisa dipenuhi dapur."],
+    measure: "Pantau persentase order selesai tepat waktu, jumlah perubahan slot, pesanan terlambat, komplain keterlambatan, dan jumlah order yang harus ditolak karena kapasitas sudah penuh.",
+    keywords: ["mencegah overbooking pre order makanan", "cara mengatur pre order katering", "kapasitas dapur katering", "slot pickup makanan", "pesanan WhatsApp katering"],
+    related: [{slug:"mengelola-pesanan-jam-ramai",g:"g6",tag:"Tips Bisnis",title:"Mengelola Pesanan Saat Jam Ramai",excerpt:"Jaga antrean pesanan dan status dapur tetap jelas."},{slug:"pelanggan-sering-ubah-pesanan-di-whatsapp",g:"g6",tag:"Tips Bisnis",title:"Pelanggan Sering Ubah Pesanan",excerpt:"Pastikan revisi tidak membuat dapur memakai versi lama."},{slug:"sop-serah-terima-shift-warung-kafe",g:"g6",tag:"Panduan",title:"SOP Serah Terima Shift",excerpt:"Pindahkan pesanan dan pekerjaan aktif tanpa informasi hilang."}],
+  }),
 };
 
 /* ----- the articles ----- */
@@ -3992,6 +4022,8 @@ export function formatArticleDate(datePublished: string): string {
  * source of truth). Titles are always real HTML text over the photo.
  */
 const BLOG_IMAGE_STEM: Record<string, string> = {
+  "daftar-belanja-bahan-warung-dari-penjualan": "daftar-belanja-dari-penjualan",
+  "mencegah-overbooking-preorder-makanan": "preorder-tanpa-overbooking",
   "sop-serah-terima-shift-warung-kafe": "sop-serah-terima-shift",
   "cara-mengurangi-food-waste-warung-kafe": "kurangi-food-waste",
   "mencocokkan-pembayaran-qris-dengan-order-whatsapp": "qris-order-whatsapp",

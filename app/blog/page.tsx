@@ -29,6 +29,20 @@ export const metadata: Metadata = {
 // ARTICLES[...].datePublished. Byline is always "Tim Sosmed AI".
 const POSTS = [
   {
+    slug: "daftar-belanja-bahan-warung-dari-penjualan",
+    g: "g7",
+    tag: "Panduan",
+    title: "Cara Membuat Daftar Belanja Bahan Warung dari Penjualan Harian",
+    excerpt: "Gunakan penjualan, stok tersisa, dan pesanan masuk agar belanja bahan lebih terarah.",
+  },
+  {
+    slug: "mencegah-overbooking-preorder-makanan",
+    g: "g6",
+    tag: "Tips Bisnis",
+    title: "Pesanan Pre-Order Menumpuk? Cara Mencegah Overbooking di Katering dan Warung",
+    excerpt: "Atur kapasitas, slot pickup, dan konfirmasi chat sebelum dapur menerima terlalu banyak janji.",
+  },
+  {
     slug: "sop-serah-terima-shift-warung-kafe",
     g: "g6",
     tag: "Panduan",
