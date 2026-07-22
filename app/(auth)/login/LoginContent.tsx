@@ -39,6 +39,8 @@ export default function LoginContent() {
         setErrors({ email: "Please confirm your email first — check your inbox." });
       } else if (code === "invalid_credentials") {
         setErrors({ password: "Incorrect email or password." });
+      } else if (code === "network") {
+        setErrors({ password: "Couldn't reach the server. Check your connection and try again." });
       } else {
         setErrors({ password: "Something went wrong. Please try again." });
       }

@@ -29,6 +29,7 @@ export type AuthErrorCode =
   | "invalid_credentials"
   | "email_unconfirmed"
   | "invalid_token"
+  | "network"
   | "unknown";
 
 export class AuthError extends Error {
@@ -244,20 +245,26 @@ export async function register(input: {
 }): Promise<{ needsConfirmation: boolean }> {
   const email = norm(input.email);
   if (supabase) {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password: input.password,
-      options: {
-        data: { full_name: input.name.trim() },
-        emailRedirectTo: `${appOrigin()}/dashboard`,
-      },
-    });
+    let data, error;
+    try {
+      ({ data, error } = await supabase.auth.signUp({
+        email,
+        password: input.password,
+        options: {
+          data: { full_name: input.name.trim() },
+          emailRedirectTo: `${appOrigin()}/dashboard`,
+        },
+      }));
+    } catch {
+      throw new AuthError("network"); // couldn't reach Supabase
+    }
     if (error) {
       if (/already|registered|exists/i.test(error.message)) throw new AuthError("email_taken");
+      if (/fetch|network/i.test(error.message)) throw new AuthError("network");
       throw new AuthError("unknown");
     }
     // No session means email confirmation is required before first login.
-    return { needsConfirmation: !data.session };
+    return { needsConfirmation: !data!.session };
   }
   const s = await localRegister(input.name, email, input.password);
   setCached(s);
@@ -267,9 +274,15 @@ export async function register(input: {
 export async function login(input: { email: string; password: string }): Promise<void> {
   const email = norm(input.email);
   if (supabase) {
-    const { error } = await supabase.auth.signInWithPassword({ email, password: input.password });
+    let error;
+    try {
+      ({ error } = await supabase.auth.signInWithPassword({ email, password: input.password }));
+    } catch {
+      throw new AuthError("network");
+    }
     if (error) {
       if (/confirm/i.test(error.message)) throw new AuthError("email_unconfirmed");
+      if (/fetch|network/i.test(error.message)) throw new AuthError("network");
       throw new AuthError("invalid_credentials");
     }
     return;
@@ -292,7 +305,11 @@ export async function loginWithGoogle(): Promise<void> {
 export async function requestReset(email: string): Promise<{ devToken: string | null }> {
   const e = norm(email);
   if (supabase) {
-    await supabase.auth.resetPasswordForEmail(e, { redirectTo: `${appOrigin()}/reset-password` });
+    try {
+      await supabase.auth.resetPasswordForEmail(e, { redirectTo: `${appOrigin()}/reset-password` });
+    } catch {
+      throw new AuthError("network");
+    }
     return { devToken: null };
   }
   return { devToken: localCreateResetToken(e) };
@@ -301,7 +318,12 @@ export async function requestReset(email: string): Promise<{ devToken: string | 
 export async function completeReset(opts: { token?: string; password: string }): Promise<void> {
   if (supabase) {
     // The reset email link establishes a recovery session; update the password.
-    const { error } = await supabase.auth.updateUser({ password: opts.password });
+    let error;
+    try {
+      ({ error } = await supabase.auth.updateUser({ password: opts.password }));
+    } catch {
+      throw new AuthError("network");
+    }
     if (error) throw new AuthError("invalid_token");
     return;
   }

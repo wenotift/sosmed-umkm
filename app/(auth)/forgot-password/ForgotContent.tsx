@@ -21,11 +21,16 @@ export default function ForgotContent() {
     }
     setError(null);
     setLoading(true);
-    // Always show a neutral confirmation (don't reveal whether the email exists).
-    const { devToken } = await requestReset(e);
-    setDevToken(devToken);
-    setLoading(false);
-    setSent(true);
+    try {
+      // Neutral confirmation (don't reveal whether the email exists).
+      const { devToken } = await requestReset(e);
+      setDevToken(devToken);
+      setSent(true);
+    } catch {
+      setError("Couldn't reach the server. Check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

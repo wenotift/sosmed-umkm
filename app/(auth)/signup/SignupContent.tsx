@@ -53,8 +53,11 @@ export default function SignupContent() {
       }
     } catch (err) {
       setLoading(false);
-      if (err instanceof AuthError && err.code === "email_taken") {
+      const code = err instanceof AuthError ? err.code : "unknown";
+      if (code === "email_taken") {
         setErrors({ email: "This email is already registered. Try logging in." });
+      } else if (code === "network") {
+        setErrors({ form: "Couldn't reach the server. Check your connection and try again." });
       } else {
         setErrors({ form: "Something went wrong. Please try again." });
       }
