@@ -5,6 +5,7 @@
 // hydration-safely via useSyncExternalStore (server + first client render use
 // "id", then we reconcile with the stored value on subscribe — no mismatch).
 
+import Image from "next/image";
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
 
@@ -444,23 +445,35 @@ export function LangToggle() {
   );
 }
 
-/* ---- page footer ----------------------------------------------------------*/
+/* ---- minimal top bar (logo only) -----------------------------------------*/
+export function AuthNav() {
+  return (
+    <header className="auth-nav">
+      <Link href="/" className="auth-nav-logo" aria-label="Sosmed AI — beranda">
+        <Image
+          src="/logo/sosmed-ai-logo-black-version.png"
+          alt="Sosmed AI"
+          width={132}
+          height={33}
+          priority
+        />
+      </Link>
+    </header>
+  );
+}
+
+/* ---- page footer — minimal, no divider (Cursor-style) --------------------*/
 export function AuthFooter() {
   const t = useT();
   return (
     <footer className="auth-footer">
-      <p className="auth-footer-legal">
-        {t.footProceed}
-        <Link href="/syarat">{t.terms}</Link>
-        {t.footProceedPost}
-      </p>
-      <div className="auth-footer-bottom">
-        <span>{t.copyright}</span>
-        <span className="auth-footer-dot" aria-hidden="true">·</span>
-        <Link href="/privasi">{t.privacy}</Link>
-        <span className="auth-footer-dot" aria-hidden="true">·</span>
-        <Link href="/bantuan">{t.support}</Link>
-      </div>
+      <Link href="/syarat">{t.terms}</Link>
+      <span className="auth-footer-dot" aria-hidden="true">·</span>
+      <Link href="/privasi">{t.privacy}</Link>
+      <span className="auth-footer-dot" aria-hidden="true">·</span>
+      <Link href="/bantuan">{t.support}</Link>
+      <span className="auth-footer-dot" aria-hidden="true">·</span>
+      <span>{t.copyright}</span>
     </footer>
   );
 }

@@ -28,12 +28,32 @@
   grid-template-columns: 1fr minmax(500px, 620px);
   align-items: stretch;
 }
-/* shell = navbar + split screen + footer, stacked full-height */
+/* shell = logo bar + split screen + footer, stacked full-height */
 .auth-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: var(--page);
+}
+/* minimal top bar — just the logo, always on top */
+.auth-nav {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 20px 34px;
+}
+.auth-nav-logo {
+  display: inline-flex;
+  border-radius: 8px;
+}
+.auth-nav-logo img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+.auth-nav-logo:focus-visible {
+  outline: 2px solid var(--v);
+  outline-offset: 4px;
 }
 .auth *,
 .auth *::before,
@@ -565,45 +585,25 @@
   outline-offset: 4px;
 }
 
-/* page footer (Attio-style) */
+/* page footer — plain, pinned to the bottom (no divider) */
 .auth-footer {
   flex-shrink: 0;
-  border-top: 1px solid var(--line);
   background: var(--page);
-  padding: 20px 34px 26px;
+  border-top: none; /* override the global footer{} divider — no divider */
+  padding: 14px 24px 22px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 9px;
-  text-align: center;
-}
-.auth-footer-legal {
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: var(--faint);
-  max-width: 560px;
-}
-.auth-footer-legal a {
-  color: var(--v);
-  font-weight: 600;
-}
-.auth-footer-legal a:hover {
-  text-decoration: underline;
-}
-.auth-footer-bottom {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  font-size: 12px;
+  gap: 10px;
+  font-size: 12.5px;
   color: var(--faint);
 }
-.auth-footer-bottom a {
+.auth-footer a {
   color: var(--muted);
-  font-weight: 600;
+  font-weight: 500;
 }
-.auth-footer-bottom a:hover {
+.auth-footer a:hover {
   color: var(--v);
   text-decoration: underline;
 }
@@ -981,6 +981,8 @@
     grid-template-columns: 1fr;
   }
   .auth-illus { display: none; }
+  /* mobile: form only — hide the marketing panel entirely */
+  .auth-aside { display: none; }
   .auth-hero-grid { grid-template-columns: 1fr; }
   .auth-aside {
     padding: 34px 32px;
