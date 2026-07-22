@@ -21,6 +21,58 @@
   grid-template-columns: 300px 1fr;
 }
 .onb *, .onb *::before, .onb *::after { box-sizing: border-box; }
+
+/* access-locked screen (signed in but not on the dev allowlist) */
+.onb-locked {
+  --v: #6C4CF0;
+  --v-ink: #5836D6;
+  --ink: #171A28;
+  --muted: #6B7185;
+  --line: #E7E9F1;
+  --grad: linear-gradient(135deg, #6C4CF0, #8B6DF6);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #F6F7FB;
+  padding: 24px;
+  font-family: var(--body, "Plus Jakarta Sans", sans-serif);
+}
+.onb-locked *, .onb-locked *::before, .onb-locked *::after { box-sizing: border-box; }
+.onb-locked-card {
+  max-width: 440px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 40px 32px;
+  box-shadow: 0 24px 60px -34px rgba(23, 26, 40, 0.4);
+}
+.onb-locked-ic {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  background: var(--grad);
+  color: #fff;
+}
+.onb-locked-ic svg { width: 28px; height: 28px; }
+.onb-locked h2 {
+  font-family: var(--display, "Inter", sans-serif);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.onb-locked p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+.onb-locked b { color: var(--ink); }
 .onb a { color: inherit; }
 
 /* ---- sidebar --------------------------------------------------------------*/
