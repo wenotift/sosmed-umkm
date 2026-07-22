@@ -77,52 +77,73 @@ export function AuthIllustration() {
     <div className="auth-illus" aria-hidden="true">
       <span className="auth-orbit" />
       <div className="auth-phone">
-        <span className="auth-phone-notch" />
-        <div className="auth-wa-top">
-          <span className="auth-wa-av">{Ic.robot}</span>
-          <span>
-            <span className="auth-wa-name">Sosi AI</span>
-            <br />
-            <span className="auth-wa-status">Online</span>
-          </span>
-        </div>
-        <div className="auth-wa-body">
-          <div className="auth-bub in">
-            Hai! 👋<span className="t">10:30</span>
+        <span className="auth-phone-island" />
+        <div className="auth-phone-screen">
+          <div className="auth-status">
+            <span>9:41</span>
+            <span className="auth-status-ic">
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#fff" aria-hidden="true">
+                <rect x="0" y="7" width="3" height="4" rx="1" />
+                <rect x="4.5" y="4.5" width="3" height="6.5" rx="1" />
+                <rect x="9" y="2" width="3" height="9" rx="1" />
+                <rect x="13" y="0" width="3" height="11" rx="1" opacity="0.4" />
+              </svg>
+              <svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="#fff" strokeWidth="1.4" aria-hidden="true">
+                <path d="M1 4.2A9 9 0 0 1 14 4.2M3.4 6.6a5.5 5.5 0 0 1 8.2 0M6 9a2 2 0 0 1 3 0" strokeLinecap="round" />
+              </svg>
+              <svg width="22" height="11" viewBox="0 0 24 12" fill="none" aria-hidden="true">
+                <rect x="1" y="1" width="20" height="10" rx="2.5" stroke="#fff" strokeOpacity="0.6" />
+                <rect x="3" y="3" width="14" height="6" rx="1" fill="#fff" />
+                <rect x="22" y="4" width="1.6" height="4" rx="0.8" fill="#fff" fillOpacity="0.6" />
+              </svg>
+            </span>
           </div>
-          <div className="auth-bub in">
-            Ada yang bisa Sosi bantu hari ini?<span className="t">10:30</span>
+          <div className="auth-wa-top">
+            <span className="auth-wa-back">‹</span>
+            <span className="auth-wa-av">{Ic.robot}</span>
+            <span className="auth-wa-meta">
+              <div className="auth-wa-name">Sosi AI</div>
+              <div className="auth-wa-status">online</div>
+            </span>
+            <span className="auth-wa-actions">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m23 7-7 5 7 5V7z" /><rect x="1" y="5" width="15" height="14" rx="2" />
+              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z" />
+              </svg>
+            </span>
           </div>
-          <div className="auth-bub out">
-            Saya ingin tahu tentang produk skincare<span className="t">10:31</span>
+          <div className="auth-wa-body">
+            <div className="auth-bub in">
+              Hai! 👋<span className="t">10:30</span>
+            </div>
+            <div className="auth-bub in">
+              Ada yang bisa Sosi bantu hari ini?<span className="t">10:30</span>
+            </div>
+            <div className="auth-bub out">
+              Saya ingin tahu tentang produk skincare<span className="t">10:31</span>
+            </div>
+            <div className="auth-bub in">
+              Tentu! Ini beberapa rekomendasi untuk kamu.<span className="t">10:31</span>
+            </div>
+            <div className="auth-typing">
+              <i /><i /><i />
+            </div>
           </div>
-          <div className="auth-bub in">
-            Tentu! Ini beberapa rekomendasi untuk kamu.<span className="t">10:31</span>
-          </div>
-          <div className="auth-typing">
-            <i /><i /><i />
+          <div className="auth-wa-input">
+            <span className="auth-wa-inbox">Ketik pesan…</span>
+            <span className="auth-wa-send">
+              <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+                <path d="M2 21 23 12 2 3v7l15 2-15 2v7z" />
+              </svg>
+            </span>
           </div>
         </div>
       </div>
       <span className="auth-float wa">{Ic.wa}</span>
       <span className="auth-float ppl">{Ic.people}</span>
       <span className="auth-robot">{Ic.robot}</span>
-    </div>
-  );
-}
-
-/* ---- trusted-by strip -----------------------------------------------------*/
-export function TrustedBy() {
-  return (
-    <div>
-      <p className="auth-trust-label">Trusted by forward-thinking businesses</p>
-      <div className="auth-logos">
-        <span style={{ color: "#42B549" }}>tokopedia</span>
-        <span style={{ color: "#111", fontStyle: "italic" }}>Kopi Kenangan</span>
-        <span style={{ color: "#4B5563" }}>sayurbox</span>
-        <span style={{ color: "#00AA13" }}>ruangguru</span>
-        <span className="more">and more…</span>
-      </div>
     </div>
   );
 }
@@ -175,8 +196,6 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
           </div>
           <AuthIllustration />
         </div>
-
-        <TrustedBy />
 
         {variant === "login" && (
           <div className="auth-trustcard">

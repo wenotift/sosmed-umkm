@@ -12,7 +12,7 @@ type Errors = Partial<Record<keyof Fields | "agree" | "form", string>>;
 function validate(f: Fields, agree: boolean): Errors {
   const e: Errors = {};
   if (!f.name.trim()) e.name = "Full name is required.";
-  if (!f.email.trim()) e.email = "Work email is required.";
+  if (!f.email.trim()) e.email = "Email is required.";
   else if (!EMAIL_RE.test(f.email.trim())) e.email = "Enter a valid email address.";
   if (!f.password) e.password = "Create a password.";
   else {
@@ -124,7 +124,7 @@ export default function SignupContent() {
           </div>
 
           <div className="auth-field">
-            <label htmlFor="su-email">Work email</label>
+            <label htmlFor="su-email">Email</label>
             <div className={"auth-input" + (errors.email ? " invalid" : "")}>
               <span className="lead">{Ic.mail}</span>
               <input
@@ -133,7 +133,7 @@ export default function SignupContent() {
                 inputMode="email"
                 value={fields.email}
                 onChange={(e) => set("email", e.target.value)}
-                placeholder="Enter your work email"
+                placeholder="Enter your email"
                 autoComplete="email"
               />
             </div>

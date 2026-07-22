@@ -85,7 +85,7 @@ export default function ForgotContent() {
               </p>
 
               <div className="auth-field" style={{ marginTop: 24 }}>
-                <label htmlFor="fp-email">Work email</label>
+                <label htmlFor="fp-email">Email</label>
                 <div className={"auth-input" + (error ? " invalid" : "")}>
                   <span className="lead">{Ic.mail}</span>
                   <input
@@ -97,7 +97,7 @@ export default function ForgotContent() {
                       setEmail(e.target.value);
                       if (error) setError(null);
                     }}
-                    placeholder="you@company.com"
+                    placeholder="you@email.com"
                     autoComplete="email"
                   />
                 </div>
