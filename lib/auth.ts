@@ -117,21 +117,45 @@ function mapSupabaseSession(session: any): Session | null {
   };
 }
 
+// Does the current URL carry auth credentials from a redirect (OAuth callback,
+// email confirmation, password recovery)? "hash" = implicit-flow tokens,
+// "code" = a PKCE code from links issued before the switch to implicit flow.
+function urlAuthHint(): "hash" | "code" | null {
+  if (typeof window === "undefined") return null;
+  if (/[#&](access_token|refresh_token|error_description)=/.test(window.location.hash)) return "hash";
+  if (/[?&]code=[^&]+/.test(window.location.search)) return "code";
+  return null;
+}
+
 function ensureInit() {
   if (initStarted || typeof window === "undefined") return;
   initStarted = true;
   if (supabase) {
-    // Rely on onAuthStateChange as the single source of truth. Its first event
-    // (INITIAL_SESSION) already reflects any session parsed from the URL hash
-    // (OAuth / password-recovery redirects), so we avoid the getSession() race
-    // that could momentarily read null and bounce a just-authenticated user to
-    // /login. A timeout guard flips to "resolved" if the SDK never emits.
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setCached(mapSupabaseSession(session));
+    const hint = urlAuthHint();
+    // Rely on onAuthStateChange as the single source of truth — but when the
+    // URL carries redirect credentials, IGNORE null events until the real
+    // SIGNED_IN arrives. Otherwise the guard on the landing page can read a
+    // momentary null (INITIAL_SESSION from empty storage) and bounce a
+    // just-authenticated user back to /login before the tokens are processed.
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        setCached(mapSupabaseSession(session));
+      } else if (event === "SIGNED_OUT" || !hint) {
+        setCached(null);
+      }
     });
+    // Links issued while the client used the PKCE flow come back as ?code=…,
+    // which the implicit-flow client won't auto-exchange — do it manually so
+    // old confirmation/reset emails still work (same-browser clicks).
+    if (hint === "code") {
+      const code = new URLSearchParams(window.location.search).get("code");
+      if (code) supabase.auth.exchangeCodeForSession(code).catch(() => {});
+    }
+    // Resolve to "logged out" if the SDK never emits (longer grace period when
+    // we're actively waiting on redirect credentials).
     window.setTimeout(() => {
       if (!initialized) setCached(null);
-    }, 4000);
+    }, hint ? 8000 : 4000);
   } else {
     setCached(readLocalSession());
   }

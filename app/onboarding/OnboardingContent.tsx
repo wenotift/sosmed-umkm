@@ -69,29 +69,12 @@ export default function OnboardingContent() {
     () => undefined,
   );
 
-  // Lazy-load persisted onboarding on the client (component is gated to null on
-  // the server / during hydration, so there's no mismatch).
-  const [data, setData] = useState<OnboardingData>(loadOnboarding);
-  const [step, setStep] = useState<number>(() =>
-    Math.min(4, Math.max(2, loadOnboarding().step)),
-  );
-
-  // persist on change
+  // Auth guard (redirect only — no setState). Only an unauthenticated visitor
+  // is sent to /login; an authenticated-but-not-allowlisted user gets a visible
+  // "under development" screen instead of a confusing silent bounce.
   useEffect(() => {
-    saveOnboarding(data);
-  }, [data]);
-
-  // auth guard + skip if already onboarded (redirect only — no setState). Only
-  // an unauthenticated visitor is sent to /login; an authenticated-but-not-
-  // allowlisted user gets a visible "under development" screen (below) instead
-  // of a confusing silent bounce back to the login page.
-  useEffect(() => {
-    if (session === null) {
-      router.replace("/login");
-    } else if (session && isEmailAllowed(session.email) && data.complete) {
-      router.replace("/dashboard");
-    }
-  }, [session, data.complete, router]);
+    if (session === null) router.replace("/login");
+  }, [session, router]);
 
   const onLogout = async () => {
     await logout();
@@ -121,7 +104,33 @@ export default function OnboardingContent() {
     );
   }
 
-  // onboarded already → the effect above is forwarding to /dashboard
+  // Session is resolved + allowed — mount the wizard keyed to this account so
+  // its lazy state initializers read THIS user's saved progress (progress is
+  // stored per email; one account's "complete" no longer leaks to another).
+  return <Wizard key={session.email} session={session} />;
+}
+
+function Wizard({ session }: { session: Session }) {
+  const router = useRouter();
+  const owner = session.email;
+
+  // Lazy-load this account's persisted onboarding (client-only component, so
+  // there's no hydration mismatch).
+  const [data, setData] = useState<OnboardingData>(() => loadOnboarding(owner));
+  const [step, setStep] = useState<number>(() =>
+    Math.min(4, Math.max(2, loadOnboarding(owner).step)),
+  );
+
+  // persist on change
+  useEffect(() => {
+    saveOnboarding(data, owner);
+  }, [data, owner]);
+
+  // already onboarded → straight to the dashboard (redirect only)
+  useEffect(() => {
+    if (data.complete) router.replace("/dashboard");
+  }, [data.complete, router]);
+
   if (data.complete) return null;
 
   const set = <K extends keyof OnboardingData>(k: K, v: OnboardingData[K]) =>
@@ -141,7 +150,7 @@ export default function OnboardingContent() {
 
   const launch = () => {
     setData((d) => ({ ...d, complete: true }));
-    saveOnboarding({ ...data, complete: true });
+    saveOnboarding({ ...data, complete: true }, owner);
     router.push("/dashboard");
   };
 

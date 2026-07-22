@@ -19,6 +19,13 @@ export interface OnboardingData {
 
 const KEY = "sosmed-onboarding-v1";
 
+// Progress is stored PER ACCOUNT (key suffixed with the login email). A global
+// key would leak one user's "complete" flag to every account tested in the
+// same browser — new registrants would silently skip the wizard.
+function keyFor(owner?: string): string {
+  return owner ? `${KEY}:${owner.trim().toLowerCase()}` : KEY;
+}
+
 export const INDUSTRIES = [
   "Food & Beverage",
   "Health & Beauty",
@@ -55,10 +62,10 @@ export function defaultOnboarding(): OnboardingData {
   };
 }
 
-export function loadOnboarding(): OnboardingData {
+export function loadOnboarding(owner?: string): OnboardingData {
   if (typeof window === "undefined") return defaultOnboarding();
   try {
-    const raw = window.localStorage.getItem(KEY);
+    const raw = window.localStorage.getItem(keyFor(owner));
     if (raw) return { ...defaultOnboarding(), ...(JSON.parse(raw) as Partial<OnboardingData>) };
   } catch {
     /* ignore */
@@ -66,15 +73,15 @@ export function loadOnboarding(): OnboardingData {
   return defaultOnboarding();
 }
 
-export function saveOnboarding(data: OnboardingData) {
+export function saveOnboarding(data: OnboardingData, owner?: string) {
   if (typeof window === "undefined") return;
   try {
-    window.localStorage.setItem(KEY, JSON.stringify(data));
+    window.localStorage.setItem(keyFor(owner), JSON.stringify(data));
   } catch {
     /* ignore */
   }
 }
 
-export function isOnboardingComplete(): boolean {
-  return loadOnboarding().complete;
+export function isOnboardingComplete(owner?: string): boolean {
+  return loadOnboarding(owner).complete;
 }
