@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore, type ReactNode } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
   sessionSnapshot,
@@ -134,11 +135,15 @@ export default function OnboardingContent() {
       {/* sidebar */}
       <aside className="onb-side">
         <div className="onb-brand">
-          <span className="onb-brand-mark">{I.robot}</span>
-          <div>
-            <div className="onb-brand-name">Sosmed AI</div>
-            <div className="onb-brand-sub">AI Native WhatsApp Automation Agent</div>
-          </div>
+          <Image
+            className="onb-brand-logo"
+            src="/logo/sosmed-ai-logo-white-version.png"
+            alt="Sosmed AI"
+            width={150}
+            height={37}
+            priority
+          />
+          <div className="onb-brand-sub">AI Native WhatsApp Automation Agent</div>
         </div>
 
         <div className="onb-steps">
