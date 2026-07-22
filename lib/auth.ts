@@ -1,27 +1,18 @@
-// Client-side auth for the Sosmed AI proto.
+// Unified auth for Sosmed AI, with two interchangeable backends:
 //
-// This is a self-contained, browser-only implementation: accounts, sessions and
-// password-reset tokens live in localStorage, and passwords are SHA-256 hashed
-// (never stored in plain text). It makes registration, login, logout, password
-// reset and route protection genuinely work today without a backend.
+//  • Supabase Auth  — used when NEXT_PUBLIC_SUPABASE_* are set. Real accounts,
+//    email verification, password-reset emails, and Google OAuth.
+//  • Local fallback — browser-only (localStorage + SHA-256) so the app fully
+//    works in demo/preview environments where Supabase isn't configured.
 //
-// It is intentionally swappable: every function below maps 1:1 to a Supabase
-// Auth call (signUp / signInWithPassword / resetPasswordForEmail / getSession /
-// signOut), so moving to a real backend is a focused change, not a rewrite.
-// Do NOT treat localStorage auth as production-secure — it's a demo.
+// The public API is backend-agnostic; components never branch on the backend
+// except for a couple of UX differences (email-confirmation, OAuth redirect),
+// exposed via `usingSupabase`.
 
-const USERS_KEY = "sosmed-auth-users-v1";
-const SESSION_KEY = "sosmed-auth-session-v1";
-const RESET_KEY = "sosmed-auth-resets-v1";
+import { supabase, isSupabaseConfigured } from "./supabase";
+import { SITE_URL } from "./seo";
 
-export interface Account {
-  id: string;
-  name: string;
-  email: string;
-  passHash: string;
-  provider: "email" | "google";
-  createdAt: number;
-}
+export const usingSupabase = isSupabaseConfigured;
 
 export interface Session {
   id: string;
@@ -35,7 +26,10 @@ export type AuthErrorCode =
   | "email_taken"
   | "not_found"
   | "wrong_password"
-  | "invalid_token";
+  | "invalid_credentials"
+  | "email_unconfirmed"
+  | "invalid_token"
+  | "unknown";
 
 export class AuthError extends Error {
   code: AuthErrorCode;
@@ -45,7 +39,94 @@ export class AuthError extends Error {
   }
 }
 
-// ---- helpers ---------------------------------------------------------------
+export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function passwordProblem(pw: string): string | null {
+  if (pw.length < 8) return "Use at least 8 characters.";
+  if (!/[a-zA-Z]/.test(pw) || !/\d/.test(pw)) return "Mix letters and numbers.";
+  return null;
+}
+
+function norm(email: string): string {
+  return email.trim().toLowerCase();
+}
+function appOrigin(): string {
+  return typeof window !== "undefined" ? window.location.origin : SITE_URL;
+}
+
+// ===========================================================================
+// Session cache + pub/sub (drives useSyncExternalStore in the dashboard guard)
+// ===========================================================================
+let cached: Session | null = null;
+let initialized = false;
+let initStarted = false;
+const listeners = new Set<() => void>();
+
+function notify() {
+  listeners.forEach((l) => l());
+}
+function setCached(s: Session | null) {
+  cached = s;
+  initialized = true;
+  notify();
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapSupabaseSession(session: any): Session | null {
+  const u = session?.user;
+  if (!u) return null;
+  const meta = u.user_metadata ?? {};
+  return {
+    id: u.id,
+    email: u.email ?? "",
+    name: meta.full_name || meta.name || (u.email ? u.email.split("@")[0] : "User"),
+    provider: u.app_metadata?.provider === "google" ? "google" : "email",
+    loginAt: Date.now(),
+  };
+}
+
+function ensureInit() {
+  if (initStarted || typeof window === "undefined") return;
+  initStarted = true;
+  if (supabase) {
+    supabase.auth
+      .getSession()
+      .then(({ data }) => setCached(mapSupabaseSession(data.session)))
+      .catch(() => setCached(null));
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setCached(mapSupabaseSession(session));
+    });
+  } else {
+    setCached(readLocalSession());
+  }
+}
+
+export function subscribeSession(cb: () => void): () => void {
+  ensureInit();
+  listeners.add(cb);
+  return () => listeners.delete(cb);
+}
+// undefined = not resolved yet (renders a loading gate, no hydration mismatch)
+export function sessionSnapshot(): Session | null | undefined {
+  return initialized ? cached : undefined;
+}
+
+// ===========================================================================
+// Local backend (fallback)
+// ===========================================================================
+const USERS_KEY = "sosmed-auth-users-v1";
+const SESSION_KEY = "sosmed-auth-session-v1";
+const RESET_KEY = "sosmed-auth-resets-v1";
+
+interface LocalAccount {
+  id: string;
+  name: string;
+  email: string;
+  passHash: string;
+  provider: "email" | "google";
+  createdAt: number;
+}
+
 async function sha256(input: string): Promise<string> {
   const data = new TextEncoder().encode(input);
   const buf = await crypto.subtle.digest("SHA-256", data);
@@ -53,7 +134,6 @@ async function sha256(input: string): Promise<string> {
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
 }
-
 function read<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
   try {
@@ -63,176 +143,180 @@ function read<T>(key: string, fallback: T): T {
     return fallback;
   }
 }
-function write(key: string, value: unknown) {
+function writeLS(key: string, value: unknown) {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(key, JSON.stringify(value));
   } catch {
-    /* storage full/blocked — non-fatal */
+    /* ignore */
   }
 }
 function uid(prefix: string): string {
   return prefix + "_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 }
-function norm(email: string): string {
-  return email.trim().toLowerCase();
-}
 
-// ---- accounts / session ----------------------------------------------------
-export function getUsers(): Account[] {
-  return read<Account[]>(USERS_KEY, []);
+function localUsers(): LocalAccount[] {
+  return read<LocalAccount[]>(USERS_KEY, []);
 }
-export function getSession(): Session | null {
+function readLocalSession(): Session | null {
   return read<Session | null>(SESSION_KEY, null);
 }
-export function logout() {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.removeItem(SESSION_KEY);
-  } catch {
-    /* ignore */
-  }
-}
-export function accountExists(email: string): boolean {
-  const e = norm(email);
-  return getUsers().some((u) => u.email === e);
+function toSession(acc: LocalAccount): Session {
+  return { id: acc.id, name: acc.name, email: acc.email, provider: acc.provider, loginAt: Date.now() };
 }
 
-// ---- reactive session read (for useSyncExternalStore) ----------------------
-// Cached so the snapshot is referentially stable while the stored value is
-// unchanged (React requires this to avoid an infinite render loop).
-let _rawCache: string | null = null;
-let _sessionCache: Session | null = null;
-export function sessionSnapshot(): Session | null {
-  if (typeof window === "undefined") return null;
-  let raw: string | null = null;
-  try {
-    raw = window.localStorage.getItem(SESSION_KEY);
-  } catch {
-    raw = null;
-  }
-  if (raw !== _rawCache) {
-    _rawCache = raw;
-    _sessionCache = raw ? (JSON.parse(raw) as Session) : null;
-  }
-  return _sessionCache;
-}
-export function subscribeSession(cb: () => void): () => void {
-  if (typeof window === "undefined") return () => {};
-  window.addEventListener("storage", cb);
-  return () => window.removeEventListener("storage", cb);
-}
-
-function startSession(acc: Account): Session {
-  const s: Session = {
-    id: acc.id,
-    name: acc.name,
-    email: acc.email,
-    provider: acc.provider,
-    loginAt: Date.now(),
-  };
-  write(SESSION_KEY, s);
-  return s;
-}
-
-export async function register(input: {
-  name: string;
-  email: string;
-  password: string;
-}): Promise<Session> {
-  const email = norm(input.email);
-  const users = getUsers();
+async function localRegister(name: string, email: string, password: string): Promise<Session> {
+  const users = localUsers();
   if (users.some((u) => u.email === email)) throw new AuthError("email_taken");
-  const acc: Account = {
+  const acc: LocalAccount = {
     id: uid("u"),
-    name: input.name.trim(),
+    name: name.trim(),
     email,
-    passHash: await sha256(input.password),
+    passHash: await sha256(password),
     provider: "email",
     createdAt: Date.now(),
   };
-  write(USERS_KEY, [...users, acc]);
-  return startSession(acc);
+  writeLS(USERS_KEY, [...users, acc]);
+  const s = toSession(acc);
+  writeLS(SESSION_KEY, s);
+  return s;
 }
-
-export async function login(input: {
-  email: string;
-  password: string;
-}): Promise<Session> {
-  const email = norm(input.email);
-  const acc = getUsers().find((u) => u.email === email);
+async function localLogin(email: string, password: string): Promise<Session> {
+  const acc = localUsers().find((u) => u.email === email);
   if (!acc) throw new AuthError("not_found");
-  if (acc.passHash !== (await sha256(input.password)))
-    throw new AuthError("wrong_password");
-  return startSession(acc);
+  if (acc.passHash !== (await sha256(password))) throw new AuthError("wrong_password");
+  const s = toSession(acc);
+  writeLS(SESSION_KEY, s);
+  return s;
 }
-
-// OAuth stand-in: signs in (or provisions) a demo Google account so the SSO
-// button leads to a real, protected session for the proto.
-export function loginWithGoogleDemo(): Session {
+function localGoogle(): Session {
   const email = "demo.google@sosmed.io";
-  const users = getUsers();
+  const users = localUsers();
   let acc = users.find((u) => u.email === email);
   if (!acc) {
-    acc = {
-      id: uid("u"),
-      name: "Pengguna Google",
-      email,
-      passHash: "",
-      provider: "google",
-      createdAt: Date.now(),
-    };
-    write(USERS_KEY, [...users, acc]);
+    acc = { id: uid("u"), name: "Pengguna Google", email, passHash: "", provider: "google", createdAt: Date.now() };
+    writeLS(USERS_KEY, [...users, acc]);
   }
-  return startSession(acc);
+  const s = toSession(acc);
+  writeLS(SESSION_KEY, s);
+  return s;
 }
 
-// ---- password reset --------------------------------------------------------
 interface ResetRecord {
   email: string;
   exp: number;
 }
 type ResetMap = Record<string, ResetRecord>;
 
-// Returns a reset token when the account exists (in production this token is
-// emailed via resetPasswordForEmail); returns null when no account matches.
-export function createResetToken(email: string): string | null {
-  const e = norm(email);
-  if (!accountExists(e)) return null;
+function localCreateResetToken(email: string): string | null {
+  if (!localUsers().some((u) => u.email === email)) return null;
   const token = uid("rst").replace("rst_", "");
   const map = read<ResetMap>(RESET_KEY, {});
-  map[token] = { email: e, exp: Date.now() + 60 * 60 * 1000 }; // 1 hour
-  write(RESET_KEY, map);
+  map[token] = { email, exp: Date.now() + 60 * 60 * 1000 };
+  writeLS(RESET_KEY, map);
   return token;
 }
-
 export function emailForResetToken(token: string): string | null {
   const rec = read<ResetMap>(RESET_KEY, {})[token];
   if (!rec || rec.exp < Date.now()) return null;
   return rec.email;
 }
-
-export async function completeReset(
-  token: string,
-  newPassword: string,
-): Promise<void> {
+async function localCompleteReset(token: string, newPassword: string): Promise<void> {
   const map = read<ResetMap>(RESET_KEY, {});
   const rec = map[token];
   if (!rec || rec.exp < Date.now()) throw new AuthError("invalid_token");
-  const users = getUsers();
+  const users = localUsers();
   const idx = users.findIndex((u) => u.email === rec.email);
   if (idx < 0) throw new AuthError("invalid_token");
   users[idx] = { ...users[idx], passHash: await sha256(newPassword), provider: "email" };
-  write(USERS_KEY, users);
+  writeLS(USERS_KEY, users);
   delete map[token];
-  write(RESET_KEY, map);
+  writeLS(RESET_KEY, map);
 }
 
-// Shared password rule (mirrors the signup hint).
-export function passwordProblem(pw: string): string | null {
-  if (pw.length < 8) return "Use at least 8 characters.";
-  if (!/[a-zA-Z]/.test(pw) || !/\d/.test(pw)) return "Mix letters and numbers.";
-  return null;
+// ===========================================================================
+// Unified public API
+// ===========================================================================
+export async function register(input: {
+  name: string;
+  email: string;
+  password: string;
+}): Promise<{ needsConfirmation: boolean }> {
+  const email = norm(input.email);
+  if (supabase) {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password: input.password,
+      options: {
+        data: { full_name: input.name.trim() },
+        emailRedirectTo: `${appOrigin()}/dashboard`,
+      },
+    });
+    if (error) {
+      if (/already|registered|exists/i.test(error.message)) throw new AuthError("email_taken");
+      throw new AuthError("unknown");
+    }
+    // No session means email confirmation is required before first login.
+    return { needsConfirmation: !data.session };
+  }
+  const s = await localRegister(input.name, email, input.password);
+  setCached(s);
+  return { needsConfirmation: false };
 }
 
-export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export async function login(input: { email: string; password: string }): Promise<void> {
+  const email = norm(input.email);
+  if (supabase) {
+    const { error } = await supabase.auth.signInWithPassword({ email, password: input.password });
+    if (error) {
+      if (/confirm/i.test(error.message)) throw new AuthError("email_unconfirmed");
+      throw new AuthError("invalid_credentials");
+    }
+    return;
+  }
+  const s = await localLogin(email, input.password);
+  setCached(s);
+}
+
+export async function loginWithGoogle(): Promise<void> {
+  if (supabase) {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: `${appOrigin()}/dashboard` },
+    });
+    return; // browser redirects to Google
+  }
+  setCached(localGoogle());
+}
+
+export async function requestReset(email: string): Promise<{ devToken: string | null }> {
+  const e = norm(email);
+  if (supabase) {
+    await supabase.auth.resetPasswordForEmail(e, { redirectTo: `${appOrigin()}/reset-password` });
+    return { devToken: null };
+  }
+  return { devToken: localCreateResetToken(e) };
+}
+
+export async function completeReset(opts: { token?: string; password: string }): Promise<void> {
+  if (supabase) {
+    // The reset email link establishes a recovery session; update the password.
+    const { error } = await supabase.auth.updateUser({ password: opts.password });
+    if (error) throw new AuthError("invalid_token");
+    return;
+  }
+  await localCompleteReset(opts.token ?? "", opts.password);
+}
+
+export async function logout(): Promise<void> {
+  if (supabase) {
+    await supabase.auth.signOut();
+    return; // onAuthStateChange clears the cache
+  }
+  try {
+    window.localStorage.removeItem(SESSION_KEY);
+  } catch {
+    /* ignore */
+  }
+  setCached(null);
+}

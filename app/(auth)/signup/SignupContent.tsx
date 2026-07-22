@@ -30,6 +30,7 @@ export default function SignupContent() {
   const [errors, setErrors] = useState<Errors>({});
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [confirmSent, setConfirmSent] = useState(false);
 
   const set = (k: keyof Fields, v: string) => {
     setFields((f) => ({ ...f, [k]: v }));
@@ -43,8 +44,13 @@ export default function SignupContent() {
     if (Object.keys(e).length) return;
     setLoading(true);
     try {
-      await register(fields);
-      router.push("/dashboard");
+      const { needsConfirmation } = await register(fields);
+      if (needsConfirmation) {
+        setLoading(false);
+        setConfirmSent(true); // email verification required — show a check-inbox state
+      } else {
+        router.push("/dashboard");
+      }
     } catch (err) {
       setLoading(false);
       if (err instanceof AuthError && err.code === "email_taken") {
@@ -54,6 +60,39 @@ export default function SignupContent() {
       }
     }
   };
+
+  if (confirmSent) {
+    return (
+      <>
+        <AuthAside variant="signup" />
+        <div className="auth-panel">
+          <div className="auth-card">
+            <div className="auth-success">
+              <span className="auth-success-ic">{Ic.mail}</span>
+              <h2>Confirm your email</h2>
+              <p className="auth-card-sub">
+                We sent a verification link to <b>{fields.email.trim().toLowerCase()}</b>. Click it
+                to activate your account, then log in.
+              </p>
+            </div>
+            <Link href="/login" className="auth-submit" style={{ marginTop: 20 }}>
+              Go to login
+            </Link>
+            <p className="auth-swap">
+              Wrong email?{" "}
+              <button
+                type="button"
+                onClick={() => setConfirmSent(false)}
+                style={{ background: "none", border: "none", color: "var(--v)", fontWeight: 700, cursor: "pointer" }}
+              >
+                Start over
+              </button>
+            </p>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

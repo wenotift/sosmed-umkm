@@ -248,10 +248,10 @@ export default function Nav() {
               {/* TODO: set business WhatsApp — replace href with
                   https://wa.me/<NUMBER>?text=Halo%20Sosmed%20AI%2C%20saya%20mau%20tanya%20soal%20produk.
                   and add target="_blank" rel="noopener" */}
-              <a href="#" className="btn btn-ghost btn-sm">
-                Chat Kami
-              </a>
-              <Link href="/daftar" className="btn btn-primary btn-sm">
+              <Link href="/login" className="btn btn-ghost btn-sm">
+                Masuk
+              </Link>
+              <Link href="/signup" className="btn btn-primary btn-sm">
                 Daftar
               </Link>
             </div>
@@ -312,13 +312,10 @@ export default function Nav() {
           </div>
         </nav>
         <div className="drawer-cta">
-          {/* TODO: set business WhatsApp — replace href with
-              https://wa.me/<NUMBER>?text=Halo%20Sosmed%20AI%2C%20saya%20mau%20tanya%20soal%20produk.
-              and add target="_blank" rel="noopener" */}
-          <a href="#" className="btn btn-ghost" onClick={closeMenu}>
-            Chat Kami
-          </a>
-          <Link href="/daftar" className="btn btn-primary" onClick={closeMenu}>
+          <Link href="/login" className="btn btn-ghost" onClick={closeMenu}>
+            Masuk
+          </Link>
+          <Link href="/signup" className="btn btn-primary" onClick={closeMenu}>
             Daftar
           </Link>
         </div>

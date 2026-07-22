@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
-import { loginWithGoogleDemo } from "@/lib/auth";
+import { loginWithGoogle, usingSupabase } from "@/lib/auth";
 
 /* ---- brand + UI icons -----------------------------------------------------*/
 export const GoogleIcon = (
@@ -211,10 +211,11 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
 /* ---- shared bits used by the cards ---------------------------------------*/
 export function SsoButtons({ verb }: { verb: string }) {
   const router = useRouter();
-  // Demo OAuth: provisions/signs in a Google demo account, then enters the app.
-  const onGoogle = () => {
-    loginWithGoogleDemo();
-    router.push("/dashboard");
+  // With Supabase this redirects to Google OAuth; in local mode it provisions a
+  // demo session and enters the app.
+  const onGoogle = async () => {
+    await loginWithGoogle();
+    if (!usingSupabase) router.push("/dashboard");
   };
   return (
     <div className="auth-sso-row">

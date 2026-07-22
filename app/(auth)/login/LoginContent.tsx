@@ -30,10 +30,15 @@ export default function LoginContent() {
       router.push("/dashboard");
     } catch (err) {
       setLoading(false);
-      if (err instanceof AuthError && err.code === "not_found") {
+      const code = err instanceof AuthError ? err.code : "unknown";
+      if (code === "not_found") {
         setErrors({ email: "No account found with this email. Sign up first." });
-      } else if (err instanceof AuthError && err.code === "wrong_password") {
+      } else if (code === "wrong_password") {
         setErrors({ password: "Incorrect password. Try again." });
+      } else if (code === "email_unconfirmed") {
+        setErrors({ email: "Please confirm your email first — check your inbox." });
+      } else if (code === "invalid_credentials") {
+        setErrors({ password: "Incorrect email or password." });
       } else {
         setErrors({ password: "Something went wrong. Please try again." });
       }

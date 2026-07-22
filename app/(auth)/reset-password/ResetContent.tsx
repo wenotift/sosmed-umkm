@@ -4,7 +4,14 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
 import { AuthAside, Ic } from "../shared";
-import { emailForResetToken, completeReset, passwordProblem } from "@/lib/auth";
+import {
+  emailForResetToken,
+  completeReset,
+  passwordProblem,
+  usingSupabase,
+  subscribeSession,
+  sessionSnapshot,
+} from "@/lib/auth";
 
 const noopSubscribe = () => () => {};
 
@@ -13,14 +20,23 @@ export default function ResetContent() {
   const params = useSearchParams();
   const token = params.get("token") ?? "";
 
-  // Resolve the token → email against localStorage on the client only. The
-  // server snapshot is `undefined` (renders a loading state) so server and
-  // client-hydration render identically — no mismatch.
-  const email = useSyncExternalStore<string | null | undefined>(
+  // Resolve the account email two ways (both hooks run unconditionally):
+  //  • local  — from the reset token in the URL (localStorage lookup)
+  //  • supabase — from the recovery session the email link established
+  // Server snapshot is `undefined` → a loading gate, so there's no mismatch.
+  const tokenEmail = useSyncExternalStore<string | null | undefined>(
     noopSubscribe,
     () => (token ? emailForResetToken(token) : null),
     () => undefined,
   );
+  const session = useSyncExternalStore(subscribeSession, sessionSnapshot, () => undefined);
+  const email = usingSupabase
+    ? session === undefined
+      ? undefined
+      : session
+        ? session.email
+        : null
+    : tokenEmail;
   const [pw, setPw] = useState("");
   const [confirm, setConfirm] = useState("");
   const [show, setShow] = useState(false);
@@ -41,11 +57,11 @@ export default function ResetContent() {
     if (Object.keys(e).length) return;
     setLoading(true);
     try {
-      await completeReset(token, pw);
+      await completeReset({ token, password: pw });
       setDone(true);
     } catch {
       setLoading(false);
-      setFailed(true); // token became invalid
+      setFailed(true); // token/recovery session invalid
     }
   };
 

@@ -50,8 +50,8 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
     if (session === null) router.replace("/login");
   }, [session, router]);
 
-  const onLogout = () => {
-    logout();
+  const onLogout = async () => {
+    await logout();
     router.replace("/login");
   };
 

@@ -3,15 +3,16 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AuthAside, Ic } from "../shared";
-import { createResetToken, EMAIL_RE } from "@/lib/auth";
+import { requestReset, EMAIL_RE } from "@/lib/auth";
 
 export default function ForgotContent() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [devToken, setDevToken] = useState<string | null>(null);
 
-  const onSubmit = (ev: React.FormEvent) => {
+  const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     const e = email.trim();
     if (!e || !EMAIL_RE.test(e)) {
@@ -19,9 +20,11 @@ export default function ForgotContent() {
       return;
     }
     setError(null);
+    setLoading(true);
     // Always show a neutral confirmation (don't reveal whether the email exists).
-    const token = createResetToken(e);
-    setDevToken(token);
+    const { devToken } = await requestReset(e);
+    setDevToken(devToken);
+    setLoading(false);
     setSent(true);
   };
 
@@ -96,8 +99,9 @@ export default function ForgotContent() {
                 {error && <div className="auth-err">{error}</div>}
               </div>
 
-              <button className="auth-submit" type="submit">
-                Send reset link
+              <button className="auth-submit" type="submit" disabled={loading}>
+                {loading ? <span className="spin" /> : null}
+                {loading ? "Sending…" : "Send reset link"}
               </button>
 
               <p className="auth-swap">
