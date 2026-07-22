@@ -19,7 +19,7 @@ export default function LoginContent() {
   const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     const e: Errors = {};
-    if (!email.trim()) e.email = "Work email is required.";
+    if (!email.trim()) e.email = "Email is required.";
     else if (!EMAIL_RE.test(email.trim())) e.email = "Enter a valid email address.";
     if (!password) e.password = "Enter your password.";
     setErrors(e);
@@ -58,7 +58,7 @@ export default function LoginContent() {
           <div style={{ marginTop: 24 }} />
 
           <div className="auth-field">
-            <label htmlFor="li-email">Work email</label>
+            <label htmlFor="li-email">Email</label>
             <div className={"auth-input" + (errors.email ? " invalid" : "")}>
               <span className="lead">{Ic.mail}</span>
               <input
@@ -70,7 +70,7 @@ export default function LoginContent() {
                   setEmail(e.target.value);
                   if (errors.email) setErrors((x) => ({ ...x, email: undefined }));
                 }}
-                placeholder="you@company.com"
+                placeholder="you@email.com"
                 autoComplete="email"
               />
             </div>
