@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useSyncExternalStore } from "react";
-import { AuthAside, Ic } from "../shared";
+import { AuthAside, Ic, PasswordChecklist } from "../shared";
 import {
   emailForResetToken,
   completeReset,
@@ -40,6 +40,7 @@ export default function ResetContent() {
   const [pw, setPw] = useState("");
   const [confirm, setConfirm] = useState("");
   const [show, setShow] = useState(false);
+  const [pwFocus, setPwFocus] = useState(false);
   const [errors, setErrors] = useState<{ pw?: string; confirm?: string }>({});
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
@@ -121,6 +122,8 @@ export default function ResetContent() {
                       setPw(e.target.value);
                       if (errors.pw) setErrors((x) => ({ ...x, pw: undefined }));
                     }}
+                    onFocus={() => setPwFocus(true)}
+                    onBlur={() => setPwFocus(false)}
                     placeholder="Create a new password"
                     autoComplete="new-password"
                   />
@@ -133,10 +136,12 @@ export default function ResetContent() {
                     {show ? Ic.eyeOff : Ic.eye}
                   </button>
                 </div>
-                {errors.pw ? (
+                {pwFocus || pw ? (
+                  <PasswordChecklist value={pw} />
+                ) : errors.pw ? (
                   <div className="auth-err">{errors.pw}</div>
                 ) : (
-                  <div className="auth-hint">Use 8+ characters with a mix of letters &amp; numbers.</div>
+                  <div className="auth-hint">Use 8+ characters with upper &amp; lower case, a number &amp; a symbol.</div>
                 )}
               </div>
 
