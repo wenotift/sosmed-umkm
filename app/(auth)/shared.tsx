@@ -227,7 +227,7 @@ export function SsoButtons({ mode }: { mode: "login" | "signup" }) {
   // demo session and enters the app.
   const onGoogle = async () => {
     await loginWithGoogle();
-    if (!usingSupabase) router.push("/dashboard");
+    if (!usingSupabase) router.push("/onboarding");
   };
   return (
     <div className="auth-sso-row">

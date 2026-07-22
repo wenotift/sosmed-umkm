@@ -330,7 +330,9 @@ export async function loginWithGoogle(): Promise<void> {
   if (supabase) {
     await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${appOrigin()}/dashboard` },
+      // Land on the onboarding wizard: new Google users run the setup steps;
+      // already-onboarded users are forwarded to /dashboard by the wizard.
+      options: { redirectTo: `${appOrigin()}/onboarding` },
     });
     return; // browser redirects to Google
   }
