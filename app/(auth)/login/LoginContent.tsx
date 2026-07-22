@@ -4,12 +4,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AuthAside, SsoButtons, Ic } from "../shared";
+import { LangToggle, useT } from "../i18n";
 import { login, AuthError, EMAIL_RE, isEmailAllowed } from "@/lib/auth";
 
 type Errors = { email?: string; password?: string };
 
 export default function LoginContent() {
   const router = useRouter();
+  const t = useT();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<Errors>({});
@@ -19,13 +21,13 @@ export default function LoginContent() {
   const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     const e: Errors = {};
-    if (!email.trim()) e.email = "Email is required.";
-    else if (!EMAIL_RE.test(email.trim())) e.email = "Enter a valid email address.";
-    if (!password) e.password = "Enter your password.";
+    if (!email.trim()) e.email = t.errEmailRequired;
+    else if (!EMAIL_RE.test(email.trim())) e.email = t.errEmailInvalid;
+    if (!password) e.password = t.errPasswordRequired;
     setErrors(e);
     if (Object.keys(e).length) return;
     if (!isEmailAllowed(email)) {
-      setErrors({ email: "Akses masih dibatasi — aplikasi sedang dalam pengembangan." });
+      setErrors({ email: t.errRestricted });
       return;
     }
     setLoading(true);
@@ -36,17 +38,17 @@ export default function LoginContent() {
       setLoading(false);
       const code = err instanceof AuthError ? err.code : "unknown";
       if (code === "not_found") {
-        setErrors({ email: "No account found with this email. Sign up first." });
+        setErrors({ email: t.errNotFound });
       } else if (code === "wrong_password") {
-        setErrors({ password: "Incorrect password. Try again." });
+        setErrors({ password: t.errWrongPassword });
       } else if (code === "email_unconfirmed") {
-        setErrors({ email: "Please confirm your email first — check your inbox." });
+        setErrors({ email: t.errEmailUnconfirmed });
       } else if (code === "invalid_credentials") {
-        setErrors({ password: "Incorrect email or password." });
+        setErrors({ password: t.errInvalidCredentials });
       } else if (code === "network") {
-        setErrors({ password: "Couldn't reach the server. Check your connection and try again." });
+        setErrors({ password: t.errNetwork });
       } else {
-        setErrors({ password: "Something went wrong. Please try again." });
+        setErrors({ password: t.errGeneric });
       }
     }
   };
@@ -56,13 +58,13 @@ export default function LoginContent() {
       <AuthAside variant="login" />
       <div className="auth-panel">
         <form className="auth-card" onSubmit={onSubmit} noValidate>
-          <h2>Welcome back! 👋</h2>
-          <p className="auth-card-sub">Log in to your Sosmed AI account.</p>
+          <h2>{t.welcome}</h2>
+          <p className="auth-card-sub">{t.loginSub}</p>
 
           <div style={{ marginTop: 24 }} />
 
           <div className="auth-field">
-            <label htmlFor="li-email">Email</label>
+            <label htmlFor="li-email">{t.email}</label>
             <div className={"auth-input" + (errors.email ? " invalid" : "")}>
               <span className="lead">{Ic.mail}</span>
               <input
@@ -74,7 +76,7 @@ export default function LoginContent() {
                   setEmail(e.target.value);
                   if (errors.email) setErrors((x) => ({ ...x, email: undefined }));
                 }}
-                placeholder="you@email.com"
+                placeholder={t.emailPh}
                 autoComplete="email"
               />
             </div>
@@ -82,7 +84,7 @@ export default function LoginContent() {
           </div>
 
           <div className="auth-field">
-            <label htmlFor="li-pass">Password</label>
+            <label htmlFor="li-pass">{t.password}</label>
             <div className={"auth-input" + (errors.password ? " invalid" : "")}>
               <span className="lead">{Ic.lock}</span>
               <input
@@ -93,7 +95,7 @@ export default function LoginContent() {
                   setPassword(e.target.value);
                   if (errors.password) setErrors((x) => ({ ...x, password: undefined }));
                 }}
-                placeholder="Enter your password"
+                placeholder={t.passwordPh}
                 autoComplete="current-password"
               />
               <button
@@ -109,30 +111,34 @@ export default function LoginContent() {
           </div>
 
           <div className="auth-forgot">
-            <Link href="/forgot-password">Forgot password?</Link>
+            <Link href="/forgot-password">{t.forgot}</Link>
           </div>
 
           <button className="auth-submit" type="submit" disabled={loading}>
             {loading ? <span className="spin" /> : null}
-            {loading ? "Logging in…" : "Log in"}
+            {loading ? t.loginBtnLoading : t.loginBtn}
             {!loading && Ic.arrow}
           </button>
 
-          <div className="auth-div">or continue with</div>
-          <SsoButtons verb="Continue" />
+          <div className="auth-div">{t.orContinue}</div>
+          <SsoButtons mode="login" />
 
           <p className="auth-swap">
-            Don&apos;t have an account? <Link href="/signup">Sign up</Link>
+            {t.noAccount} <Link href="/signup">{t.signupLink}</Link>
           </p>
 
           <div className="auth-foot-legal">
             {Ic.lock}
             <span>
-              By logging in, you agree to our <Link href="/syarat">Terms of Service</Link> and{" "}
-              <Link href="/privasi">Privacy Policy</Link>.
+              {t.legalPre}
+              <Link href="/syarat">{t.terms}</Link>
+              {t.legalMid}
+              <Link href="/privasi">{t.privacy}</Link>
+              {t.legalEnd}
             </span>
           </div>
         </form>
+        <LangToggle />
       </div>
     </>
   );

@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { loginWithGoogle, usingSupabase, passwordChecks } from "@/lib/auth";
+import { useT } from "./i18n";
 
 /* ---- brand + UI icons -----------------------------------------------------*/
 export const GoogleIcon = (
@@ -56,17 +58,20 @@ export const Ic = {
 
 /* ---- logo lockup ----------------------------------------------------------*/
 export function AuthLogo() {
+  const t = useT();
   return (
     <div className="auth-logo">
-      <Image
-        className="auth-logo-img"
-        src="/logo/sosmed-ai-logo-black-version.png"
-        alt="Sosmed AI"
-        width={137}
-        height={34}
-        priority
-      />
-      <span className="auth-logo-sub">AI-Native WhatsApp Automation Agent</span>
+      <Link href="/" className="auth-logo-link" aria-label="Sosmed AI — beranda">
+        <Image
+          className="auth-logo-img"
+          src="/logo/sosmed-ai-logo-black-version.png"
+          alt="Sosmed AI"
+          width={137}
+          height={34}
+          priority
+        />
+      </Link>
+      <span className="auth-logo-sub">{t.logoSub}</span>
     </div>
   );
 }
@@ -149,20 +154,12 @@ export function AuthIllustration() {
 }
 
 /* ---- marketing aside (left) ----------------------------------------------*/
-const SIGNUP_FEATS = [
-  { ic: Ic.wa, wa: true, h: "AI-Native for WhatsApp", p: "Built natively to understand, respond, and act like a human." },
-  { ic: Ic.bolt, h: "Automate. Personalize. Convert.", p: "From FAQ to sales, our agent helps you nurture, qualify, and convert automatically." },
-  { ic: Ic.bars, h: "24/7 Engagement", p: "Never miss a message. Engage customers instantly, anytime." },
-  { ic: Ic.shield, h: "Secure & Reliable", p: "Enterprise-grade security to protect your data and your customers." },
-];
-const LOGIN_FEATS = [
-  { ic: Ic.wa, wa: true, h: "AI-Native WhatsApp Agent", p: "Built natively for WhatsApp to understand, respond, and act like a human." },
-  { ic: Ic.bolt, h: "Always On. Always Smart.", p: "Handle thousands of chats simultaneously and never miss a customer." },
-  { ic: Ic.bars, h: "Automate. Personalize. Convert.", p: "From FAQ to sales, our agent helps you nurture, qualify, and convert—automatically." },
-];
+const FEAT_ICONS = [Ic.wa, Ic.bolt, Ic.bars, Ic.shield];
+const TRUST_ICONS = [Ic.shield, Ic.lock, Ic.headset];
 
 export function AuthAside({ variant }: { variant: "login" | "signup" }) {
-  const feats = variant === "signup" ? SIGNUP_FEATS : LOGIN_FEATS;
+  const t = useT();
+  const feats = variant === "signup" ? t.featsSignup : t.featsLogin;
   return (
     <aside className="auth-aside">
       <div className="auth-aside-inner">
@@ -170,22 +167,20 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
         <div className="auth-hero-grid">
           <div>
             {variant === "login" && (
-              <span className="auth-badge">{Ic.wa} AI-Native WhatsApp Agent</span>
+              <span className="auth-badge">{Ic.wa} {t.badge}</span>
             )}
             <h1 className="auth-h1" style={{ marginTop: variant === "login" ? 16 : 8 }}>
-              Your AI Agent,
+              {t.h1a}
               <br />
-              on <span className="g">WhatsApp</span>
+              {t.h1pre}<span className="g">WhatsApp</span>
             </h1>
             <p className="auth-lead" style={{ marginTop: 16 }}>
-              {variant === "signup"
-                ? "Build your AI agent to automate conversations, engage customers, and grow your business 24/7 on WhatsApp."
-                : "Automate conversations. Engage customers. Close more deals — 24/7 with AI."}
+              {variant === "signup" ? t.leadSignup : t.leadLogin}
             </p>
             <div className="auth-feats">
-              {feats.map((f) => (
+              {feats.map((f, i) => (
                 <div className="auth-feat" key={f.h}>
-                  <span className={"auth-feat-ic" + (f.wa ? " wa" : "")}>{f.ic}</span>
+                  <span className={"auth-feat-ic" + (i === 0 ? " wa" : "")}>{FEAT_ICONS[i]}</span>
                   <div>
                     <h3>{f.h}</h3>
                     <p>{f.p}</p>
@@ -199,27 +194,15 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
 
         {variant === "login" && (
           <div className="auth-trustcard">
-            <div className="it">
-              {Ic.shield}
-              <div>
-                <b>Enterprise-grade security</b>
-                <span>Your data is encrypted and always protected.</span>
+            {t.trust.map((it, i) => (
+              <div className="it" key={it.h}>
+                {TRUST_ICONS[i]}
+                <div>
+                  <b>{it.h}</b>
+                  <span>{it.p}</span>
+                </div>
               </div>
-            </div>
-            <div className="it">
-              {Ic.lock}
-              <div>
-                <b>No credit card required</b>
-                <span>Start your 14-day free trial in just a few clicks.</span>
-              </div>
-            </div>
-            <div className="it">
-              {Ic.headset}
-              <div>
-                <b>24/7 Support</b>
-                <span>We&apos;re here to help you succeed.</span>
-              </div>
-            </div>
+            ))}
           </div>
         )}
       </div>
@@ -230,10 +213,11 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
 /* ---- shared bits used by the cards ---------------------------------------*/
 /* ---- live password requirements checklist --------------------------------*/
 export function PasswordChecklist({ value }: { value: string }) {
+  const t = useT();
   return (
     <ul className="auth-pwlist">
-      {passwordChecks(value).map((c) => (
-        <li key={c.label} className={c.ok ? "ok" : ""}>
+      {passwordChecks(value).map((c, i) => (
+        <li key={i} className={c.ok ? "ok" : ""}>
           <span className="auth-pw-ic">
             {c.ok ? (
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -245,15 +229,16 @@ export function PasswordChecklist({ value }: { value: string }) {
               </svg>
             )}
           </span>
-          {c.label}
+          {t.pwRules[i]}
         </li>
       ))}
     </ul>
   );
 }
 
-export function SsoButtons({ verb }: { verb: string }) {
+export function SsoButtons({ mode }: { mode: "login" | "signup" }) {
   const router = useRouter();
+  const t = useT();
   // With Supabase this redirects to Google OAuth; in local mode it provisions a
   // demo session and enters the app.
   const onGoogle = async () => {
@@ -263,7 +248,7 @@ export function SsoButtons({ verb }: { verb: string }) {
   return (
     <div className="auth-sso-row">
       <button type="button" className="auth-sso" onClick={onGoogle}>
-        {GoogleIcon} {verb} with Google
+        {GoogleIcon} {mode === "signup" ? t.googleSignup : t.googleContinue}
       </button>
     </div>
   );

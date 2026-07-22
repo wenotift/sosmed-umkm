@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AuthAside, Ic } from "../shared";
+import { LangToggle, useT } from "../i18n";
 import { requestReset, EMAIL_RE } from "@/lib/auth";
 
 export default function ForgotContent() {
+  const t = useT();
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -16,7 +18,7 @@ export default function ForgotContent() {
     ev.preventDefault();
     const e = email.trim();
     if (!e || !EMAIL_RE.test(e)) {
-      setError("Enter a valid email address.");
+      setError(t.errEmailInvalid);
       return;
     }
     setError(null);
@@ -27,7 +29,7 @@ export default function ForgotContent() {
       setDevToken(devToken);
       setSent(true);
     } catch {
-      setError("Couldn't reach the server. Check your connection and try again.");
+      setError(t.errNetwork);
     } finally {
       setLoading(false);
     }
@@ -39,25 +41,26 @@ export default function ForgotContent() {
       <div className="auth-panel">
         <div className="auth-card">
           <Link href="/login" className="auth-back">
-            {Ic.arrowLeft} Back to login
+            {Ic.arrowLeft} {t.backToLogin}
           </Link>
 
           {sent ? (
             <>
               <div className="auth-success">
                 <span className="auth-success-ic">{Ic.mail}</span>
-                <h2>Check your email</h2>
+                <h2>{t.checkEmail}</h2>
                 <p className="auth-card-sub">
-                  If an account exists for <b>{email.trim().toLowerCase()}</b>, we&apos;ve sent a
-                  link to reset your password.
+                  {t.checkEmailPre}
+                  <b>{email.trim().toLowerCase()}</b>
+                  {t.checkEmailPost}
                 </p>
               </div>
 
               {devToken && (
                 <div className="auth-note" style={{ marginTop: 18 }}>
-                  Mode demo — email belum tersambung. Lanjutkan reset di sini:{" "}
+                  {t.demoNote}
                   <Link href={`/reset-password?token=${devToken}`} style={{ fontWeight: 700 }}>
-                    Reset password →
+                    {t.resetPasswordLink}
                   </Link>
                 </div>
               )}
@@ -71,21 +74,19 @@ export default function ForgotContent() {
                   setDevToken(null);
                 }}
               >
-                Use a different email
+                {t.useDifferent}
               </button>
               <p className="auth-swap">
-                Remembered it? <Link href="/login">Log in</Link>
+                {t.remembered} <Link href="/login">{t.loginLink}</Link>
               </p>
             </>
           ) : (
             <form onSubmit={onSubmit} noValidate>
-              <h2>Reset your password</h2>
-              <p className="auth-card-sub">
-                Enter your account email and we&apos;ll send you a link to set a new password.
-              </p>
+              <h2>{t.resetTitle}</h2>
+              <p className="auth-card-sub">{t.resetSub}</p>
 
               <div className="auth-field" style={{ marginTop: 24 }}>
-                <label htmlFor="fp-email">Email</label>
+                <label htmlFor="fp-email">{t.email}</label>
                 <div className={"auth-input" + (error ? " invalid" : "")}>
                   <span className="lead">{Ic.mail}</span>
                   <input

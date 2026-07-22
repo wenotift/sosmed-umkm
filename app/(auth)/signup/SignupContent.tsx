@@ -4,27 +4,29 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AuthAside, SsoButtons, Ic, PasswordChecklist } from "../shared";
+import { LangToggle, useT, type Dict } from "../i18n";
 import { register, AuthError, EMAIL_RE, passwordProblem, isEmailAllowed } from "@/lib/auth";
 
 type Fields = { name: string; email: string; password: string };
 type Errors = Partial<Record<keyof Fields | "agree" | "form", string>>;
 
-function validate(f: Fields, agree: boolean): Errors {
+function validate(f: Fields, agree: boolean, t: Dict): Errors {
   const e: Errors = {};
-  if (!f.name.trim()) e.name = "Full name is required.";
-  if (!f.email.trim()) e.email = "Email is required.";
-  else if (!EMAIL_RE.test(f.email.trim())) e.email = "Enter a valid email address.";
-  if (!f.password) e.password = "Create a password.";
+  if (!f.name.trim()) e.name = t.errNameRequired;
+  if (!f.email.trim()) e.email = t.errEmailRequired;
+  else if (!EMAIL_RE.test(f.email.trim())) e.email = t.errEmailInvalid;
+  if (!f.password) e.password = t.passwordPhSignup;
   else {
     const p = passwordProblem(f.password);
     if (p) e.password = p;
   }
-  if (!agree) e.agree = "Please accept the Terms to continue.";
+  if (!agree) e.agree = t.errAgreeRequired;
   return e;
 }
 
 export default function SignupContent() {
   const router = useRouter();
+  const t = useT();
   const [fields, setFields] = useState<Fields>({ name: "", email: "", password: "" });
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
@@ -40,11 +42,11 @@ export default function SignupContent() {
 
   const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
-    const e = validate(fields, agree);
+    const e = validate(fields, agree, t);
     setErrors(e);
     if (Object.keys(e).length) return;
     if (!isEmailAllowed(fields.email)) {
-      setErrors({ form: "Pendaftaran masih terbatas — aplikasi sedang dalam pengembangan." });
+      setErrors({ form: t.errRestrictedSignup });
       return;
     }
     setLoading(true);
@@ -60,11 +62,11 @@ export default function SignupContent() {
       setLoading(false);
       const code = err instanceof AuthError ? err.code : "unknown";
       if (code === "email_taken") {
-        setErrors({ email: "This email is already registered. Try logging in." });
+        setErrors({ email: t.errEmailTaken });
       } else if (code === "network") {
-        setErrors({ form: "Couldn't reach the server. Check your connection and try again." });
+        setErrors({ form: t.errNetwork });
       } else {
-        setErrors({ form: "Something went wrong. Please try again." });
+        setErrors({ form: t.errGeneric });
       }
     }
   };
@@ -77,26 +79,28 @@ export default function SignupContent() {
           <div className="auth-card">
             <div className="auth-success">
               <span className="auth-success-ic">{Ic.mail}</span>
-              <h2>Confirm your email</h2>
+              <h2>{t.confirmTitle}</h2>
               <p className="auth-card-sub">
-                We sent a verification link to <b>{fields.email.trim().toLowerCase()}</b>. Click it
-                to activate your account, then log in.
+                {t.confirmPre}
+                <b>{fields.email.trim().toLowerCase()}</b>
+                {t.confirmPost}
               </p>
             </div>
             <Link href="/login" className="auth-submit" style={{ marginTop: 20 }}>
-              Go to login
+              {t.goToLogin}
             </Link>
             <p className="auth-swap">
-              Wrong email?{" "}
+              {t.wrongEmail}{" "}
               <button
                 type="button"
                 onClick={() => setConfirmSent(false)}
                 style={{ background: "none", border: "none", color: "var(--v)", fontWeight: 700, cursor: "pointer" }}
               >
-                Start over
+                {t.startOver}
               </button>
             </p>
           </div>
+          <LangToggle />
         </div>
       </>
     );
@@ -107,21 +111,21 @@ export default function SignupContent() {
       <AuthAside variant="signup" />
       <div className="auth-panel">
         <form className="auth-card" onSubmit={onSubmit} noValidate>
-          <h2>Create your account</h2>
-          <p className="auth-card-sub">Start building your AI Agent in just a few minutes.</p>
+          <h2>{t.createAccount}</h2>
+          <p className="auth-card-sub">{t.signupSub}</p>
 
-          <SsoButtons verb="Sign up" />
-          <div className="auth-div">or sign up with email</div>
+          <SsoButtons mode="signup" />
+          <div className="auth-div">{t.orSignupEmail}</div>
 
           <div className="auth-field">
-            <label htmlFor="su-name">Full name</label>
+            <label htmlFor="su-name">{t.fullName}</label>
             <div className={"auth-input" + (errors.name ? " invalid" : "")}>
               <span className="lead">{Ic.user}</span>
               <input
                 id="su-name"
                 value={fields.name}
                 onChange={(e) => set("name", e.target.value)}
-                placeholder="Enter your full name"
+                placeholder={t.fullNamePh}
                 autoComplete="name"
               />
             </div>
@@ -129,7 +133,7 @@ export default function SignupContent() {
           </div>
 
           <div className="auth-field">
-            <label htmlFor="su-email">Email</label>
+            <label htmlFor="su-email">{t.email}</label>
             <div className={"auth-input" + (errors.email ? " invalid" : "")}>
               <span className="lead">{Ic.mail}</span>
               <input
@@ -138,7 +142,7 @@ export default function SignupContent() {
                 inputMode="email"
                 value={fields.email}
                 onChange={(e) => set("email", e.target.value)}
-                placeholder="Enter your email"
+                placeholder={t.emailPhSignup}
                 autoComplete="email"
               />
             </div>
@@ -146,7 +150,7 @@ export default function SignupContent() {
           </div>
 
           <div className="auth-field">
-            <label htmlFor="su-pass">Password</label>
+            <label htmlFor="su-pass">{t.password}</label>
             <div className={"auth-input" + (errors.password ? " invalid" : "")}>
               <span className="lead">{Ic.lock}</span>
               <input
@@ -156,7 +160,7 @@ export default function SignupContent() {
                 onChange={(e) => set("password", e.target.value)}
                 onFocus={() => setPwFocus(true)}
                 onBlur={() => setPwFocus(false)}
-                placeholder="Create a password"
+                placeholder={t.passwordPhSignup}
                 autoComplete="new-password"
               />
               <button
@@ -173,7 +177,7 @@ export default function SignupContent() {
             ) : errors.password ? (
               <div className="auth-err">{errors.password}</div>
             ) : (
-              <div className="auth-hint">Use 8+ characters with upper &amp; lower case, a number &amp; a symbol.</div>
+              <div className="auth-hint">{t.pwHint}</div>
             )}
           </div>
 
@@ -188,8 +192,10 @@ export default function SignupContent() {
             />
             <span className="box">{Ic.check}</span>
             <span>
-              I agree to the <Link href="/syarat">Terms of Service</Link> and{" "}
-              <Link href="/privasi">Privacy Policy</Link>
+              {t.agreePre}
+              <Link href="/syarat">{t.terms}</Link>
+              {t.agreeMid}
+              <Link href="/privasi">{t.privacy}</Link>
             </span>
           </label>
           {errors.agree && <div className="auth-err" style={{ marginTop: -12, marginBottom: 14 }}>{errors.agree}</div>}
@@ -197,19 +203,20 @@ export default function SignupContent() {
 
           <button className="auth-submit" type="submit" disabled={loading}>
             {loading ? <span className="spin" /> : null}
-            {loading ? "Creating account…" : "Create account"}
+            {loading ? t.createBtnLoading : t.createBtn}
           </button>
 
           <p className="auth-swap">
-            Already have an account? <Link href="/login">Log in</Link>
+            {t.haveAccount} <Link href="/login">{t.loginLink}</Link>
           </p>
 
           <div className="auth-foot">
-            <div className="it">{Ic.shield}<div><b>Enterprise-grade</b><span>security</span></div></div>
-            <div className="it">{Ic.lock}<div><b>Your data is always</b><span>protected</span></div></div>
-            <div className="it">{Ic.headset}<div><b>24/7 support</b><span>when you need us</span></div></div>
+            <div className="it">{Ic.shield}<div><b>{t.footItems[0].b}</b><span>{t.footItems[0].s}</span></div></div>
+            <div className="it">{Ic.lock}<div><b>{t.footItems[1].b}</b><span>{t.footItems[1].s}</span></div></div>
+            <div className="it">{Ic.headset}<div><b>{t.footItems[2].b}</b><span>{t.footItems[2].s}</span></div></div>
           </div>
         </form>
+        <LangToggle />
       </div>
     </>
   );
