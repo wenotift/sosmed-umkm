@@ -5,6 +5,7 @@
 // hydration-safely via useSyncExternalStore (server + first client render use
 // "id", then we reconcile with the stored value on subscribe — no mismatch).
 
+import Link from "next/link";
 import { useSyncExternalStore } from "react";
 
 export type Lang = "id" | "en";
@@ -157,6 +158,11 @@ export interface Dict {
   back: string;
   errCreateNewPw: string;
   errPwNoMatch: string;
+  // footer
+  footProceed: string;
+  footProceedPost: string;
+  copyright: string;
+  support: string;
 }
 
 const en: Dict = {
@@ -277,6 +283,10 @@ const en: Dict = {
   back: "Back",
   errCreateNewPw: "Create a new password.",
   errPwNoMatch: "Passwords don't match.",
+  footProceed: "By proceeding you acknowledge that you have read, understood and agree to our ",
+  footProceedPost: ".",
+  copyright: "© 2026 Sosmed AI",
+  support: "Support",
 };
 
 const id: Dict = {
@@ -397,6 +407,10 @@ const id: Dict = {
   back: "Kembali",
   errCreateNewPw: "Buat kata sandi baru.",
   errPwNoMatch: "Kata sandi tidak cocok.",
+  footProceed: "Dengan melanjutkan, kamu menyatakan telah membaca, memahami, dan menyetujui ",
+  footProceedPost: " kami.",
+  copyright: "© 2026 Sosmed AI",
+  support: "Bantuan",
 };
 
 const DICT: Record<Lang, Dict> = { id, en };
@@ -427,5 +441,26 @@ export function LangToggle() {
         ENG
       </button>
     </div>
+  );
+}
+
+/* ---- page footer ----------------------------------------------------------*/
+export function AuthFooter() {
+  const t = useT();
+  return (
+    <footer className="auth-footer">
+      <p className="auth-footer-legal">
+        {t.footProceed}
+        <Link href="/syarat">{t.terms}</Link>
+        {t.footProceedPost}
+      </p>
+      <div className="auth-footer-bottom">
+        <span>{t.copyright}</span>
+        <span className="auth-footer-dot" aria-hidden="true">·</span>
+        <Link href="/privasi">{t.privacy}</Link>
+        <span className="auth-footer-dot" aria-hidden="true">·</span>
+        <Link href="/bantuan">{t.support}</Link>
+      </div>
+    </footer>
   );
 }

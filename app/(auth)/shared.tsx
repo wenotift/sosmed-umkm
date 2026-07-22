@@ -155,7 +155,6 @@ export function AuthIllustration() {
 
 /* ---- marketing aside (left) ----------------------------------------------*/
 const FEAT_ICONS = [Ic.wa, Ic.bolt, Ic.bars, Ic.shield];
-const TRUST_ICONS = [Ic.shield, Ic.lock, Ic.headset];
 
 export function AuthAside({ variant }: { variant: "login" | "signup" }) {
   const t = useT();
@@ -163,7 +162,6 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
   return (
     <aside className="auth-aside">
       <div className="auth-aside-inner">
-        <AuthLogo />
         <div className="auth-hero-grid">
           <div>
             {variant === "login" && (
@@ -191,20 +189,6 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
           </div>
           <AuthIllustration />
         </div>
-
-        {variant === "login" && (
-          <div className="auth-trustcard">
-            {t.trust.map((it, i) => (
-              <div className="it" key={it.h}>
-                {TRUST_ICONS[i]}
-                <div>
-                  <b>{it.h}</b>
-                  <span>{it.p}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </aside>
   );

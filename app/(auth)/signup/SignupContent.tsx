@@ -209,12 +209,6 @@ export default function SignupContent() {
           <p className="auth-swap">
             {t.haveAccount} <Link href="/login">{t.loginLink}</Link>
           </p>
-
-          <div className="auth-foot">
-            <div className="it">{Ic.shield}<div><b>{t.footItems[0].b}</b><span>{t.footItems[0].s}</span></div></div>
-            <div className="it">{Ic.lock}<div><b>{t.footItems[1].b}</b><span>{t.footItems[1].s}</span></div></div>
-            <div className="it">{Ic.headset}<div><b>{t.footItems[2].b}</b><span>{t.footItems[2].s}</span></div></div>
-          </div>
         </form>
         <LangToggle />
       </div>
