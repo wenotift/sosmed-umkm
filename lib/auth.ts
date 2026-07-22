@@ -90,13 +90,17 @@ function ensureInit() {
   if (initStarted || typeof window === "undefined") return;
   initStarted = true;
   if (supabase) {
-    supabase.auth
-      .getSession()
-      .then(({ data }) => setCached(mapSupabaseSession(data.session)))
-      .catch(() => setCached(null));
+    // Rely on onAuthStateChange as the single source of truth. Its first event
+    // (INITIAL_SESSION) already reflects any session parsed from the URL hash
+    // (OAuth / password-recovery redirects), so we avoid the getSession() race
+    // that could momentarily read null and bounce a just-authenticated user to
+    // /login. A timeout guard flips to "resolved" if the SDK never emits.
     supabase.auth.onAuthStateChange((_event, session) => {
       setCached(mapSupabaseSession(session));
     });
+    window.setTimeout(() => {
+      if (!initialized) setCached(null);
+    }, 4000);
   } else {
     setCached(readLocalSession());
   }
