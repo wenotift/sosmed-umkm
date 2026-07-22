@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AuthAside, SsoButtons, Ic, PasswordChecklist } from "../shared";
-import { register, AuthError, EMAIL_RE, passwordProblem } from "@/lib/auth";
+import { register, AuthError, EMAIL_RE, passwordProblem, isEmailAllowed } from "@/lib/auth";
 
 type Fields = { name: string; email: string; password: string };
 type Errors = Partial<Record<keyof Fields | "agree" | "form", string>>;
@@ -43,6 +43,10 @@ export default function SignupContent() {
     const e = validate(fields, agree);
     setErrors(e);
     if (Object.keys(e).length) return;
+    if (!isEmailAllowed(fields.email)) {
+      setErrors({ form: "Pendaftaran masih terbatas — aplikasi sedang dalam pengembangan." });
+      return;
+    }
     setLoading(true);
     try {
       const { needsConfirmation } = await register(fields);

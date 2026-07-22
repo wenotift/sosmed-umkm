@@ -7,7 +7,7 @@ import { Icon, Icons } from "./components/icons";
 import { useStore } from "./lib/store";
 import { monthlyCapacity, pipelineCounts } from "./lib/derive";
 import { longDate, NOW } from "./lib/format";
-import { logout, sessionSnapshot, subscribeSession, type Session } from "@/lib/auth";
+import { logout, sessionSnapshot, subscribeSession, isEmailAllowed, type Session } from "@/lib/auth";
 
 interface NavDef {
   href: string;
@@ -63,6 +63,42 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
         <div>
           <div className="dash-spinner" />
           Memuat…
+        </div>
+      </div>
+    );
+  }
+
+  // Development access lock: a valid session whose email isn't allowlisted gets
+  // a "coming soon" wall instead of the dashboard (covers Google OAuth, or an
+  // email removed from the allowlist after login).
+  if (!isEmailAllowed(session.email)) {
+    return (
+      <div className="dash-skeleton">
+        <div style={{ textAlign: "center", maxWidth: 380, padding: "0 20px" }}>
+          <div
+            style={{
+              width: 64,
+              height: 64,
+              borderRadius: 18,
+              margin: "0 auto 18px",
+              display: "grid",
+              placeItems: "center",
+              background: "var(--accent-soft)",
+              color: "var(--accent-ink)",
+            }}
+          >
+            <Icon paths={Icons.gear} size={30} />
+          </div>
+          <h2 style={{ fontFamily: "var(--display)", fontWeight: 800, fontSize: 22, marginBottom: 8 }}>
+            Sedang dalam pengembangan
+          </h2>
+          <p style={{ fontSize: 14, color: "var(--ink-soft)", lineHeight: 1.6, marginBottom: 20 }}>
+            Dashboard Sosmed AI masih dalam tahap pengembangan dan aksesnya
+            terbatas untuk tim internal. Terima kasih atas kesabaranmu 🙏
+          </p>
+          <button className="dash-btn dash-btn-ghost" onClick={onLogout}>
+            <Icon paths={Icons.logout} size={16} /> Keluar
+          </button>
         </div>
       </div>
     );

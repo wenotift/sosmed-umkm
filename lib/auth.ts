@@ -42,6 +42,26 @@ export class AuthError extends Error {
 
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// --- development access lock ------------------------------------------------
+// While in development the dashboard is restricted to an allowlist of emails.
+//  • NEXT_PUBLIC_ALLOWED_EMAILS — comma-separated emails that may enter.
+//  • NEXT_PUBLIC_DASHBOARD_LOCK="false" — opens the dashboard to everyone
+//    (set this at public launch).
+// Default (no env set) = LOCKED for everyone, so production stays private until
+// you allowlist yourself in Vercel.
+const DASHBOARD_LOCKED = (process.env.NEXT_PUBLIC_DASHBOARD_LOCK ?? "true") !== "false";
+const ALLOWED_EMAILS = (process.env.NEXT_PUBLIC_ALLOWED_EMAILS ?? "")
+  .split(",")
+  .map((e) => e.trim().toLowerCase())
+  .filter(Boolean);
+
+export const dashboardLocked = DASHBOARD_LOCKED;
+
+export function isEmailAllowed(email: string): boolean {
+  if (!DASHBOARD_LOCKED) return true;
+  return ALLOWED_EMAILS.includes(email.trim().toLowerCase());
+}
+
 // Live password policy — the checklist UI and validation both read from this.
 export const PASSWORD_RULES: { label: string; test: (p: string) => boolean }[] = [
   { label: "At least 8 characters", test: (p) => p.length >= 8 },

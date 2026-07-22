@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AuthAside, SsoButtons, Ic } from "../shared";
-import { login, AuthError, EMAIL_RE } from "@/lib/auth";
+import { login, AuthError, EMAIL_RE, isEmailAllowed } from "@/lib/auth";
 
 type Errors = { email?: string; password?: string };
 
@@ -24,6 +24,10 @@ export default function LoginContent() {
     if (!password) e.password = "Enter your password.";
     setErrors(e);
     if (Object.keys(e).length) return;
+    if (!isEmailAllowed(email)) {
+      setErrors({ email: "Akses masih dibatasi — aplikasi sedang dalam pengembangan." });
+      return;
+    }
     setLoading(true);
     try {
       await login({ email, password });
