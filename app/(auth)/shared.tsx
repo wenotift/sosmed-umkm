@@ -25,10 +25,9 @@ function Line({ children }: { children: ReactNode }) {
 
 export const Ic = {
   wa: (
-    <Line>
-      <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 21l2-5.5a8.5 8.5 0 0 1 16-4z" />
-      <path d="M8.5 8.8c0-.3.2-.5.5-.5h.9c.2 0 .4.1.5.4l.6 1.4c.1.2 0 .4-.1.6l-.5.5c.5.9 1.2 1.6 2.1 2.1l.5-.5c.2-.2.4-.2.6-.1l1.4.6c.2.1.4.3.4.5v.9c0 .3-.2.5-.5.5A6.5 6.5 0 0 1 8.5 8.8z" />
-    </Line>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.16c-.24.68-1.42 1.3-1.97 1.38-.5.08-1.14.11-1.84-.12-.42-.13-.97-.31-1.67-.61-2.94-1.27-4.86-4.23-5.01-4.43-.15-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.59-.37.79-.37.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.59.83 2.04.9 2.18.07.15.12.32.02.51-.1.2-.15.32-.29.5-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.45.3.15.47.12.64-.07.17-.2.74-.86.94-1.16.2-.3.39-.25.66-.15.27.1 1.72.81 2.02.96.3.15.5.22.57.34.07.13.07.72-.17 1.4z" />
+    </svg>
   ),
   bolt: <Line><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></Line>,
   bars: <Line><path d="M3 3v16a2 2 0 0 0 2 2h16" /><path d="M18 17V9M13 17V7M8 17v-4" /></Line>,
@@ -67,7 +66,7 @@ export function AuthLogo() {
         height={34}
         priority
       />
-      <span className="auth-logo-sub">AI Native WhatsApp Automation Agent</span>
+      <span className="auth-logo-sub">AI-Native WhatsApp Automation Agent</span>
     </div>
   );
 }
@@ -151,13 +150,13 @@ export function AuthIllustration() {
 
 /* ---- marketing aside (left) ----------------------------------------------*/
 const SIGNUP_FEATS = [
-  { ic: Ic.wa, wa: true, h: "AI Native for WhatsApp", p: "Built natively to understand, respond, and act like a human." },
+  { ic: Ic.wa, wa: true, h: "AI-Native for WhatsApp", p: "Built natively to understand, respond, and act like a human." },
   { ic: Ic.bolt, h: "Automate. Personalize. Convert.", p: "From FAQ to sales, our agent helps you nurture, qualify, and convert automatically." },
   { ic: Ic.bars, h: "24/7 Engagement", p: "Never miss a message. Engage customers instantly, anytime." },
   { ic: Ic.shield, h: "Secure & Reliable", p: "Enterprise-grade security to protect your data and your customers." },
 ];
 const LOGIN_FEATS = [
-  { ic: Ic.wa, wa: true, h: "AI Native WhatsApp Agent", p: "Built natively for WhatsApp to understand, respond, and act like a human." },
+  { ic: Ic.wa, wa: true, h: "AI-Native WhatsApp Agent", p: "Built natively for WhatsApp to understand, respond, and act like a human." },
   { ic: Ic.bolt, h: "Always On. Always Smart.", p: "Handle thousands of chats simultaneously and never miss a customer." },
   { ic: Ic.bars, h: "Automate. Personalize. Convert.", p: "From FAQ to sales, our agent helps you nurture, qualify, and convert—automatically." },
 ];
@@ -171,7 +170,7 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
         <div className="auth-hero-grid">
           <div>
             {variant === "login" && (
-              <span className="auth-badge">AI Native WhatsApp Automation Agent</span>
+              <span className="auth-badge">{Ic.wa} AI-Native WhatsApp Agent</span>
             )}
             <h1 className="auth-h1" style={{ marginTop: variant === "login" ? 16 : 8 }}>
               Your AI Agent,

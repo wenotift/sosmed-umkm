@@ -36,6 +36,14 @@
 .auth a {
   color: inherit;
 }
+/* Form controls don't inherit font-family by default — force the brand font so
+   nothing (e.g. the password eye toggle) falls back to the browser's Arial. */
+.auth input,
+.auth button,
+.auth textarea,
+.auth select {
+  font-family: var(--body);
+}
 
 /* soft brand glow behind the whole screen */
 .auth::before {
@@ -110,6 +118,11 @@
   padding: 7px 13px;
   border-radius: 999px;
   text-transform: uppercase;
+  white-space: nowrap;
+}
+.auth-badge svg {
+  width: 14px;
+  height: 14px;
 }
 
 .auth-h1 {
