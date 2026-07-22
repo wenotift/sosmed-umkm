@@ -107,7 +107,7 @@ export function AuthIllustration() {
             <span className="auth-wa-back">‹</span>
             <span className="auth-wa-av">{Ic.robot}</span>
             <span className="auth-wa-meta">
-              <div className="auth-wa-name">Sosi AI</div>
+              <div className="auth-wa-name">Kopi Senja</div>
               <div className="auth-wa-status">online</div>
             </span>
             <span className="auth-wa-actions">
@@ -121,16 +121,16 @@ export function AuthIllustration() {
           </div>
           <div className="auth-wa-body">
             <div className="auth-bub in">
-              Hai! 👋<span className="t">10:30</span>
+              Hai! 👋 Selamat datang di Kopi Senja ☕<span className="t">10:30</span>
             </div>
             <div className="auth-bub in">
-              Ada yang bisa Sosi bantu hari ini?<span className="t">10:30</span>
+              Ada yang mau dipesan hari ini?<span className="t">10:30</span>
             </div>
             <div className="auth-bub out">
-              Saya ingin tahu tentang produk skincare<span className="t">10:31</span>
+              Menu best seller apa aja?<span className="t">10:31</span>
             </div>
             <div className="auth-bub in">
-              Tentu! Ini beberapa rekomendasi untuk kamu.<span className="t">10:31</span>
+              Kopi Susu Gula Aren &amp; Croissant paling laris! 🥐<span className="t">10:31</span>
             </div>
             <div className="auth-typing">
               <i /><i /><i />
