@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
-import { loginWithGoogle, usingSupabase } from "@/lib/auth";
+import { loginWithGoogle, usingSupabase, passwordChecks } from "@/lib/auth";
 
 /* ---- brand + UI icons -----------------------------------------------------*/
 export const GoogleIcon = (
@@ -43,6 +43,7 @@ export const Ic = {
   people: <Line><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11" /></Line>,
   arrow: <Line><path d="M5 12h14M13 6l6 6-6 6" /></Line>,
   arrowLeft: <Line><path d="M19 12H5M11 18l-6-6 6-6" /></Line>,
+  x: <Line><path d="M18 6 6 18M6 6l12 12" /></Line>,
   robot: (
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <rect x="4" y="8" width="16" height="12" rx="4" />
@@ -228,6 +229,30 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
 }
 
 /* ---- shared bits used by the cards ---------------------------------------*/
+/* ---- live password requirements checklist --------------------------------*/
+export function PasswordChecklist({ value }: { value: string }) {
+  return (
+    <ul className="auth-pwlist">
+      {passwordChecks(value).map((c) => (
+        <li key={c.label} className={c.ok ? "ok" : ""}>
+          <span className="auth-pw-ic">
+            {c.ok ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            )}
+          </span>
+          {c.label}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function SsoButtons({ verb }: { verb: string }) {
   const router = useRouter();
   // With Supabase this redirects to Google OAuth; in local mode it provisions a

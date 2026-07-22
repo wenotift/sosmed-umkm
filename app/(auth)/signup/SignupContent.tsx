@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { AuthAside, SsoButtons, Ic } from "../shared";
+import { AuthAside, SsoButtons, Ic, PasswordChecklist } from "../shared";
 import { register, AuthError, EMAIL_RE, passwordProblem } from "@/lib/auth";
 
 type Fields = { name: string; email: string; password: string };
@@ -29,6 +29,7 @@ export default function SignupContent() {
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [show, setShow] = useState(false);
+  const [pwFocus, setPwFocus] = useState(false);
   const [loading, setLoading] = useState(false);
   const [confirmSent, setConfirmSent] = useState(false);
 
@@ -149,6 +150,8 @@ export default function SignupContent() {
                 type={show ? "text" : "password"}
                 value={fields.password}
                 onChange={(e) => set("password", e.target.value)}
+                onFocus={() => setPwFocus(true)}
+                onBlur={() => setPwFocus(false)}
                 placeholder="Create a password"
                 autoComplete="new-password"
               />
@@ -161,10 +164,12 @@ export default function SignupContent() {
                 {show ? Ic.eyeOff : Ic.eye}
               </button>
             </div>
-            {errors.password ? (
+            {pwFocus || fields.password ? (
+              <PasswordChecklist value={fields.password} />
+            ) : errors.password ? (
               <div className="auth-err">{errors.password}</div>
             ) : (
-              <div className="auth-hint">Use 8+ characters with a mix of letters, numbers &amp; symbols.</div>
+              <div className="auth-hint">Use 8+ characters with upper &amp; lower case, a number &amp; a symbol.</div>
             )}
           </div>
 
