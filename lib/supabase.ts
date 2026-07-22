@@ -10,6 +10,18 @@ const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 export const isSupabaseConfigured = Boolean(url && anonKey);
 
 // Singleton client, or null while unconfigured (so importing this never throws).
+// flowType "implicit": OAuth and email-confirmation redirects return the tokens
+// directly in the URL (no PKCE code-verifier needed). This is the reliable
+// choice for a client-only app — PKCE breaks when the redirect is opened in a
+// different browser/storage than the one that started the flow (a common cause
+// of "auth succeeds but bounces back to /login").
 export const supabase: SupabaseClient | null = isSupabaseConfigured
-  ? createClient(url as string, anonKey as string)
+  ? createClient(url as string, anonKey as string, {
+      auth: {
+        flowType: "implicit",
+        detectSessionInUrl: true,
+        persistSession: true,
+        autoRefreshToken: true,
+      },
+    })
   : null;
