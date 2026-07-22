@@ -1,81 +1,136 @@
 <!--
-  Sosmed AI — "Confirm signup" email (Supabase → Authentication → Email Templates).
-  Paste this whole file into the "Confirm signup" template. Supabase fills
-  {{ .ConfirmationURL }} at send time. Table-based + inline styles for email-client
-  compatibility; logo/links use absolute https URLs so they render in inboxes.
+  Sosmed AI — "Confirm signup" email. Paste into Supabase → Authentication →
+  Email Templates → "Confirm signup". Supabase fills {{ .ConfirmationURL }}.
+  Table-based + inline styles for email-client compatibility. The logo is the
+  real hosted PNG (email clients don't render SVG). Feature/verification icons
+  use emoji so they render in every inbox.
 -->
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0;padding:0;background:#F4F5FA;">
   <tr>
-    <td align="center" style="padding:32px 16px;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;">
-      <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:100%;background:#ffffff;border:1px solid #ECEDF3;border-radius:18px;overflow:hidden;">
+    <td align="center" style="padding:30px 14px;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#171A28;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;">
 
-        <!-- header / logo -->
+        <!-- logo -->
         <tr>
-          <td style="padding:30px 40px 8px;">
-            <img src="https://umkm.sosmed.io/logo/sosmed-ai-logo-black-version.png" alt="Sosmed AI" width="150" style="display:block;border:0;height:auto;width:150px;" />
+          <td align="center" style="padding:8px 0 4px;">
+            <img src="https://umkm.sosmed.io/logo/sosmed-ai-logo-black-version.png" alt="Sosmed AI" width="168" style="display:block;border:0;height:auto;width:168px;" />
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding:0 0 22px;">
+            <span style="font-size:13px;color:#8A90A2;">AI Native WhatsApp Automation Agent</span>
           </td>
         </tr>
 
-        <!-- body -->
+        <!-- hero card -->
         <tr>
-          <td style="padding:14px 40px 8px;">
-            <h1 style="margin:0 0 12px;font-size:24px;line-height:1.25;color:#171A28;font-weight:800;letter-spacing:-.02em;">Confirm your email 👋</h1>
-            <p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#5B6072;">
-              Thanks for signing up for <strong style="color:#171A28;">Sosmed AI</strong> — your AI agent on WhatsApp.
-              Confirm your email address to activate your account and get started.
+          <td style="background:#ffffff;border:1px solid #ECEDF3;border-radius:20px;padding:34px 40px 30px;">
+            <span style="display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.05em;color:#6C4CF0;background:#F1EEFC;border-radius:999px;padding:7px 14px;">✦ SELAMAT BERGABUNG!</span>
+            <h1 style="margin:18px 0 14px;font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.02em;color:#171A28;">
+              Satu langkah lagi,<br /><span style="color:#6C4CF0;">dan kamu siap menggunakan Sosmed AI</span>
+            </h1>
+            <p style="margin:0;font-size:15px;line-height:1.6;color:#5B6072;">
+              Terima kasih sudah mendaftar. Verifikasi email kamu untuk mengaktifkan akun dan mulai
+              otomatisasi chat WhatsApp sekarang.
             </p>
           </td>
         </tr>
 
-        <!-- button -->
+        <tr><td style="height:16px;line-height:16px;">&nbsp;</td></tr>
+
+        <!-- verification card (purple) -->
         <tr>
-          <td align="center" style="padding:22px 40px 6px;">
-            <table role="presentation" cellpadding="0" cellspacing="0">
-              <tr>
-                <td align="center" bgcolor="#6C4CF0" style="border-radius:12px;">
-                  <a href="{{ .ConfirmationURL }}" target="_blank"
-                     style="display:inline-block;padding:14px 30px;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;border-radius:12px;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;">
-                    Confirm email address
+          <td bgcolor="#6C4CF0" style="background:#6C4CF0;background:linear-gradient(135deg,#6C4CF0,#8B6DF6);border-radius:20px;padding:36px 40px;text-align:center;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+              <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+                <td width="64" height="64" align="center" valign="middle" style="width:64px;height:64px;background:#ffffff;border-radius:50%;font-size:28px;line-height:64px;">✉️</td>
+              </tr></table>
+              <h2 style="margin:18px 0 8px;font-size:22px;font-weight:800;color:#ffffff;">Verifikasi email kamu</h2>
+              <p style="margin:0 auto 22px;font-size:14px;line-height:1.6;color:#EBE6FD;max-width:400px;">
+                Klik tombol di bawah ini untuk memverifikasi email dan mengaktifkan akun Sosmed AI kamu.
+              </p>
+              <table role="presentation" cellpadding="0" cellspacing="0" align="center"><tr>
+                <td bgcolor="#ffffff" style="border-radius:12px;">
+                  <a href="{{ .ConfirmationURL }}" target="_blank" style="display:inline-block;padding:15px 34px;font-size:15px;font-weight:700;color:#6C4CF0;text-decoration:none;border-radius:12px;">
+                    Verifikasi Email Saya&nbsp;&nbsp;→
                   </a>
                 </td>
-              </tr>
-            </table>
+              </tr></table>
+              <p style="margin:22px 0 10px;font-size:12px;color:#CFC5F7;letter-spacing:.08em;">atau</p>
+              <p style="margin:0 0 8px;font-size:12.5px;color:#EBE6FD;">Salin dan buka link berikut di browser kamu:</p>
+              <div style="background:rgba(0,0,0,.22);border-radius:10px;padding:12px 14px;">
+                <a href="{{ .ConfirmationURL }}" style="font-size:12px;color:#ffffff;word-break:break-all;text-decoration:none;">{{ .ConfirmationURL }}</a>
+              </div>
+            </td></tr></table>
           </td>
         </tr>
 
-        <!-- fallback link -->
+        <tr><td style="height:26px;line-height:26px;">&nbsp;</td></tr>
+
+        <!-- features -->
         <tr>
-          <td style="padding:18px 40px 6px;">
-            <p style="margin:0;font-size:12.5px;line-height:1.6;color:#8A90A2;">
-              Or paste this link into your browser:<br />
-              <a href="{{ .ConfirmationURL }}" style="color:#6C4CF0;word-break:break-all;">{{ .ConfirmationURL }}</a>
-            </p>
+          <td align="center" style="padding:0 20px 6px;">
+            <h3 style="margin:0 0 4px;font-size:18px;font-weight:800;color:#171A28;">Dengan Sosmed AI, kamu bisa:</h3>
+            <div style="width:40px;height:3px;background:#6C4CF0;border-radius:2px;margin:8px auto 20px;"></div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 12px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+              <td width="25%" valign="top" align="center" style="padding:8px 8px 14px;">
+                <div style="width:54px;height:54px;line-height:54px;background:#F1EEFC;border-radius:50%;font-size:24px;margin:0 auto 10px;">💬</div>
+                <p style="margin:0 0 4px;font-size:13.5px;font-weight:700;color:#171A28;">Otomatisasi Chat</p>
+                <p style="margin:0;font-size:11.5px;line-height:1.5;color:#8A90A2;">Balas pesan, FAQ, dan pertanyaan pelanggan otomatis 24/7.</p>
+              </td>
+              <td width="25%" valign="top" align="center" style="padding:8px 8px 14px;">
+                <div style="width:54px;height:54px;line-height:54px;background:#E3F9EC;border-radius:50%;font-size:24px;margin:0 auto 10px;">💚</div>
+                <p style="margin:0 0 4px;font-size:13.5px;font-weight:700;color:#171A28;">Bangun Hubungan</p>
+                <p style="margin:0;font-size:11.5px;line-height:1.5;color:#8A90A2;">Respons lebih cepat, percakapan lebih personal.</p>
+              </td>
+              <td width="25%" valign="top" align="center" style="padding:8px 8px 14px;">
+                <div style="width:54px;height:54px;line-height:54px;background:#F1EEFC;border-radius:50%;font-size:24px;margin:0 auto 10px;">⚡</div>
+                <p style="margin:0 0 4px;font-size:13.5px;font-weight:700;color:#171A28;">Tugas Lebih Efisien</p>
+                <p style="margin:0;font-size:11.5px;line-height:1.5;color:#8A90A2;">Otomatisasi workflow, follow up, dan notifikasi.</p>
+              </td>
+              <td width="25%" valign="top" align="center" style="padding:8px 8px 14px;">
+                <div style="width:54px;height:54px;line-height:54px;background:#FBEEDC;border-radius:50%;font-size:24px;margin:0 auto 10px;">📊</div>
+                <p style="margin:0 0 4px;font-size:13.5px;font-weight:700;color:#171A28;">Laporan &amp; Insight</p>
+                <p style="margin:0;font-size:11.5px;line-height:1.5;color:#8A90A2;">Pantau performa, leads, dan percakapan real-time.</p>
+              </td>
+            </tr></table>
           </td>
         </tr>
 
+        <tr><td style="height:22px;line-height:22px;">&nbsp;</td></tr>
+
+        <!-- help + social -->
         <tr>
-          <td style="padding:14px 40px 26px;">
-            <p style="margin:0;font-size:12.5px;line-height:1.6;color:#8A90A2;">
-              This link expires in 24 hours. If you didn't create a Sosmed AI account, you can safely ignore this email.
-            </p>
+          <td style="background:#F4F2FB;border-radius:16px;padding:22px 26px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+              <td valign="middle">
+                <p style="margin:0 0 3px;font-size:14px;font-weight:700;color:#171A28;">Butuh bantuan?</p>
+                <p style="margin:0 0 4px;font-size:12.5px;color:#8A90A2;">Tim kami siap membantu kamu.</p>
+                <a href="https://umkm.sosmed.io/bantuan" style="font-size:12.5px;font-weight:700;color:#6C4CF0;text-decoration:none;">Kunjungi Pusat Bantuan&nbsp;→</a>
+              </td>
+              <td valign="middle" align="right">
+                <p style="margin:0 0 8px;font-size:12.5px;color:#8A90A2;">Ikuti kami di media sosial</p>
+                <table role="presentation" cellpadding="0" cellspacing="0" align="right"><tr>
+                  <td style="padding-left:7px;"><a href="https://www.instagram.com/sosmed.io/" style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;background:#ffffff;border-radius:50%;text-decoration:none;font-size:15px;">📷</a></td>
+                  <td style="padding-left:7px;"><a href="https://x.com/sosmed_io" style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;background:#ffffff;border-radius:50%;text-decoration:none;font-size:13px;font-weight:800;color:#171A28;">𝕏</a></td>
+                  <td style="padding-left:7px;"><a href="https://www.tiktok.com/@sosmed.io" style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;background:#ffffff;border-radius:50%;text-decoration:none;font-size:15px;">🎵</a></td>
+                  <td style="padding-left:7px;"><a href="https://www.linkedin.com/company/sosmed-io" style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;background:#ffffff;border-radius:50%;text-decoration:none;font-size:12px;font-weight:800;color:#0A66C2;">in</a></td>
+                </tr></table>
+              </td>
+            </tr></table>
           </td>
         </tr>
 
         <!-- footer -->
         <tr>
-          <td style="padding:22px 40px 30px;border-top:1px solid #ECEDF3;background:#FAFBFD;">
-            <p style="margin:0 0 6px;font-size:13px;font-weight:700;color:#171A28;">Sosmed AI</p>
-            <p style="margin:0 0 14px;font-size:12px;line-height:1.5;color:#8A90A2;">
-              AI Native WhatsApp Automation Agent — automate conversations, engage customers, and grow your business 24/7.
-            </p>
-            <p style="margin:0 0 14px;font-size:12px;">
-              <a href="https://umkm.sosmed.io" style="color:#6C4CF0;text-decoration:none;">Website</a>
-              &nbsp;&middot;&nbsp;
-              <a href="https://umkm.sosmed.io/bantuan" style="color:#6C4CF0;text-decoration:none;">Bantuan</a>
-              &nbsp;&middot;&nbsp;
-              <a href="https://umkm.sosmed.io/privasi" style="color:#6C4CF0;text-decoration:none;">Privasi</a>
-            </p>
-            <p style="margin:0;font-size:11.5px;color:#A7ACBC;">© 2026 Sosmed AI. All rights reserved.</p>
+          <td align="center" style="padding:26px 20px 6px;">
+            <p style="margin:0 0 8px;font-size:13px;color:#8A90A2;">💜 Dibuat dengan hati untuk membantu bisnis kamu tumbuh.</p>
+            <p style="margin:0 0 6px;font-size:12px;color:#A7ACBC;">© 2026 Sosmed AI. All rights reserved.</p>
+            <p style="margin:0;font-size:12px;color:#A7ACBC;">Jika kamu tidak mendaftar di Sosmed AI, abaikan email ini.</p>
           </td>
         </tr>
 
