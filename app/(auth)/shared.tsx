@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 /* ---- brand + UI icons -----------------------------------------------------*/
@@ -8,15 +9,6 @@ export const GoogleIcon = (
     <path fill="#34A853" d="M12 24c3.11 0 5.72-1.03 7.63-2.79l-3.72-2.89c-1.03.69-2.35 1.1-3.91 1.1-3 0-5.55-2.03-6.46-4.76H1.69v2.98A11.5 11.5 0 0 0 12 24z" />
     <path fill="#FBBC05" d="M5.54 14.66A6.9 6.9 0 0 1 5.18 12c0-.92.16-1.82.36-2.66V6.36H1.69A11.5 11.5 0 0 0 .5 12c0 1.86.44 3.62 1.19 5.18l3.85-2.52z" />
     <path fill="#EA4335" d="M12 4.75c1.69 0 3.21.58 4.4 1.72l3.3-3.3C17.71 1.24 15.1 0 12 0 7.5 0 3.6 2.58 1.69 6.36l3.85 2.98C6.45 6.6 9 4.75 12 4.75z" />
-  </svg>
-);
-
-export const MicrosoftIcon = (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path fill="#F25022" d="M1 1h10.2v10.2H1z" />
-    <path fill="#7FBA00" d="M12.8 1H23v10.2H12.8z" />
-    <path fill="#00A4EF" d="M1 12.8h10.2V23H1z" />
-    <path fill="#FFB900" d="M12.8 12.8H23V23H12.8z" />
   </svg>
 );
 
@@ -62,19 +54,15 @@ export const Ic = {
 export function AuthLogo() {
   return (
     <div className="auth-logo">
-      <span className="auth-logo-mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 4V5z" />
-          <circle cx="9.5" cy="9.5" r="1" fill="#fff" stroke="none" />
-          <circle cx="14.5" cy="9.5" r="1" fill="#fff" stroke="none" />
-        </svg>
-      </span>
-      <span>
-        <span className="auth-logo-word">
-          Sosmed<span className="ai">AI</span>
-        </span>
-        <span className="auth-logo-sub">AI Native WhatsApp Automation Agent</span>
-      </span>
+      <Image
+        className="auth-logo-img"
+        src="/logo/sosmed-ai-logo-black-version.png"
+        alt="Sosmed AI"
+        width={137}
+        height={34}
+        priority
+      />
+      <span className="auth-logo-sub">AI Native WhatsApp Automation Agent</span>
     </div>
   );
 }
@@ -218,14 +206,11 @@ export function AuthAside({ variant }: { variant: "login" | "signup" }) {
 
 /* ---- shared bits used by the cards ---------------------------------------*/
 export function SsoButtons({ verb }: { verb: string }) {
-  // Placeholder OAuth entry points — wired to the dashboard for the proto.
+  // Placeholder OAuth entry point — wired to the dashboard for the proto.
   return (
     <div className="auth-sso-row">
       <Link href="/dashboard" className="auth-sso">
         {GoogleIcon} {verb} with Google
-      </Link>
-      <Link href="/dashboard" className="auth-sso">
-        {MicrosoftIcon} {verb} with Microsoft
       </Link>
     </div>
   );
