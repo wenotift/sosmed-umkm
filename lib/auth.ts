@@ -287,7 +287,7 @@ export async function register(input: {
         password: input.password,
         options: {
           data: { full_name: input.name.trim() },
-          emailRedirectTo: `${appOrigin()}/dashboard`,
+          emailRedirectTo: `${appOrigin()}/onboarding`,
         },
       }));
     } catch {

@@ -54,7 +54,7 @@ export default function SignupContent() {
         setLoading(false);
         setConfirmSent(true); // email verification required — show a check-inbox state
       } else {
-        router.push("/dashboard");
+        router.push("/onboarding"); // new account → run the setup wizard
       }
     } catch (err) {
       setLoading(false);
