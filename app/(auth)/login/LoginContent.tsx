@@ -16,7 +16,20 @@ export default function LoginContent() {
   const [errors, setErrors] = useState<Errors>({});
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [forgot, setForgot] = useState(false);
+  const [forgot, setForgot] = useState<{ ok: boolean; msg: string } | null>(null);
+
+  const onForgot = () => {
+    const e = email.trim();
+    if (!e || !EMAIL_RE.test(e)) {
+      setErrors((x) => ({
+        ...x,
+        email: !e ? "Work email is required." : "Enter a valid email address.",
+      }));
+      setForgot({ ok: false, msg: "Isi email yang valid di atas dulu, lalu klik lagi." });
+      return;
+    }
+    setForgot({ ok: true, msg: `Tautan reset password dikirim ke ${e}. Cek inbox kamu ya.` });
+  };
 
   const onSubmit = (ev: React.FormEvent) => {
     ev.preventDefault();
@@ -89,16 +102,13 @@ export default function LoginContent() {
           </div>
 
           <div className="auth-forgot">
-            <button type="button" onClick={() => setForgot(true)}>
+            <button type="button" onClick={onForgot}>
               Forgot password?
             </button>
           </div>
 
           {forgot && (
-            <div className="auth-note">
-              Masukkan email kamu di atas, lalu kami kirim tautan reset password. (Fitur
-              reset akan aktif setelah autentikasi tersambung.)
-            </div>
+            <div className={"auth-note" + (forgot.ok ? "" : " warn")}>{forgot.msg}</div>
           )}
 
           <button className="auth-submit" type="submit" disabled={loading}>

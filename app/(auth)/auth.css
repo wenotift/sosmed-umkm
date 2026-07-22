@@ -661,6 +661,11 @@
   padding: 9px 12px;
   margin: -4px 0 16px;
 }
+.auth-note.warn {
+  color: #9A5B00;
+  background: #FDF2E2;
+  border-color: #F6E0BD;
+}
 
 /* card footer trust row */
 .auth-foot {
