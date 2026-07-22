@@ -7,6 +7,7 @@ import {
   sessionSnapshot,
   subscribeSession,
   isEmailAllowed,
+  logout,
   type Session,
 } from "@/lib/auth";
 import {
@@ -80,23 +81,48 @@ export default function OnboardingContent() {
     saveOnboarding(data);
   }, [data]);
 
-  // auth/allowlist guard + skip if already onboarded (redirect only — no setState)
+  // auth guard + skip if already onboarded (redirect only — no setState). Only
+  // an unauthenticated visitor is sent to /login; an authenticated-but-not-
+  // allowlisted user gets a visible "under development" screen (below) instead
+  // of a confusing silent bounce back to the login page.
   useEffect(() => {
-    if (session === null || (session && !isEmailAllowed(session.email))) {
+    if (session === null) {
       router.replace("/login");
-    } else if (data.complete) {
+    } else if (session && isEmailAllowed(session.email) && data.complete) {
       router.replace("/dashboard");
     }
   }, [session, data.complete, router]);
 
-  if (
-    session === undefined ||
-    session === null ||
-    !isEmailAllowed(session.email) ||
-    data.complete
-  ) {
-    return null;
+  const onLogout = async () => {
+    await logout();
+    router.replace("/login");
+  };
+
+  // loading (session unresolved) or redirecting an unauthenticated visitor
+  if (session === undefined || session === null) return null;
+
+  // signed in but not on the dev allowlist → show a clear locked state
+  if (!isEmailAllowed(session.email)) {
+    return (
+      <div className="onb-locked">
+        <div className="onb-locked-card">
+          <span className="onb-locked-ic">{I.rocket}</span>
+          <h2>Sedang dalam pengembangan</h2>
+          <p>
+            Sosmed AI masih dalam tahap pengembangan dan aksesnya terbatas untuk
+            tim internal. Kamu berhasil masuk sebagai <b>{session.email}</b>, tapi
+            email ini belum ada di daftar akses. Terima kasih atas kesabaranmu 🙏
+          </p>
+          <button type="button" className="onb-btn onb-btn-ghost" onClick={onLogout}>
+            Keluar
+          </button>
+        </div>
+      </div>
+    );
   }
+
+  // onboarded already → the effect above is forwarding to /dashboard
+  if (data.complete) return null;
 
   const set = <K extends keyof OnboardingData>(k: K, v: OnboardingData[K]) =>
     setData((d) => ({ ...d, [k]: v }));
