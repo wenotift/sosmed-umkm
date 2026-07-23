@@ -29,6 +29,20 @@ export const metadata: Metadata = {
 // ARTICLES[...].datePublished. Byline is always "Tim Sosmed AI".
 const POSTS = [
   {
+    slug: "cara-menentukan-minimum-order-pesan-antar",
+    g: "g7",
+    tag: "Panduan",
+    title: "Cara Menentukan Minimum Order Pesan Antar agar Penjualan Tidak Boncos",
+    excerpt: "Hitung batas delivery dari margin, kemasan, ongkir, dan beban penanganan—bukan dari angka kompetitor.",
+  },
+  {
+    slug: "checklist-pesanan-katering-sebelum-dikirim",
+    g: "g6",
+    tag: "Tips Bisnis",
+    title: "Checklist Pesanan Katering Sebelum Dikirim agar Tidak Ada Item Tertinggal",
+    excerpt: "Periksa porsi, varian, pelengkap, pembayaran, alamat, dan kurir melalui empat gerbang sebelum berangkat.",
+  },
+  {
     slug: "daftar-belanja-bahan-warung-dari-penjualan",
     g: "g7",
     tag: "Panduan",

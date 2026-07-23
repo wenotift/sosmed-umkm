@@ -297,6 +297,321 @@ function createTodayArticle(input: TodayArticleInput): Article {
 }
 
 const TODAY_ARTICLES: Record<string, Article> = {
+  "cara-menentukan-minimum-order-pesan-antar": {
+    title: "Cara Menentukan Minimum Order Pesan Antar agar Penjualan Tidak Boncos",
+    category: "Panduan",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-23",
+    coverTitle: "Minimum Order Pesan Antar yang Masuk Akal",
+    description:
+      "Cara menentukan minimum order pesan antar untuk warung, kafe, dan restoran kecil berdasarkan margin, kemasan, ongkir, serta beban penanganan order.",
+    lede: (
+      <>
+        Minimum order pesan antar sebaiknya ditentukan dari biaya khusus yang muncul
+        setiap kali usaha mengirim pesanan, bukan meniru angka kompetitor. Hitung
+        kemasan, waktu penanganan, dan subsidi ongkir; lalu tentukan nilai belanja
+        yang masih menyisakan kontribusi profit setelah semua beban itu tertutup.
+      </>
+    ),
+    keywords: [
+      "cara menentukan minimum order",
+      "minimum order pesan antar",
+      "biaya delivery makanan",
+      "margin pesanan online",
+      "pesan antar warung kafe",
+    ],
+    faq: [
+      {
+        q: "Bagaimana cara menentukan minimum order pesan antar?",
+        a: "Jumlahkan beban khusus per pengiriman dan kontribusi profit yang ingin dipertahankan, lalu bagi dengan rasio margin kontribusi rata-rata dari menu yang biasa dipesan untuk delivery.",
+      },
+      {
+        q: "Biaya apa saja yang masuk dalam hitungan minimum order?",
+        a: "Masukkan kemasan, waktu staf untuk memeriksa dan menyerahkan order, biaya atau subsidi pengiriman yang ditanggung usaha, serta biaya variabel lain yang hanya muncul karena pesanan diantar.",
+      },
+      {
+        q: "Apa yang sebaiknya ditawarkan jika nilai order belum mencapai minimum?",
+        a: "Berikan pilihan yang tetap berguna: pelanggan dapat menambah menu pelengkap yang relevan, mengambil sendiri, membayar ongkir penuh, atau memilih slot pengiriman yang dapat digabung dengan rute lain.",
+      },
+    ],
+    tldr: [
+      "Minimum order harus menutup beban khusus pengiriman dan tetap menyisakan kontribusi profit.",
+      "Gunakan margin kontribusi menu delivery, bukan omzet atau harga jual saja.",
+      "Bedakan minimum order berdasarkan area jika ongkir dan waktu tempuhnya memang berbeda.",
+      "Jika nilai belanja kurang, tawarkan pilihan relevan—jangan memaksa pelanggan menambah barang.",
+      "Tinjau ulang aturan saat harga kemasan, pola menu, atau biaya pengiriman berubah.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Berapa minimum order pesan antar yang masuk akal?",
+        toc: "Jawaban singkat",
+        body: (
+          <>
+            <p>
+              Angka yang masuk akal adalah nilai keranjang terendah yang mampu
+              membayar beban delivery dan masih memberi kontribusi pada biaya tetap
+              serta profit. Karena struktur biaya setiap usaha berbeda, tidak ada
+              satu angka minimum yang otomatis cocok untuk semua warung atau kafe.
+            </p>
+            <p>
+              Rumus kerja yang sederhana adalah: <b>(beban khusus pengiriman +
+              kontribusi yang ingin dipertahankan) ÷ rasio margin kontribusi rata-rata</b>.
+              Margin kontribusi berarti harga jual dikurangi biaya variabel menu,
+              sebelum biaya tetap bulanan.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "biaya-delivery",
+        heading: "Biaya apa yang sering terlupa saat menghitung pesanan antar?",
+        toc: "Biaya delivery",
+        body: (
+          <>
+            <p>
+              Pemilik sering membandingkan harga menu dengan ongkir, padahal satu
+              pengiriman membawa beban lain. Catat biaya kemasan dan segel, waktu staf
+              untuk mencocokkan order, potongan atau subsidi ongkir yang ditanggung
+              usaha, serta risiko remake jika informasi alamat atau varian tidak jelas.
+            </p>
+            <ul>
+              <li><b>Biaya per menu:</b> bahan, saus, pelengkap, dan kemasan yang mengikuti jumlah item.</li>
+              <li><b>Biaya per pengiriman:</b> tas luar, waktu pengecekan, administrasi kurir, dan subsidi ongkir.</li>
+              <li><b>Kontribusi yang dijaga:</b> bagian penjualan yang tetap tersedia untuk biaya tetap dan profit.</li>
+            </ul>
+            <p>
+              Jangan memasukkan seluruh sewa atau gaji bulanan ke satu order. Gunakan
+              hitungan ini untuk melihat apakah tambahan pesanan benar-benar membantu,
+              bukan untuk membuat rumus yang tampak presisi tetapi sulit dipakai tim.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "contoh-hitung",
+        heading: "Bagaimana contoh menghitung minimum order tanpa menebak?",
+        toc: "Contoh hitung",
+        body: (
+          <>
+            <p>
+              Misalkan satu usaha memiliki margin kontribusi rata-rata 40% untuk menu
+              yang sering dipesan antar. Beban khusus satu pengiriman adalah Rp12.000,
+              dan pemilik ingin setidaknya Rp8.000 tetap menjadi kontribusi bagi biaya
+              tetap serta profit. Minimum keranjang ilustratifnya adalah
+              (Rp12.000 + Rp8.000) ÷ 40% = Rp50.000.
+            </p>
+            <p>
+              Angka tersebut hanya contoh cara kerja, bukan patokan industri. Ulangi
+              dengan biaya dan margin usaha sendiri. Jika pelanggan membayar penuh
+              ongkir kurir, keluarkan ongkir dari beban usaha. Jika area lebih jauh
+              membutuhkan subsidi atau waktu lebih besar, gunakan batas yang berbeda
+              dan jelaskan sejak awal percakapan.
+            </p>
+            <p>
+              Untuk membaca margin per menu dengan lebih rapi, lanjutkan ke panduan
+              <a href="/blog/mengetahui-menu-paling-laku-dan-menguntungkan"> menu paling laku dan paling menguntungkan</a> serta
+              <a href="/blog/naikkan-harga-menu-tanpa-kehilangan-pelanggan"> cara meninjau harga menu tanpa membuat pelanggan kaget</a>.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "order-belum-minimum",
+        heading: "Apa yang dilakukan ketika order pelanggan belum mencapai minimum?",
+        toc: "Saat order kurang",
+        body: (
+          <>
+            <p>
+              Minimum order adalah aturan kelayakan, bukan alasan untuk menekan
+              pelanggan. Berikan dua atau tiga pilihan yang mudah dibandingkan:
+              tambah menu pelengkap yang memang cocok, ambil sendiri, bayar ongkir
+              penuh, atau pilih slot pengiriman yang bisa digabung dengan rute lain.
+            </p>
+            <p>
+              Ukur jumlah chat yang batal setelah batas minimum disampaikan, rata-rata
+              nilai keranjang delivery, dan kontribusi rupiah setelah biaya pengiriman.
+              Jika banyak pelanggan batal padahal order sebenarnya masih memberi
+              kontribusi sehat, kemungkinan batasnya terlalu tinggi atau penjelasannya
+              datang terlalu terlambat.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Bagaimana Sosmed AI dapat membantu memberi pilihan yang kontekstual?",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI sedang dirancang untuk memahami isi chat, konteks order, dan
+              informasi pelanggan di WhatsApp. Dalam alur pesan antar, konteks tersebut
+              dapat membantu usaha melihat nilai keranjang dan area kirim, lalu
+              menyiapkan pilihan yang relevan tanpa meminta pelanggan mengulang pesan.
+              Keputusan harga dan kebijakan delivery tetap berada pada pemilik usaha.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "mengetahui-menu-paling-laku-dan-menguntungkan", g: "g7", tag: "Panduan", title: "Menu Paling Laku dan Menguntungkan", excerpt: "Hitung kontribusi menu sebelum menetapkan batas delivery." },
+      { slug: "naikkan-harga-menu-tanpa-kehilangan-pelanggan", g: "g7", tag: "Panduan", title: "Naikkan Harga Menu Tanpa Kehilangan Pelanggan", excerpt: "Tinjau biaya, margin, dan cara menjelaskan perubahan." },
+      { slug: "meningkatkan-nilai-order-tanpa-memaksa", g: "g7", tag: "Panduan", title: "Meningkatkan Nilai Order Tanpa Memaksa", excerpt: "Tawarkan add-on yang relevan, bukan tekanan belanja." },
+    ],
+  },
+  "checklist-pesanan-katering-sebelum-dikirim": {
+    title: "Checklist Pesanan Katering Sebelum Dikirim agar Tidak Ada Item Tertinggal",
+    category: "Tips Bisnis",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-23",
+    coverTitle: "Pesanan Katering Lengkap Sebelum Berangkat",
+    description:
+      "Checklist pesanan katering sebelum dikirim untuk memeriksa jumlah porsi, varian, pelengkap, pembayaran, alamat, waktu tiba, dan serah terima kurir.",
+    lede: (
+      <>
+        Checklist pesanan katering yang efektif memeriksa empat gerbang sebelum
+        kurir berangkat: identitas order, isi paket, kelengkapan pengemasan, serta
+        detail pengiriman. Satu orang menyiapkan, orang lain mencocokkan dengan
+        versi order aktif, lalu status diubah menjadi siap kirim hanya setelah
+        semua pengecualian selesai.
+      </>
+    ),
+    keywords: [
+      "checklist pesanan katering",
+      "checklist packing makanan",
+      "SOP pengiriman katering",
+      "pesanan katering tidak lengkap",
+      "order katering WhatsApp",
+    ],
+    faq: [
+      {
+        q: "Apa saja isi checklist pesanan katering sebelum dikirim?",
+        a: "Periksa identitas dan versi order, jumlah porsi serta varian, pelengkap dan label, status pembayaran, alamat lengkap, kontak penerima, waktu tiba, dan nama kurir yang menerima pesanan.",
+      },
+      {
+        q: "Siapa yang sebaiknya memeriksa pesanan katering?",
+        a: "Gunakan pola pembuat-pemeriksa: staf packing menyiapkan isi paket, lalu staf kedua mencocokkannya dengan versi order aktif sebelum memberi status siap kirim.",
+      },
+      {
+        q: "Bagaimana mengukur apakah checklist packing bekerja?",
+        a: "Pantau jumlah item tertinggal, pesanan yang harus dikirim ulang, koreksi alamat setelah kurir berangkat, selisih porsi atau varian, serta waktu pengecekan per order.",
+      },
+    ],
+    tldr: [
+      "Periksa empat gerbang: identitas order, isi paket, pengemasan, dan pengiriman.",
+      "Gunakan satu versi order aktif agar revisi chat lama tidak ikut dipacking.",
+      "Pisahkan peran pembuat dan pemeriksa untuk order besar atau banyak varian.",
+      "Jangan ubah status menjadi siap kirim selama pembayaran, alamat, atau item masih belum jelas.",
+      "Catat kesalahan berdasarkan titik proses agar checklist dapat diperbaiki, bukan sekadar ditambah panjang.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Apa yang harus dicek sebelum pesanan katering dikirim?",
+        toc: "Jawaban singkat",
+        body: (
+          <>
+            <p>
+              Cocokkan nama atau kode order, versi pesanan terbaru, jumlah porsi,
+              varian khusus, pelengkap, label, pembayaran, alamat, kontak penerima,
+              waktu tiba, dan kurir. Checklist harus mengikuti urutan kerja nyata,
+              bukan menjadi formulir panjang yang baru diisi setelah barang berangkat.
+            </p>
+            <p>
+              Untuk pesanan besar, pakai pola <b>pembuat-pemeriksa</b>: staf pertama
+              menyiapkan, staf kedua menghitung dan mencocokkan. Pemeriksa tidak cukup
+              bertanya “sudah lengkap?”; ia melihat sumber order yang sama dan memberi
+              tanda pada setiap kelompok item.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "kenapa-tertinggal",
+        heading: "Mengapa item masih tertinggal padahal semua merasa sudah packing?",
+        toc: "Penyebab item tertinggal",
+        body: (
+          <>
+            <p>
+              Kesalahan biasanya terjadi di sambungan proses. Revisi menu berhenti di
+              chat admin, dapur memakai catatan lama, sambal dan alat makan disimpan di
+              meja lain, atau alamat lengkap baru dicari ketika kurir sudah menunggu.
+              Semua orang bisa bekerja cepat tetapi tetap memakai versi order berbeda.
+            </p>
+            <p>
+              Rapikan dahulu cara menjaga <a href="/blog/pelanggan-sering-ubah-pesanan-di-whatsapp">satu versi order aktif ketika pelanggan mengubah pesanan</a>.
+              Jika order melewati pergantian tim, gunakan juga
+              <a href="/blog/sop-serah-terima-shift-warung-kafe"> SOP serah terima shift</a> agar pekerjaan terbuka memiliki penanggung jawab berikutnya.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "empat-gerbang",
+        heading: "Bagaimana memakai checklist empat gerbang?",
+        toc: "Empat gerbang",
+        body: (
+          <ol>
+            <li><b>Identitas order:</b> kode, nama pelanggan, versi terbaru, jumlah total, varian, catatan alergi yang disampaikan pelanggan, dan status pembayaran.</li>
+            <li><b>Isi paket:</b> hitung menu utama per varian; pisahkan dan tandai paket khusus agar tidak tertukar.</li>
+            <li><b>Pengemasan:</b> cocokkan sambal, saus, alat makan, tisu, label, serta jumlah tas atau dus luar.</li>
+            <li><b>Pengiriman:</b> baca ulang alamat, lantai atau patokan, kontak penerima, waktu tiba, dan nama kurir; baru kemudian ubah status menjadi siap kirim.</li>
+          </ol>
+        ),
+      },
+      {
+        id: "contoh-penerapan",
+        heading: "Seperti apa contoh penerapan untuk order rapat 40 box?",
+        toc: "Contoh 40 box",
+        body: (
+          <>
+            <p>
+              Misalnya order berisi 35 nasi ayam dan 5 menu vegetarian. Staf packing
+              menyusun dua kelompok, menempelkan label pada lima paket khusus, lalu
+              mencatat 40 paket utama. Pemeriksa kedua menghitung ulang kelompok,
+              mencocokkan 40 sambal dan 40 alat makan, memastikan pelunasan tercatat,
+              kemudian membaca alamat serta waktu tiba kepada kurir.
+            </p>
+            <p>
+              Setelah pengiriman, catat setiap masalah berdasarkan titiknya: versi
+              order, dapur, packing, atau handoff kurir. Ukur item tertinggal, pengiriman
+              ulang, koreksi alamat setelah berangkat, dan waktu pengecekan. Checklist
+              yang baik makin tajam dari kesalahan nyata—bukan makin panjang karena
+              menampung semua kekhawatiran.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Bagaimana Sosmed AI dapat menjaga konteks dari chat sampai kurir?",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI sedang dirancang untuk memahami percakapan WhatsApp dan
+              membantu merapikan konteks order di belakang layar. Untuk pesanan
+              katering, arah ini dapat membantu tim melihat versi order aktif, status
+              pembayaran, rincian varian, dan tindakan berikutnya dalam satu alur.
+              SOP keamanan pangan, keputusan pemeriksaan, dan persetujuan kirim tetap
+              dijalankan oleh pemilik serta tim operasional.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "mencegah-overbooking-preorder-makanan", g: "g6", tag: "Tips Bisnis", title: "Mencegah Overbooking Pesanan Pre-Order", excerpt: "Batasi kapasitas sebelum janji pengiriman menumpuk." },
+      { slug: "pelanggan-sering-ubah-pesanan-di-whatsapp", g: "g6", tag: "Tips Bisnis", title: "Menjaga Versi Order Saat Pelanggan Mengubah Pesanan", excerpt: "Pastikan dapur dan packing membaca revisi terbaru." },
+      { slug: "sop-serah-terima-shift-warung-kafe", g: "g6", tag: "Panduan", title: "SOP Serah Terima Shift Warung dan Kafe", excerpt: "Pindahkan konteks order tanpa mengandalkan ingatan." },
+    ],
+  },
   "sop-serah-terima-shift-warung-kafe": {
     title: "Cara Membuat SOP Serah Terima Shift Warung dan Kafe agar Tidak Ada Tugas Terlewat",
     category: "Panduan",
@@ -4022,6 +4337,8 @@ export function formatArticleDate(datePublished: string): string {
  * source of truth). Titles are always real HTML text over the photo.
  */
 const BLOG_IMAGE_STEM: Record<string, string> = {
+  "cara-menentukan-minimum-order-pesan-antar": "minimum-order-pesan-antar",
+  "checklist-pesanan-katering-sebelum-dikirim": "checklist-packing-pesanan-katering",
   "daftar-belanja-bahan-warung-dari-penjualan": "daftar-belanja-dari-penjualan",
   "mencegah-overbooking-preorder-makanan": "preorder-tanpa-overbooking",
   "sop-serah-terima-shift-warung-kafe": "sop-serah-terima-shift",
