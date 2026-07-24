@@ -29,6 +29,20 @@ export const metadata: Metadata = {
 // ARTICLES[...].datePublished. Byline is always "Tim Sosmed AI".
 const POSTS = [
   {
+    slug: "cara-mengelola-reservasi-restoran-lewat-whatsapp",
+    g: "g6",
+    tag: "Panduan",
+    title: "Cara Mengelola Reservasi Restoran Lewat WhatsApp agar Tidak Double Booking",
+    excerpt: "Ubah chat reservasi menjadi slot meja yang terkonfirmasi tanpa janji ganda atau catatan tercecer.",
+  },
+  {
+    slug: "banyak-admin-whatsapp-jawaban-pelanggan-beda",
+    g: "g3",
+    tag: "Tips Bisnis",
+    title: "Banyak Admin WhatsApp, Jawaban ke Pelanggan Malah Beda? Rapikan Info Menu, Stok, dan Promo",
+    excerpt: "Satukan informasi aktif dan kepemilikan chat agar setiap staf memberi fakta yang konsisten.",
+  },
+  {
     slug: "cara-menentukan-minimum-order-pesan-antar",
     g: "g7",
     tag: "Panduan",

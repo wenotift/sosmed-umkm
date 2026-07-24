@@ -297,6 +297,346 @@ function createTodayArticle(input: TodayArticleInput): Article {
 }
 
 const TODAY_ARTICLES: Record<string, Article> = {
+  "cara-mengelola-reservasi-restoran-lewat-whatsapp": {
+    title: "Cara Mengelola Reservasi Restoran Lewat WhatsApp agar Tidak Double Booking",
+    category: "Panduan",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-24",
+    coverTitle: "Reservasi WhatsApp Tanpa Double Booking",
+    description:
+      "Cara mengelola reservasi restoran lewat WhatsApp dengan data tamu, slot meja, status konfirmasi, dan pengingat agar tidak double booking.",
+    lede: (
+      <>
+        Reservasi restoran lewat WhatsApp akan lebih rapi jika setiap permintaan
+        langsung diubah menjadi satu catatan reservasi yang memuat jumlah tamu,
+        tanggal, jam, kebutuhan khusus, meja atau kapasitas yang dipakai, serta
+        status konfirmasi. Kuncinya adalah memeriksa satu daftar slot sebelum
+        menjanjikan meja—bukan mengandalkan chat yang terakhir dibuka.
+      </>
+    ),
+    keywords: [
+      "cara mengelola reservasi restoran",
+      "reservasi restoran lewat WhatsApp",
+      "mencegah double booking meja",
+      "sistem reservasi restoran kecil",
+      "konfirmasi reservasi WhatsApp",
+    ],
+    faq: [
+      {
+        q: "Bagaimana cara mengelola reservasi restoran lewat WhatsApp?",
+        a: "Ubah setiap permintaan chat menjadi satu catatan yang berisi nama, kontak, jumlah tamu, tanggal, jam, kebutuhan khusus, meja atau kapasitas yang dipakai, dan status konfirmasi; lalu cek daftar slot sebelum menjanjikan meja.",
+      },
+      {
+        q: "Data apa yang wajib dicatat untuk mencegah double booking meja?",
+        a: "Catat waktu kedatangan, jumlah tamu, durasi atau batas waktu meja, area yang diminta, meja yang dialokasikan, status konfirmasi, dan siapa dari tim yang menangani reservasi.",
+      },
+      {
+        q: "Kapan restoran sebaiknya mengirim pengingat reservasi?",
+        a: "Kirim pengingat pada jarak waktu yang masih memberi pelanggan kesempatan untuk mengonfirmasi, mengubah jumlah tamu, atau membatalkan, lalu tetapkan batas respons yang jelas sebelum meja dilepas.",
+      },
+    ],
+    tldr: [
+      "Satu reservasi harus memiliki satu catatan aktif, bukan tersebar di beberapa chat dan ingatan staf.",
+      "Periksa kapasitas per slot waktu sebelum menjanjikan meja kepada pelanggan.",
+      "Pisahkan status diminta, ditahan, dikonfirmasi, datang, selesai, batal, dan tidak hadir.",
+      "Kirim pengingat dengan batas respons yang jelas agar meja tidak tertahan tanpa kepastian.",
+      "Ukur benturan meja, waktu tunggu, pembatalan, dan meja kosong pada jam yang seharusnya terisi.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Bagaimana cara mengelola reservasi restoran lewat WhatsApp?",
+        toc: "Jawaban singkat",
+        body: (
+          <>
+            <p>
+              Gunakan alur <b>minta → cek → tahan → konfirmasi</b>. Saat pelanggan
+              menulis “Sabtu jam 19.00 untuk empat orang”, staf belum perlu langsung
+              menjawab “tersedia”. Catat dulu detail tamu, cek kapasitas pada slot
+              tersebut, tahan satu meja untuk batas waktu tertentu, lalu kirim
+              konfirmasi yang merangkum seluruh detail.
+            </p>
+            <p>
+              Cara ini memisahkan permintaan yang baru masuk dari reservasi yang
+              benar-benar pasti. Pemilik juga dapat melihat meja mana yang masih
+              tersedia tanpa menelusuri chat satu per satu.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "data-reservasi",
+        heading: "Data apa yang wajib dicatat agar meja tidak bentrok?",
+        toc: "Data wajib",
+        body: (
+          <>
+            <p>
+              Catatan reservasi sebaiknya ringkas, tetapi cukup lengkap untuk dipakai
+              kasir, pramusaji, dan penanggung jawab shift. Gunakan satu format yang
+              sama untuk telepon, walk-in yang menunggu, dan WhatsApp.
+            </p>
+            <ul>
+              <li><b>Identitas:</b> nama pelanggan, nomor WhatsApp, dan nama staf yang menangani.</li>
+              <li><b>Kebutuhan:</b> jumlah tamu, tanggal, jam kedatangan, area merokok atau non-smoking, kursi anak, serta catatan akses bila ada.</li>
+              <li><b>Kapasitas:</b> nomor atau kelompok meja, waktu mulai, dan perkiraan kapan meja dapat dipakai kembali.</li>
+              <li><b>Status:</b> diminta, ditahan, dikonfirmasi, datang, selesai, batal, atau tidak hadir.</li>
+            </ul>
+            <p>
+              Jangan menulis “empat orang malam” tanpa tanggal dan jam. Catatan
+              seperti itu terlihat cepat, tetapi mudah dibaca berbeda oleh shift
+              berikutnya.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "slot-dan-kapasitas",
+        heading: "Bagaimana membagi slot tanpa membuat meja terlalu lama kosong?",
+        toc: "Slot dan kapasitas",
+        body: (
+          <>
+            <p>
+              Mulai dari kapasitas nyata, bukan jumlah chat yang ingin diterima.
+              Kelompokkan meja berdasarkan jumlah kursi, lalu tentukan berapa
+              reservasi yang aman untuk setiap jam dengan mempertimbangkan durasi
+              makan, waktu membersihkan meja, serta pelanggan walk-in.
+            </p>
+            <p>
+              Contohnya, sebuah restoran kecil memiliki tiga meja untuk empat orang.
+              Jika dua meja sudah dikonfirmasi pukul 19.00 dan satu meja sengaja
+              dijaga untuk walk-in, permintaan ketiga tidak boleh otomatis
+              dikonfirmasi. Tawarkan pukul 18.00, 20.30, atau daftar tunggu—mana yang
+              memang dapat dipenuhi tim.
+            </p>
+            <p>
+              Prinsip kapasitas per slot ini juga berguna untuk
+              <a href="/blog/mencegah-overbooking-preorder-makanan"> mencegah overbooking pesanan pre-order</a>.
+              Untuk menjaga alur pelayanan ketika banyak tamu datang bersamaan, baca
+              juga panduan
+              <a href="/blog/mengelola-pesanan-jam-ramai"> mengelola pesanan saat jam ramai</a>.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "konfirmasi-pengingat",
+        heading: "Kapan reservasi dikonfirmasi, diingatkan, atau dilepas?",
+        toc: "Konfirmasi dan pengingat",
+        body: (
+          <>
+            <p>
+              Pesan konfirmasi harus menyebutkan nama, jumlah tamu, tanggal, jam,
+              area atau meja bila relevan, dan cara mengubah reservasi. Kirim
+              pengingat pada jarak waktu yang masih memberi pelanggan kesempatan
+              untuk menjawab. Tetapkan batas respons yang jelas sebelum meja dilepas,
+              terutama pada jam ramai.
+            </p>
+            <p>
+              Pantau jumlah benturan meja, tamu yang menunggu meski sudah reservasi,
+              pembatalan, tidak hadir, meja kosong pada jam yang seharusnya terisi,
+              dan waktu staf untuk mencari catatan. Ukuran ini lebih berguna daripada
+              sekadar menghitung banyaknya chat reservasi.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Bagaimana Sosmed AI dapat membantu merapikan konteks reservasi?",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI sedang dirancang untuk memahami percakapan WhatsApp dan
+              menghubungkannya dengan konteks pelanggan serta tindakan bisnis. Dalam
+              alur reservasi, pendekatan ini dapat membantu tim menangkap tanggal,
+              jam, jumlah tamu, dan kebutuhan khusus dari chat, lalu menampilkan
+              konteks yang perlu diperiksa sebelum staf mengonfirmasi. Kebijakan meja,
+              durasi, dan pelepasan slot tetap ditentukan oleh pemilik restoran.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "mencegah-overbooking-preorder-makanan", g: "g6", tag: "Tips Bisnis", title: "Mencegah Overbooking Pre-Order", excerpt: "Terapkan kapasitas per slot sebelum menerima terlalu banyak janji." },
+      { slug: "mengelola-pesanan-jam-ramai", g: "g6", tag: "Tips Bisnis", title: "Mengelola Pesanan Saat Jam Ramai", excerpt: "Jaga antrean dan pelayanan saat permintaan datang bersamaan." },
+      { slug: "sop-serah-terima-shift-warung-kafe", g: "g6", tag: "Panduan", title: "SOP Serah Terima Shift", excerpt: "Pastikan reservasi aktif ikut berpindah ke tim berikutnya." },
+    ],
+  },
+  "banyak-admin-whatsapp-jawaban-pelanggan-beda": {
+    title: "Banyak Admin WhatsApp, Jawaban ke Pelanggan Malah Beda? Rapikan Info Menu, Stok, dan Promo",
+    category: "Tips Bisnis",
+    readTime: "8 menit baca",
+    datePublished: "2026-07-24",
+    coverTitle: "Satu WhatsApp, Satu Jawaban Tim",
+    description:
+      "Cara mengelola WhatsApp bisnis dengan banyak admin agar jawaban tentang menu, stok, harga, promo, dan pesanan tetap konsisten.",
+    lede: (
+      <>
+        WhatsApp bisnis dengan banyak admin tidak harus membuat pelanggan menerima
+        jawaban yang berbeda. Tetapkan satu sumber informasi aktif untuk menu, stok,
+        harga, promo, dan kebijakan; beri satu penanggung jawab pada setiap
+        percakapan; lalu tampilkan waktu serta nama orang yang terakhir memperbarui
+        informasi.
+      </>
+    ),
+    keywords: [
+      "cara mengelola WhatsApp bisnis banyak admin",
+      "admin WhatsApp beda jawaban",
+      "SOP admin WhatsApp bisnis",
+      "informasi menu stok promo",
+      "WhatsApp untuk tim warung kafe",
+    ],
+    faq: [
+      {
+        q: "Bagaimana cara mengelola WhatsApp bisnis dengan banyak admin?",
+        a: "Gunakan satu sumber informasi aktif untuk menu, stok, harga, promo, dan kebijakan; tetapkan satu penanggung jawab untuk setiap percakapan; serta catat siapa dan kapan informasi terakhir diperbarui.",
+      },
+      {
+        q: "Informasi apa yang harus disamakan oleh semua admin WhatsApp?",
+        a: "Samakan daftar menu yang tersedia, harga, stok habis, promo beserta masa berlaku dan syaratnya, area serta biaya pengiriman, estimasi waktu, metode pembayaran, dan aturan perubahan atau pembatalan order.",
+      },
+      {
+        q: "Bagaimana mengukur apakah jawaban tim sudah lebih konsisten?",
+        a: "Pantau jumlah koreksi setelah jawaban terkirim, pelanggan yang harus bertanya ulang, order yang salah karena informasi lama, percakapan yang dijawab dua staf, dan waktu untuk menemukan informasi terbaru.",
+      },
+    ],
+    tldr: [
+      "Buat satu sumber informasi aktif; jangan menyebarkan versi menu, stok, dan promo melalui banyak chat internal.",
+      "Setiap informasi perlu pemilik, waktu pembaruan, masa berlaku, dan status aktif.",
+      "Tetapkan satu penanggung jawab per percakapan agar dua staf tidak memberi janji berbeda.",
+      "Pisahkan fakta bisnis yang wajib sama dari gaya bahasa yang tetap boleh natural.",
+      "Ukur koreksi jawaban, pertanyaan ulang, dan salah order akibat informasi lama.",
+    ],
+    sections: [
+      {
+        id: "jawaban-singkat",
+        heading: "Bagaimana cara mengelola WhatsApp bisnis dengan banyak admin?",
+        toc: "Jawaban singkat",
+        body: (
+          <>
+            <p>
+              Pisahkan dua hal: <b>sumber jawaban</b> dan <b>orang yang membalas</b>.
+              Menu, stok, harga, promo, area pengiriman, serta kebijakan harus berasal
+              dari satu informasi aktif. Setelah chat masuk, satu staf mengambil
+              tanggung jawab sampai order selesai atau diserahkan dengan jelas.
+            </p>
+            <p>
+              Tim tidak perlu menyalin satu kalimat baku seperti robot. Mereka tetap
+              dapat berbicara natural, tetapi fakta yang disampaikan kepada pelanggan
+              harus sama dan dapat dilacak ke pembaruan terbaru.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "penyebab-beda-jawaban",
+        heading: "Mengapa admin sering memberi jawaban yang berbeda?",
+        toc: "Penyebab beda jawaban",
+        body: (
+          <>
+            <p>
+              Masalah biasanya bukan karena staf tidak peduli. Informasi berubah
+              cepat, tetapi pembaruannya tersebar: harga baru ada di grup, stok habis
+              disebut lisan, syarat promo tersimpan di poster lama, dan estimasi dapur
+              hanya diketahui orang yang sedang bertugas.
+            </p>
+            <p>
+              Ketika pelanggan bertanya, admin memilih sumber yang paling mudah
+              ditemukan—bukan selalu yang paling baru. Akibatnya, satu pelanggan
+              mendapat promo, pelanggan lain ditolak, atau dapur menerima pesanan
+              menu yang sebenarnya sudah habis.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "satu-sumber-info",
+        heading: "Informasi apa yang harus menjadi satu sumber aktif?",
+        toc: "Satu sumber info",
+        body: (
+          <>
+            <p>
+              Mulai dari informasi yang paling sering memengaruhi keputusan beli.
+              Setiap baris perlu status, waktu pembaruan, nama penanggung jawab, dan
+              masa berlaku bila sifatnya sementara.
+            </p>
+            <ul>
+              <li><b>Menu dan stok:</b> tersedia, hampir habis, habis, atau kembali tersedia.</li>
+              <li><b>Harga dan promo:</b> harga aktif, isi penawaran, syarat, kanal, serta tanggal berakhir.</li>
+              <li><b>Operasional:</b> jam buka, area kirim, biaya, estimasi siap, dan metode pembayaran.</li>
+              <li><b>Kebijakan order:</b> batas perubahan, pembatalan, refund, dan penanganan keluhan.</li>
+            </ul>
+            <p>
+              Jika daftar menu masih sulit dipahami pelanggan, rapikan lebih dulu
+              dengan panduan
+              <a href="/blog/menu-digital-mudah-dipesan"> membuat menu digital yang mudah dipesan</a>.
+              Untuk pembaruan yang harus diteruskan antarjam kerja, gunakan
+              <a href="/blog/sop-serah-terima-shift-warung-kafe"> SOP serah terima shift</a>.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "kepemilikan-chat",
+        heading: "Bagaimana mencegah dua staf membalas chat yang sama?",
+        toc: "Kepemilikan chat",
+        body: (
+          <>
+            <p>
+              Beri setiap percakapan status sederhana: baru, ditangani, menunggu
+              pelanggan, menunggu tim, atau selesai. Saat staf mulai membalas,
+              tampilkan namanya sebagai penanggung jawab. Jika perlu berpindah orang,
+              lakukan serah terima yang memuat ringkasan order, janji yang sudah
+              diberikan, dan tindakan berikutnya.
+            </p>
+            <p>
+              Contoh: Raka bertanya apakah promo kopi susu masih aktif. Nisa mengambil
+              chat, memeriksa bahwa promo berlaku sampai 26 Juli dan stok tersedia,
+              lalu mengirim jawaban. Staf lain cukup melihat status “ditangani Nisa”,
+              bukan mengirim jawaban kedua dari poster yang berbeda.
+            </p>
+            <p>
+              Pantau koreksi setelah jawaban terkirim, pelanggan yang harus bertanya
+              ulang, order salah akibat informasi lama, chat yang dijawab dua staf,
+              dan waktu yang diperlukan untuk menemukan fakta terbaru.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "peran-sosmed-ai",
+        heading: "Bagaimana Sosmed AI dapat membantu tim menjaga konteks yang sama?",
+        toc: "Peran Sosmed AI",
+        body: (
+          <>
+            <p>
+              Sosmed AI sedang dirancang agar percakapan WhatsApp dapat terhubung
+              dengan konteks pelanggan, order, serta informasi bisnis yang relevan.
+              Dalam kerja banyak admin, pendekatan ini dapat membantu staf melihat
+              siapa yang menangani chat, riwayat pelanggan, dan informasi aktif
+              sebelum menjawab. Pemilik tetap menentukan harga, promo, stok, dan
+              kebijakan yang berlaku.
+            </p>
+            <p>
+              Gambaran lebih luas tentang alur ini dapat dibaca di
+              <a href="/blog/otomatisasi-whatsapp-untuk-umkm-fnb"> otomatisasi WhatsApp untuk UMKM F&amp;B</a>.
+            </p>
+            <AiNativeNote />
+            <ComingSoonBand />
+          </>
+        ),
+      },
+    ],
+    related: [
+      { slug: "sop-serah-terima-shift-warung-kafe", g: "g6", tag: "Panduan", title: "SOP Serah Terima Shift", excerpt: "Pindahkan informasi dan tindakan tanpa mengandalkan ingatan." },
+      { slug: "otomatisasi-whatsapp-untuk-umkm-fnb", g: "g3", tag: "Panduan", title: "Otomatisasi WhatsApp untuk UMKM F&B", excerpt: "Hubungkan percakapan natural dengan kerja operasional." },
+      { slug: "pelanggan-sering-ubah-pesanan-di-whatsapp", g: "g6", tag: "Tips Bisnis", title: "Pelanggan Sering Ubah Pesanan", excerpt: "Jaga satu versi order aktif ketika isi chat berubah." },
+    ],
+  },
   "cara-menentukan-minimum-order-pesan-antar": {
     title: "Cara Menentukan Minimum Order Pesan Antar agar Penjualan Tidak Boncos",
     category: "Panduan",
@@ -4337,6 +4677,8 @@ export function formatArticleDate(datePublished: string): string {
  * source of truth). Titles are always real HTML text over the photo.
  */
 const BLOG_IMAGE_STEM: Record<string, string> = {
+  "cara-mengelola-reservasi-restoran-lewat-whatsapp": "reservasi-whatsapp-tanpa-double-booking",
+  "banyak-admin-whatsapp-jawaban-pelanggan-beda": "banyak-admin-whatsapp-satu-jawaban",
   "cara-menentukan-minimum-order-pesan-antar": "minimum-order-pesan-antar",
   "checklist-pesanan-katering-sebelum-dikirim": "checklist-packing-pesanan-katering",
   "daftar-belanja-bahan-warung-dari-penjualan": "daftar-belanja-dari-penjualan",
